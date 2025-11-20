@@ -11,12 +11,14 @@
     /* ───── 전역 변수 ───── */
     :root{
       --color-blue:#2C5CA3;  --color-green:#20B685; --color-text:#424242;
+      --color-light-gray:#f7f9fa; /* hover/active 용 */
+      --color-dark-gray:#e9ecef;  /* active 용 */
       --fs-opt-min:1.5rem;   --fs-opt-vw:8vw;       --fs-opt-max:2rem;
-      --pad-desk-h:24px;     --pad-mob-h:5px;
-      --fs-home:22px;        --pad-home-v:16px;     --pad-home-h:24px;
+      --pad-desk-h:24px;     --pad-mob-h:12px;
+      --fs-home:18px;        --pad-home-v:10px;     --pad-home-h:16px;
       --gap-desk:24px;       --gap-port:20px;
       --stage-title-height:60px;
-      --pc-width:80vw;1
+      --pc-width:80vw;
     }
 
     /* ───── 기본 레이아웃 ───── */
@@ -24,7 +26,8 @@
       margin:0;height:100%;
       font-family:'Noto Sans',sans-serif;
       background:#fff;color:var(--color-text);
-      overflow:hidden;
+      overflow-x:hidden; /* X축 스크롤 방지 */
+      overflow-y:auto;
     }
 
     .stage-title{
@@ -33,46 +36,54 @@
       text-align:center;font-weight:700;font-size:2rem;color:var(--color-green);
       background:#fff;z-index:1000;transition:opacity .25s ease;
     }
+    
+    /* PC 화면에서 제목 중앙 정렬 */
+    @media (min-width:1024px){
+      .stage-title{width:var(--pc-width);left:50%;transform:translateX(-50%);}
+    }
 
-    /* 카드형 옵션(1·2단계) */
+
+    /* ───── 카드형 옵션(1·2단계) ───── */
     .option{
       font-weight:700;
       font-size:clamp(var(--fs-opt-min),var(--fs-opt-vw),var(--fs-opt-max));
       line-height:1.4;text-align:center;width:100%;cursor:pointer;
-      user-select:none;color:var(--color-text);margin-bottom:var(--gap-desk);
+      user-select:none;color:var(--color-text);
+      padding:10px 0; /* 터치 영역 확장 */
+      margin-bottom:var(--gap-desk);
+      transition:background-color .15s ease;
     }
     .highlight{color:var(--color-green);}
     .option:focus-visible{outline:3px solid var(--color-green);border-radius:4px;}
+    .option:active{background:var(--color-dark-gray);border-radius:4px;} /* 클릭 피드백 강화 */
 
 
-
-    #backBtn,#homeBtn,.home-btn{
-      position:fixed;bottom:18px;left:2px;
+    /* ───── 탐색 버튼 ───── */
+    #backBtn,#homeBtnFP{
+      position:fixed;bottom:18px;left:var(--pad-desk-h);
       padding:var(--pad-home-v) var(--pad-home-h);font-size:var(--fs-home);
-      border:none;border-radius:8px;background:none;color:var(--color-green);
+      border:none;border-radius:8px;
+      background:var(--color-green);color:#fff;
       font-weight:700;cursor:pointer;z-index:1000;
+      transition:transform .1s ease, opacity .25s ease;
+      box-shadow:0 2px 5px rgba(0,0,0,.2);
+      text-transform:uppercase;
     }
+    #backBtn:hover, #homeBtnFP:hover{transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,.2);}
+    #backBtn:active, #homeBtnFP:active{transform:translateY(0); box-shadow:0 2px 5px rgba(0,0,0,.2); background:var(--color-blue);}
+
 
     /* ───── "한눈에 보기" 버튼 ───── */
     #overviewBtn{
-      position:fixed;bottom:calc(18px + 48px);left:2px;
+      position:fixed;bottom:calc(18px + 48px + 10px); left:var(--pad-desk-h);
       padding:var(--pad-home-v) var(--pad-home-h);font-size:var(--fs-home);
-      border:none;border-radius:8px;background:none;color:var(--color-green);
+      border:1px solid var(--color-green); border-radius:8px;
+      background:none;color:var(--color-green);
       font-weight:700;cursor:pointer;z-index:1000;
+      transition:background .15s ease;
     }
-
-    /* HOME·개요 버튼 위치는 그대로 두고, 라벨만 새로 추가 */
-    #internalNote{
-      position:fixed;          /* HOME 로고 버튼 바로 아래 */
-      bottom:calc(0px);
-      left:var(--pad-mob-h);
-      color:var(--color-text);
-      font-size:0.7rem;        /* 작게 */
-      font-weight:700;
-      user-select:none;
-      z-index:1000;
-    }
-
+    #overviewBtn:hover{background:var(--color-light-gray);}
+    #overviewBtn:focus-visible{outline:3px solid var(--color-green);border-radius:8px;}
 
 
     /* ───── 단계 영역 ───── */
@@ -81,15 +92,16 @@
       display:flex;flex-direction:column;justify-content:center;align-items:center;
       padding:0 var(--pad-desk-h);gap:var(--gap-desk);overflow-y:auto;
       transition:opacity .25s ease;
+      padding-top:20px; /* 제목과의 간격 */
     }
 
     /* ───── 분류3 표 ───── */
     table.optTbl{
       width:90%;max-width:960px;margin:0 auto;border-collapse:collapse;
       border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;
-      font-size:clamp(var(--fs-opt-min),var(--fs-opt-vw),var(--fs-opt-max));
+      font-size:clamp(1.1rem,var(--fs-opt-vw),1.5rem); /* 테이블 폰트 크기 조정 */
     }
-    table.optTbl tr{border-bottom:1px solid #d9d9d9;}
+    table.optTbl tr{border-bottom:1px solid #d9d9d9; outline:none;} /* outline:none 추가 */
     table.optTbl td{
       padding:12px 10px;line-height:1.34;vertical-align:top;word-break:keep-all;
     }
@@ -99,18 +111,24 @@
     table.optTbl td:nth-child(2){
       width:220px;font-weight:700;white-space:nowrap;
     }
-    table.optTbl tr:hover{background:#f7f9fa;cursor:pointer;}
+    table.optTbl tr:hover{background:var(--color-light-gray);cursor:pointer;}
+    table.optTbl tr:active{background:var(--color-dark-gray);} /* 클릭 피드백 강화 */
+    table.optTbl tr:focus-visible{outline:3px solid var(--color-green);} /* 포커스 스타일 명확화 */
 
     /* 모바일·폴드(세로) : 폭 ≤ 800 px */
     @media (max-width:800px) and (orientation:portrait){
-      table.optTbl td{display:block;width:100%;padding:6px 8px;}
+      table.optTbl td{display:block;width:100%;padding:10px 8px;} /* 터치 영역 확장 */
       table.optTbl td:first-child,
       table.optTbl td:nth-child(2){
-        display:inline-block;width:auto;padding:6px 8px 0 8px;
+        display:inline-block;width:auto;padding:10px 8px 0 8px;
       }
       table.optTbl td:last-child{
         margin-left:48px;padding-top:2px;font-size:0.85rem;
       }
+      /* 모바일 버튼 위치 조정 */
+      #backBtn, #overviewBtn{left:var(--pad-mob-h);}
+      #homeBtnFP{left:18px;}
+      #stage{padding:0 var(--pad-mob-h);}
     }
 
     /* ───── 상세 패널 ───── */
@@ -118,6 +136,7 @@
       position:fixed;inset:0;background:#fff;display:none;
       flex-direction:column;align-items:center;overflow-y:auto;
       transition:opacity .25s ease;
+      padding-bottom:100px; /* 하단 버튼 공간 확보 */
     }
     #finalPanel.show{display:flex;opacity:1;}
 
@@ -131,8 +150,11 @@
       width:90%;max-width:960px;margin:0 auto;font-size:1.4rem;line-height:1.58;
     }
     #finalPanel iframe{
-      width:100%;aspect-ratio:16/9;border:1px solid #ccc;border-radius:8px;margin:0;
+      width:100%;aspect-ratio:16/9;border:1px solid #ccc;border-radius:8px;margin:10px 0;
     }
+    #finalPanel hr {border:0; border-top:1px solid #eee; margin:20px 0;}
+    #finalPanel h3{font-size:1.5rem; color:var(--color-green); margin-top:30px;}
+
 
     /* ───── 이미지 모달 ───── */
     #imgModal{
@@ -153,23 +175,18 @@
       filter:drop-shadow(0 0 2px #000);
     }
 
-    /* ───── 모바일 세로 여백 ───── */
-    @media (orientation:portrait){
-      #stage{padding:0 var(--pad-mob-h);gap:var(--gap-port);}
-    }
-
     /* ───── PC 가운데 정렬 ───── */
     @media (min-width:1024px){
-      #stageTitle,#stage,#finalPanel{width:var(--pc-width);left:50%;transform:translateX(-50%);}
+      #stage,#finalPanel{width:var(--pc-width);left:50%;transform:translateX(-50%);}
       #finalPanel{align-items:flex-start;padding-left:var(--pad-desk-h);padding-right:var(--pad-desk-h);}
       #finalPanel h1,#finalPanel section{text-align:left;width:100%;max-width:none;}
-      #backBtn, #overviewBtn{left:0px !important;}
+      #backBtn{left:calc(50% - var(--pc-width)/2) !important;} /* PC에서 좌측 고정 */
+      #overviewBtn{left:calc(50% - var(--pc-width)/2) !important;} /* PC에서 좌측 고정 */
     }
   </style>
 
 
 
-  <!-- ---------- SCRIPT ---------- -->
   <script type="module">
     /* 단계별 화면 제목 */
     const stagePrompts = [
@@ -219,7 +236,9 @@
     const stage      = document.getElementById('stage');
     const titleEl    = document.getElementById('stageTitle');
     const finalPanel = document.getElementById('finalPanel');
+    const backBtn    = document.getElementById('backBtn');
     const hist       = [];
+    const rootNode   = tree; // 트리의 루트 노드를 저장
 
     const HIGHLIGHTS = ['미만','이상','무관','금액무관'];
     const highlight = t => HIGHLIGHTS.reduce((s,w)=>s.replaceAll(w,`<span class="highlight">${w}</span>`), t);
@@ -236,16 +255,9 @@
       return '';
     }
 
-    function resizeFont(){
-      const opts=[...stage.querySelectorAll('.option')];
-      if(!opts.length) return;
-      opts.forEach(o=>{ o.style.fontSize=''; o.style.margin='4px 0'; });
-      let size=parseFloat(getComputedStyle(opts[0]).fontSize), tries=0;
-      while(stage.scrollHeight>stage.clientHeight && size>18 && ++tries<30){
-        size-=2; const m=Math.max(2,4-(tries>5?1:0));
-        opts.forEach(o=>{ o.style.fontSize=size+'px'; o.style.margin=`${m}px 0`; });
-      }
-    }
+    /* 폰트 크기 동적 조정 로직 제거 */
+    /* function resizeFont(){ ... } */
+
 
     function auto(node){
       while(node.children?.length===1 && !node.children[0].payload){
@@ -266,6 +278,9 @@
     /* ---------- render : 단계별 화면 출력 ---------- */
 
     function render (node) {
+      // 1. 뒤로 가기 버튼 텍스트 업데이트
+      updateBackBtn(node);
+
       node = auto(node);
       if (!node || stage.dataset.busy === '1') return;
 
@@ -289,27 +304,7 @@
 
         /* ── 분류3 표(Stage 3) ── */
         if (isCat3Stage) {
-          if (!document.getElementById('cat3Style')) {
-            const st = document.createElement('style');
-            st.id = 'cat3Style';
-            st.textContent = `
-              table.optTbl{width:90%;max-width:960px;margin:0 auto;border-collapse:collapse;
-                border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;
-                font-size:clamp(var(--fs-opt-min),var(--fs-opt-vw),var(--fs-opt-max))}
-              table.optTbl tr{border-bottom:1px solid #d9d9d9}
-              table.optTbl td{padding:12px 10px;line-height:1.34;vertical-align:top}
-              table.optTbl td:first-child{width:48px;text-align:center;font-weight:700}
-              table.optTbl td:nth-child(2){width:220px;font-weight:700;white-space:nowrap}
-              table.optTbl tr:hover{background:#f7f9fa;cursor:pointer}
-              @media(max-width:800px) and (orientation:portrait){
-                table.optTbl td{display:block;width:100%;padding:6px 8px}
-                table.optTbl td:first-child,table.optTbl td:nth-child(2){
-                  display:inline-block;width:auto;padding:6px 8px 0 8px}
-                table.optTbl td:last-child{margin-left:48px;padding-top:2px;font-size:.85rem}}
-            `;
-            document.head.appendChild(st);
-          }
-
+          // CSS는 <style> 태그에 이미 있으므로 추가하지 않음
           const table = document.createElement('table');
           table.className = 'optTbl';
           const tbody = document.createElement('tbody');
@@ -346,7 +341,7 @@
           });
         }
 
-        resizeFont();
+        /* resizeFont(); 제거 */
         stage.style.opacity = '1';
         titleEl.style.opacity = '1';
         stage.dataset.busy = '0';
@@ -375,61 +370,90 @@
     /* ---------- 상세 패널 ---------- */
     function show(d){
       titleEl.style.display = 'none';
-      document.getElementById('backBtn').style.display = '';
-      document.getElementById('homeBtnFP').style.display = 'none';
+      backBtn.style.display = 'none'; // 일반 단계용 뒤로가기 버튼 숨김
+      document.getElementById('overviewBtn').style.display = 'none';
+      document.getElementById('homeBtnFP').style.display = ''; // 최종 패널용 HOME 버튼 표시
       document.getElementById('fpTitle').innerHTML = title(d);
 
       const pay  = (d.pay  || '').trim();   // 결제수단
       const cash = (d.cash || '').trim();   // 금액범위
 
-      let html = `<p><b>승인권한 :</b> ${d.big || '-'}</p>`;
+      let html = `<section>`;
+      html += `<p><b>승인권한 :</b> ${d.big || '-'}</p>`;
       if (cash) html += `<p><b>금액범위 :</b> ${cash}</p>`;
       if (pay)  html += `<p><b>결제수단 :</b> ${pay}</p>`;
-      html += '<hr>';
+      html += '</section><hr>';
 
 
+      html += `<section><p>${d.desc}</p></section>`;
 
-      html += `<p>${d.desc}</p>`;
+      let iframeHtml = '';
 
       if (d.l1){
-        html += `<h3>신청 매뉴얼</h3><iframe src="${d.l1}" allowfullscreen></iframe>`;
+        iframeHtml += `<section><h3>신청 매뉴얼</h3><iframe src="${d.l1}" allowfullscreen></iframe></section>`;
       }
 
       if (pay.includes('개인 법인카드') && d.l2){
-        html += `<h3>월말 지출승인요청서 매뉴얼</h3><iframe src="${d.l2}" allowfullscreen></iframe>`;
+        iframeHtml += `<section><h3>월말 지출승인요청서 매뉴얼</h3><iframe src="${d.l2}" allowfullscreen></iframe></section>`;
       }
 
       document.getElementById('fpBody').innerHTML = html;
+      document.getElementById('fpIframes').innerHTML = iframeHtml;
       finalPanel.classList.add('show');
       scrollTopAll();
       adjustIframe();
     }
 
 
-    /* HOME 버튼 */
-    const homeBtn = document.getElementById('backBtn');
-    homeBtn.textContent='HOME';
+    /* HOME/뒤로가기 버튼 로직 */
     const homeBtnFP = document.createElement('button');
     homeBtnFP.id='homeBtnFP';
     homeBtnFP.textContent='HOME';
     homeBtnFP.style.cssText=`
-      position:fixed;bottom:18px;left:18px;
-      padding:8px 14px;border:none;border-radius:6px;
-      background:${getComputedStyle(document.documentElement).getPropertyValue('--color-blue')};
-      color:#fff;font-weight:700;cursor:pointer;z-index:9999;
+      position:fixed;bottom:18px;right:calc(50% - var(--pc-width)/2);
+      padding:var(--pad-home-v) var(--pad-home-h);font-size:var(--fs-home);
+      border:none;border-radius:8px;
+      background:var(--color-blue);color:#fff;font-weight:700;cursor:pointer;z-index:9999;
+      box-shadow:0 2px 5px rgba(0,0,0,.2);
+      text-transform:uppercase;
     `;
+    homeBtnFP.addEventListener('click', resetApp);
     finalPanel.appendChild(homeBtnFP);
+
+
+    function updateBackBtn(node) {
+      if (node === rootNode && hist.length === 0) {
+        backBtn.textContent = 'HOME';
+        backBtn.onclick = resetApp;
+      } else {
+        backBtn.textContent = '← 이전 단계';
+        backBtn.onclick = goBack;
+      }
+      backBtn.style.display = finalPanel.classList.contains('show') ? 'none' : '';
+      document.getElementById('overviewBtn').style.display = finalPanel.classList.contains('show') ? 'none' : '';
+    }
+
+    function goBack() {
+      if (hist.length > 0) {
+        const prevNode = hist.pop(); // 현재 노드의 부모 노드를 가져옴
+        render(prevNode);
+      } else {
+        resetApp();
+      }
+    }
+
     function resetApp(){
       titleEl.style.display = '';
       finalPanel.classList.remove('show');
       hist.length=0;
       stage.dataset.busy='0';
       stage.innerHTML='';
-      render(tree);
+      document.getElementById('homeBtnFP').style.display = 'none';
+      render(rootNode);
       scrollTopAll();
     }
-    homeBtn.onclick = resetApp;
-    homeBtnFP.onclick = resetApp;
+    backBtn.onclick = goBack; /* 초기 로직을 goBack으로 설정 */
+
 
     /* ---------- "한눈에 보기" 모달 이벤트 ---------- */
     const modal = document.getElementById('imgModal');
@@ -445,7 +469,6 @@
     render(tree);
     scrollTopAll();
   </script>
-  <!-- ───── ESC·배경스크롤 polyfill ───── -->
   <script>
     if(!Array.prototype.at){
       Array.prototype.at=function(n){
@@ -470,9 +493,9 @@
   <div id="finalPanel">
     <h1 id="fpTitle"></h1>
     <section id="fpBody"></section>
+    <div id="fpIframes"></div>
   </div>
 
-  <!-- 이미지 모달 -->
   <div id="imgModal" aria-hidden="true">
     <div class="modal-content">
       <button id="closeModal">✕</button>
@@ -482,9 +505,6 @@
 
 
 </button>
-  <!-- 아래쪽에 내부용 라벨 추가 -->
-<span id="internalNote">FOR RADEXEL INC. USE ONLY </span>
-  <!-- CSV 붙여넣기 -->
   <script id="csvData" type="text/csv">
 분류1,분류2,분류3,분류4,분류5,프로세스 설명,대분류,신청 방법,매월 말 지출 승인 요청서 신청 방법 : 개인 법인카드를 한 번이라도 사용한 이력이 있으면 작성,예시
 임직원,비용 지출,일반 구매,100만원 미만,개인 법인카드(우선순위),"100만원 미만 일반 구매는 팀 리더 구두 승인 후 개인 법인카드로 결제하고 월말에 지출 승인 요청서만 작성하면 됩니다. 구체적인 가이드는 아래를 참고하세요.
@@ -501,7 +521,7 @@
 <b><법인카드 사용 시 주의사항></b><br>
 다음의 항목은 세무 당국에서 특별히 확인하는 사항이므로 사용 시 특별히 주의해주시기 바랍니다. <br>
 1. 상세거래내역(구매 품목, 수량, 단가, 금액 등)이 명시된 영수증이 필요한 경우<br>
-   &nbsp;&nbsp;&nbsp✔️ 백화점/마트 <br>
+   &nbsp;&nbsp;&nbsp;✔️ 백화점/마트 <br>
    &nbsp;&nbsp;&nbsp;✔️ 고급술집/골프장 <br>
    &nbsp;&nbsp;&nbsp;✔️ 병의원, 약국 <br>
    &nbsp;&nbsp;&nbsp;✔️ 해외 출장 등 법인카드 사용이 제한되어 현금으로 지출한 경우 : 간이 영수증 수취 <br>
@@ -810,6 +830,3 @@
   </script>
 </body>
 </html>
-
-
-
