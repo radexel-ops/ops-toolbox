@@ -8,14 +8,14 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
     
     <style>
-        /* --- RADEXEL Branding Colors --- */
+        /* --- RADEXEL Branding & Variables --- */
         :root {
             --radexel-blue: #2C5CA3;    /* Primary Blue */
             --radexel-green: #20B685;   /* Accent Green */
-            --color-dark: #2c3e50;      /* Dark Text/Header */
-            --color-light-bg: #f5f7fa;  /* Light Background */
+            --color-dark: #212529;      /* Heading/Primary Text */
+            --color-light-bg: #f8f9fa;  /* Clean Background */
             --color-white: #ffffff;
-            --color-card-border: #e6e9ee;
+            --color-card-shadow: rgba(0, 0, 0, 0.04);
         }
 
         /* --- Global Styles --- */
@@ -26,38 +26,37 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            min-height: 100vh;
         }
 
-        /* --- Security Filter (Previous Turn's Logic) --- */
-        #main-portal {
-            /* JS에서 비밀번호 확인 후 이 클래스를 제거해야 내용이 보입니다. */
-            opacity: 0; 
-            transition: opacity 0.5s;
-        }
-
-        /* --- Header (Dark & Professional) --- */
+        /* --- Fixed Header (Navigation) --- */
         header {
-            background-color: var(--color-dark);
-            color: var(--color-white);
-            padding: 1.5rem 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background-color: var(--color-white);
+            border-bottom: 3px solid var(--radexel-blue); /* Strong brand line */
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         .logo-text {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 800;
+            color: var(--color-dark);
+            text-decoration: none;
         }
         .logo-text span { color: var(--radexel-green); }
         .user-tag { 
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            color: #6c757d;
         }
 
         /* --- Content Layout --- */
         .container {
-            max-width: 1280px;
+            max-width: 1320px;
             margin: 3rem auto;
             padding: 0 2rem;
         }
@@ -66,15 +65,15 @@
             margin-bottom: 4rem;
         }
         .intro h1 { 
-            font-size: 2.8rem; 
+            font-size: 3rem; 
             margin-bottom: 0.5rem; 
             color: var(--radexel-blue);
-            font-weight: 800;
+            font-weight: 900;
         }
         .intro p { 
-            font-size: 1.2rem; 
-            color: var(--text-dark);
-            font-weight: 300;
+            font-size: 1.15rem; 
+            color: #495057;
+            font-weight: 400;
         }
 
         /* --- Card Grid (Scalable UI) --- */
@@ -85,27 +84,27 @@
         }
         .card {
             background: var(--color-white);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 2.5rem;
             text-decoration: none;
             color: inherit;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 5px solid var(--radexel-blue); /* Visual brand line */
+            box-shadow: 0 15px 30px var(--color-card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            border: 1px solid #dee2e6; /* Subtle border */
             display: flex;
             flex-direction: column;
         }
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.1);
             border-color: var(--radexel-green);
         }
 
         /* Card Elements */
         .icon-box {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--radexel-blue);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
         .card h3 { 
             margin: 0 0 0.5rem 0; 
@@ -115,21 +114,22 @@
         }
         .card p { 
             margin: 0 0 1.5rem 0; 
-            color: #555; 
+            color: #6c757d; 
             flex-grow: 1; /* Pushes the tag to the bottom */
         }
         .tag {
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             background-color: var(--radexel-green);
             color: var(--color-white);
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 0.9rem;
             align-self: flex-start;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
         }
         .card:hover .tag {
              background-color: var(--radexel-blue); /* Hover effect swap */
+             box-shadow: 0 2px 8px rgba(44, 92, 163, 0.4);
         }
 
         /* --- Footer --- */
@@ -138,91 +138,68 @@
             padding: 2rem 0;
             color: #888;
             font-size: 0.85rem;
-            border-top: 1px solid #ddd;
-            margin-top: 3rem;
+            border-top: 1px solid #e9ecef;
+            margin-top: 4rem;
         }
 
-        /* --- Media Queries (Responsiveness) --- */
+        /* --- Media Queries --- */
         @media (max-width: 768px) {
             .container { padding: 0 1rem; }
-            .intro h1 { font-size: 2rem; }
+            .intro h1 { font-size: 2.2rem; }
             .intro p { font-size: 1rem; }
             header { padding: 1rem; }
-            .logo-text { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
 
-    <script>
-        const SECRET_PASSWORD = "radexelops"; // 여기서 비밀번호를 변경하세요.
-        let accessGranted = false;
-        
-        while (!accessGranted) {
-            const input = prompt("RADEXEL 내부 운영 가이드 접속을 위해 비밀번호를 입력해주세요.");
-            
-            if (input === SECRET_PASSWORD) {
-                accessGranted = true;
-                document.getElementById('main-portal').style.opacity = '1';
-            } else if (input === null) {
-                alert("접속이 취소되었습니다. 회사 홈페이지로 이동합니다.");
-                window.location.href = "https://www.radexel.com"; 
-                break;
-            } else {
-                alert("비밀번호가 틀렸습니다. 다시 입력해주세요.");
-            }
-        }
-    </script>
-    
-    <div id="main-portal"> 
+    <header>
+        <div class="logo-text">RADEXEL <span>OPS</span> Portal</div>
+        <div class="user-tag">FOR INTERNAL USE ONLY</div>
+    </header>
 
-        <header>
-            <div class="logo-text">RADEXEL <span>OPS</span> Portal</div>
-            <div class="user-tag">FOR INTERNAL USE ONLY</div>
-        </header>
-
-        <div class="container">
-            <div class="intro">
-                <h1>운영 효율화 & 지식 허브</h1>
-                <p>경영기획팀에서 관리하는 전사 업무 가이드, 규정 및 자동화 도구를 이곳에서 확인하고 활용하세요.</p>
-            </div>
-
-            <div class="guide-grid">
-                
-                <a href="helper.html" class="card">
-                    <div class="icon-box"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-                    <h3>WEHAGO 전자결재 폼 생성기</h3>
-                    <p>영수증, 견적서, 이미지 파일 등을 업로드하여 지출품의서(일반/교육/외주) 양식을 AI로 자동 작성하는 도구입니다.</p>
-                    <div class="tag">바로가기 &rarr;</div>
-                </a>
-
-                <a href="expense.html" class="card">
-                    <div class="icon-box"><i class="fa-solid fa-credit-card"></i></div>
-                    <h3>경비/지출 규정 안내</h3>
-                    <p>법인카드 사용 원칙, 출장 여비 청구, 100만원 이상 지출 등 전자결재 프로세스 전반을 안내합니다.</p>
-                    <div class="tag">바로가기 &rarr;</div>
-                </a>
-
-                <a href="#" class="card" onclick="alert('인사/총무 가이드는 현재 작성 중입니다.')">
-                    <div class="icon-box"><i class="fa-solid fa-people-carry-box"></i></div>
-                    <h3>인사 / 총무 업무 규정</h3>
-                    <p>휴가, 복지, 근태 신청 방법, 사내 복리후생 제도 및 총무 관련 규정을 안내합니다.</p>
-                    <div class="tag">준비 중</div>
-                </a>
-
-                <a href="#" class="card" onclick="alert('개발/IT 가이드는 현재 작성 중입니다.')">
-                    <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3>개발 및 IT 보안 가이드</h3>
-                    <p>사내 개발 환경 설정, 보안 수칙, 계정 관리 및 신규 장비 도입 프로세스를 안내합니다.</p>
-                    <div class="tag">준비 중</div>
-                </a>
-
-                </div>
+    <div class="container">
+        <div class="intro">
+            <h1>운영 효율화 & 지식 허브</h1>
+            <p>경영기획팀에서 관리하는 전사 업무 가이드, 규정 및 자동화 도구를 이곳에서 확인하고 활용하세요.</p>
         </div>
 
-        <footer>
-            &copy; 2025 RADEXEL Operations Team. All rights reserved. | Managed by Management Planning.
-        </footer>
-        
-    </div> </body>
+        <div class="guide-grid">
+            
+            <a href="helper.html" class="card">
+                <div class="icon-box"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                <h3>WEHAGO 전자결재 폼 생성기</h3>
+                <p>영수증, 견적서 등 각종 파일을 업로드하여 지출품의서(일반/교육/외주) 양식을 AI로 자동 작성하는 도구입니다.</p>
+                <div class="tag">바로가기 &rarr;</div>
+            </a>
+
+            <a href="expense.html" class="card">
+                <div class="icon-box"><i class="fa-solid fa-credit-card"></i></div>
+                <h3>경비/지출 규정 안내</h3>
+                <p>법인카드 사용 원칙, 출장 여비 청구, 100만원 이상 지출 등 전자결재 프로세스 전반을 안내합니다.</p>
+                <div class="tag">바로가기 &rarr;</div>
+            </a>
+
+            <a href="#" class="card" onclick="alert('인사/총무 가이드는 현재 작성 중입니다.')">
+                <div class="icon-box"><i class="fa-solid fa-people-carry-box"></i></div>
+                <h3>인사 / 총무 업무 규정</h3>
+                <p>휴가, 복지, 근태 신청 방법, 사내 복리후생 제도 및 총무 관련 규정을 안내합니다.</p>
+                <div class="tag">준비 중</div>
+            </a>
+
+            <a href="#" class="card" onclick="alert('개발/IT 가이드는 현재 작성 중입니다.')">
+                <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>개발 및 IT 보안 가이드</h3>
+                <p>사내 개발 환경 설정, 보안 수칙, 계정 관리 및 신규 장비 도입 프로세스를 안내합니다.</p>
+                <div class="tag">준비 중</div>
+            </a>
+
+            </div>
+    </div>
+
+    <footer>
+        &copy; 2025 RADEXEL Operations Team. All rights reserved. | Managed by Management Planning.
+    </footer>
+
+</body>
 </html>
