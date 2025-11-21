@@ -10,16 +10,16 @@
             /* [수정] 시그니처 블루 적용 (메인 컬러) */
             --primary-color: #2C5CA3;
             /* [수정] 호버 시 더 깊은 블루 */
-            --primary-hover: #1E447A; 
-            
+            --primary-hover: #1E447A;
+
             --border-color: #e2e8f0;
             --background-light: #f7fafc;
             --background-white: #ffffff;
             --text-dark: #2d3748;
             --text-light: #718096;
-            
+
             /* [수정] 시그니처 그린 적용 (성공/완료) */
-            --success-color: #22A699; 
+            --success-color: #22A699;
         }
 
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
@@ -739,10 +739,76 @@
             text-align: center;
             font-weight: bold;
             /* [수정] 입력된 숫자는 메인 블루 컬러로 */
-            color: var(--primary-color); 
+            color: var(--primary-color);
             background: white;
             height: 30px !important;
             margin: 0 0.5rem;
+        }
+
+        /* [수정] 사용자 친화적 토글 디자인 */
+        .asset-toggle-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #F7FAFC;
+            /* 기본(소모성) 배경: 차분한 회색 */
+            border: 1px solid #E2E8F0;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .asset-toggle-wrapper:hover {
+            background: #EDF2F7;
+            transform: translateY(-1px);
+        }
+
+        /* 재사용(자산) 선택 시 스타일: 눈에 띄는 오렌지/골드 톤 */
+        .asset-toggle-wrapper.is-asset {
+            background: #FFFAF0;
+            border-color: #DD6B20;
+            box-shadow: 0 4px 6px -1px rgba(221, 107, 32, 0.1);
+        }
+
+        /* 체크박스 숨기고 커스텀 아이콘 사용 */
+        .asset-checkbox {
+            display: none;
+        }
+
+        /* 아이콘 및 텍스트 영역 */
+        .toggle-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .asset-toggle-wrapper.is-asset .toggle-icon {
+            transform: scale(1.1);
+        }
+
+        .toggle-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .toggle-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #4A5568;
+            margin-bottom: 0.2rem;
+        }
+
+        .asset-toggle-wrapper.is-asset .toggle-title {
+            color: #C05621;
+            /* 진한 오렌지 텍스트 */
+        }
+
+        .toggle-desc {
+            font-size: 0.8rem;
+            color: #718096;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -876,10 +942,18 @@
 
         <div class="expandable-width-container">
             <div class="section">
+
                 <div class="header-controls">
                     <h2>2. 세부 항목 입력</h2>
-                    <button id="add-item-btn" class="button button-secondary">[+] 항목 추가</button>
+                    <div style="display:flex; gap:0.5rem;">
+                        <button id="summarize-btn" class="button"
+                            style="background-color:#D97706; font-size:0.9rem; padding:0.5rem 1rem;">📉 1건으로 요약</button>
+                        <button id="add-item-btn" class="button button-secondary">[+] 항목 추가</button>
+                    </div>
                 </div>
+
+
+
                 <p class="section-description">
                     각 카드에서 값을 입력할 수 있습니다.<br>
                     📌을 누르면 해당 필드가 공통 항목(🔒)으로 승격되어 모든 카드에 공유됩니다.
@@ -1073,6 +1147,12 @@
         const copyBtn = document.getElementById('copyBtn');
         const formTypeSelector = document.getElementById('masterFormType');
         const resetBtn = document.getElementById('reset-btn');
+        // [변수 선언부 근처에 추가]
+        const summarizeBtn = document.getElementById('summarize-btn');
+        let originalItemsBackup = null; // 상세 내역 백업용
+
+        // [이벤트 리스너 추가]
+        summarizeBtn.addEventListener('click', toggleSummaryMode);
 
         applyCommonBtn.textContent = '[↓] 공통 정보 일괄 적용';
 
@@ -1110,130 +1190,112 @@
             itemsContainer.style.width = items.length > 1 ? `${actualContentWidth}px` : '100%';
         };
 
+
         function render() {
             const template = formTemplates[currentFormType];
             const allFields = template.fields;
 
-            // [수정] 이미지 순서와 동일하게 정렬 (품목 -> 단가 -> 수량 -> 금액 -> 날짜 ...)
+            // [기존 정렬 로직 유지]
             const FIELD_ORDER = [
-                'itemName',
-                'unitPrice',
-                'qty',
-                'amount',
-                'date',
-                'paymentTerms',
-                'user',
-                'paymentMethod',
-                'vendor',
-                'account',
-                'relatedTask', // [추가] 관련 과제명 위치
-                'purpose',
-                'note',
-
-                // 기타 필드들 (다른 양식용)
-                'service', 'course', 'license', 'tripObjective',
-                'spec', 'periodFrom', 'periodTo',
-                'isRecurring', 'recurringPeriod', 'recurringDate',
-                'origin', 'destination', 'place', 'attendees', 'provider', 'manufacturer',
-                'ipMgmtNo', 'invoiceNo', 'proof', 'seats'
+                'itemName', 'unitPrice', 'qty', 'amount', 'date', 'paymentTerms', 'user', 'paymentMethod', 'vendor', 'account', 'relatedTask', 'purpose', 'note',
+                'service', 'course', 'license', 'tripObjective', 'spec', 'periodFrom', 'periodTo', 'isRecurring', 'recurringPeriod', 'recurringDate', 'origin', 'destination', 'place', 'attendees', 'provider', 'manufacturer', 'ipMgmtNo', 'invoiceNo', 'proof', 'seats'
             ];
-
-            const orderIndex = (id) => {
-                const i = FIELD_ORDER.indexOf(id);
-                return i === -1 ? 1000 + allFields.findIndex(f => f.id === id) : i;
-            };
+            const orderIndex = (id) => { const i = FIELD_ORDER.indexOf(id); return i === -1 ? 1000 + allFields.findIndex(f => f.id === id) : i; };
             const sortFields = (arr) => arr.slice().sort((a, b) => orderIndex(a.id) - orderIndex(b.id));
 
+            // 1. 공통 필드 렌더링 (기존 유지)
             const visiblePinnedFields = sortFields(allFields.filter(f => pinnedFields.includes(f.id) && !hiddenFields.includes(f.id)));
             commonInputsContainer.innerHTML = visiblePinnedFields.map(field => {
                 const value = commonData[field.id] || '';
-                let inputHtml = `<div>
-                        <div class="label-wrapper">
-                            <label for="common_${field.id}">${field.label}</label>
-                            <div class="label-icons">
-                                <button class="icon-btn pin-btn" data-pin-action="unpin" data-field-id="${field.id}" title="개별 항목으로 변경">🔓</button>
-                                <button class="icon-btn hide-btn" tabindex="-1" data-field-id="${field.id}" title="항목 숨기기">×</button>
-                            </div>
-                        </div>`;
+                let inputHtml = `<div><div class="label-wrapper"><label for="common_${field.id}">${field.label}</label><div class="label-icons"><button class="icon-btn pin-btn" data-pin-action="unpin" data-field-id="${field.id}">🔓</button><button class="icon-btn hide-btn" data-field-id="${field.id}">×</button></div></div>`;
+
                 if (field.id === 'vendor') {
-                    // 값이 존재하지만 미리 정의된 거래처 목록(vendors)에 없는 경우 -> 직접 입력 모드(Input)
                     const isCustomVendor = value && !vendors[value];
-
                     if (isCustomVendor) {
-                        inputHtml += `
-                            <div style="display:flex; gap:0.5rem; align-items: center;">
-                                <input type="text" id="common_${field.id}" value="${value}" placeholder="거래처명 직접 입력" style="flex:1;">
-                                <button class="button button-secondary vendor-toggle-btn" data-action="to-list" style="padding:0.75rem; font-size:0.8rem; white-space:nowrap;">
-                                    📋 목록 선택
-                                </button>
-                            </div>`;
+                        inputHtml += `<div style="display:flex; gap:0.5rem; align-items: center;"><input type="text" id="common_${field.id}" value="${value}" placeholder="직접 입력" style="flex:1;"><button class="button button-secondary vendor-toggle-btn" data-action="to-list" style="padding:0.75rem; font-size:0.8rem;">📋 목록</button></div>`;
                     } else {
-                        // 목록에 있거나 값이 없는 경우 -> 선택 모드(Select)
                         const optionsHtml = Object.keys(vendors).map(k => `<option value="${k}" ${value === k ? 'selected' : ''}>${k}</option>`).join('');
-                        inputHtml += `
-                            <select id="common_${field.id}">
-                                <option value="">-- 선택하세요 --</option>
-                                ${optionsHtml}
-                                <option value="__DIRECT__" style="color: var(--primary-color); font-weight:bold;">+ 직접 입력 (신규 거래처)</option>
-                            </select>`;
+                        inputHtml += `<select id="common_${field.id}"><option value="">-- 선택 --</option>${optionsHtml}<option value="__DIRECT__" style="color:var(--primary-color);font-weight:bold;">+ 직접 입력</option></select>`;
                     }
-
                 } else if (field.type === 'select') {
-                    const optionsHtml = field.options.map(opt => `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`).join('');
-                    inputHtml += `<select id="common_${field.id}"><option value="">-- 선택 --</option>${optionsHtml}</select>`;
+                    inputHtml += `<select id="common_${field.id}"><option value="">-- 선택 --</option>${field.options.map(o => `<option value="${o}" ${value === o ? 'selected' : ''}>${o}</option>`).join('')}</select>`;
                 } else {
-                    inputHtml += `<input type="text" id="common_${field.id}" value="${value}" placeholder="${field.example || ''}">`;
+                    inputHtml += `<input type="text" id="common_${field.id}" value="${value}">`;
                 }
                 return inputHtml + `</div>`;
             }).join('');
 
+            // 2. 세부 항목 렌더링 (여기가 핵심 수정됨)
             const allVisibleFields = sortFields(allFields.filter(f => !hiddenFields.includes(f.id)));
             itemsContainer.innerHTML = items.map((itemData, index) => {
+                // [추가] 자산 여부 확인 (기본값 false)
+                const isAsset = itemData.isAsset === true;
+
+                // [수정] 사용자 경험 중심의 토글 UI
+                // 사용자는 '물건의 성격'만 고르면, 내부적으로 isAsset 값이 바뀝니다.
+                const assetToggleHtml = `
+                    <div class="asset-toggle-wrapper ${isAsset ? 'is-asset' : ''}" onclick="toggleAsset(${index})">
+                        <input type="checkbox" class="asset-checkbox" ${isAsset ? 'checked' : ''} readonly>
+                        
+                        <div class="toggle-icon">${isAsset ? '💻' : '🔧'}</div>
+                        
+                        <div class="toggle-content">
+                            <div class="toggle-title">
+                                ${isAsset ? '재사용/매각 가능 (완제품)' : '소모성/주문제작 (부품)'}
+                            </div>
+                            
+                            <div class="toggle-desc">
+                                ${isAsset
+                        ? '예: PC, 모니터, 계측기, 기계장비 등'
+                        : '예: 수리비, 알루미늄 가공품, 케이블, 소모품'}
+                            </div>
+                        </div>
+
+                        <div style="margin-left:auto; font-size:0.75rem; padding:4px 8px; border-radius:12px; background:${isAsset ? '#FEEBC8' : '#E2E8F0'}; color:${isAsset ? '#C05621' : '#718096'}; font-weight:bold;">
+                            ${isAsset ? '자산 등재 검토' : '비용 처리'}
+                        </div>
+                    </div>
+                `;
+
                 const itemFieldsHtml = allVisibleFields.map(field => {
                     const isPinned = pinnedFields.includes(field.id);
                     const value = itemData[field.id] || '';
                     const uniqueId = `${field.id}_${index}`;
 
                     let iconsHtml = isPinned
-                        ? `<button class="icon-btn lock-icon" title="공통 항목입니다. 위에서 일괄 적용할 수 있습니다.">🔒</button>`
-                        : `<button class="icon-btn pin-btn" data-pin-action="pin" data-field-id="${field.id}" title="공통 항목으로 고정">📌</button>
-                                <button class="icon-btn hide-btn" tabindex="-1" data-field-id="${field.id}" title="항목 숨기기">×</button>`;
+                        ? `<button class="icon-btn lock-icon">🔒</button>`
+                        : `<button class="icon-btn pin-btn" data-pin-action="pin" data-field-id="${field.id}">📌</button><button class="icon-btn hide-btn" data-field-id="${field.id}">×</button>`;
 
-                    let fieldHtml = `<div>
-                            <div class="label-wrapper">
-                                <label for="${uniqueId}">${field.label}</label>
-                                <div class="label-icons">${iconsHtml}</div>
-                            </div>`;
+                    let fieldHtml = `<div><div class="label-wrapper"><label>${field.label}</label><div class="label-icons">${iconsHtml}</div></div>`;
 
-                    if (field.type === 'select') {
-                        if (field.id === 'paymentMethod') {
-                            fieldHtml += `<input type="text" id="${uniqueId}" value="${value}" placeholder="직접 입력...">`;
-                        } else {
-                            const optionsHtml = field.options.map(opt => `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`).join('');
-                            fieldHtml += `<select id="${uniqueId}"><option value="">-- 선택 --</option>${optionsHtml}</select>`;
-                        }
+                    if (field.type === 'select' && field.id !== 'paymentMethod') {
+                        fieldHtml += `<select id="${uniqueId}"><option value="">-- 선택 --</option>${field.options.map(o => `<option value="${o}" ${value === o ? 'selected' : ''}>${o}</option>`).join('')}</select>`;
                     } else {
-                        fieldHtml += `<input type="text" id="${uniqueId}" value="${value}" placeholder="${field.example || ''}">`;
+                        fieldHtml += `<input type="text" id="${uniqueId}" value="${value}">`;
                     }
-
                     return fieldHtml + `</div>`;
                 }).join('');
 
                 return `
-                        <div class="item-card" data-index="${index}">
-                            <div class="item-header"><h3>항목 ${index + 1}</h3>${items.length > 1 ? '<button class="remove-item-btn" tabindex="-1" title="항목 삭제">×</button>' : ''}</div>
-                            <div class="item-fields-container">${itemFieldsHtml}</div>
-                        </div>`;
+                    <div class="item-card ${items.length === 1 ? 'single-item' : ''}" data-index="${index}">
+                        <div class="item-header"><h3>항목 ${index + 1}</h3>${items.length > 1 ? '<button class="remove-item-btn">×</button>' : ''}</div>
+                        ${assetToggleHtml} <div class="item-fields-container">${itemFieldsHtml}</div>
+                    </div>`;
             }).join('');
 
-            const hiddenCommonFields = allFields.filter(f => hiddenFields.includes(f.id) && pinnedFields.includes(f.id));
-            const hiddenItemOnlyFields = allFields.filter(f => hiddenFields.includes(f.id) && !pinnedFields.includes(f.id));
-            renderRestoreSection('common-restore-section', hiddenCommonFields);
-            renderRestoreSection('item-restore-section', hiddenItemOnlyFields);
-
-            if (items.length === 1) itemsContainer.querySelector('.item-card')?.classList.add('single-item');
+            // [나머지 렌더링 로직 유지]
+            const hiddenCommon = allFields.filter(f => hiddenFields.includes(f.id) && pinnedFields.includes(f.id));
+            const hiddenItem = allFields.filter(f => hiddenFields.includes(f.id) && !pinnedFields.includes(f.id));
+            renderRestoreSection('common-restore-section', hiddenCommon);
+            renderRestoreSection('item-restore-section', hiddenItem);
             adjustContainerWidth();
             saveState();
+        }
+
+        // [추가] 자산 토글 함수 (render 함수 바로 밑에 추가해주세요)
+        function toggleAsset(index) {
+            items[index].isAsset = !items[index].isAsset;
+            render();
         }
 
         // --- AI 고급 설정 UI 제어 함수 ---
@@ -1333,7 +1395,7 @@
                     } else if (value.includes('데이터')) {
                         autoTaskName = '데이터 활용 의료 건강 사업';
                     }
-                    
+
                     if (autoTaskName) {
                         commonData['relatedTask'] = autoTaskName;
                         // 화면 즉시 반영
@@ -1345,7 +1407,7 @@
 
                 // [기존 코드]
                 // // [신규] 금액/단가 필드일 경우 자동 포맷팅 적용
-                
+
                 // [신규] 금액/단가 필드일 경우 자동 포맷팅 적용
                 if (fieldId === 'amount' || fieldId === 'unitPrice') {
                     value = formatSmartCurrency(value);
@@ -1554,110 +1616,89 @@
             }, 3000);
         }
 
-        // 2. 복사 버튼 클릭 이벤트 리스너
+
+        // 2. 복사 버튼 클릭 이벤트 리스너 (최종 합계 기능 추가됨)
+        // 2. 복사 버튼 클릭 이벤트 리스너 (공통 항목 셀 병합 + 최종 합계 기능 적용)
+
+        // 2. 복사 버튼 클릭 이벤트 리스너 (공통 항목 병합 기능 적용)
+        // 2. 복사 버튼 클릭 이벤트 리스너 (자산 태그 로직 추가됨)
         copyBtn.addEventListener('click', () => {
             const template = formTemplates[currentFormType];
+            const FONT = "font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; font-size: 9pt;";
+            const TD_LABEL = `padding: 5px 8px; font-weight: bold; text-align: center; background-color: #f2f2f2; border: 1px solid #ccc; ${FONT}`;
+            const TD_VALUE = `padding: 5px 8px; vertical-align: middle; border: 1px solid #ccc; text-align: left; ${FONT}`;
+            const TD_VALUE_CENTER = `padding: 5px 8px; vertical-align: middle; border: 1px solid #ccc; text-align: center; ${FONT}`;
+            const TD_TOTAL_LABEL = `padding: 10px; font-weight: bold; text-align: center; background-color: #e6fffa; border: 1px solid #ccc; color: #2C5CA3; ${FONT}`;
+            const TD_TOTAL_VAL = `padding: 10px; font-weight: bold; text-align: left; background-color: #e6fffa; border: 1px solid #ccc; color: #2C5CA3; font-size: 11pt; ${FONT}`;
 
-            // 스타일 정의
-            const FONT = "font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; font-size: 10pt;";
-            const TD_L = `padding: 8px; font-weight: bold; text-align: center; background-color: #f2f2f2; ${FONT}`;
-            const TD_V = `padding: 8px; vertical-align: top; ${FONT}`;
+            // 개별 열로 나눌 항목 정의
+            const SPLIT_FIELDS = ['itemName', 'spec', 'unitPrice', 'qty', 'amount', 'license', 'seats'];
 
-            // 화면에 보이는 순서대로 엑셀/위하고에도 붙여넣기 위해 정렬 순서 정의
-            // (render 함수에 있는 순서와 동일하게 맞춤)
-            const FIELD_ORDER = [
-                'itemName',      // 품목명
-                'unitPrice',     // 단가
-                'qty',           // 수량
-                'amount',        // 금액
-                'date',          // 날짜
-                'paymentTerms',  // 지급조건
-                'user',          // 사용자
-                'paymentMethod', // 결제수단
-                'vendor',        // 거래처
-                'account',       // 계좌
-                'relatedTask',   // 관련과제
-                'purpose',       // 목적
-                'note',          // 비고
+            // 화면 순서
+            const FIELD_ORDER = ['itemName', 'unitPrice', 'qty', 'amount', 'date', 'paymentTerms', 'paymentMethod', 'vendor', 'account', 'purpose', 'relatedTask', 'note', 'user', 'service', 'course', 'tripObjective', 'spec', 'periodFrom', 'periodTo', 'isRecurring', 'recurringPeriod', 'recurringDate', 'origin', 'destination', 'place', 'attendees', 'provider', 'manufacturer', 'ipMgmtNo', 'invoiceNo', 'proof'];
+            const orderIndex = (id) => { const i = FIELD_ORDER.indexOf(id); return i === -1 ? 1000 : i; };
 
-                // 그 외 필드들 (우선순위 낮음)
-                'service', 'course', 'license', 'tripObjective',
-                'spec', 'periodFrom', 'periodTo',
-                'isRecurring', 'recurringPeriod', 'recurringDate',
-                'origin', 'destination', 'place', 'attendees', 'provider', 'manufacturer',
-                'ipMgmtNo', 'invoiceNo', 'proof', 'seats'
-            ];
-
-            // 필드 정렬 함수
-            const orderIndex = (id) => {
-                const i = FIELD_ORDER.indexOf(id);
-                // 정의되지 않은 필드는 뒤로 보냄
-                return i === -1 ? 1000 + template.fields.findIndex(f => f.id === id) : i;
-            };
-
-            // 숨김 처리된 필드는 제외하고, 위 순서대로 정렬
             const allVisibleFields = template.fields.filter(field => !hiddenFields.includes(field.id));
             const fieldsToCopy = allVisibleFields.slice().sort((a, b) => orderIndex(a.id) - orderIndex(b.id));
 
-            // [헤더 생성] 제목 + 항목1, 항목2...
-            const headerCells = items.map((_, i) =>
-                `<td style="text-align:center; font-weight:bold; background-color:#deebee; padding:8px; ${FONT}">항목 ${i + 1}</td>`
-            ).join('');
-            const headerRow = `<tr><td style="${TD_L}">${template.title}</td>${headerCells}</tr>`;
+            // [Step 1] 헤더 생성
+            const headerCells = items.map((_, i) => `<td style="${TD_LABEL}">항목 ${i + 1}</td>`).join('');
+            const headerRow = `<tr><td style="${TD_LABEL} width: 150px;">${template.title}</td>${headerCells}</tr>`;
 
-            // [본문 생성] 각 필드별로 행을 생성
+            // [Step 2] 본문 생성
             const bodyRows = fieldsToCopy.map(field => {
-                const valueCells = items.map(item => {
-                    const value = item[field.id] || '';
-                    // 줄바꿈 문자를 <br>태그로 변환
-                    return `<td style="${TD_V}">${String(value).replace(/\n/g, '<br>')}</td>`;
-                }).join('');
+                const isSplitField = SPLIT_FIELDS.includes(field.id);
+                let rowHtml = '';
 
-                return `<tr><td style="${TD_L}">${field.label}</td>${valueCells}</tr>`;
+                if (isSplitField) {
+                    const valueCells = items.map(item => {
+                        let val = item[field.id] || '';
+                        let style = TD_VALUE;
+                        if (field.id === 'qty') style = TD_VALUE_CENTER;
+                        return `<td style="${style}">${String(val).replace(/\n/g, '<br>')}</td>`;
+                    }).join('');
+                    rowHtml = `<tr><td style="${TD_LABEL}">${field.label}</td>${valueCells}</tr>`;
+                } else {
+                    const commonVal = items[0][field.id] || '';
+
+                    // [핵심] 자산 로직: '비고(note)' 필드에 자산 태그 추가
+                    let displayVal = String(commonVal).replace(/\n/g, '<br>');
+                    if (field.id === 'note') {
+                        // 하나라도 자산으로 체크되어 있다면 비고에 표시
+                        const hasAsset = items.some(i => i.isAsset);
+                        if (hasAsset) {
+                            // 어떤 항목이 자산인지 명시 (예: [자산: 항목1, 항목3])
+                            const assetIndices = items.map((item, idx) => item.isAsset ? (idx + 1) : null).filter(i => i !== null);
+                            const assetTag = `<span style="color:#D97706; font-weight:bold;">[⚠️자산등재필요(항목:${assetIndices.join(',')})]</span><br>`;
+                            displayVal = assetTag + displayVal;
+                        }
+                    }
+
+                    rowHtml = `<tr><td style="${TD_LABEL}">${field.label}</td><td colspan="${items.length}" style="${TD_VALUE}">${displayVal}</td></tr>`;
+                }
+                return rowHtml;
             }).join('');
 
-            // 최종 HTML 테이블 조합
-            const finalHtml = `
-                <table border="1" style="border-collapse: collapse; width: 100%; ${FONT}">
-                    <thead>${headerRow}</thead>
-                    <tbody>${bodyRows}</tbody>
-                </table>
-            `;
+            // [Step 3] 총 합계
+            let totalAmount = 0;
+            items.forEach(item => {
+                const rawAmount = String(item.amount || '0').replace(/[^0-9]/g, '');
+                totalAmount += parseInt(rawAmount || 0, 10);
+            });
+            const totalRow = `<tr><td style="${TD_TOTAL_LABEL}">최종 이체 합계</td><td colspan="${items.length}" style="${TD_TOTAL_VAL}">${totalAmount.toLocaleString()} 원</td></tr>`;
 
-            // 클립보드에 복사 실행
+            // HTML 조립 및 복사
+            const finalHtml = `<table border="1" style="border-collapse: collapse; width: 100%; border: 1px solid #ccc; ${FONT}"><thead>${headerRow}</thead><tbody>${bodyRows}${totalRow}</tbody></table>`;
+
             try {
-                // 최신 브라우저 방식 (Clipboard API)
                 const blob = new Blob([finalHtml], { type: 'text/html' });
                 const clipboardItem = new ClipboardItem({ 'text/html': blob });
-
-                navigator.clipboard.write([clipboardItem]).then(() => {
-                    showToast("복사 완료! WEHAGO에 붙여넣으세요.", "success");
-                }).catch(err => {
-                    console.error('Clipboard API Error:', err);
-                    // 실패 시 fallback (구형 방식)
-                    fallbackCopy(finalHtml);
-                });
+                navigator.clipboard.write([clipboardItem]).then(() => showToast("복사 완료! (자산 태그 포함)", "success"));
             } catch (e) {
-                console.error('Copy failed:', e);
-                fallbackCopy(finalHtml);
-            }
-
-            // 구형 브라우저 호환용 함수
-            function fallbackCopy(html) {
-                const listener = (e) => {
-                    e.clipboardData.setData("text/html", html);
-                    e.clipboardData.setData("text/plain", html);
-                    e.preventDefault();
-                };
-                document.addEventListener("copy", listener);
-                document.execCommand("copy");
-                document.removeEventListener("copy", listener);
-                showToast("복사 완료! (호환 모드)", "success");
+                console.error(e);
+                alert('복사 실패');
             }
         });
-
-
-
 
         let resizeTimer;
         window.addEventListener('resize', () => {
@@ -1896,6 +1937,8 @@
         }
 
         // AI 분석 함수
+
+        // AI 분석 함수 (프롬프트 로직 개선됨)
         async function analyzeMixedContent({ images, textContext }) {
             try {
                 const template = formTemplates[currentFormType];
@@ -1903,10 +1946,17 @@
                 const vendorListKeys = Object.keys(vendors).join(', ');
                 const userInstruction = document.getElementById('user-instruction').value.trim();
                 const mode = document.querySelector('input[name="aiMode"]:checked').value;
-                let splitInstruction = "";
 
+                // [중요 변경] 모드별 지시사항 수정
+                let splitInstruction = "";
                 if (mode === 'merge') {
-                    splitInstruction = `[MODE: MERGE] Consolidate everything into ONE entry. Sum all amounts.`;
+                    // 합치기 모드여도 품목은 개별로 유지하되, 거래처 정보만 통일하라는 지시
+                    splitInstruction = `
+                        [MODE: SMART MERGE] 
+                        - Extract ALL individual items from the receipts as separate objects in an Array.
+                        - DO NOT combine item names into one string. Keep them separate.
+                        - Use the same (dominant) Vendor, Date, and PaymentMethod for ALL items.
+                    `;
                 } else {
                     const splitType = document.querySelector('input[name="splitType"]:checked').value;
                     if (splitType === 'auto') {
@@ -1917,7 +1967,6 @@
                     }
                 }
 
-                // [수정] 결제 수단 옵션 명시
                 const validPaymentMethods = paymentMethodOptions.join("', '");
 
                 const promptText = `
@@ -1926,36 +1975,41 @@
                     [Goal]
                     Extract data to fill out the company approval form: "${template.title}".
 
-                    [USER INSTRUCTION - HIGH PRIORITY]
-                    The user has provided specific instructions. Follow these above all else:
-                    "${userInstruction || "No specific instructions. Proceed with standard analysis."}"
+                    [USER INSTRUCTION]
+                    "${userInstruction || "Proceed with standard analysis."}"
                     
-                    *If the user mentions 'Operating Account' or '운영비', interpret it as '이체(운영비)'.
-                    *If the user mentions 'Research Account' or '연구비', interpret it as '연구비계좌이체'.
-                    *If the user mentions 'Corporate Card', interpret it as '개인법인카드'.
-
+                    [ITEM CLASSIFICATION RULE (User Experience Focused)]
+                    Classify each item based on its physical nature: "Reusable/Resellable" vs "Consumable/Custom-made".
+                    
+                    Set "isAsset": true IF the item is a 'Ready-made Product' that retains value:
+                    - Completed Machines, Equipment, Electronic Devices (PC, Monitor, Server).
+                    - Furniture, Oscilloscopes, Testers.
+                    - Anything that can be resold or reused "as is".
+                    
+                    Set "isAsset": false IF the item is 'Consumable' or 'Custom Parts':
+                    - Raw materials (Aluminum plate, cables).
+                    - Custom-machined parts (Processing fees, laser cutting).
+                    - Service fees (Repair, Cleaning, Software Subscription).
+                    - Low value consumables (Mouse pad, Stationeries).
+                    
                     ${splitInstruction}
 
                     [Context: Extracted Text]
                     ${textContext}
-
-                    [Reference: Historical Data]
-                    ${JSON.stringify(historicalDB)}
-
-                    [Reference: Vendors]
-                    [${vendorListKeys}] (Use exact names if matched)
                     
-                    [Reference: Valid Payment Methods]
+                    [Other Reference Data...]
+                    ${JSON.stringify(historicalDB)}
+                    [${vendorListKeys}]
                     ['${validPaymentMethods}']
-                    *Please try to select one of the above values for 'paymentMethod' if possible.
 
                     [Target Fields]
                     ${fieldsInfo}
 
                     [Rules]
-                    1. **Format**: JSON Only. No markdown.
+                    1. **Format**: JSON Array Only.
                     2. **Date**: 'YYYY. MM. DD.'
-                    3. **Currency**: Remove symbols.
+                    3. **Currency**: Numbers only.
+                    4. **Output JSON key**: "isAsset" (boolean)
                     `;
 
                 const parts = [{ text: promptText }];
@@ -1991,6 +2045,7 @@
                 throw error;
             }
         }
+
 
         function applyAIResult(result) {
             let newItems = [];
@@ -2073,9 +2128,12 @@
                 Object.keys(refined).forEach(key => {
                     if (!pinnedFields.includes(key)) itemObj[key] = refined[key];
                 });
+
+                // [추가] AI가 판단한 자산 정보 적용 (없으면 기본값 false)
+                itemObj.isAsset = (res.isAsset === true);
+
                 return itemObj;
             });
-
             if (items.length === 0) items.push({});
 
             render();
@@ -2122,6 +2180,69 @@
             });
         }
 
+        function toggleSummaryMode() {
+            // 1. 현재 상세 내역이라면 -> 요약 모드로 전환
+            if (!originalItemsBackup) {
+                if (items.length <= 1) {
+                    alert("요약할 항목이 2개 이상일 때만 가능합니다.");
+                    return;
+                }
+
+                if (!confirm("현재 항목들을 1건으로 합치시겠습니까?\n(품목명은 '첫번째 항목 외 N건'으로 변경되며 금액은 합산됩니다.)")) return;
+
+                // (1) 현재 상태 백업
+                originalItemsBackup = JSON.parse(JSON.stringify(items));
+
+                // (2) 합산 계산
+                let totalAmount = 0;
+                items.forEach(item => {
+                    const amt = parseInt(String(item.amount || '0').replace(/[^0-9]/g, '')) || 0;
+                    totalAmount += amt;
+                });
+
+                // (3) 첫 번째 항목 가져와서 대표 데이터 생성
+                const firstItem = items[0];
+                const summaryItem = {
+                    ...firstItem, // 날짜, 비고 등 공통 정보 계승
+                    itemName: `${firstItem.itemName} 외 ${items.length - 1}건`, // 품목명 변경
+                    spec: '세부 내역 첨부 파일 참조', // 규격 변경
+                    qty: '1', // 수량 1식
+                    unitPrice: totalAmount.toLocaleString(), // 단가 = 총액
+                    amount: totalAmount.toLocaleString(), // 금액 = 총액
+                    isAsset: items.some(i => i.isAsset) // 하나라도 자산이면 자산 체크 유지
+                };
+
+                // (4) 데이터 교체 및 렌더링
+                items = [summaryItem];
+                render();
+
+                // (5) 버튼 스타일 변경
+                summarizeBtn.innerHTML = "↺ 상세 내역 복구";
+                summarizeBtn.style.backgroundColor = "#718096"; // 회색으로 변경
+                document.getElementById('add-item-btn').style.display = 'none'; // 요약 중엔 추가 금지
+                showToast("1건으로 요약되었습니다.", "success");
+
+            }
+            // 2. 현재 요약 모드라면 -> 상세 내역으로 복구
+            else {
+                items = JSON.parse(JSON.stringify(originalItemsBackup));
+                originalItemsBackup = null; // 백업 초기화
+
+                render();
+
+                // 버튼 원상복구
+                summarizeBtn.innerHTML = "📉 1건으로 요약";
+                summarizeBtn.style.backgroundColor = "#D97706"; // 원래 색(오렌지)
+                document.getElementById('add-item-btn').style.display = 'inline-block';
+                showToast("상세 내역이 복구되었습니다.", "success");
+            }
+        }
+
+
+
+
+
+
 
         // [추가] 고급 설정 토글 이벤트
         const toggleAdvBtn = document.getElementById('toggle-advanced-btn');
@@ -2143,7 +2264,3 @@
 
 </html>
 ```
-
-
-
-
