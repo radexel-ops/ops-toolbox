@@ -1622,12 +1622,17 @@
 
         // 2. 복사 버튼 클릭 이벤트 리스너 (공통 항목 병합 기능 적용)
         // 2. 복사 버튼 클릭 이벤트 리스너 (자산 태그 로직 추가됨)
+
+        // 2. 복사 버튼 클릭 이벤트 리스너 (정렬 통일: 모든 항목 왼쪽 정렬)
         copyBtn.addEventListener('click', () => {
             const template = formTemplates[currentFormType];
             const FONT = "font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; font-size: 9pt;";
+
+            // [스타일 정의]
+            // UX 개선: 모든 데이터 셀(TD_VALUE)을 'text-align: left'로 통일하여 시선 처리를 편안하게 함
             const TD_LABEL = `padding: 5px 8px; font-weight: bold; text-align: center; background-color: #f2f2f2; border: 1px solid #ccc; ${FONT}`;
-            const TD_VALUE = `padding: 5px 8px; vertical-align: middle; border: 1px solid #ccc; text-align: left; ${FONT}`;
-            const TD_VALUE_CENTER = `padding: 5px 8px; vertical-align: middle; border: 1px solid #ccc; text-align: center; ${FONT}`;
+            const TD_VALUE = `padding: 5px 8px; vertical-align: middle; border: 1px solid #ccc; text-align: left; ${FONT}`; // 기본 왼쪽 정렬
+
             const TD_TOTAL_LABEL = `padding: 10px; font-weight: bold; text-align: center; background-color: #e6fffa; border: 1px solid #ccc; color: #2C5CA3; ${FONT}`;
             const TD_TOTAL_VAL = `padding: 10px; font-weight: bold; text-align: left; background-color: #e6fffa; border: 1px solid #ccc; color: #2C5CA3; font-size: 11pt; ${FONT}`;
 
@@ -1653,21 +1658,22 @@
                 if (isSplitField) {
                     const valueCells = items.map(item => {
                         let val = item[field.id] || '';
+
+                        // [수정 포인트] 수량(qty)도 예외 없이 기본 스타일(왼쪽 정렬) 사용
+                        // 기존: if (field.id === 'qty') style = TD_VALUE_CENTER; -> 삭제함
                         let style = TD_VALUE;
-                        if (field.id === 'qty') style = TD_VALUE_CENTER;
+
                         return `<td style="${style}">${String(val).replace(/\n/g, '<br>')}</td>`;
                     }).join('');
                     rowHtml = `<tr><td style="${TD_LABEL}">${field.label}</td>${valueCells}</tr>`;
                 } else {
                     const commonVal = items[0][field.id] || '';
 
-                    // [핵심] 자산 로직: '비고(note)' 필드에 자산 태그 추가
+                    // 자산 로직: '비고(note)' 필드에 자산 태그 추가
                     let displayVal = String(commonVal).replace(/\n/g, '<br>');
                     if (field.id === 'note') {
-                        // 하나라도 자산으로 체크되어 있다면 비고에 표시
                         const hasAsset = items.some(i => i.isAsset);
                         if (hasAsset) {
-                            // 어떤 항목이 자산인지 명시 (예: [자산: 항목1, 항목3])
                             const assetIndices = items.map((item, idx) => item.isAsset ? (idx + 1) : null).filter(i => i !== null);
                             const assetTag = `<span style="color:#D97706; font-weight:bold;">[⚠️자산등재 검토 필요(항목:${assetIndices.join(',')})]</span><br>`;
                             displayVal = assetTag + displayVal;
@@ -1693,12 +1699,13 @@
             try {
                 const blob = new Blob([finalHtml], { type: 'text/html' });
                 const clipboardItem = new ClipboardItem({ 'text/html': blob });
-                navigator.clipboard.write([clipboardItem]).then(() => showToast("복사 완료! (자산 태그 포함)", "success"));
+                navigator.clipboard.write([clipboardItem]).then(() => showToast("복사 완료! (정렬 통일됨)", "success"));
             } catch (e) {
                 console.error(e);
                 alert('복사 실패');
             }
         });
+
 
         let resizeTimer;
         window.addEventListener('resize', () => {
@@ -2264,4 +2271,3 @@
 
 </html>
 ```
-
