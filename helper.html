@@ -1669,7 +1669,7 @@
                         if (hasAsset) {
                             // 어떤 항목이 자산인지 명시 (예: [자산: 항목1, 항목3])
                             const assetIndices = items.map((item, idx) => item.isAsset ? (idx + 1) : null).filter(i => i !== null);
-                            const assetTag = `<span style="color:#D97706; font-weight:bold;">[⚠️자산등재필요(항목:${assetIndices.join(',')})]</span><br>`;
+                            const assetTag = `<span style="color:#D97706; font-weight:bold;">[⚠️자산등재 검토 필요(항목:${assetIndices.join(',')})]</span><br>`;
                             displayVal = assetTag + displayVal;
                         }
                     }
@@ -2264,3 +2264,4 @@
 
 </html>
 ```
+
