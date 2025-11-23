@@ -629,12 +629,24 @@
             /* 이미 위에서 그라데이션 정의됨 */
         }
 
-        /* 4. [New] 토스트 알림 (Toast Notification) */
-        .toast-container {
+        /* 4. [New] 토스트 알림 (Toast Notification) - 스택형 구조 변경 */
+        #toast-wrapper {
             position: fixed;
             bottom: 2rem;
             left: 50%;
-            transform: translateX(-50%) translateY(20px);
+            transform: translateX(-50%);
+            z-index: 9999 !important;
+            display: flex;
+            flex-direction: column-reverse;
+            /* 최신 알림이 위로 쌓이거나 아래로 쌓이게 조절 */
+            align-items: center;
+            gap: 10px;
+            /* 알림 간 간격 */
+            pointer-events: none;
+            /* 알림 사이의 빈 공간은 클릭 가능하게 */
+        }
+
+        .toast-message {
             background-color: var(--text-dark);
             color: white;
             padding: 1rem 2rem;
@@ -642,18 +654,20 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             font-weight: 500;
             opacity: 0;
-            visibility: hidden;
+            transform: translateY(20px);
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            z-index: 2000;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            pointer-events: auto;
+            white-space: pre-line;
+            /* 줄바꿈 허용 */
+            text-align: center;
         }
 
-        .toast-container.show {
+        .toast-message.show {
             opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
+            transform: translateY(0);
         }
 
         /* --- 고급 설정 (디자인 수정본 - 글자색 수정) --- */
@@ -1043,6 +1057,59 @@
         .sticky-action-bar .button:active {
             transform: translateY(2px);
         }
+
+        /* --- [신규 기능 스타일] VAT 보정 및 계좌 경고 --- */
+        .vat-badge-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #FED7D7;
+            color: #C53030;
+            border: 1px solid #FC8181;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .vat-badge-btn:hover {
+            background-color: #C53030;
+            color: white;
+        }
+
+        .account-warning-box {
+            display: flex;
+            align-items: center;
+            background-color: #FFFAF0;
+            border: 1px solid #ED8936;
+            color: #C05621;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            gap: 0.5rem;
+        }
+
+        .account-warning-input {
+            border-color: #ED8936 !important;
+            background-color: #FFFAF0 !important;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 6px rgba(229, 62, 62, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(229, 62, 62, 0);
+            }
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
@@ -1127,11 +1194,11 @@
                                 <label class="radio-label">
                                     <input type="radio" name="aiMode" value="merge" checked
                                         onclick="toggleSplitOptions()">
-                                    <span>📄 1건으로 묶어서 출력 (총액)</span>
+                                    <span>📄 1건으로 묶기 (총액 이체)</span>
                                 </label>
                                 <label class="radio-label">
                                     <input type="radio" name="aiMode" value="split" onclick="toggleSplitOptions()">
-                                    <span>📑 품목별로 따로 출력 (개별)</span>
+                                    <span>📑 품목별로 따로 분리 (개별 이체)</span>
                                 </label>
                             </div>
 
@@ -1207,7 +1274,7 @@
     </div>
     <div class="footer-notice">
         <p>
-            위하고 폼 생성기 베타 테스트 (v5.0-피드백 반영)<br>
+            위하고 폼 생성기 베타 테스트 (v5.2-실무 반영)<br>
             거래처 추가 요청이나 개선 의견은 언제든지 환영합니다. 경영기획팀에 문의해주세요.<br>
             <b>FOR RADEXEL INC. USE ONLY</b>
         </p>
@@ -1255,7 +1322,7 @@
 
 
     <script>
-        // --- (v5.0) AI 학습용 과거 데이터 (CSV 기반 내장) ---
+        // --- (v5.2) AI 학습용 과거 데이터 (CSV 기반 내장) ---
         const historicalDB = [
             { category: "하드웨어 제작", vendor: "경기FA", itemName: "하드웨어_머시닝센터 제작 건", purpose: "하드웨어_머시닝센터 제작", account: "기업은행 471-036753-01-026", paymentMethod: "이체(KARA)" },
             { category: "하드웨어 제작", vendor: "121-87-02591", itemName: "Blade_로봇부_하드웨어_알루미늄용접물 제작 건", purpose: "Blade_로봇부_하드웨어_알루미늄용접물 제작", account: "기업은행 920-049581-04-019", paymentMethod: "이체(운영비)" },
@@ -1363,7 +1430,7 @@
             qty: { id: 'qty', label: '수량', example: '2, 4' },
             unitPrice: { id: 'unitPrice', label: '단가(외화인 경우 통화 기재)', example: '22,000,000 원 / 10 USD' },
             amount: { id: 'amount', label: '총 금액(부가세 포함)', example: '44,000,000 원 / 40 USD' },
-            date: { id: 'date', label: '구매(예정) 일자', example: '2025. 11. 19.' },
+            date: { id: 'date', label: '지출(예정) 일자', example: '2025. 11. 19.' },
             note: { id: 'note', label: '기타사항(필요 시 작성)', example: '특별 요청사항 또는 부가 정보' },
             user: { id: 'user', label: '사용자/사용부서', example: '사용할 임직원, 부서, 공용 등' },
             manufacturer: { id: 'manufacturer', label: '제조사', example: '한성컴퓨터, MS, 출판사 등' },
@@ -1541,9 +1608,19 @@
                     const isRequired = currentMandatory.includes(field.id) ? 'required' : '';
                     const uniqueId = `common_${field.id}`;
 
+                    // [핵심 수정 1] 공통 항목 렌더링 시 '카드' 여부 확인하여 계좌 잠금
+                    let isDisabled = false;
+                    let extraStyle = "";
+                    if (field.id === 'account') {
+                        const payMethod = commonData['paymentMethod'] || '';
+                        if (payMethod.includes('카드')) {
+                            isDisabled = true;
+                            extraStyle = "background-color: #f0f0f0; color: #aaa; cursor: not-allowed;";
+                        }
+                    }
+
                     let inputHtml = `<div><div class="label-wrapper"><label for="${uniqueId}" class="${isRequired}">${field.label}</label><div class="label-icons"><button class="icon-btn pin-btn" data-pin-action="unpin" data-field-id="${field.id}">🔓</button><button class="icon-btn hide-btn" data-field-id="${field.id}">×</button></div></div>`;
 
-                    // [UX 핵심] 공통 항목: 거래처 필드 UI (목록 vs 직접입력)
                     if (field.id === 'vendor') {
                         const isDirectMode = value && !vendors[value];
                         if (isDirectMode) {
@@ -1564,7 +1641,7 @@
                     } else if (field.type === 'select') {
                         inputHtml += `<select id="${uniqueId}"><option value="">-- 선택 --</option>${field.options.map(o => `<option value="${o}" ${value === o ? 'selected' : ''}>${o}</option>`).join('')}</select>`;
                     } else {
-                        inputHtml += `<input type="text" id="${uniqueId}" value="${value}">`;
+                        inputHtml += `<input type="text" id="${uniqueId}" value="${value}" ${isDisabled ? 'disabled' : ''} style="${extraStyle}">`;
                     }
                     return inputHtml + `</div>`;
                 }).join('');
@@ -1575,21 +1652,7 @@
             itemsContainer.innerHTML = items.map((itemData, index) => {
                 const assetType = itemData.assetType || 'expense';
 
-                // [UX 개선] 엔지니어를 위한 친절한 회계 가이드
-                const assetGuideHtml = `
-                    <div class="asset-guide-box">
-                        <strong>💡 잠깐! 100만원이 넘나요?</strong><br>
-                        • 100만원 미만 : 고민하지 말고 <strong>[🔧 소모/제작]</strong> 선택<br>
-                        • 100만원 이상 & 재판매 가능(PC,장비) : <strong>[📦 범용 장비]</strong> 선택<br>
-                        • 100만원 이상 & SW/특허 : <strong>[💾 SW/권리]</strong> 선택
-                    </div>
-                `;
-
-                // [UX 개선] 엔지니어를 위한 직관적 선택지 (회계 용어 배제, 물품 성격 중심)
-                // [UI 변경] 스크린샷 기반: 설명 박스 제거 및 심플한 버튼 적용
-                // [UX 개선] 엔지니어를 위한 직관적 선택지 (회계 용어 배제, 물품 성격 중심)
-                // [UX 개선] 엔지니어를 위한 직관적 분류 (제작 vs 기성품 vs 무형)
-                // [UX 개선] 엔지니어를 위한 포괄적 분류 (물품 + 활동/용역 포함)
+                // [UX 개선] 자산 분류 버튼
                 const assetSelectorHtml = `
                     <div class="asset-segment-container" style="margin-bottom: 1.5rem;">
                         <div class="asset-segment-group" style="display:flex; gap:0.5rem; background:#F7FAFC; padding:0.5rem; border-radius:0.75rem; border:1px solid #E2E8F0;">
@@ -1628,9 +1691,48 @@
                         ? `<button class="icon-btn lock-icon">🔒</button>`
                         : `<button class="icon-btn pin-btn" data-pin-action="pin" data-field-id="${field.id}">📌</button><button class="icon-btn hide-btn" data-field-id="${field.id}">×</button>`;
 
-                    let fieldHtml = `<div><div class="label-wrapper"><label for="${uniqueId}" class="${isRequired}">${field.label}</label><div class="label-icons">${iconsHtml}</div></div>`;
+                    let labelExtra = '';
+                    if ((field.id === 'amount' || field.id === 'unitPrice') && itemData.vatExcluded) {
+                        labelExtra = `<span class="vat-badge-btn" data-index="${index}" data-field="${field.id}">⚠️ VAT 별도 감지 (+10% 적용하기)</span>`;
+                    }
 
-                    // [UI 일관성] 거래처 필드
+                    // [핵심 수정 2] 세부 항목 렌더링 시에도 '카드' 여부 확인하여 계좌 잠금
+                    let isDisabled = false;
+                    let extraStyle = "";
+                    if (field.id === 'account') {
+                        // 핀 고정 여부와 상관없이 현재 아이템의 결제수단 값을 확인
+                        const payMethod = itemData['paymentMethod'] || '';
+                        if (payMethod.includes('카드')) {
+                            isDisabled = true;
+                            extraStyle = "background-color: #f0f0f0; color: #aaa; cursor: not-allowed;";
+                        }
+                    }
+
+                    let fieldHtml = `<div><div class="label-wrapper"><label for="${uniqueId}" class="${isRequired}">${field.label}${labelExtra}</label><div class="label-icons">${iconsHtml}</div></div>`;
+
+                    // [기능 4: 계좌 불일치 경고 UI] - 카드가 아닐 때만 표시
+                    let accountWarningHtml = '';
+                    let inputClass = '';
+
+                    if (field.id === 'account' && !isPinned && !isDisabled) {
+                        const currentVendor = itemData.vendor;
+                        if (currentVendor && vendors[currentVendor] && vendors[currentVendor].account) {
+                            const savedAccount = vendors[currentVendor].account;
+                            if (value.replace(/\s/g, '') !== savedAccount.replace(/\s/g, '')) {
+                                inputClass = 'account-warning-input';
+                                accountWarningHtml = `
+                                    <div class="account-warning-box">
+                                        <span>⚠️ DB 정보 불일치</span>
+                                        <button class="button button-secondary" style="padding:0.2rem 0.5rem; font-size:0.75rem;" 
+                                            onclick="items[${index}].account='${savedAccount}'; render();">
+                                            DB값으로 변경 (${savedAccount})
+                                        </button>
+                                    </div>
+                                `;
+                            }
+                        }
+                    }
+
                     if (field.id === 'vendor' && !isPinned) {
                         const isDirectMode = value && !vendors[value];
                         if (!isDirectMode) {
@@ -1651,16 +1753,16 @@
                                 </div>`;
                         }
                     }
-                    // [UI 일관성] select 필드
                     else if (field.type === 'select') {
                         const options = field.options || [];
                         const optionsHtml = options.map(o => `<option value="${o}" ${value === o ? 'selected' : ''}>${o}</option>`).join('');
                         fieldHtml += `<select id="${uniqueId}"><option value="">-- 선택 --</option>${optionsHtml}</select>`;
                     }
                     else {
-                        fieldHtml += `<input type="text" id="${uniqueId}" value="${value}">`;
+                        fieldHtml += `<input type="text" id="${uniqueId}" value="${value}" class="${inputClass}" ${isDisabled ? 'disabled' : ''} style="${extraStyle}">`;
                     }
-                    return fieldHtml + `</div>`;
+
+                    return fieldHtml + accountWarningHtml + `</div>`;
                 }).join('');
 
                 return `
@@ -1677,9 +1779,23 @@
 
             adjustContainerWidth();
             saveState();
+
+            document.querySelectorAll('.vat-badge-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = e.target.dataset.index;
+                    const fId = e.target.dataset.field;
+                    const currentVal = items[idx][fId];
+                    if (currentVal) {
+                        const num = parseInt(currentVal.replace(/[^0-9]/g, '')) || 0;
+                        const newVal = Math.floor(num * 1.1);
+                        items[idx][fId] = newVal.toLocaleString();
+                        items[idx].vatExcluded = false;
+                        render();
+                        showToast("부가세(10%)가 가산되었습니다.", "success");
+                    }
+                });
+            });
         }
-
-
 
         // [교체] render 함수 바로 아래에 기존 toggleAsset을 지우고 이것을 붙여넣으세요.
         function setAssetType(index, type) {
@@ -1801,12 +1917,14 @@
         // [통합 수정] 공통 정보 입력 리스너 (거래처-계좌 연동 + 과제명 자동완성 + 금액 포맷팅)
 
         // [통합 수정] 공통 정보 리스너 (자동완성 + 자동삭제 + 포맷팅)
+        // [통합 수정] 공통 정보 리스너 (자동완성 + 자동삭제 + 포맷팅 + 카드계좌숨김)
+        // [통합 수정] 공통 정보 리스너 (카드 충돌 방지 + 공통 적용 로직 개선)
+        // [통합 수정] 공통 정보 리스너 (카드 잠금 로직 강화)
         commonInputsContainer.addEventListener('input', (e) => {
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') {
                 const fieldId = e.target.id.replace('common_', '');
                 let value = e.target.value;
 
-                // 1. 거래처 직접 입력 모드 전환
                 if (fieldId === 'vendor' && value === '__DIRECT__') {
                     commonData['vendor'] = " ";
                     saveState(); render();
@@ -1817,7 +1935,6 @@
                     return;
                 }
 
-                // 2. 금액 포맷팅
                 if (fieldId === 'amount' || fieldId === 'unitPrice') {
                     value = formatSmartCurrency(value);
                     e.target.value = value;
@@ -1825,57 +1942,54 @@
 
                 commonData[fieldId] = value;
 
-                // 3. 거래처 -> 계좌 연동
+                // 3. 거래처 -> 계좌 연동 (단, '카드'가 아닐 때만!!)
                 if (fieldId === 'vendor') {
-                    const matchedAccount = vendors[value] ? vendors[value].account : '';
-                    if (matchedAccount) {
-                        commonData['account'] = matchedAccount;
-                        const accountInput = document.getElementById('common_account');
-                        if (accountInput) {
-                            accountInput.value = matchedAccount;
-                            accountInput.classList.add('highlight');
-                            setTimeout(() => accountInput.classList.remove('highlight'), 1000);
+                    const currentMethod = commonData['paymentMethod'] || '';
+                    // [방어 로직] 카드가 아닐 때만 DB 계좌를 가져옴
+                    if (!currentMethod.includes('카드')) {
+                        const matchedAccount = vendors[value] ? vendors[value].account : '';
+                        if (matchedAccount) {
+                            commonData['account'] = matchedAccount;
+                            if (pinnedFields.includes('account')) {
+                                items.forEach(item => item.account = matchedAccount);
+                            }
                         }
-                    }
-                    if (pinnedFields.includes('vendor')) {
-                        items.forEach(item => {
-                            item.vendor = value;
-                            if (matchedAccount) item.account = matchedAccount;
-                        });
-                        if (pinnedFields.includes('account') && matchedAccount) commonData['account'] = matchedAccount;
                     }
                 }
 
-                // 4. [UX 핵심] 결제수단 변경 -> 과제명 자동완성 OR 자동삭제
+                // 4. [UX 개선] 결제수단 변경 처리
                 if (fieldId === 'paymentMethod') {
                     const matchedKey = Object.keys(AUTO_TASK_MAP).find(key => value.includes(key));
-                    // 매핑되면 값 설정, 매핑 안되면 빈값('')으로 초기화 (자동 삭제)
                     const targetTaskName = matchedKey ? AUTO_TASK_MAP[matchedKey] : '';
-
                     commonData['relatedTask'] = targetTaskName;
-
-                    const taskInput = document.getElementById('common_relatedTask');
-                    if (taskInput) {
-                        taskInput.value = targetTaskName;
-                        // 값이 들어갈 때만 번쩍임 효과
-                        if (targetTaskName) {
-                            taskInput.classList.add('highlight');
-                            setTimeout(() => taskInput.classList.remove('highlight'), 1000);
-                        }
-                    }
-
                     if (pinnedFields.includes('relatedTask')) {
                         items.forEach(item => item.relatedTask = targetTaskName);
+                    }
+
+                    // [핵심] 카드 선택 시 -> 계좌 잠금 처리 (데이터 레벨)
+                    if (value.includes('카드')) {
+                        const cardMsg = '(법인/개인카드 결제 - 계좌 불필요)';
+                        commonData['account'] = cardMsg;
+                        if (pinnedFields.includes('account')) {
+                            items.forEach(item => item.account = cardMsg);
+                        }
+                        // UI 잠금을 위해 즉시 리렌더링
+                        render();
+                    } else {
+                        // 카드가 해제되면 -> 거래처 DB 계좌 복구
+                        const currentVendor = commonData['vendor'];
+                        const restoredAccount = (currentVendor && vendors[currentVendor]) ? vendors[currentVendor].account : '';
+                        commonData['account'] = restoredAccount;
+                        if (pinnedFields.includes('account')) {
+                            items.forEach(item => item.account = restoredAccount);
+                        }
+                        render();
                     }
                 }
 
                 saveState();
             }
         });
-
-
-
-
         applyCommonBtn.addEventListener('click', () => {
             items.forEach(item => {
                 pinnedFields.forEach(fieldId => {
@@ -1916,13 +2030,7 @@
             }
         });
 
-        // [수정] 세부 항목 입력 리스너 (커서 위치 보정 추가)
-        // [수정] 세부 항목 입력 리스너 (거래처 변경 시 계좌 자동 연동 + 금액 포맷팅)
-        // [수정] 세부 항목 입력 리스너 (개별 거래처 변경 시 계좌 자동 연동)
-        // [수정] 세부 항목 입력 리스너 (거래처 연동 + 플로팅 바 업데이트 + 포맷팅)
-        // [통합 수정] 세부 항목 입력 리스너 (계좌 연동 + 과제명 자동완성 + 금액 포맷팅)
-
-        // [통합 수정] 세부 항목 리스너 (자동완성 + 자동삭제 + 포맷팅 + UI일관성)
+        // [통합 수정] 세부 항목 리스너 (카드 잠금 로직 강화)
         itemsContainer.addEventListener('input', (e) => {
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') {
                 const card = e.target.closest('.item-card');
@@ -1932,7 +2040,6 @@
                 const fieldId = e.target.id.split('_')[0];
                 let value = e.target.value;
 
-                // 1. 거래처 직접 입력 모드
                 if (fieldId === 'vendor') {
                     if (value === '__DIRECT__') {
                         items[index].vendor = " ";
@@ -1943,36 +2050,34 @@
                         }, 50);
                         return;
                     }
-                    if (vendors[value]) {
+
+                    // [방어 로직] 카드가 아닐 때만 DB 계좌 연동
+                    const currentMethod = items[index].paymentMethod || '';
+                    if (!currentMethod.includes('카드') && vendors[value]) {
                         items[index].account = vendors[value].account;
-                        const accountInput = document.getElementById(`account_${index}`);
-                        if (accountInput) {
-                            accountInput.value = vendors[value].account;
-                            accountInput.classList.add('highlight');
-                            setTimeout(() => accountInput.classList.remove('highlight'), 1000);
-                        }
+                        render(); // 값 변경 후 UI 업데이트
+                        return;
                     }
                 }
 
-                // 2. [UX 핵심] 결제수단 변경 -> 과제명 자동완성 OR 자동삭제
                 if (fieldId === 'paymentMethod') {
                     const matchedKey = Object.keys(AUTO_TASK_MAP).find(key => value.includes(key));
-                    // 매핑되면 값 설정, 매핑 안되면 빈값('')으로 초기화 (자동 삭제)
-                    const targetTaskName = matchedKey ? AUTO_TASK_MAP[matchedKey] : '';
+                    items[index].relatedTask = matchedKey ? AUTO_TASK_MAP[matchedKey] : '';
 
-                    items[index].relatedTask = targetTaskName;
-
-                    const taskInput = document.getElementById(`relatedTask_${index}`);
-                    if (taskInput) {
-                        taskInput.value = targetTaskName;
-                        if (targetTaskName) {
-                            taskInput.classList.add('highlight');
-                            setTimeout(() => taskInput.classList.remove('highlight'), 1000);
-                        }
+                    // [핵심] 카드 선택 시 -> 계좌 잠금 및 메시지 설정
+                    if (value.includes('카드')) {
+                        items[index].account = '(법인/개인카드 결제 - 계좌 불필요)';
+                        render(); // UI 비활성화를 위해 재렌더링
+                        return;
+                    } else {
+                        // 카드 해제 시 복구
+                        const currentVendor = items[index].vendor;
+                        items[index].account = (currentVendor && vendors[currentVendor]) ? vendors[currentVendor].account : '';
+                        render();
+                        return;
                     }
                 }
 
-                // 3. 금액 포맷팅
                 if (fieldId === 'amount' || fieldId === 'unitPrice') {
                     const oldCursor = e.target.selectionEnd;
                     const oldLength = e.target.value.length;
@@ -1988,6 +2093,7 @@
                 updateFloatingBar();
             }
         });
+
 
         formTypeSelector.addEventListener('change', (e) => {
             if (confirm('양식을 변경하면 현재 작성된 항목과 모든 설정이 초기화됩니다. 계속하시겠습니까?')) {
@@ -2026,43 +2132,51 @@
         // -----------------------------------------------------------
 
         // 1. 토스트 알림 메시지 함수 (화면 하단에 팝업)
+        // -----------------------------------------------------------
+        // [수정] 토스트 알림 함수 (스택형, 6초 유지)
+        // -----------------------------------------------------------
         function showToast(message, type = 'success') {
-            let toast = document.getElementById('custom-toast');
-            if (!toast) {
-                toast = document.createElement('div');
-                toast.id = 'custom-toast';
-                toast.className = 'toast-container';
-                document.body.appendChild(toast);
+            // 1. 래퍼가 없으면 생성
+            let wrapper = document.getElementById('toast-wrapper');
+            if (!wrapper) {
+                wrapper = document.createElement('div');
+                wrapper.id = 'toast-wrapper';
+                document.body.appendChild(wrapper);
             }
+
+            // 2. 개별 토스트 메시지 생성
+            const toast = document.createElement('div');
+            toast.className = 'toast-message';
 
             const icon = type === 'success' ? '✅' : '⚠️';
             toast.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
-            toast.classList.add('show');
 
+            // 3. 래퍼에 추가
+            wrapper.appendChild(toast);
+
+            // 4. 애니메이션 트리거 (약간의 딜레이 필요)
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+
+            // 5. 제거 타이머 (기존 3000 -> 6000ms로 연장)
             setTimeout(() => {
                 toast.classList.remove('show');
-            }, 3000);
+                // 애니메이션 끝난 후 DOM 제거
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 400);
+            }, 6000);
         }
 
         // -----------------------------------------------------------
-        // [최종 수정] 복사 기능 (엄격한 세부항목 검증 + 논리적 정렬)
+        // [Logic Fixed] 하드코딩 제거 & 사용자 선택 존중 로직
         // -----------------------------------------------------------
-        // -----------------------------------------------------------
-        // [긴급 수정] 복사 기능 (위하고 호환성 강화 - execCommand 사용)
-        // -----------------------------------------------------------
-        // -----------------------------------------------------------
-        // [최종 수정] 복사 기능 (필수값 세부항목 검증 + 알림 최소화 + 순서 동기화)
-        // -----------------------------------------------------------
-        // -----------------------------------------------------------
-        // [최종 수정] 복사 기능 (회계정책 기반 하드코딩 검증 로직 포함)
-        // -----------------------------------------------------------
-        // -----------------------------------------------------------
-        // [최종 수정] 복사 기능 (합치기 모드 시 항목 번호 명시 기능 추가)
-        // -----------------------------------------------------------
-
         copyBtn.addEventListener('click', () => {
 
-            // 1. [기본 검증] 필수 항목 체크
+            // 1. [검증] 필수 항목 체크
             const MANDATORY_FIELDS = {
                 'all': ['projectCode', 'amount', 'vendor', 'paymentMethod'],
                 'general_expense': ['itemName'],
@@ -2147,98 +2261,96 @@
             const headerCells = items.map((_, i) => `<td style="${TD_LABEL}">항목 ${i + 1}</td>`).join('');
             const headerRow = `<tr><td style="${TD_LABEL} width: 140px;">${template.title}</td>${headerCells}</tr>`;
 
-            // ▼▼▼ [최종 로직] 사용자 선택 + 금액 + 프로젝트(개발단계) 검토 강화 ▼▼▼
+            // ▼▼▼ [Clean Logic] 사용자 선택 중심 회계 로직 ▼▼▼
+            // ▼▼▼ [Logic Update] 소액 자산 검토 로직 강화 ▼▼▼
             const getAccountingGuideTag = (item) => {
                 const rawAmt = parseInt(String(item.amount || '0').replace(/[^0-9]/g, '')) || 0;
+                const name = (item.itemName || item.spec || '').toLowerCase();
                 const proj = (item.projectCode || '').toUpperCase();
                 const userSelection = item.assetType || 'expense';
 
-                // [1] 사용자 선택값 표시
                 const typeLabels = {
-                    'expense': '소모·주문제작·활동비',
-                    'tangible': '기성품 기기·비품',
-                    'intangible': 'SW·권리·용역비'
+                    'expense': '비용 (소모/제작)',
+                    'tangible': '유형자산 (비품)',
+                    'intangible': '무형자산 (SW/권리)'
                 };
                 const userLabel = typeLabels[userSelection] || userSelection;
                 const userBadge = `<span style="display:inline-block; padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid #cbd5e0; background:#f7fafc; color:#2d3748;">👤 기안자 선택: ${userLabel}</span>`;
 
-                // [2] 판단 기준 변수
                 const RESEARCH_PROJECTS = ['MPRT-RB', 'MAGBLADE'];
                 const DEV_PROJECTS = ['MPRT-HM', 'MPRT-CM', 'MPRT-BA', 'MPRT-DV', 'MPRT-PS', 'ELUXI'];
 
-                const isHighValue = rawAmt >= 1000000; // 중요성 기준 100만원
+                const isHighValue = rawAmt >= 1000000;
                 const isDevProject = DEV_PROJECTS.some(p => proj.includes(p));
                 const isResearchProject = RESEARCH_PROJECTS.some(p => proj.includes(p));
 
-                // [3] 권장 분류 도출
+                const isIP = name.includes('특허') || name.includes('상표') || name.includes('출원') || name.includes('관납료');
+
                 let recType = 'expense';
                 let recLabel = '비용';
                 let reason = '소액 또는 소모성';
 
-                // Case A: 사용자가 [무형자산(SW/권리)] 선택 시
-                if (userSelection === 'intangible') {
-                    recType = 'intangible';
-                    recLabel = '무형자산 (선급금/SW)';
-                    reason = '사용자 선택 (IP/SW/개발비)';
+                // Rule 1: IP (최우선)
+                if (isIP) {
+                    recType = 'intangible'; recLabel = '무형자산 (선급금/IP)'; reason = '지식재산권 취득';
                 }
-                // Case B: 사용자가 [유형자산(기성품/비품)] 선택 시
+                // Rule 2: 사용자가 [무형자산] 선택
+                else if (userSelection === 'intangible') {
+                    // [수정] 연구단계라면, IP가 아닌 이상 무형자산 불가 -> 비용 처리
+                    if (isResearchProject) {
+                        recType = 'expense';
+                        recLabel = '비용 (경상연구비)';
+                        reason = '연구단계 발생 비용 처리 원칙';
+                    } else {
+                        // 그 외(개발, 일반)는 사용자 선택 존중하되 금액 검토
+                        if (isHighValue) {
+                            recType = 'intangible'; recLabel = '무형자산 (SW/개발비)'; reason = '사용자 선택 (SW/권리)';
+                        } else {
+                            recType = 'check_dev';
+                            recLabel = '⚠️ 무형자산여부 검토 필요';
+                            reason = '100만원 미만 소액 (자산성 확인)';
+                        }
+                    }
+                }
+                // Rule 3: 사용자가 [유형자산] 선택
                 else if (userSelection === 'tangible') {
                     if (isHighValue) {
-                        recType = 'tangible';
-                        recLabel = '유형자산 (비품)';
-                        reason = '범용 기성품 (100만↑)';
+                        recType = 'tangible'; recLabel = '유형자산 (비품)'; reason = '범용 기성품 (사용자 선택)';
                     } else {
-                        recType = 'expense';
-                        recLabel = '비용 (소모품비)';
-                        reason = '100만원 미만은 비용 처리 원칙';
+                        recType = 'expense'; recLabel = '비용 (소모품비)'; reason = '100만원 미만은 비용 처리 원칙';
                     }
                 }
-                // Case C: 사용자가 [비용(소모/제작)] 선택 시
+                // Rule 4: 사용자가 [비용] 선택
                 else {
-                    // 100만원 미만 (소액)
-                    if (!isHighValue) {
+                    if (isHighValue) {
                         if (isDevProject) {
-                            // [수정] "비용(검토)" -> "개발비여부 검토 필요"
+                            recType = 'intangible'; recLabel = '무형자산 (개발비)'; reason = '개발단계 직접 투입비 (자산화)';
+                        } else if (isResearchProject) {
+                            recType = 'expense'; recLabel = '비용 (경상연구비)'; reason = '연구단계 시제품(비용)';
+                        } else {
+                            recType = 'expense'; recLabel = '비용'; reason = '일반 소모성 지출';
+                        }
+                    } else {
+                        if (isDevProject) {
                             recType = 'check_dev';
-                            recLabel = '개발비여부 검토 필요';
+                            recLabel = '⚠️ 개발비여부 검토 필요';
                             reason = '개발단계 소액 지출 (자산성 확인)';
                         } else {
-                            recType = 'expense';
-                            recLabel = '비용 (소모품비)';
-                            reason = '100만원 미만 소액';
-                        }
-                    }
-                    // 100만원 이상 (고액)
-                    else {
-                        if (isDevProject) {
-                            recType = 'intangible';
-                            recLabel = '무형자산 (개발비)';
-                            reason = '개발단계 직접 투입비 (자산화)';
-                        } else if (isResearchProject) {
-                            recType = 'expense';
-                            recLabel = '비용 (경상연구비)';
-                            reason = '연구단계 시제품/재료비 (비용)';
-                        } else {
-                            recType = 'expense';
-                            recLabel = '비용';
-                            reason = '일반 소모성 지출';
+                            recType = 'expense'; recLabel = '비용 (소모품비)'; reason = '100만원 미만 소액';
                         }
                     }
                 }
 
-                // [4] 가이드 박스 스타일
+                // [Style]
                 const isMismatch = (userSelection !== recType) && (recType !== 'check_dev');
                 let icon = isMismatch ? '💡' : '✅';
-
                 let boxStyle = "";
 
                 if (recType === 'check_dev') {
-                    // [검토 필요] 노란색/주황색 계열 (눈에 띄게)
                     boxStyle = "background:#FFFFF0; color:#B7791F; border:1px solid #F6E05E;";
-                    icon = '⚠️';
+                    icon = '';
                 } else if (recType === 'expense') {
                     boxStyle = "background:#F7FAFC; color:#4A5568; border:1px solid #CBD5E0;";
-                    if (isMismatch) boxStyle = "background:#FFF5F5; color:#C53030; border:1px solid #FC8181;";
                 } else if (recType === 'tangible') {
                     boxStyle = "background:#E6FFFA; color:#234E52; border:1px solid #38B2AC;";
                 } else if (recType === 'intangible') {
@@ -2255,7 +2367,6 @@
                     </div>
                 `;
             };
-
             let bodyRows = '';
             let totalRow = '';
 
@@ -2265,11 +2376,29 @@
                     if (!isMergeMode || isSplitField) {
                         const valueCells = items.map(item => {
                             let val = item[field.id] || '';
+
+                            // [기능 유지] 카드 결제 시 계좌 숨김
+                            if (field.id === 'account') {
+                                const pm = item.paymentMethod || '';
+                                if (pm.includes('카드')) {
+                                    val = '(법인/개인카드 결제 - 계좌 불필요)';
+                                }
+                            }
+
                             return `<td style="${TD_VALUE}">${String(val).replace(/\n/g, '<br>')}</td>`;
                         }).join('');
                         return `<tr><td style="${TD_LABEL}">${field.label}</td>${valueCells}</tr>`;
                     } else {
-                        const commonVal = items[0][field.id] || '';
+                        let commonVal = items[0][field.id] || '';
+
+                        // [기능 유지] 공통 항목 카드 결제 시 계좌 숨김
+                        if (field.id === 'account') {
+                            const pm = items[0].paymentMethod || '';
+                            if (pm.includes('카드')) {
+                                commonVal = '(법인/개인카드 결제 - 계좌 불필요)';
+                            }
+                        }
+
                         let displayVal = String(commonVal).replace(/\n/g, '<br>');
                         return `<tr><td style="${TD_LABEL}">${field.label}</td><td colspan="${items.length}" style="${TD_VALUE}">${displayVal}</td></tr>`;
                     }
@@ -2325,6 +2454,7 @@
                 showToast("복사 완료! (호환 모드)", "success");
             }
         });
+
 
         let resizeTimer;
         window.addEventListener('resize', () => {
@@ -2474,8 +2604,6 @@
                 return;
             }
 
-            // 로딩 애니메이션 시작 (이하 기존 코드 연결됨...)
-
             // 로딩 애니메이션 시작
             aiLoading.style.display = 'flex';
             const loadingInterval = startLoadingAnimation();
@@ -2512,13 +2640,16 @@
             } finally {
                 clearInterval(loadingInterval);
                 aiLoading.style.display = 'none';
-                stagedFiles = [];
-                userInstructionInput.value = ''; // 실행 후 입력창 비우기
+
+                // [UX 개선 4] 분석 후 파일 리스트 유지 (재시도 용이성)
+                // stagedFiles = [];  <-- 이 줄을 삭제하여 파일을 남겨둠
+
+                // userInstructionInput.value = ''; // 지시사항도 유지하는 것이 재시도에 유리함
+
                 updateFileStatus();
-                fileInput.value = '';
+                fileInput.value = ''; // 브라우저 파일 인풋만 초기화 (동일 파일 재선택 가능하게)
             }
         }
-
         // Helpers
         function readFileAsBase64(file) {
             return new Promise((resolve, reject) => {
@@ -2572,18 +2703,19 @@
         // AI 분석 함수
 
         // AI 분석 함수 (프롬프트 로직 개선됨)
+
+        // AI 분석 함수 (프롬프트 로직 개선됨: 지급조건 분리, VAT 감지)
+        // AI 분석 함수 (프롬프트 로직 개선됨: 지급조건 분리, VAT 감지, Manual 모드 안전장치)
         async function analyzeMixedContent({ images, textContext }) {
             try {
                 const template = formTemplates[currentFormType];
                 const fieldsInfo = template.fields.map(f => `- ${f.id} (${f.label})`).join('\n');
-                const vendorListKeys = Object.keys(vendors).join(', ');
                 const userInstruction = document.getElementById('user-instruction').value.trim();
                 const mode = document.querySelector('input[name="aiMode"]:checked').value;
 
-                // [중요 변경] 모드별 지시사항 수정
+                // [중요 변경] 모드별 지시사항 수정 (Manual 모드 논리 보강)
                 let splitInstruction = "";
                 if (mode === 'merge') {
-                    // 합치기 모드여도 품목은 개별로 유지하되, 거래처 정보만 통일하라는 지시
                     splitInstruction = `
                         [MODE: SMART MERGE] 
                         - Extract ALL individual items from the receipts as separate objects in an Array.
@@ -2596,113 +2728,74 @@
                         splitInstruction = `[MODE: AUTO-SPLIT] Logically separate entries (by invoice, vendor, or category). Return an Array.`;
                     } else {
                         const count = document.getElementById('manualCountInput').value;
-                        splitInstruction = `[MODE: FIXED-COUNT SPLIT] Strictly create exactly ${count} entries. Return an Array of ${count} objects.`;
+                        // [핵심 수정] 물리적 품목 수와 이체 횟수 분리 로직
+                        splitInstruction = `
+                            [MODE: FIXED-COUNT SPLIT (Logic Upgrade)]
+                            1. First, identify exactly ${count} distinct physical items or services from the document.
+                            2. THEN, apply [CRITICAL RULE: PAYMENT TERMS SPLIT] to each item.
+                            3. If an item has split payments (e.g., Contract/Balance), generate SEPARATE objects for each payment stage.
+                            4. Therefore, the final Array length MAY EXCEED ${count}. DO NOT artificially merge payments to match the count.
+                        `;
                     }
                 }
 
-                const validPaymentMethods = paymentMethodOptions.join("', '");
-                const projectListStr = projectOptions.join(', ');
-                // [신규] 프로젝트 단계 정의 (회계정책 근거)
-                const projectPhaseMap = {
-                    'Research': ['MPRT-RB', 'MAGBLADE'], // 연구단계: 비용처리 원칙
-                    'Development': ['MPRT-HM', 'MPRT-CM', 'MPRT-BA', 'MPRT-DV', 'MPRT-PS', 'ELUXI', 'MAGSABER', 'MAGSPACER'] // 개발단계: 자산화 가능
-                };
-
-                // [AI 프롬프트] 회계정책 및 자산대장 기반 분석 로직
                 const projectContexts = `
-                    1. **MPRT-HM (Head Module)**: Development/Permit Phase.
-                       - Hardware add-on for LINAC gantry accessory holder.
-                       - Keywords: Magnetic field module, Add-on, Skin dose reduction (50%), Electron scattering control.
-                    
-                    2. **MPRT-CM (Couch Module)**: Development/Permit Phase.
-                       - Rail-driven magnetic field module for treatment couch (Longitudinal).
-                       - Keywords: Scanning, Body lesion targeting, Rail system, FOV expansion.
-
-                    3. **MPRT-BA (Balloon Applicator)**: Development/Permit Phase.
-                       - Balloon-type spacer for surface/organ protection.
-                       - Keywords: Air-gap, Inverse square law, Sterilization process, Bio-safety.
-
-                    4. **MPRT-DV (DICOM Viewer)**: Development/Permit Phase.
-                       - Specialized viewer for RT planning verification & Meta info processing.
-                       - Keywords: DICOM, Workflow optimization, GMP, Technical documentation.
-
-                    5. **MPRT-PS (Planning SW)**: Development/Permit Phase.
-                       - Dose calculation SW with Fast Monte Carlo engine under magnetic field.
-                       - Keywords: TPS, Dose distribution, 20 min calculation, MVP verification.
-
-                    6. **MPRT-RB (Robot)**: Research Phase (Prototype).
-                       - Robot Arm based MPRT system for IORT/Brachytherapy.
-                       - Keywords: Robot arm, Cavity treatment, Prototype, Driving test. (Old name: MAGBLADE)
-
-                    7. **ELUXI (Alice)**: Development/Beta Phase.
-                       - Cloud-based AI Physician Assistant.
-                       - Keywords: Cloud AI, Efficiency, Real-world Evidence (RWE), Beta test.
+                    1. **MPRT-HM**: Development Phase. Keywords: Head Module, Skin dose.
+                    2. **MPRT-CM**: Development Phase. Keywords: Couch, Rail, FOV.
+                    3. **MPRT-BA**: Development Phase. Keywords: Balloon, Spacer.
+                    4. **MPRT-DV**: Development Phase. Keywords: Viewer, DICOM, GMP.
+                    5. **MPRT-PS**: Development Phase. Keywords: TPS, Monte Carlo.
+                    6. **MPRT-RB**: Research Phase. Keywords: Robot arm, Prototype.
+                    7. **ELUXI**: Development Phase. Keywords: Cloud AI, RWE.
                 `;
 
-                // [AI 프롬프트] 회계정책, 자산대장, 프로젝트 정의 기반 분석
+                // [AI 프롬프트] 지급 조건 분리, VAT 감지, 계좌 추출 강화
                 const promptText = `
                     You are an expert Tax & Accounting Assistant for 'Radexel Inc.'.
                     
                     [Goal]
-                    Extract data, select the correct 'projectCode', and classify 'assetType'.
+                    Extract data, select 'projectCode', classify 'assetType', and **SPLIT payments by terms**.
 
                     [USER INSTRUCTION]
                     "${userInstruction || "Proceed with standard analysis."}"
 
-                    [REFERENCE: PROJECT DEFINITIONS]
-                    Use these descriptions to infer the 'projectCode'. 
-                    **CRITICAL:** If the input clearly matches a description, output the corresponding code (e.g., "MPRT-HM"). 
-                    **IF NOT MENTIONED OR AMBIGUOUS, RETURN NULL (Do not guess).**
-                    ${projectContexts}
+                    [CRITICAL RULE: PAYMENT TERMS SPLIT]
+                    If the document specifies **split payment terms** (e.g., "70% Contract, 30% Balance", "계약금/잔금", "착수금/중도금/잔금"), you MUST create **SEPARATE JSON OBJECTS** for each payment stage.
+                    - Example: Total 1,000,000 with 70% Contract / 30% Balance.
+                    - Output: 
+                      { "itemName": "Item (Contract)", "amount": "700000", "note": "계약금 70%", ... },
+                      { "itemName": "Item (Balance)", "amount": "300000", "note": "잔금 30%", ... }
 
-                    [REFERENCE: HISTORICAL ASSET REGISTRY]
-                    If the item matches this list, prioritize 'tangible'/'intangible'.
-                    ${JSON.stringify(historicalDB)} 
+                    [CRITICAL RULE: VAT DETECTION]
+                    Look for keywords like "VAT Excluded", "부가세 별도", "VAT 별도".
+                    - If found, set a boolean key "vatExcluded": true. 
+                    - Keep the "amount" as the number written in the document (do not auto-calculate yet).
 
-                    [COMPANY ACCOUNTING POLICY (Strict Rules)]
-                    
-                    **STEP 1: The "1 Million KRW" Threshold**
-                    - Total Amount < 1,000,000 KRW -> **'expense'**.
-                    - EXCEPTION: IP/Patent fees are ALWAYS **'intangible'**.
+                    [CRITICAL RULE: ACCOUNT NUMBER]
+                    Extract the vendor's bank account number EXACTLY as written in the document into the "account" field.
 
-                    **STEP 2: Project Phase Logic**
-                    - Research (MPRT-RB): Generally **'expense'**. (General equipment >1M is 'tangible')
-                    - Development (MPRT-HM/CM/BA/DV/PS, ELUXI): Service/Labor >= 1M KRW -> **'intangible'**.
-
-                    **STEP 3: Classification Categories**
-                    1. **"expense"**: Items < 1M KRW, Custom parts (CNC, PCB), Consumables, Repairs.
-                    2. **"tangible"**: Items >= 1M KRW, General Equipment (PC, Monitor, Scope), Resellable items.
-                    3. **"intangible"**: SW Licenses >= 1M, Patent fees, Dev Services >= 1M (for Dev projects).
+                    [COMPANY ACCOUNTING POLICY]
+                    - < 1,000,000 KRW -> 'expense' (Except IP/SW)
+                    - >= 1,000,000 KRW -> 'tangible' (Equipment) or 'intangible' (SW/Dev Labor)
+                    - Research Projects (MPRT-RB) -> 'expense'
+                    - Dev Projects (MPRT-HM/CM etc) -> 'intangible' if >= 1M Service
 
                     ${splitInstruction}
 
                     [Context: Extracted Text]
                     ${textContext}
                     
-                    [Target Fields & Logical Order]
-                    The system creates a report in this logical order for the approver:
-                    1. Project Code (Crucial)
-                    2. Date (When)
-                    3. Item Name & Spec (What)
-                    4. Amount (How much)
-                    5. Vendor & Payment (Who)
-                    6. Purpose (Why)
-
-                    **Please ensure 'projectCode' and 'date' are accurately extracted.**
-                    
                     Required JSON Keys:
                     ${fieldsInfo}
+                    - vatExcluded (boolean)
+                    - assetType (string)
 
                     [Rules]
-                    1. **Format**: JSON Array Only. No markdown formatting.
+                    1. **Format**: JSON Array Only.
                     2. **Date**: 'YYYY. MM. DD.'
-                    3. **Currency**: Numbers only (remove commas and currency symbols).
-                    4. **Output Keys**: Include ALL keys listed in [Target Fields] above, plus "projectCode" and "assetType".
-                    5. **Project Logic**: Only select a project if the text contains specific keywords (e.g., "Robot Arm", "Balloon", "DICOM Viewer"). Otherwise null.
-                    6. **Field Priority**: Infer 'date' from the receipt/invoice date.
+                    3. **Currency**: Numbers only.
+                    4. **Project Logic**: Infer from context/keywords.
                     `;
-
-
 
                 const parts = [{ text: promptText }];
                 images.forEach(img => {
@@ -2738,7 +2831,6 @@
             }
         }
 
-
         function applyAIResult(result) {
             let newItems = [];
             let firstResult = {};
@@ -2762,6 +2854,7 @@
                     });
                     if (bestMatch) {
                         res.vendor = bestMatch;
+                        // [중요] 계좌는 AI가 추출한 값이 있으면 그것을 우선 사용
                         if (!res.account && vendors[bestMatch].account) {
                             res.account = vendors[bestMatch].account;
                         }
@@ -2782,7 +2875,7 @@
                     }
                 }
 
-                // [수정] 과제명 자동 매칭 (하드코딩 맵 사용)
+                // 과제명 자동 매칭
                 if (res.paymentMethod) {
                     const matchedKey = Object.keys(AUTO_TASK_MAP).find(key => res.paymentMethod.includes(key));
                     if (matchedKey) {
@@ -2794,28 +2887,24 @@
                 if (res.amount) res.amount = formatSmartCurrency(res.amount);
                 if (res.unitPrice) res.unitPrice = formatSmartCurrency(res.unitPrice);
 
-                // [신규] 프로젝트 코드 자동 매칭
+                // 프로젝트 코드 자동 매칭
                 if (res.projectCode) {
-                    // AI가 코드를 줬을 때, 실제 옵션 목록에 있는지 확인 (부분 일치 허용)
                     const foundProject = projectOptions.find(opt => opt.includes(res.projectCode) || res.projectCode.includes(opt.split(' ')[0]));
                     if (foundProject) {
                         res.projectCode = foundProject;
                     } else {
-                        res.projectCode = ''; // 목록에 없으면 비워둠
+                        res.projectCode = '';
                     }
                 }
 
                 return res;
             };
 
-            // [UX 개선] 스마트 Pinning: AI 결과에서 모든 항목의 값이 동일하면 자동으로 공통 항목(Pin)으로 승격
+            // [UX 개선] 스마트 Pinning
             if (newItems.length > 1) {
-                // 자동 승격할 후보 필드들 (거래처, 날짜, 결제수단, 프로젝트, 계좌)
-                const candidateFields = ['vendor', 'date', 'paymentMethod', 'projectCode', 'account'];
-
+                const candidateFields = ['vendor', 'date', 'paymentMethod', 'projectCode'];
                 candidateFields.forEach(fieldId => {
                     const firstVal = newItems[0][fieldId];
-                    // 첫 번째 값이 존재하고, 나머지 모든 항목도 그 값과 동일하다면
                     if (firstVal && newItems.every(item => item[fieldId] === firstVal)) {
                         if (!pinnedFields.includes(fieldId)) {
                             pinnedFields.push(fieldId);
@@ -2824,7 +2913,6 @@
                     }
                 });
             } else if (newItems.length === 1) {
-                // 항목이 1개일 때는 주요 정보를 공통으로 잡는 것이 수정하기 편하므로 자동 Pin
                 ['vendor', 'date', 'paymentMethod', 'projectCode'].forEach(f => {
                     if (newItems[0][f] && !pinnedFields.includes(f)) {
                         pinnedFields.push(f);
@@ -2833,18 +2921,20 @@
                 });
             }
 
-            // 첫 번째 결과 정제 (공통 필드용)
             firstResult = refineItem(firstResult);
 
             pinnedFields.forEach(fieldId => {
                 if (firstResult[fieldId]) {
                     commonData[fieldId] = firstResult[fieldId];
-                    if (fieldId === 'vendor' && vendors[firstResult[fieldId]]) {
-                        commonData['account'] = vendors[firstResult[fieldId]].account;
+                    if (fieldId === 'vendor' && vendors[firstResult[fieldId]] && !commonData['account']) {
+                        commonData['account'] = firstResult['account'] || vendors[firstResult[fieldId]].account;
+                    } else if (fieldId === 'account' && firstResult['account']) {
+                        commonData['account'] = firstResult['account'];
                     }
                 }
             });
 
+            // [안전장치] 잔금(Balance) 날짜 처리 및 하이라이트
             items = newItems.map(res => {
                 const refined = refineItem(res);
                 const itemObj = {};
@@ -2852,12 +2942,22 @@
                     if (!pinnedFields.includes(key)) itemObj[key] = refined[key];
                 });
 
-                // [핵심 수정] AI가 준 assetType을 그대로 적용 (없으면 expense)
-                // AI가 가끔 대소문자 섞어 줄 때를 대비해 소문자로 변환
                 if (res.assetType) {
                     itemObj.assetType = res.assetType.toLowerCase();
                 } else {
                     itemObj.assetType = 'expense';
+                }
+
+                if (res.vatExcluded) itemObj.vatExcluded = true;
+
+                // [개선 2] 잔금 항목 감지 시 안전한 날짜 문구 강제 삽입
+                const isBalanceItem = (res.itemName && res.itemName.includes('잔금')) ||
+                    (res.note && res.note.includes('잔금'));
+
+                if (isBalanceItem) {
+                    // 빈 값이 아니라 명시적으로 '협의 필요' 문구를 넣어 사고 방지
+                    itemObj.date = '검수 후 지급 (별도협의)';
+                    itemObj.isBalanceWarning = true;
                 }
 
                 return itemObj;
@@ -2867,8 +2967,37 @@
 
             render();
 
-            // 하이라이트 효과
+            // [자동 분리 알림]
             setTimeout(() => {
+                const modeInput = document.querySelector('input[name="aiMode"]:checked');
+                const splitInput = document.querySelector('input[name="splitType"]:checked');
+
+                if (modeInput && modeInput.value === 'split' && splitInput && splitInput.value === 'manual') {
+                    const countInput = document.getElementById('manualCountInput');
+                    const requestedCount = countInput ? (parseInt(countInput.value) || 0) : 0;
+
+                    if (requestedCount > 0 && items.length > requestedCount) {
+                        showToast(`⚠️ [자동 분리 알림] 요청하신 ${requestedCount}건보다 많은 ${items.length}건이 생성되었습니다.\n(사유: 계약금/잔금 등 지급 조건 분리)`, 'warning');
+                    }
+                }
+            }, 500);
+
+            // [수정된 알림 로직: 자동/수동 상관없이 분리 발생 시 알림]
+            setTimeout(() => {
+                // 1. 잔금 항목 생성 여부 확인 (가장 정확함)
+                const hasSplitItem = items.some(item => item.isBalanceWarning);
+
+                // 2. 요청한 개수보다 많아진 경우 (수동 모드일 때)
+                const countInput = document.getElementById('manualCountInput');
+                const requestedCount = countInput ? (parseInt(countInput.value) || 0) : 0;
+                const isManualSplitOverflow = (requestedCount > 0 && items.length > requestedCount);
+
+                // [핵심] 둘 중 하나라도 해당되면 알림 표시
+                if (hasSplitItem || isManualSplitOverflow) {
+                    showToast(`지급 조건(계약금/잔금)에 따라 항목이 자동으로 분리되었습니다.\n날짜 및 금액을 확인해주세요.`, 'warning');
+                }
+
+                // 3. 하이라이트 처리
                 document.querySelectorAll('input, select').forEach(el => {
                     const id = el.id.replace('common_', '').split('_')[0];
                     if (firstResult[id]) {
@@ -2876,10 +3005,30 @@
                         setTimeout(() => el.classList.remove('highlight'), 2000);
                     }
                 });
-            }, 100);
+
+                items.forEach((item, idx) => {
+                    if (item.isBalanceWarning) {
+                        const dateInput = document.getElementById(`date_${idx}`);
+                        if (dateInput) {
+                            dateInput.style.border = "2px solid #E53E3E";
+                            dateInput.style.backgroundColor = "#FFF5F5";
+                            dateInput.style.fontWeight = "bold";
+
+                            dateInput.addEventListener('focus', function removeWarning() {
+                                this.style.border = "";
+                                this.style.backgroundColor = "";
+                                this.style.fontWeight = "normal";
+                                this.removeEventListener('focus', removeWarning);
+                            });
+                        }
+                    }
+                });
+
+            }, 500);
 
             saveState();
         }
+
 
         function startLoadingAnimation() {
             const msgs = [
@@ -2918,7 +3067,20 @@
                     return;
                 }
 
-                if (!confirm("현재 항목들을 1건으로 합치시겠습니까?\n(품목명은 '첫번째 항목 외 N건'으로 변경되며 금액은 합산됩니다.)")) return;
+                // [안전장치] 지급 시기가 다른 항목(계약금/잔금 등)이 섞여 있는지 확인
+                const hasDifferentDates = new Set(items.map(i => i.date)).size > 1;
+                const hasSplitKeywords = items.some(i =>
+                    (i.itemName && (i.itemName.includes('계약금') || i.itemName.includes('잔금') || i.itemName.includes('중도금'))) ||
+                    (i.note && (i.note.includes('계약금') || i.note.includes('잔금')))
+                );
+
+                let confirmMsg = "현재 항목들을 1건으로 합치시겠습니까?\n(품목명은 '첫번째 항목 외 N건'으로 변경되며 금액은 합산됩니다.)";
+
+                if (hasDifferentDates || hasSplitKeywords) {
+                    confirmMsg = "⚠️ [주의] 지급 시기가 다르거나 분할 지급(계약금/잔금) 항목이 감지되었습니다.\n\n이들을 하나로 합치면 자금 집행 날짜가 불분명해질 수 있습니다.\n그래도 합치시겠습니까?";
+                }
+
+                if (!confirm(confirmMsg)) return;
 
                 // (1) 백업
                 originalItemsBackup = JSON.parse(JSON.stringify(items));
@@ -2931,9 +3093,6 @@
                 });
 
                 // (3) 자산 타입 결정 로직 (보수적 접근)
-                // 하나라도 tangible(유형)이 있으면 -> tangible
-                // 유형은 없는데 intangible(무형)이 있으면 -> intangible
-                // 둘 다 없으면 -> expense
                 let summaryAssetType = 'expense';
                 if (items.some(i => i.assetType === 'tangible')) {
                     summaryAssetType = 'tangible';
@@ -2965,6 +3124,7 @@
             }
             // 2. 요약 -> 상세 복구
             else {
+                // 백업된 데이터가 있으면 그것으로 복원 (분할 지급 정보 등 보존)
                 items = JSON.parse(JSON.stringify(originalItemsBackup));
                 originalItemsBackup = null;
 
@@ -2976,7 +3136,6 @@
                 showToast("상세 내역이 복구되었습니다.", "success");
             }
         }
-
 
         // [추가] 고급 설정 토글 이벤트
         const toggleAdvBtn = document.getElementById('toggle-advanced-btn');
