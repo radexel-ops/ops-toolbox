@@ -2723,21 +2723,17 @@
                         - Use the same (dominant) Vendor, Date, and PaymentMethod for ALL items.
                     `;
                 } else {
-                    const splitType = document.querySelector('input[name="splitType"]:checked').value;
-                    if (splitType === 'auto') {
-                        splitInstruction = `[MODE: AUTO-SPLIT] Logically separate entries (by invoice, vendor, or category). Return an Array.`;
-                    } else {
-                        const count = document.getElementById('manualCountInput').value;
-                        // [핵심 수정] 물리적 품목 수와 이체 횟수 분리 로직
-                        splitInstruction = `
-                            [MODE: FIXED-COUNT SPLIT (Logic Upgrade)]
-                            1. First, identify exactly ${count} distinct physical items or services from the document.
-                            2. THEN, apply [CRITICAL RULE: PAYMENT TERMS SPLIT] to each item.
-                            3. If an item has split payments (e.g., Contract/Balance), generate SEPARATE objects for each payment stage.
-                            4. Therefore, the final Array length MAY EXCEED ${count}. DO NOT artificially merge payments to match the count.
-                        `;
-                    }
+                    const count = document.getElementById('manualCountInput').value;
+                    // [지급조건 분리 제거 버전] 고정 건수 나누기
+                    splitInstruction = `
+                        [MODE: FIXED-COUNT SPLIT]
+                        1. Identify exactly ${count} distinct items or services that should become separate rows in the final table.
+                        2. Keep any split payment terms (e.g., Contract/Balance, 계약금/잔금/중도금) as plain text in the "paymentTerms" field of the SAME object.
+                        3. DO NOT create extra JSON objects only because of payment terms.
+                        4. The final Array MUST contain exactly ${count} objects.
+                    `;
                 }
+
 
                 const projectContexts = `
                     1. **MPRT-HM**: Development Phase. Keywords: Head Module, Skin dose.
@@ -2754,17 +2750,19 @@
                     You are an expert Tax & Accounting Assistant for 'Radexel Inc.'.
                     
                     [Goal]
-                    Extract data, select 'projectCode', classify 'assetType', and **SPLIT payments by terms**.
+                    Extract data, select 'projectCode', classify 'assetType'.
+                    Payment terms such as "계약금/잔금/중도금" should be captured ONLY as text in the "paymentTerms" field.
+                    DO NOT split rows or create extra JSON objects based on payment terms.
+
 
                     [USER INSTRUCTION]
                     "${userInstruction || "Proceed with standard analysis."}"
 
-                    [CRITICAL RULE: PAYMENT TERMS SPLIT]
-                    If the document specifies **split payment terms** (e.g., "70% Contract, 30% Balance", "계약금/잔금", "착수금/중도금/잔금"), you MUST create **SEPARATE JSON OBJECTS** for each payment stage.
-                    - Example: Total 1,000,000 with 70% Contract / 30% Balance.
-                    - Output: 
-                      { "itemName": "Item (Contract)", "amount": "700000", "note": "계약금 70%", ... },
-                      { "itemName": "Item (Balance)", "amount": "300000", "note": "잔금 30%", ... }
+                    [RULE: PAYMENT TERMS AS TEXT ONLY]
+                    - If the document specifies split payment terms (e.g., "70% Contract, 30% Balance", "계약금/잔금", "착수금/중도금/잔금"),
+                      copy the description into the "paymentTerms" field of the relevant item.
+                    - Never increase the number of JSON objects only because of payment terms.
+
 
                     [CRITICAL RULE: VAT DETECTION]
                     Look for keywords like "VAT Excluded", "부가세 별도", "VAT 별도".
@@ -2977,7 +2975,11 @@
                     const requestedCount = countInput ? (parseInt(countInput.value) || 0) : 0;
 
                     if (requestedCount > 0 && items.length > requestedCount) {
-                        showToast(`⚠️ [자동 분리 알림] 요청하신 ${requestedCount}건보다 많은 ${items.length}건이 생성되었습니다.\n(사유: 계약금/잔금 등 지급 조건 분리)`, 'warning');
+                        showToast(
+                            `⚠️ [자동 분리 알림] 요청하신 ${requestedCount}건보다 많은 ${items.length}건이 생성되었습니다.\n` +
+                            `(AI가 내용을 여러 품목으로 나누어 인식했습니다. 필요 없는 항목은 직접 삭제해주세요.)`,
+                            'warning'
+                        );
                     }
                 }
             }, 500);
@@ -2994,7 +2996,11 @@
 
                 // [핵심] 둘 중 하나라도 해당되면 알림 표시
                 if (hasSplitItem || isManualSplitOverflow) {
-                    showToast(`지급 조건(계약금/잔금)에 따라 항목이 자동으로 분리되었습니다.\n날짜 및 금액을 확인해주세요.`, 'warning');
+                    showToast(
+                        `잔금 또는 분할 지급으로 추정되는 항목이 있습니다.\n` +
+                        `지급 시기(날짜)와 금액을 꼭 다시 확인해주세요.`,
+                        'warning'
+                    );
                 }
 
                 // 3. 하이라이트 처리
