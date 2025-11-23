@@ -1082,7 +1082,7 @@
                 </div>
 
                 <div class="ai-header">
-                    <h3>🤖 AI 자동 입력 (Step 1.5 - 선택사항)</h3>
+                    <h3>🤖 AI 자동 입력</h3>
                     <p>영수증, 견적서, 엑셀을 드래그하거나 선택하여 폼을 자동으로 완성합니다.</p>
                 </div>
 
@@ -1106,19 +1106,19 @@
 
                         <div class="instruction-box">
                             <span style="font-size: 1.2rem;">💡</span>
-                            <input type="text" id="user-instruction" placeholder="AI 지시사항 (예: 운영계좌에서 이체할게. 부가세는 10%임.)">
+                            <input type="text" id="user-instruction" placeholder="AI에게 알려주기 (예: 운영계좌에서 이체, 부가세는 10%야.)">
                         </div>
                     </div>
                 </div>
 
                 <button id="run-analysis-btn" disabled>
-                    🚀 파일을 먼저 추가해주세요
+                    🚀 분석할 파일을 올려주세요
                 </button>
 
                 <div style="margin-top: 1.5rem; text-align: center;">
                     <button id="toggle-advanced-btn"
                         style="background:none; border:none; color:rgba(255,255,255,0.8); cursor:pointer; font-size:0.9rem; text-decoration: underline; transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.3rem;">
-                        ⚙️ 고급 설정 (합산/분리 방식)
+                        ⚙️ 출력 방식 선택 (묶기 vs 나누기)
                     </button>
 
                     <div id="ai-advanced-options">
@@ -1127,11 +1127,11 @@
                                 <label class="radio-label">
                                     <input type="radio" name="aiMode" value="merge" checked
                                         onclick="toggleSplitOptions()">
-                                    <span>📄 1건으로 합치기</span>
+                                    <span>📄 1건으로 묶어서 출력 (총액)</span>
                                 </label>
                                 <label class="radio-label">
                                     <input type="radio" name="aiMode" value="split" onclick="toggleSplitOptions()">
-                                    <span>📑 여러 건으로 나누기</span>
+                                    <span>📑 품목별로 따로 출력 (개별)</span>
                                 </label>
                             </div>
 
@@ -1207,7 +1207,7 @@
     </div>
     <div class="footer-notice">
         <p>
-            위하고 폼 생성기 베타 테스트 (v5.0-1차 피드백 반영)<br>
+            위하고 폼 생성기 베타 테스트 (v5.0-피드백 반영)<br>
             거래처 추가 요청이나 개선 의견은 언제든지 환영합니다. 경영기획팀에 문의해주세요.<br>
             <b>FOR RADEXEL INC. USE ONLY</b>
         </p>
@@ -2984,8 +2984,8 @@
         toggleAdvBtn.addEventListener('click', () => {
             advOptions.classList.toggle('open');
             toggleAdvBtn.textContent = advOptions.classList.contains('open')
-                ? "⚙️ 고급 설정 닫기"
-                : "⚙️ 고급 설정 (합산/분리 방식)";
+                ? "⚙️ 출력 방식 선택 닫기"
+                : "⚙️ 출력 방식 선택 (묶기 vs 나누기)";
         });
 
         // --- [UX 개선] 헬퍼 함수들 ---
@@ -3045,7 +3045,7 @@
                 aiSection.onclick = function () {
                     grid.style.display = 'grid';
                     if (headerTitle) {
-                        headerTitle.innerHTML = '🤖 AI 자동 입력 (Step 1.5 - 선택사항)';
+                        headerTitle.innerHTML = '🤖 AI 자동 분석';
                         headerTitle.style.fontSize = '1.4rem';
                         headerTitle.style.margin = '0 0 0.5rem 0';
                     }
