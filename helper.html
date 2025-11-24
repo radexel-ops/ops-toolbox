@@ -3333,15 +3333,40 @@
                 const fileMetaInfo = stagedFiles.map((f, i) => `File ${i + 1} Name: ${f.name}`).join('\n');
 
                 // 2. 통합 프롬프트 구성
+                // 2. 통합 프롬프트 구성 (과거 프롬프트의 정교한 규칙 병합)
                 const promptText = `
-                    You are a highly capable Tax & Accounting AI Assistant for 'Radexel Inc.'.
-                    Your goal is to extract structured JSON data from the provided images (Receipts, Maps, Invoices).
+                    You are an expert Tax & Accounting Assistant for 'Radexel Inc.'.
+                    Your goal is to extract structured JSON data from the provided images (Receipts, Maps, Invoices), classify 'assetType', and identify 'projectCode'.
 
                     [CONTEXT: FILE METADATA]
                     ${fileMetaInfo}
 
                     [USER INSTRUCTION]
-                    "${userInstruction || "Analyze the attached files accurately."}"
+                    "${userInstruction || "Proceed with standard analysis."}"
+
+                    [RULE: PAYMENT TERMS AS TEXT ONLY]
+                    - If the document specifies split payment terms (e.g., "70% Contract, 30% Balance", "계약금/잔금", "착수금/중도금/잔금"),
+                    - Copy the description into the "paymentTerms" field (e.g. "계약금 30%, 잔금 70%").
+                    - **DO NOT** create extra JSON objects based on payment terms. Keep it as ONE row.
+
+                    [CRITICAL RULE: VAT DETECTION]
+                    - Look for keywords like "VAT Excluded", "부가세 별도", "VAT 별도".
+                    - If found, set the boolean key "vatExcluded": true. 
+                    - Keep the "amount" as the total number written in the document (or subtotal if implied).
+
+                    [CRITICAL RULE: ACCOUNT NUMBER]
+                    - Extract the vendor's bank account number EXACTLY as written in the document into the "account" field.
+
+                    [COMPANY ACCOUNTING POLICY (ASSET CLASSIFICATION)]
+                    Use this logic to determine 'assetType':
+                    1. **Expense (비용)**: 
+                       - Amount < 1,000,000 KRW (Consumables).
+                       - Any 'Research Project' (e.g., MPRT-RB).
+                    2. **Tangible (유형자산)**: 
+                       - Amount >= 1,000,000 KRW for Equipment/PC/Machinery.
+                    3. **Intangible (무형자산)**: 
+                       - Software license, Patents (IP).
+                       - Amount >= 1,000,000 KRW for 'Development Project' (MPRT-HM/CM/etc) outsourcing/service fees.
 
                     [CURRENT FORM TYPE]
                     ${currentFormType}
@@ -3352,35 +3377,32 @@
 
                     [CRITICAL RULESET A: FOR NAVIGATION MAP SCREENSHOTS (지출승인요청서)]
                     IF the image is a Map/Navigation screenshot (Naver/Kakao Map):
-                    1. **One File = One Row**: Create exactly ONE item per map image unless the user instruction specifies multiple dates for that single image.
+                    1. **One File = One Row**: Create exactly ONE item per map image unless the user instruction specifies multiple dates.
                     2. **Date Priority (Highest)**:
-                       - 1st Priority: Look at the **FILE NAME** (e.g., "251020" -> "2025-10-20"). This is more accurate than OCR.
-                       - 2nd Priority: User Instruction.
-                       - 3rd Priority: Date text inside the image.
+                       - 1st: **FILE NAME** (e.g., "251020" -> "2025-10-20").
+                       - 2nd: User Instruction.
+                       - 3rd: OCR Text inside image.
                     3. **Amount Calculation**:
-                       - Look for the **SELECTED Route** (Usually Blue color, or the first option).
-                       - Sum: **Fuel Cost (연료비/유류비) + Toll (통행료)**.
-                       - IGNORE Taxi fares unless it is explicitly a Taxi receipt.
+                       - Sum: **Fuel Cost (연료비) + Toll (통행료)** of the SELECTED route (usually Blue/First).
+                       - IGNORE Taxi fares unless explicitly stated.
                     4. **Mandatory Fields**:
                        - type: "교통비(자차)"
-                       - route_start: Departure point name.
-                       - route_end: Arrival point name.
+                       - route_start: Departure point.
+                       - route_end: Arrival point.
                        - proof: "네이버 지도 참조" (Fixed String).
                     
                     [CRITICAL RULESET B: FOR GENERAL RECEIPTS & INVOICES]
                     IF the image is a regular receipt, invoice, or tax bill:
                     1. **Type**: Set 'type' to "일반비용" (General Expense).
-                    2. **Payment Terms**: If terms like "Contract(계약금)/Balance(잔금)" are found, note them in the 'paymentTerms' field.
-                    3. **VAT**: If "VAT Excluded"(부가세 별도) is detected, set "vatExcluded": true.
-                    4. **Account**: Extract the Vendor's Bank Account Number exactly if visible.
+                    2. **Payment Terms**: Capture text like "Contract/Balance" in 'paymentTerms'.
+                    3. **VAT**: Check for "vatExcluded".
                     
-                    [CRITICAL RULESET C: DATA CONSISTENCY (COMMONALITY)]
-                    To help the system auto-group common items:
-                    1. **Payment Method**: Normalize to one of ['개인법인카드', '이체(운영비)', '연구비계좌이체', '이체(KARA)'].
-                       - If it looks like a Corporate Card -> '개인법인카드'.
-                       - If it looks like a Bank Transfer -> '이체(운영비)'.
-                    2. **Vendor Name**: Use the official company name. If multiple receipts are from the same vendor, output the EXACT SAME vendor string.
-                    3. **Project**: Use the Project Codes defined in the Reference section above.
+                    [CRITICAL RULESET C: DATA CONSISTENCY]
+                    1. **Payment Method**: Normalize to ['개인법인카드', '이체(운영비)', '연구비계좌이체', '이체(KARA)'].
+                       - Corporate Card -> '개인법인카드'.
+                       - Bank Transfer -> '이체(운영비)'.
+                    2. **Vendor Name**: Use the official company name.
+                    3. **Project**: Use the Project Codes defined above.
 
                     [Context: Extracted Text Content]
                     ${textContext}
@@ -3388,9 +3410,11 @@
                     [OUTPUT REQUIREMENT]
                     - Return ONLY a valid JSON Array.
                     - No Markdown formatting (no \`\`\`json).
-                    - No comments or explanations.
-                    - Required Keys per Object:
+                    - No comments.
+                    - Required Keys:
                     ${fieldsInfo}
+                    - vatExcluded (boolean)
+                    - assetType (string)
                     `;
 
                 // 3. API 요청
@@ -3836,3 +3860,4 @@
 
 </html>
 ```
+
