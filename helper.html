@@ -3685,9 +3685,11 @@
         // 초기 로드 시 실행
         setTimeout(updateFloatingScrollbar, 500);
         // [신규 기능] 복사 미리보기 모달 표시 함수
+        // [수정됨] 복사 미리보기 모달 표시 함수 (자동 닫힘 제거)
         function showCopyPreviewModal(htmlContent) {
             const modal = document.getElementById('copy-preview-modal');
             const previewBox = document.getElementById('clipboard-preview-box');
+            const closeBtn = document.getElementById('close-preview-btn');
             
             // 미리보기 박스에 복사된 HTML 주입
             previewBox.innerHTML = htmlContent;
@@ -3695,10 +3697,15 @@
             // 모달 활성화
             modal.classList.add('active');
 
-            // 1.2초 후 자동으로 닫힘 (사용자 흐름 방해 최소화)
-            setTimeout(() => {
+            // [변경] 기존 타이머(setTimeout) 제거 -> 사용자가 버튼을 눌러야 닫힘
+            
+            // 닫기 버튼 이벤트 (한 번만 등록되도록 처리하거나 매번 덮어쓰기)
+            closeBtn.onclick = function() {
                 modal.classList.remove('active');
-            }, 1200);
+            };
+            
+            // (선택사항) 엔터키나 ESC키로도 닫기 편하게 포커스 이동
+            closeBtn.focus();
         }
         loadState();
 
@@ -3732,6 +3739,7 @@
 
 </html>
 ```
+
 
 
 
