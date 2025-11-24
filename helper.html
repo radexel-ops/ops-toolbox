@@ -1136,6 +1136,71 @@
         #items-container-wrapper::-webkit-scrollbar {
             height: 0px;
         }
+        /* [추가] 복사 미리보기 모달 스타일 */
+        .preview-content {
+            text-align: center;
+            width: 90%;
+            max-width: 480px;
+            background: #F7FAFC;
+            padding: 2rem 1.5rem;
+            border: 2px solid var(--primary-color);
+        }
+
+        .preview-header .success-icon {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .preview-header h2 {
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+            font-size: 1.4rem;
+        }
+
+        .preview-header p {
+            color: var(--text-dark);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-header kbd {
+            background-color: #eee;
+            border-radius: 3px;
+            border: 1px solid #b4b4b4;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+            color: #333;
+            display: inline-block;
+            font-size: 0.85em;
+            font-weight: 700;
+            line-height: 1;
+            padding: 2px 4px;
+            white-space: nowrap;
+        }
+
+        /* 실제 복사된 내용이 보이는 미니 윈도우 */
+        .preview-box {
+            background: white;
+            border: 1px solid #CBD5E0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            max-height: 180px;
+            overflow-y: auto;
+            text-align: left;
+            font-size: 0.75rem;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
+            opacity: 0.8;
+            pointer-events: none; /* 클릭 방지 */
+            transform: scale(0.98);
+        }
+
+        /* 팝인 애니메이션 */
+        @keyframes popIn {
+            0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+            80% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); }
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
@@ -3607,3 +3672,4 @@
 
 </html>
 ```
+
