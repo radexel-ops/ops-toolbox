@@ -2680,11 +2680,39 @@
                     </div>
                 `;
 
+                // ▼▼▼ [수정된 복사 실행 로직] ▼▼▼
+                const copyToClipboard = (html) => {
+                    const listener = (e) => {
+                        e.clipboardData.setData("text/html", html);
+                        e.clipboardData.setData("text/plain", html); // 텍스트만 붙여넣는 경우 대비
+                        e.preventDefault();
+                    };
+                    document.addEventListener("copy", listener);
+                    document.execCommand("copy");
+                    document.removeEventListener("copy", listener);
+                };
+    
                 try {
+                    // 1. 최신 브라우저 방식 시도
                     const blob = new Blob([finalHtml], { type: 'text/html' });
                     const clipboardItem = new ClipboardItem({ 'text/html': blob });
-                    navigator.clipboard.write([clipboardItem]).then(() => showToast("지출승인요청서 복사 완료! (방향 자동 보정됨)", "success"));
-                } catch (e) { copyToClipboard(finalHtml); showToast("지출승인요청서 복사 완료! (방향 자동 보정됨)", "success"); }
+                    
+                    navigator.clipboard.write([clipboardItem]).then(() => {
+                        // 성공 시: 미리보기 모달 호출
+                        showCopyPreviewModal(finalHtml);
+                        // 토스트는 보조적으로 띄움
+                        // showToast("복사 완료!", "success"); 
+                    }).catch(() => {
+                        // 실패 시(구형 호환): fallback 실행
+                        copyToClipboard(finalHtml);
+                        showCopyPreviewModal(finalHtml);
+                    });
+                } catch (e) {
+                    // 완전한 fallback
+                    copyToClipboard(finalHtml);
+                    showCopyPreviewModal(finalHtml);
+                }
+                // ▲▲▲ [수정 완료] ▲▲▲
                 return;
             }
 
@@ -3658,7 +3686,22 @@
 
         // 초기 로드 시 실행
         setTimeout(updateFloatingScrollbar, 500);
+        // [신규 기능] 복사 미리보기 모달 표시 함수
+        function showCopyPreviewModal(htmlContent) {
+            const modal = document.getElementById('copy-preview-modal');
+            const previewBox = document.getElementById('clipboard-preview-box');
+            
+            // 미리보기 박스에 복사된 HTML 주입
+            previewBox.innerHTML = htmlContent;
+            
+            // 모달 활성화
+            modal.classList.add('active');
 
+            // 1.2초 후 자동으로 닫힘 (사용자 흐름 방해 최소화)
+            setTimeout(() => {
+                modal.classList.remove('active');
+            }, 1200);
+        }
         loadState();
 
 
@@ -3666,10 +3709,22 @@
         render();
         updateFileStatus(); // 초기화 확인
     </script>
-
+    <div class="modal-overlay" id="copy-preview-modal" style="backdrop-filter: blur(2px);">
+        <div class="modal-content preview-content">
+            <div class="preview-header">
+                <div class="success-icon">📋✅</div>
+                <h2>위하고에 붙여넣기 준비 완료!</h2>
+                <p>결재 작성 화면에서 <kbd>Ctrl</kbd> + <kbd>V</kbd> 를 누르세요.</p>
+            </div>
+            <div style="font-size:0.8rem; color:#718096; margin-bottom:0.5rem; text-align:left;">▼ 복사된 내용 미리보기</div>
+            <div id="clipboard-preview-box" class="preview-box">
+                </div>
+        </div>
+    </div>
 
 </body>
 
 </html>
 ```
+
 
