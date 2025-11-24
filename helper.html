@@ -2690,26 +2690,23 @@
                     document.removeEventListener("copy", listener);
                 };
     
+                // ▼▼▼ [수정] 일반/회의비 등 모든 양식에도 미리보기 모달 적용 ▼▼▼
                 try {
-                    // 1. 최신 브라우저 방식 시도
                     const blob = new Blob([finalHtml], { type: 'text/html' });
                     const clipboardItem = new ClipboardItem({ 'text/html': blob });
-                    
                     navigator.clipboard.write([clipboardItem]).then(() => {
                         // 성공 시: 미리보기 모달 호출
                         showCopyPreviewModal(finalHtml);
-                        // 토스트는 보조적으로 띄움
-                        // showToast("복사 완료!", "success"); 
+                        // showToast("회계 가이드 행 포함 복사 완료!", "success"); // 기존 토스트 주석 처리
                     }).catch(() => {
-                        // 실패 시(구형 호환): fallback 실행
                         copyToClipboard(finalHtml);
-                        showCopyPreviewModal(finalHtml);
+                        showCopyPreviewModal(finalHtml); // 실패 시 fallback 후 모달 호출
                     });
                 } catch (e) {
-                    // 완전한 fallback
                     copyToClipboard(finalHtml);
-                    showCopyPreviewModal(finalHtml);
+                    showCopyPreviewModal(finalHtml); // 에러 발생 시 fallback 후 모달 호출
                 }
+                // ▲▲▲ [수정 완료] ▲▲▲
                 // ▲▲▲ [수정 완료] ▲▲▲
                 return;
             }
@@ -3739,6 +3736,7 @@
 
 </html>
 ```
+
 
 
 
