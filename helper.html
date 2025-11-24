@@ -1374,7 +1374,7 @@
                     <h2>3. 세부 항목 입력 (필수)</h2>
                     <div style="display:flex; gap:0.5rem;">
                         <button id="summarize-btn" class="button"
-                            style="background-color:#D97706; font-size:0.9rem; padding:0.5rem 1rem;">📉 1건으로 요약</button>
+                            style="background-color:#D97706; font-size:0.9rem; padding:0.5rem 1rem;">📉 1열로 요약</button>
                         <button id="add-item-btn" class="button button-secondary">[+] 항목 추가</button>
                     </div>
                 </div>
@@ -2325,14 +2325,6 @@
             }
         });
 
-        // [수정] 기존 input 리스너에 "직접 입력" 선택 감지 로직 추가
-        // [수정] 공통 정보 입력 리스너 (거래처-계좌 강력 연동 + 금액 포맷팅)
-        // [수정] 공통 정보 입력 리스너 (거래처 변경 시 계좌 정보 강제 동기화)
-        // [통합 수정] 공통 정보 입력 리스너 (거래처-계좌 연동 + 과제명 자동완성 + 금액 포맷팅)
-
-        // [통합 수정] 공통 정보 리스너 (자동완성 + 자동삭제 + 포맷팅)
-        // [통합 수정] 공통 정보 리스너 (자동완성 + 자동삭제 + 포맷팅 + 카드계좌숨김)
-        // [통합 수정] 공통 정보 리스너 (카드 충돌 방지 + 공통 적용 로직 개선)
         // [통합 수정] 공통 정보 리스너 (카드 잠금 로직 강화)
         commonInputsContainer.addEventListener('input', (e) => {
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') {
@@ -2372,22 +2364,40 @@
                 }
 
                 // 4. [UX 개선] 결제수단 변경 처리
+                // [수정] 1. 결제수단 변경 시 -> 과제명 자동 매핑 (딸깍 기능 복구)
                 if (fieldId === 'paymentMethod') {
+                    // (1) 키워드 매칭 ('KARA' -> '방사선...', '데이터' -> '데이터...')
                     const matchedKey = Object.keys(AUTO_TASK_MAP).find(key => value.includes(key));
                     const targetTaskName = matchedKey ? AUTO_TASK_MAP[matchedKey] : '';
+
+                    // (2) 데이터 업데이트
                     commonData['relatedTask'] = targetTaskName;
-                    if (pinnedFields.includes('relatedTask')) {
-                        items.forEach(item => item.relatedTask = targetTaskName);
+
+                    // (3) [중요] 화면(Input)에 즉시 반영 (눈에 보이게 처리)
+                    const relatedTaskInput = document.getElementById('common_relatedTask');
+                    if (relatedTaskInput) {
+                        relatedTaskInput.value = targetTaskName;
+                        // 반짝임 효과
+                        relatedTaskInput.classList.add('highlight');
+                        setTimeout(() => relatedTaskInput.classList.remove('highlight'), 1000);
                     }
 
-                    // [핵심] 카드 선택 시 -> 계좌 잠금 처리 (데이터 레벨)
+                    // (4) 만약 '관련 과제명'이 공통항목(Pin)으로 묶여 있다면, 아래 카드들도 싹 다 변경
+                    if (pinnedFields.includes('relatedTask')) {
+                        items.forEach((item, idx) => {
+                            item.relatedTask = targetTaskName;
+                            const itemInput = document.getElementById(`relatedTask_${idx}`);
+                            if (itemInput) itemInput.value = targetTaskName;
+                        });
+                    }
+
+                    // (5) 기존 카드 결제 선택 시 계좌 잠금 로직 (기존 코드 유지)
                     if (value.includes('카드')) {
                         const cardMsg = '(법인/개인카드 결제 - 계좌 불필요)';
                         commonData['account'] = cardMsg;
                         if (pinnedFields.includes('account')) {
                             items.forEach(item => item.account = cardMsg);
                         }
-                        // UI 잠금을 위해 즉시 리렌더링
                         render();
                     } else {
                         // 카드가 해제되면 -> 거래처 DB 계좌 복구
@@ -2492,11 +2502,24 @@
                     }
                 }
 
+                // [수정] 2. 개별 항목 결제수단 변경 -> 과제명 자동 입력 (딸깍 기능 복구)
                 if (fieldId === 'paymentMethod') {
+                    // (1) 키워드 매칭
                     const matchedKey = Object.keys(AUTO_TASK_MAP).find(key => value.includes(key));
-                    items[index].relatedTask = matchedKey ? AUTO_TASK_MAP[matchedKey] : '';
+                    const targetTaskName = matchedKey ? AUTO_TASK_MAP[matchedKey] : '';
 
-                    // [핵심] 카드 선택 시 -> 계좌 잠금 및 메시지 설정
+                    // (2) 데이터 업데이트
+                    items[index].relatedTask = targetTaskName;
+
+                    // (3) [중요] 화면(Input)에 즉시 반영
+                    const relatedTaskInput = document.getElementById(`relatedTask_${index}`);
+                    if (relatedTaskInput) {
+                        relatedTaskInput.value = targetTaskName;
+                        relatedTaskInput.classList.add('highlight');
+                        setTimeout(() => relatedTaskInput.classList.remove('highlight'), 1000);
+                    }
+
+                    // (4) 기존 카드 결제 시 계좌 잠금 로직 (기존 코드 유지)
                     if (value.includes('카드')) {
                         items[index].account = '(법인/개인카드 결제 - 계좌 불필요)';
                         render(); // UI 비활성화를 위해 재렌더링
@@ -3289,135 +3312,162 @@
         // ============================================================
         // [재수정] AI 분석 함수 (기존 기능 보존 + 지도/날짜/승격 기능 통합)
         // ============================================================
+        // AI 분석 함수 (완전한 한국어 프롬프트 적용)
         async function analyzeMixedContent({ images, textContext }) {
             try {
                 // 1. UI 설정값 및 컨텍스트 가져오기
                 const template = formTemplates[currentFormType];
+                // 필드 정보도 한국어로 명시해주는 것이 좋습니다.
                 const fieldsInfo = template.fields.map(f => `- ${f.id} (${f.label})`).join('\n');
                 const userInstruction = document.getElementById('user-instruction').value.trim();
 
-                // [기능 보존] 병합/분할 모드 체크
+                // 2. 모드 설정 (한국어 프롬프트)
+                // [핵심] "센스 있는" 병합/분할 로직을 한국어로 구체화
                 const modeInput = document.querySelector('input[name="aiMode"]:checked');
                 const mode = modeInput ? modeInput.value : 'merge';
                 let splitInstruction = "";
 
                 if (mode === 'merge') {
                     splitInstruction = `
-                    [MODE: SMART MERGE]
-                    - Even if there are multiple items in one receipt, try to summarize them into one representative item if they share the same purpose.
-                    - Exception: If the user explicitly asks to separate items, follow the user instruction.
+                    [모드: 스마트 구조 분석 (Smart Contextual Extraction)]
+                    1. **입력된 파일과 지시사항의 전체 구조를 먼저 분석해서, 아래의 분류 중 상황A인지 상황B인지 판단하십시오.**
+                       - **상황 A: 서로 다른 여러 개의 거래관련 문서가 섞여 있는 경우** (예: 영수증 3장, 별개의 청구서 2장이 한 번에 들어오거나, 하나의 파일에 내용이 별개인 여러개의 문서가 합쳐진 경우 등. 통장사본이나, 사업자등록증은 계좌정보와 거래처를 파악하기 위함이니 견적서 등의 갯수와는 별도로 고려해야 함.). 
+                         -> **행동**: 항상 내부 품목을 무시하고, **각 큰 카테고리당(주로 파일 단위) '1개의 대표 열(합계)'만** 생성하십시오.
+                       
+                       - **상황 B: 하나의 긴 문서인 경우** (예: 견적서 1장, 거래명세서 1장)
+                         -> **행동**: 표(Table) 안의 품목 리스트를 확인하여 모든 열을 개별적으로 추출하거나, 지급조건을 확인하여 열을 구분하여 작성하세요.(사용자가 나중에 버튼으로 요약할 수 있도록 원본을 제공해야 함)
+         
+                    
                     `;
                 } else {
                     const count = document.getElementById('manualCountInput').value;
                     splitInstruction = `
-                    [MODE: SPLIT / SEPARATE]
-                    - The user wants to split the content into multiple items.
-                    - Target Item Count: Approximately ${count} items (or as logically distinct items appear).
-                    - If "Contract/Balance" (계약금/잔금) terms appear, separate them into distinct rows with different dates if applicable.
+                    [모드: 강제 분할 (Force Split)]
+                    - 사용자가 명시적으로 내용을 나누기를 원합니다.
+                    - 목표 항목 수: 엄격하게 ${count}개로 분할하여 작성하세요. 문서 내용을 확인해서 논리적으로 구분해서 작성.
                     `;
                 }
 
-                // [기능 보존] 프로젝트 코드 매칭을 위한 컨텍스트 (복구됨)
+                // [참고] 프로젝트 코드 컨텍스트
                 const projectContexts = `
-                    [PROJECT KEYWORDS REFERENCE]
-                    1. **MPRT-HM**: Head Module, Skin dose, Development.
-                    2. **MPRT-CM**: Couch, Rail, FOV, Development.
-                    3. **MPRT-BA**: Balloon, Spacer, Development.
-                    4. **MPRT-DV**: Viewer, DICOM, GMP, Development.
-                    5. **MPRT-PS**: TPS, Monte Carlo, Planning SW.
-                    6. **MPRT-RB**: Robot arm, Prototype (Old name: MAGBLADE).
-                    7. **ELUXI**: Cloud AI, RWE, Alice.
-                `;
+                    [프로젝트 코드 참조 (키워드 매칭·간단 설명)]
+                    1. **MPRT-HM**: Head Module | Modular Magnetic Field Generator | 주요 RT 시스템 호환 | 피부선량 저감(~50%) | 개발단계·인허가 신청 | [alias] Hema, MagSaber-Hema. 
+                    2. **MPRT-CM**: Couch/테이블 일체형 | Rail 장착 | 넓은 FOV | Modular Magnetic Field Generator | 주요 RT 시스템 호환 | 개발단계·인허가 신청 | [alias] Coma, MagSaber-Coma. 
+                    3. **MPRT-BA**: Balloon Spacer | air gap 형성 | 표면선량 저감 | 멸균·생체안전성 시험 진행 | 개발단계·인허가 신청. 
+                    4. **MPRT-DV**: DICOM Viewer/Portal | DICOM·Plan JSON 교환 | 3D Surface Dose Viewer | PS·TPS 연동 | 사이버보안 체크리스트·GMP 문서 트랙 | 개발단계·인허가 신청. 
+                    5. **MPRT-PS**: Planning SW(TPS 보완) | Fast Monte Carlo | 환자당 ~20분 목표 | DV↔PS↔모듈 워크플로우 검증 | 개발단계·인허가 신청. 
+                    6. **MPRT-RB**: Robot arm | IORT/FLASH-RT 적용 구상 | 연구단계·시제품 제작 단계 | [alias] MagBlade(구) . 
+                    7. **ELUXI**: Cloud AI Assistant(Alice) | RWE 연동 | DV 링크·스케줄러 | 개발단계·MVP 완료,베타테스트 단계 | 프로덕션 배포 준비.
+                    `;
 
-                // [신규 기능] 파일명 메타 데이터 (날짜 추출용)
-                const fileMetaInfo = stagedFiles.map((f, i) => `File ${i + 1} Name: ${f.name}`).join('\n');
 
-                // 2. 통합 프롬프트 구성
-                // 2. 통합 프롬프트 구성 (과거 프롬프트의 정교한 규칙 병합)
+                // 파일명 메타 데이터 (날짜 추출용)
+                const fileMetaInfo = stagedFiles.map((f, i) => `파일 ${i + 1} 이름: ${f.name}`).join('\n');
+
+                // 3. 통합 프롬프트 구성 (전체 한국어 번역 및 상세화)
                 const promptText = `
-                    You are an expert Tax & Accounting Assistant for 'Radexel Inc.'.
-                    Your goal is to extract structured JSON data from the provided images (Receipts, Maps, Invoices), classify 'assetType', and identify 'projectCode'.
+                    당신은 'Radexel Inc.'의 유능한 **세무 및 회계를 잘 이해하는 문서기안 AI 도우미**입니다.
+                    제공된 이미지(영수증, 지도, 견적서 등)에서 구조화된 JSON 데이터를 추출하고, 자산 유형('assetType')을 분류하고, 프로젝트 코드('projectCode')를 식별하고, 사용자가 결과를 수정할 필요가 없도록 **완벽하고 일관된 데이터**를 만드는 것이 목표입니다.
 
-                    [CONTEXT: FILE METADATA]
+
+                    [컨텍스트: 파일 메타데이터(파일명)]
                     ${fileMetaInfo}
 
-                    [USER INSTRUCTION]
-                    "${userInstruction || "Proceed with standard analysis."}"
+                    [사용자 지시사항]
+                    1. **데이터 소스**: 이미지 내의 텍스트와, 주변 문맥과, 파일명 등을 종합해서 최적을 판단을 내리세요.
+                    2. **사용자 지시사항 우선**: 사용자가 "${userInstruction || "특별한 지시 없음"}"라고 입력했습니다. 이 지시는 다른 모든 정보들보다 항상 우선시됩니다. 다른 내용과 상충할 경우, 항상 **사용자 지시를 최우선**으로 따르십시오.
 
-                    [RULE: PAYMENT TERMS AS TEXT ONLY]
-                    - If the document specifies split payment terms (e.g., "70% Contract, 30% Balance", "계약금/잔금", "착수금/중도금/잔금"),
-                    - Copy the description into the "paymentTerms" field (e.g. "계약금 30%, 잔금 70%").
-                    - **DO NOT** create extra JSON objects based on payment terms. Keep it as ONE row.
+                
+                    [중요 규칙: 열 구분 방법]
+                    1. 세부 구매항목 처리
+                    - 문서에 세부 구매항목이 명시된 경우,
+                    - 위 [스마트 구조 분석] 지침에 따라 작성하세요. 파일이나 계약이 여러건인 경우, 하나의 열에 세부 구매항목을 대표하는 내용을 요약해서 쓰고, 단일 계약인 경우, 세부 구매항목별로 열을 분리해서 작성하세요. 단, 사용자가 구체적인 열갯수를 지정한 경우에는 사용자가 지정한 열갯수로 총 갯수를 맞춰 작성하세요.
+                    2. 지급 조건(Payment Terms) 처리
+                    - 문서에 분할 지급 조건(예: "계약금 30%, 잔금 70%", "착수금/중도금/잔금")이 명시된 경우,
+                    - 위 [스마트 구조 분석] 지침에 따라 작성하세요. 파일이나 계약이 여러건인 경우, 하나의 열에 문서에 명시된 분할 지급 조건(예: "계약금 30%, 잔금 70%")을 그대로 쓰고, 단일 계약인 경우, 항상 계약금 지급조건에 따라 열을 분리해서 작성하세요. 단, 사용자가 구체적인 열갯수를 지정한 경우에는 사용자가 지정한 열갯수로 총 갯수를 맞춰 작성하세요.
 
-                    [CRITICAL RULE: VAT DETECTION]
-                    - Look for keywords like "VAT Excluded", "부가세 별도", "VAT 별도".
-                    - If found, set the boolean key "vatExcluded": true. 
-                    - Keep the "amount" as the total number written in the document (or subtotal if implied).
+                    [중요 규칙: 부가세(VAT) 별도 감지]
+                    - "VAT Excluded", "부가세 별도", "VAT 별도" 같은 키워드를 찾으세요.
+                    - 발견되면 불리언 키 "vatExcluded": true 로 설정하세요.
+                    - 금액('amount')은 문서에 적힌 총액(또는 소계) 그대로 유지하세요. (임의로 1.1배 하지 마세요)
 
-                    [CRITICAL RULE: ACCOUNT NUMBER]
-                    - Extract the vendor's bank account number EXACTLY as written in the document into the "account" field.
+                    [중요 규칙: 계좌번호 추출]
+                    - 판매자(공급자)의 계좌번호가 보이거나, 사용자가 지시한 내용에 있다면 **적힌 그대로 정확하게** 'account' 필드에 추출하세요.
 
-                    [COMPANY ACCOUNTING POLICY (ASSET CLASSIFICATION)]
-                    Use this logic to determine 'assetType':
-                    1. **Expense (비용)**: 
-                       - Amount < 1,000,000 KRW (Consumables).
-                       - Any 'Research Project' (e.g., MPRT-RB).
-                    2. **Tangible (유형자산)**: 
-                       - Amount >= 1,000,000 KRW for Equipment/PC/Machinery.
-                    3. **Intangible (무형자산)**: 
-                       - Software license, Patents (IP).
-                       - Amount >= 1,000,000 KRW for 'Development Project' (MPRT-HM/CM/etc) outsourcing/service fees.
+                    [회사 회계 규정 (자산 분류 가이드)]
+                    다음 로직을 사용하여 'assetType'을 결정하세요:
+                    품목의 **'재활용/재매각 가능성'**과 **'물성(유형/무형)'**을 기준으로 assetType을 1차 선별하십시오.
+                    **[1. 비용 (expense) - 소모성/전용성]**
+                    - **기준**: 한 번 쓰면 사라지거나(소모품), 특정 목적을 위해 **주문제작(Custom-made)**되어 다른 곳에 **재활용/재매각이 어려운** 경우.
+                    - **대상**: 
+                    - 주문제작 부품 (가공비, PCB 제작, 시제품).
+                    - 소모성 자재 (볼트, 너트, 배선, 화학약품).
+                    - 식대, 회의비, 출장비.
+                    - **판단 로직**: "이것은 범용적으로 다시 팔 수 없는가?" -> Yes -> **expense**.
 
-                    [CURRENT FORM TYPE]
+                    **[2. 유형자산 (tangible) - 범용성/환금성]**
+                    - **기준**: 시장에서 구매한 **기성품(Ready-made)**으로, 나중에 **중고로 재판매하거나 다른 용도로 재활용이 가능한** 경우.
+                    - **대상**: 
+                    - 범용 부품 (모터, 센서, 완제품으로 된 기구물).
+                    - IT 기기 (PC, 모니터, 서버).
+                    - 비품 (가구, 책상, 의자).
+                    - **판단 로직**: "이것은 규격화된 기성품이며, 나중에 중고로 팔 수 있는가?" -> Yes -> **tangible**.
+
+                    **[3. 무형자산 (intangible) - 권리/용역/SW]**
+                    - **기준**: 눈에 보이지 않는 **서비스(용역)**, **권리**, **소프트웨어**.
+                    - **대상**: 
+                    - 외주 용역비 (개발 용역, 디자인 용역, 컨설팅).
+                    - 지식재산권 비용 (특허 출원/등록, 상표권, 관납료).
+                    - 소프트웨어 (S/W 라이선스, 구독료).
+                    - **판단 로직**: "이것이 사람의 노동력(용역), 권리, 또는 소프트웨어인가?" -> Yes -> **intangible**.
+
+                    [현재 양식 타입]
                     ${currentFormType}
 
                     ${splitInstruction}
 
                     ${projectContexts}
 
-                    [CRITICAL RULESET A: FOR NAVIGATION MAP SCREENSHOTS (지출승인요청서)]
-                    IF the image is a Map/Navigation screenshot (Naver/Kakao Map):
-                    1. **One File = One Row**: Create exactly ONE item per map image unless the user instruction specifies multiple dates.
-                    2. **Date Priority (Highest)**:
-                       - 1st: **FILE NAME** (e.g., "251020" -> "2025-10-20").
-                       - 2nd: User Instruction.
-                       - 3rd: OCR Text inside image.
-                    3. **Amount Calculation**:
-                       - Sum: **Fuel Cost (연료비) + Toll (통행료)** of the SELECTED route (usually Blue/First).
-                       - IGNORE Taxi fares unless explicitly stated.
-                    4. **Mandatory Fields**:
+                    [특수 규칙 A: 지도/네비게이션 캡처 (지출승인요청서-교통비)]
+                    이미지가 네이버/카카오 지도 경로 캡처인 경우:
+                    1. **1파일 = 1행**: 파일당 정확히 1개의 항목만 만드세요. 단, 사용자가 구체적으로 다르게 지시한 경우에 사용자의 지침에 따라 처리합니다.
+                    2. **날짜 우선순위**: 
+                       - 1순위: 사용자 지시사항.
+                       - 2순위: 파일 이름 (예: "251020" -> "2025-10-20"). 이것이 OCR보다 정확합니다.
+                       - 3순위: 이미지 내 텍스트.
+                    3. **금액 계산**: 선택된 경로(주로 파란색 등의 음영 표시가 되어있음)의 **연료비 + 통행료**를 합산하세요. (택시비 제외)
+                    4. **필수 필드 설정**:
                        - type: "교통비(자차)"
-                       - route_start: Departure point.
-                       - route_end: Arrival point.
-                       - proof: "네이버 지도 참조" (Fixed String).
-                    
-                    [CRITICAL RULESET B: FOR GENERAL RECEIPTS & INVOICES]
-                    IF the image is a regular receipt, invoice, or tax bill:
-                    1. **Type**: Set 'type' to "일반비용" (General Expense).
-                    2. **Payment Terms**: Capture text like "Contract/Balance" in 'paymentTerms'.
-                    3. **VAT**: Check for "vatExcluded".
-                    
-                    [CRITICAL RULESET C: DATA CONSISTENCY]
-                    1. **Payment Method**: Normalize to ['개인법인카드', '이체(운영비)', '연구비계좌이체', '이체(KARA)'].
-                       - Corporate Card -> '개인법인카드'.
-                       - Bank Transfer -> '이체(운영비)'.
-                    2. **Vendor Name**: Use the official company name.
-                    3. **Project**: Use the Project Codes defined above.
+                       - route_start: 출발지 명칭
+                       - route_end: 도착지 명칭
+                       - proof: "네이버 지도 참조" (고정 문자열)
 
-                    [Context: Extracted Text Content]
+                    
+                    [테이블 처리/구분]: 위 [모드: 스마트 구조 분석 (Smart Contextual Extraction)] 지침을 항상 따르세요.
+
+                    [데이터 일관성 규칙]
+                    1. **결제수단**: 다음 중 하나로 통일하세요 -> ['개인법인카드', '이체(운영비)', '연구비계좌이체', '이체(KARA)'].
+                       - 법인카드처럼 보이면 '개인법인카드'.
+                       - 계좌이체처럼 보이면 '이체(운영비)'.
+                    2. **거래처명**: 공식 상호명을 사용하세요.
+                    3. **프로젝트**: 위에 정의된 프로젝트 코드를 사용하세요. 
+                                        
+
+                    [추출된 텍스트 컨텍스트]
                     ${textContext}
                     
-                    [OUTPUT REQUIREMENT]
-                    - Return ONLY a valid JSON Array.
-                    - No Markdown formatting (no \`\`\`json).
-                    - No comments.
-                    - Required Keys:
+                    [출력 요구사항 (Output Schema)]
+                    - 당신의 답변은 **오직 하나의 JSON 배열(Array)**이어야 합니다.
+                    - Markdown 코드 블록(\`\`\`json)이나 설명을 절대 포함하지 마십시오.
+                    - 배열 안의 각 객체(Item)는 아래 키(Key)를 가져야 합니다. 값이 없으면 빈 문자열("")로 두십시오.
+                    
+                    <필수 키 목록>
                     ${fieldsInfo}
-                    - vatExcluded (boolean)
-                    - assetType (string)
-                    `;
+                    - "vatExcluded": (Boolean)
+                    - "assetType": (String) 'expense' | 'tangible' | 'intangible'
+                `;
 
-                // 3. API 요청
+                // 3. API 요청 (기존 로직 유지)
                 const parts = [{ text: promptText }];
                 images.forEach(img => {
                     parts.push({ inline_data: { mime_type: img.mimeType, data: img.data } });
@@ -3442,15 +3492,14 @@
                 try {
                     result = JSON.parse(jsonStr);
                 } catch (e) {
-                    console.error("JSON Parsing Failed", jsonStr);
-                    throw new Error("AI 응답을 처리할 수 없습니다. (JSON 파싱 오류)");
+                    console.error("JSON 파싱 실패", jsonStr);
+                    throw new Error("AI 응답을 처리할 수 없습니다. (JSON 형식 오류)");
                 }
 
                 applyAIResult(result);
 
             } catch (error) {
                 console.error(error);
-                // 로딩 종료 및 에러 토스트는 호출부에서 처리됨 (finally 블록)
                 throw error;
             }
         }
@@ -3513,23 +3562,70 @@
 
             // [UX 혁신] 공통 항목 스마트 승격 (Smart Auto-Pinning)
             // 에러 방지 및 편의성을 위해 '항상 승격되어야 할' 필드들을 정의
-            const ALWAYS_PIN_CANDIDATES = ['projectCode', 'paymentMethod', 'vendor', 'relatedTask'];
+            // [UX 혁신 v2] 공통 항목 스마트 승격 (Smart Auto-Pinning - Logic Enhanced)
+            // 사용자가 지정한 후보군
+            const ALWAYS_PIN_CANDIDATES = ['projectCode', 'paymentMethod', 'vendor', 'account', 'purpose', 'relatedTask'];
 
+            // [도우미 함수] 배열 내 모든 값이 동일한지 체크 (빈 값 무시 여부 선택 가능)
+            const isAllSameValue = (arr, key) => {
+                // 값이 있는 것들만 추출
+                const validValues = arr.map(item => item[key]).filter(v => v && v.trim() !== '');
+                if (validValues.length === 0) return false; // 값이 하나도 없으면 승격 안 함
+
+                // 첫 번째 값을 기준으로 모든 값이 동일한지 검사
+                const firstVal = validValues[0];
+                return validValues.every(val => val === firstVal);
+            };
+
+            // [메인 로직] 후보군 순회하며 조건 검사
             ALWAYS_PIN_CANDIDATES.forEach(fieldId => {
-                // 첫 번째 아이템의 값 가져오기
-                const firstVal = newItems[0][fieldId];
+                const isSingleItem = newItems.length === 1; // 항목이 1개인가?
+                const hasConsistency = isAllSameValue(newItems, fieldId); // 모든 항목의 값이 같은가?
 
-                // 조건: 값이 존재하고, 모든 아이템이 이 값과 '비슷하거나 같으면' 승격
-                // (AI가 미세하게 다르게 가져올 수 있으므로, 첫 번째 값을 기준으로 통일해버리는 것이 UX상 유리함)
-                if (firstVal) {
-                    // 강제 통일 (사용자가 나중에 바꾸더라도 일단 묶어주는게 편함)
+                // 조건 A: 항목이 1개뿐이면 -> 무조건 승격 (편의성)
+                // 조건 B: 항목이 여러 개인데 값이 모두 같다면 -> 승격 (안전함)
+                // 조건 C: 'account' 필드인데, 결제수단이 '카드'로 승격된 상태라면 -> 강제 승격 (규칙)
+
+                let shouldPin = false;
+
+                if (isSingleItem && newItems[0][fieldId]) {
+                    shouldPin = true;
+                } else if (hasConsistency) {
+                    shouldPin = true;
+                }
+
+                // [특수 로직] 결제수단이 공통항목으로 잡혔는데 '카드'라면, 계좌정보(account)는 내용 불문하고 핀을 꽂음
+                if (fieldId === 'account') {
+                    if (pinnedFields.includes('paymentMethod') && commonData['paymentMethod'].includes('카드')) {
+                        shouldPin = true;
+                        // 계좌 정보 덮어쓰기 (카드니까)
+                        newItems.forEach(item => item.account = '(법인/개인카드 결제 - 계좌 불필요)');
+                    }
+                }
+
+                // 최종 실행
+                if (shouldPin) {
+                    // 이미 핀 되어있지 않다면 실행
                     if (!pinnedFields.includes(fieldId)) {
-                        pinnedFields.push(fieldId);
-                        commonData[fieldId] = firstVal;
-                        showToast(`'${fieldId === 'paymentMethod' ? '결제수단' : fieldId}'이(가) 공통 항목으로 자동 설정되었습니다.`, 'success');
+                        // 공통 데이터 세팅 (값은 첫 번째 아이템 기준 - 어차피 같거나 강제 통일됨)
+                        const valToPin = newItems[0][fieldId];
+
+                        if (valToPin) { // 값이 있을 때만
+                            pinnedFields.push(fieldId);
+                            commonData[fieldId] = valToPin;
+
+                            // UX 알림: 너무 많이 뜨면 귀찮으니 중요 항목만, 혹은 그룹화해서 알림
+                            // showToast(`'${fieldId}' 항목이 동일하여 자동으로 묶었습니다.`, 'success'); 
+                        }
                     }
                 }
             });
+
+            // [알림 통합] 핀 된 항목이 있다면 한 번만 알려줌 (UX 개선)
+            const newlyPinnedCount = ALWAYS_PIN_CANDIDATES.filter(f => pinnedFields.includes(f)).length;
+            if (newlyPinnedCount > 0) {
+                showToast(`📝 분석 완료: ${newlyPinnedCount}개 공통 항목이 자동 설정되었습니다.`, 'success');
+            }
 
             // 승격된 공통 데이터가 있으면 계좌 정보 등 연동 업데이트
             if (pinnedFields.includes('paymentMethod') && commonData['paymentMethod'].includes('카드')) {
@@ -3860,4 +3956,3 @@
 
 </html>
 ```
-
