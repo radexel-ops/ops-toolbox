@@ -2660,13 +2660,18 @@
                 const isDevProject = DEV_PROJECTS.some(p => proj.includes(p));
                 const isResearchProject = RESEARCH_PROJECTS.some(p => proj.includes(p));
 
+                const isIP = name.includes('특허') || name.includes('상표') || name.includes('출원') || name.includes('관납료');
 
                 let recType = 'expense';
                 let recLabel = '비용';
                 let reason = '소액 또는 소모성';
 
+                // Rule 1: IP (최우선)
+                if (isIP) {
+                    recType = 'intangible'; recLabel = '무형자산 (선급금/IP)'; reason = '지식재산권 취득';
+                }
                 // Rule 2: 사용자가 [무형자산] 선택
-                if (userSelection === 'intangible') {
+                else if (userSelection === 'intangible') {
                     // [수정] 연구단계라면, IP가 아닌 이상 무형자산 불가 -> 비용 처리
                     if (isResearchProject) {
                         recType = 'expense';
@@ -2687,8 +2692,8 @@
                 else if (userSelection === 'tangible') {
                     if (isHighValue) {
                         // 100만원 이상이면 사용자 의견 존중 (유형자산)
-                        recType = 'tangible'; 
-                        recLabel = '유형자산 (비품)'; 
+                        recType = 'tangible';
+                        recLabel = '유형자산 (비품)';
                         reason = '범용 기성품 (사용자 선택)';
                     } else {
                         // [수정됨] 100만원 미만(소액)인 경우
@@ -2699,8 +2704,8 @@
                             reason = '개발단계 소액 지출 (자산성 확인)';
                         } else {
                             // 일반/연구 프로젝트는 소액이면 비용 처리
-                            recType = 'expense'; 
-                            recLabel = '비용 (소모품비)'; 
+                            recType = 'expense';
+                            recLabel = '비용 (소모품비)';
                             reason = '100만원 미만은 비용 처리 원칙';
                         }
                     }
@@ -2752,7 +2757,6 @@
                     </div>
                 `;
             };
-            
             let bodyRows = '';
             let totalRow = '';
 
