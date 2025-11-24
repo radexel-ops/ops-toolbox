@@ -1139,10 +1139,10 @@
         /* [추가] 복사 미리보기 모달 스타일 */
         .preview-content {
             text-align: center;
-            width: 90%;
-            max-width: 480px;
+            width: 95%;              /* 모바일 대응 */
+            max-width: 60%;        /* 기존 480px -> 800px로 확대 */
             background: #F7FAFC;
-            padding: 2rem 1.5rem;
+            padding: 2rem;
             border: 2px solid var(--primary-color);
         }
 
@@ -1185,14 +1185,12 @@
             border: 1px solid #CBD5E0;
             padding: 1rem;
             border-radius: 0.5rem;
-            max-height: 180px;
+            max-height: 80%;       /* 기존 180px -> 400px로 확대 (스크롤 줄임) */
             overflow-y: auto;
             text-align: left;
-            font-size: 0.75rem;
+            font-size: 0.85rem;      /* 글자 크기도 살짝 키움 */
             box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
-            opacity: 0.8;
-            pointer-events: none; /* 클릭 방지 */
-            transform: scale(0.98);
+            pointer-events: none;    /* 클릭 방지 (내용 보호) */
         }
 
         /* 팝인 애니메이션 */
@@ -3714,11 +3712,19 @@
             <div class="preview-header">
                 <div class="success-icon">📋✅</div>
                 <h2>위하고에 붙여넣기 준비 완료!</h2>
-                <p>결재 작성 화면에서 <kbd>Ctrl</kbd> + <kbd>V</kbd> 를 누르세요.</p>
+                <p>내용을 확인하신 후, 결재 작성 화면에서 <kbd>Ctrl</kbd> + <kbd>V</kbd> 를 누르세요.</p>
             </div>
-            <div style="font-size:0.8rem; color:#718096; margin-bottom:0.5rem; text-align:left;">▼ 복사된 내용 미리보기</div>
+            
+            <div style="font-size:0.9rem; color:#718096; margin-bottom:0.5rem; text-align:left; font-weight:bold;">
+                ▼ 복사된 내용 미리보기
+            </div>
+            
             <div id="clipboard-preview-box" class="preview-box">
                 </div>
+
+            <button id="close-preview-btn" class="button" style="margin-top: 1.5rem; width: 100%; padding: 1rem; font-size: 1.1rem;">
+                확인 (창 닫기)
+            </button>
         </div>
     </div>
 
@@ -3726,5 +3732,6 @@
 
 </html>
 ```
+
 
 
