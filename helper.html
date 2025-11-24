@@ -1110,6 +1110,32 @@
                 box-shadow: 0 0 0 0 rgba(229, 62, 62, 0);
             }
         }
+
+        /* [추가] 플로팅 스크롤바 스타일 */
+        #floating-scrollbar-container {
+            position: fixed;
+            bottom: 70px;
+            /* 하단 바 바로 위에 위치 */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            height: 18px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            z-index: 1900;
+            display: none;
+            /* 내용이 길어지면 자동으로 나타남 */
+        }
+
+        #floating-scrollbar-content {
+            height: 1px;
+        }
+
+        /* 항목 컨테이너의 가로 스크롤바는 숨김 (플로팅 스크롤바만 사용) */
+        #items-container-wrapper::-webkit-scrollbar {
+            height: 0px;
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
@@ -1278,6 +1304,10 @@
             거래처 추가 요청이나 개선 의견은 언제든지 환영합니다. 경영기획팀에 문의해주세요.<br>
             <b>FOR RADEXEL INC. USE ONLY</b>
         </p>
+    </div>
+
+    <div id="floating-scrollbar-container">
+        <div id="floating-scrollbar-content"></div>
     </div>
 
     <div id="floating-bar" class="floating-bottom-bar">
@@ -1506,7 +1536,22 @@
             'education_expense': T('지출품의서 - 교육비', FIELD.course, FIELD.date, FIELD.provider, FIELD.periodFrom, FIELD.periodTo, FIELD.place, FIELD.attendees, FIELD.amount, FIELD.paymentMethod, FIELD.relatedTask, FIELD.note),
             'software_expense': T('지출품의서 - 소프트웨어', FIELD.license, FIELD.date, FIELD.unitPrice, FIELD.seats, FIELD.manufacturer, FIELD.amount, FIELD.paymentMethod, FIELD.paymentTerms, FIELD.user, FIELD.note),
             'ip_expense': T('지출품의서 - 지식재산권', FIELD.ipMgmtNo, FIELD.date, FIELD.spec, FIELD.invoiceNo, FIELD.amount, FIELD.paymentTerms, FIELD.note),
-            'travel_expense_claim': T('지출승인요청서 - 교통여비 청구', FIELD.date, FIELD.origin, FIELD.destination, FIELD.tripObjective, FIELD.amount, FIELD.proof),
+            // [변경] 지출승인요청서: 엑셀형 그리드(Grid) 모드 활성화
+            'travel_expense_claim': {
+                title: '지출승인요청서 (교통여비/실비)',
+                mode: 'grid', // 이 플래그가 있으면 카드 대신 엑셀형 테이블로 렌더링
+                fields: [
+                    { id: 'date', label: '일자', type: 'date' },
+                    { id: 'type', label: '구분', type: 'select', options: ['교통비(자차)', '일반비용'] },
+                    { id: 'projectCode', label: '프로젝트', type: 'select', options: projectOptions },
+                    { id: 'route_start', label: '출발지', type: 'text' },
+                    { id: 'route_end', label: '도착지', type: 'text' },
+                    { id: 'itemName', label: '지출내용', type: 'text' },
+                    { id: 'tripObjective', label: '목적/상세', type: 'text' },
+                    { id: 'amount', label: '금액', type: 'number' },
+                    { id: 'proof', label: '증빙Ref', type: 'text' }
+                ]
+            },
             'business_trip_report': T('출장품의서 - 지출정보', FIELD.date, FIELD.tripObjective, FIELD.place, FIELD.expenseTransit, FIELD.expenseLodging, FIELD.expenseMeal, FIELD.expenseOther, FIELD.amount, FIELD.note),
         };
 
@@ -1568,29 +1613,48 @@
             } catch (e) { console.error("Could not load state", e); }
         };
 
+        // [수정] 컨테이너 너비 조정 함수 (그리드 모드 고정 + 카드 모드 여유 확보)
+        // [수정] 컨테이너 너비 조정 (지출승인요청서는 화면 꽉 차게)
         const adjustContainerWidth = () => {
+            const template = formTemplates[currentFormType];
+
+            // 1. 그리드 모드(지출승인요청서)일 경우: 화면 너비의 96% 사용 (Full Width UX)
+            if (template.mode === 'grid') {
+                expandableContainer.style.maxWidth = '96%';
+                itemsContainer.style.width = '100%';
+                return;
+            }
+
+            // 2. 카드 모드일 경우: 기존 로직 유지 (카드 개수에 따라 적응형)
             const section = expandableContainer.querySelector('.section');
             const bodyPadding = parseFloat(getComputedStyle(document.body).paddingLeft) * 2;
             const sectionPadding = parseFloat(getComputedStyle(section).paddingLeft) * 2;
+
             const maxAllowedWidth = window.innerWidth - bodyPadding;
             const cardWidth = 320;
-            const cardGap = 1.5 * 16;
+            const cardGap = 24;
             const defaultWidth = 900;
-            let requiredContainerWidth = (items.length <= 1) ? defaultWidth : ((items.length * (cardWidth + cardGap)) - cardGap) + sectionPadding;
+
+            let requiredContainerWidth = (items.length <= 1)
+                ? defaultWidth
+                : ((items.length * (cardWidth + cardGap)) - cardGap) + sectionPadding + 50;
+
             const finalContainerWidth = Math.min(requiredContainerWidth, maxAllowedWidth);
+
             expandableContainer.style.maxWidth = `${Math.max(finalContainerWidth, defaultWidth)}px`;
+
             const actualContentWidth = (items.length * cardWidth) + (Math.max(0, items.length - 1) * cardGap);
             itemsContainer.style.width = items.length > 1 ? `${actualContentWidth}px` : '100%';
         };
 
+
+
+        // [수정] 메인 렌더링 함수 (기존 로직 보존 + 그리드 분기 추가)
+        // [수정] 메인 렌더링 함수 (VAT 쌍방향 연동 적용)
         function render() {
             const template = formTemplates[currentFormType];
-            const allFields = template.fields;
 
-            // [UX 개선] 현재 양식에 필요한 필수 항목 리스트 계산
-            const currentMandatory = [...MANDATORY_FIELDS['all'], ...(MANDATORY_FIELDS[currentFormType] || [])];
-
-            // 1. 공통 필드 렌더링
+            // 1. 공통 정보 렌더링 (기존 유지)
             if (pinnedFields.length === 0) {
                 commonInputsContainer.innerHTML = `
                     <div style="text-align:center; padding: 2rem; color: #718096; border: 2px dashed #e2e8f0; border-radius: 0.5rem; background-color: #ffffff;">
@@ -1602,13 +1666,14 @@
                     </div>
                 `;
             } else {
+                const currentMandatory = [...MANDATORY_FIELDS['all'], ...(MANDATORY_FIELDS[currentFormType] || [])];
+                const allFields = template.fields;
                 const visiblePinnedFields = sortFields(allFields.filter(f => pinnedFields.includes(f.id) && !hiddenFields.includes(f.id)));
+
                 commonInputsContainer.innerHTML = visiblePinnedFields.map(field => {
                     const value = commonData[field.id] || '';
                     const isRequired = currentMandatory.includes(field.id) ? 'required' : '';
                     const uniqueId = `common_${field.id}`;
-
-                    // [핵심 수정 1] 공통 항목 렌더링 시 '카드' 여부 확인하여 계좌 잠금
                     let isDisabled = false;
                     let extraStyle = "";
                     if (field.id === 'account') {
@@ -1618,25 +1683,15 @@
                             extraStyle = "background-color: #f0f0f0; color: #aaa; cursor: not-allowed;";
                         }
                     }
-
                     let inputHtml = `<div><div class="label-wrapper"><label for="${uniqueId}" class="${isRequired}">${field.label}</label><div class="label-icons"><button class="icon-btn pin-btn" data-pin-action="unpin" data-field-id="${field.id}">🔓</button><button class="icon-btn hide-btn" data-field-id="${field.id}">×</button></div></div>`;
 
                     if (field.id === 'vendor') {
                         const isDirectMode = value && !vendors[value];
                         if (isDirectMode) {
-                            inputHtml += `
-                                <div style="display:flex; gap:0.5rem; align-items: center;">
-                                    <input type="text" id="${uniqueId}" value="${value}" placeholder="거래처명 직접 입력" style="flex:1;">
-                                    <button class="button button-secondary vendor-toggle-btn" data-action="to-list" style="padding:0.75rem; font-size:0.8rem; white-space:nowrap;">📋 목록 선택</button>
-                                </div>`;
+                            inputHtml += `<div style="display:flex; gap:0.5rem; align-items: center;"><input type="text" id="${uniqueId}" value="${value}" placeholder="거래처명 직접 입력" style="flex:1;"><button class="button button-secondary vendor-toggle-btn" data-action="to-list" style="padding:0.75rem; font-size:0.8rem; white-space:nowrap;">📋 목록 선택</button></div>`;
                         } else {
                             const optionsHtml = Object.keys(vendors).map(k => `<option value="${k}" ${value === k ? 'selected' : ''}>${k}</option>`).join('');
-                            inputHtml += `
-                                <select id="${uniqueId}">
-                                    <option value="">-- 거래처 선택 --</option>
-                                    ${optionsHtml}
-                                    <option value="__DIRECT__" style="color:var(--primary-color); font-weight:bold;">+ 직접 입력 (새로운 거래처)</option>
-                                </select>`;
+                            inputHtml += `<select id="${uniqueId}"><option value="">-- 거래처 선택 --</option>${optionsHtml}<option value="__DIRECT__" style="color:var(--primary-color); font-weight:bold;">+ 직접 입력 (새로운 거래처)</option></select>`;
                         }
                     } else if (field.type === 'select') {
                         inputHtml += `<select id="${uniqueId}"><option value="">-- 선택 --</option>${field.options.map(o => `<option value="${o}" ${value === o ? 'selected' : ''}>${o}</option>`).join('')}</select>`;
@@ -1647,33 +1702,85 @@
                 }).join('');
             }
 
-            // 2. 세부 항목 렌더링
+            // 2. 세부 항목 렌더링 분기
+            if (template.mode === 'grid') {
+                renderGridView(template);
+                document.getElementById('items-container-wrapper').style.overflowX = 'visible';
+            } else {
+                renderCardView(template);
+                document.getElementById('items-container-wrapper').style.overflowX = 'auto';
+            }
+
+            // 3. 복원 섹션 (유지)
+            const allFields = template.fields;
+            const hiddenCommon = allFields.filter(f => hiddenFields.includes(f.id) && pinnedFields.includes(f.id));
+            const hiddenItem = allFields.filter(f => hiddenFields.includes(f.id) && !pinnedFields.includes(f.id));
+            renderRestoreSection('common-restore-section', hiddenCommon);
+            renderRestoreSection('item-restore-section', hiddenItem);
+
+            adjustContainerWidth();
+            saveState();
+
+            // 4. [UX 개선] 부가세 스마트 연동
+            // 단가나 금액 중 하나만 눌러도 둘 다 1.1배 처리하여 불일치 해소
+            document.querySelectorAll('.vat-badge-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = e.target.dataset.index;
+                    // const fId = e.target.dataset.field; // 클릭한 필드뿐만 아니라 연관 필드도 찾음
+
+                    const currentUnitPrice = items[idx]['unitPrice'];
+                    const currentAmount = items[idx]['amount'];
+
+                    let updated = false;
+
+                    // 단가 업데이트
+                    if (currentUnitPrice) {
+                        const num = parseInt(currentUnitPrice.replace(/[^0-9]/g, '')) || 0;
+                        items[idx]['unitPrice'] = Math.floor(num * 1.1).toLocaleString();
+                        updated = true;
+                    }
+                    // 총액 업데이트
+                    if (currentAmount) {
+                        const num = parseInt(currentAmount.replace(/[^0-9]/g, '')) || 0;
+                        items[idx]['amount'] = Math.floor(num * 1.1).toLocaleString();
+                        updated = true;
+                    }
+
+                    if (updated) {
+                        items[idx].vatExcluded = false; // 경고 해제
+                        render();
+                        showToast("단가와 총액에 부가세(10%)가 가산되었습니다.", "success");
+                    }
+                });
+            });
+        }
+
+        // [신규 함수: 기존 로직 격리] 카드 뷰 렌더러 (기존 render 함수 내부 코드를 그대로 가져옴)
+        function renderCardView(template) {
+            const allFields = template.fields;
+            const currentMandatory = [...MANDATORY_FIELDS['all'], ...(MANDATORY_FIELDS[currentFormType] || [])];
             const allVisibleFields = sortFields(allFields.filter(f => !hiddenFields.includes(f.id)));
+
+            itemsContainer.style.display = 'flex';
+            itemsContainer.style.flexDirection = 'row';
+            itemsContainer.style.width = items.length > 1 ? `${(items.length * 320) + (Math.max(0, items.length - 1) * 24)}px` : '100%';
+
             itemsContainer.innerHTML = items.map((itemData, index) => {
                 const assetType = itemData.assetType || 'expense';
 
-                // [UX 개선] 자산 분류 버튼
+                // 자산 분류 버튼 (기존 소스 유지)
                 const assetSelectorHtml = `
                     <div class="asset-segment-container" style="margin-bottom: 1.5rem;">
                         <div class="asset-segment-group" style="display:flex; gap:0.5rem; background:#F7FAFC; padding:0.5rem; border-radius:0.75rem; border:1px solid #E2E8F0;">
-                            
-                            <button class="asset-option ${assetType === 'expense' ? 'active' : ''}" 
-                                onclick="setAssetType(${index}, 'expense')" data-type="expense" tabindex="-1"
-                                style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0.8rem 0.5rem; border:1px solid transparent; border-radius:0.5rem; cursor:pointer; transition:all 0.2s;">
+                            <button class="asset-option ${assetType === 'expense' ? 'active' : ''}" onclick="setAssetType(${index}, 'expense')" data-type="expense" tabindex="-1" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0.8rem 0.5rem; border:1px solid transparent; border-radius:0.5rem; cursor:pointer; transition:all 0.2s;">
                                 <span class="main-text" style="font-size:0.95rem; margin-bottom:0.2rem;">🔧 소모·주문제작·활동비</span>
                                 <span class="sub-text" style="font-size:0.75rem; opacity:0.7; font-weight:normal;">쓰면 사라지거나 전용으로 사용<br>(주문제작 부품, 회의비, 소모품)</span>
                             </button>
-                            
-                            <button class="asset-option ${assetType === 'tangible' ? 'active' : ''}" 
-                                onclick="setAssetType(${index}, 'tangible')" data-type="tangible" tabindex="-1"
-                                style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0.8rem 0.5rem; border:1px solid transparent; border-radius:0.5rem; cursor:pointer; transition:all 0.2s;">
+                            <button class="asset-option ${assetType === 'tangible' ? 'active' : ''}" onclick="setAssetType(${index}, 'tangible')" data-type="tangible" tabindex="-1" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0.8rem 0.5rem; border:1px solid transparent; border-radius:0.5rem; cursor:pointer; transition:all 0.2s;">
                                 <span class="main-text" style="font-size:0.95rem; margin-bottom:0.2rem;">💻 기성품 기기·비품</span>
                                 <span class="sub-text" style="font-size:0.75rem; opacity:0.7; font-weight:normal;">다른 곳에 재사용/판매 가능<br>(기성품 부품, 계측기, 완제품)</span>
                             </button>
-
-                            <button class="asset-option ${assetType === 'intangible' ? 'active' : ''}" 
-                                onclick="setAssetType(${index}, 'intangible')" data-type="intangible" tabindex="-1"
-                                style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0.8rem 0.5rem; border:1px solid transparent; border-radius:0.5rem; cursor:pointer; transition:all 0.2s;">
+                            <button class="asset-option ${assetType === 'intangible' ? 'active' : ''}" onclick="setAssetType(${index}, 'intangible')" data-type="intangible" tabindex="-1" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0.8rem 0.5rem; border:1px solid transparent; border-radius:0.5rem; cursor:pointer; transition:all 0.2s;">
                                 <span class="main-text" style="font-size:0.95rem; margin-bottom:0.2rem;">💾 SW·권리·용역비</span>
                                 <span class="sub-text" style="font-size:0.75rem; opacity:0.7; font-weight:normal;">눈에 보이지 않는 자산<br>(특허, SW, 외주용역)</span>
                             </button>
@@ -1696,11 +1803,9 @@
                         labelExtra = `<span class="vat-badge-btn" data-index="${index}" data-field="${field.id}">⚠️ VAT 별도 감지 (+10% 적용하기)</span>`;
                     }
 
-                    // [핵심 수정 2] 세부 항목 렌더링 시에도 '카드' 여부 확인하여 계좌 잠금
                     let isDisabled = false;
                     let extraStyle = "";
                     if (field.id === 'account') {
-                        // 핀 고정 여부와 상관없이 현재 아이템의 결제수단 값을 확인
                         const payMethod = itemData['paymentMethod'] || '';
                         if (payMethod.includes('카드')) {
                             isDisabled = true;
@@ -1710,7 +1815,7 @@
 
                     let fieldHtml = `<div><div class="label-wrapper"><label for="${uniqueId}" class="${isRequired}">${field.label}${labelExtra}</label><div class="label-icons">${iconsHtml}</div></div>`;
 
-                    // [기능 4: 계좌 불일치 경고 UI] - 카드가 아닐 때만 표시
+                    // 계좌 불일치 경고 및 거래처 선택 로직 보존
                     let accountWarningHtml = '';
                     let inputClass = '';
 
@@ -1720,15 +1825,7 @@
                             const savedAccount = vendors[currentVendor].account;
                             if (value.replace(/\s/g, '') !== savedAccount.replace(/\s/g, '')) {
                                 inputClass = 'account-warning-input';
-                                accountWarningHtml = `
-                                    <div class="account-warning-box">
-                                        <span>⚠️ DB 정보 불일치</span>
-                                        <button class="button button-secondary" style="padding:0.2rem 0.5rem; font-size:0.75rem;" 
-                                            onclick="items[${index}].account='${savedAccount}'; render();">
-                                            DB값으로 변경 (${savedAccount})
-                                        </button>
-                                    </div>
-                                `;
+                                accountWarningHtml = `<div class="account-warning-box"><span>⚠️ DB 정보 불일치</span><button class="button button-secondary" style="padding:0.2rem 0.5rem; font-size:0.75rem;" onclick="items[${index}].account='${savedAccount}'; render();">DB값으로 변경 (${savedAccount})</button></div>`;
                             }
                         }
                     }
@@ -1736,29 +1833,16 @@
                     if (field.id === 'vendor' && !isPinned) {
                         const isDirectMode = value && !vendors[value];
                         if (!isDirectMode) {
-                            const optionsHtml = Object.keys(vendors).map(k =>
-                                `<option value="${k}" ${value === k ? 'selected' : ''}>${k}</option>`
-                            ).join('');
-                            fieldHtml += `
-                                <select id="${uniqueId}" class="vendor-select-item" data-index="${index}">
-                                    <option value="">-- 거래처 선택 --</option>
-                                    ${optionsHtml}
-                                    <option value="__DIRECT__" style="color:var(--primary-color); font-weight:bold;">+ 직접 입력 (새로운 거래처)</option>
-                                </select>`;
+                            const optionsHtml = Object.keys(vendors).map(k => `<option value="${k}" ${value === k ? 'selected' : ''}>${k}</option>`).join('');
+                            fieldHtml += `<select id="${uniqueId}" class="vendor-select-item" data-index="${index}"><option value="">-- 거래처 선택 --</option>${optionsHtml}<option value="__DIRECT__" style="color:var(--primary-color); font-weight:bold;">+ 직접 입력 (새로운 거래처)</option></select>`;
                         } else {
-                            fieldHtml += `
-                                <div style="display:flex; gap:0.5rem; align-items: center;">
-                                    <input type="text" id="${uniqueId}" value="${value}" placeholder="거래처명 입력" style="flex:1;">
-                                    <button class="button button-secondary vendor-reset-btn" data-index="${index}" style="padding:0.75rem; font-size:0.8rem; white-space:nowrap;">📋 목록 선택</button>
-                                </div>`;
+                            fieldHtml += `<div style="display:flex; gap:0.5rem; align-items: center;"><input type="text" id="${uniqueId}" value="${value}" placeholder="거래처명 입력" style="flex:1;"><button class="button button-secondary vendor-reset-btn" data-index="${index}" style="padding:0.75rem; font-size:0.8rem; white-space:nowrap;">📋 목록 선택</button></div>`;
                         }
-                    }
-                    else if (field.type === 'select') {
+                    } else if (field.type === 'select') {
                         const options = field.options || [];
                         const optionsHtml = options.map(o => `<option value="${o}" ${value === o ? 'selected' : ''}>${o}</option>`).join('');
                         fieldHtml += `<select id="${uniqueId}"><option value="">-- 선택 --</option>${optionsHtml}</select>`;
-                    }
-                    else {
+                    } else {
                         fieldHtml += `<input type="text" id="${uniqueId}" value="${value}" class="${inputClass}" ${isDisabled ? 'disabled' : ''} style="${extraStyle}">`;
                     }
 
@@ -1771,31 +1855,208 @@
                         ${assetSelectorHtml} <div class="item-fields-container">${itemFieldsHtml}</div>
                     </div>`;
             }).join('');
-
-            const hiddenCommon = allFields.filter(f => hiddenFields.includes(f.id) && pinnedFields.includes(f.id));
-            const hiddenItem = allFields.filter(f => hiddenFields.includes(f.id) && !pinnedFields.includes(f.id));
-            renderRestoreSection('common-restore-section', hiddenCommon);
-            renderRestoreSection('item-restore-section', hiddenItem);
-
-            adjustContainerWidth();
-            saveState();
-
-            document.querySelectorAll('.vat-badge-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const idx = e.target.dataset.index;
-                    const fId = e.target.dataset.field;
-                    const currentVal = items[idx][fId];
-                    if (currentVal) {
-                        const num = parseInt(currentVal.replace(/[^0-9]/g, '')) || 0;
-                        const newVal = Math.floor(num * 1.1);
-                        items[idx][fId] = newVal.toLocaleString();
-                        items[idx].vatExcluded = false;
-                        render();
-                        showToast("부가세(10%)가 가산되었습니다.", "success");
-                    }
-                });
-            });
         }
+
+        // [신규 함수] 지출승인요청서 전용 그리드 렌더러 (Excel-like UX)
+        // [수정] 지출승인요청서 전용 그리드 렌더러 (달력 적용, UX 개선)
+        // [수정] 지출승인요청서 전용 그리드 렌더러 (헤더 핀 기능 추가 + Full UX)
+        // ============================================================
+        // [수정됨] 지출승인요청서 그리드 렌더러 (화살표 UX 강화)
+        // ============================================================
+        // ============================================================
+        // [디자인 개선] 지출승인요청서 그리드 (SVG 아이콘 적용)
+        // ============================================================
+        function renderGridView(template) {
+            itemsContainer.style.display = 'block';
+            itemsContainer.style.width = '100%';
+
+            const thStyle = "padding: 10px; background: #F7FAFC; border-bottom: 2px solid #E2E8F0; color: #4A5568; font-size: 0.9rem; white-space: nowrap; font-weight:700; text-align:center; vertical-align:middle;";
+            const tdStyle = "padding: 4px; border-bottom: 1px solid #EDF2F7; vertical-align: middle;";
+            const inputStyle = "width: 100%; border: 1px solid #E2E8F0; padding: 8px; border-radius: 4px; font-size: 0.9rem; text-align:center; transition: all 0.2s;";
+            const pinBtnStyle = "margin-left:4px; cursor:pointer; border:none; background:none; color:#CBD5E0; font-size:1rem; vertical-align:middle; transition: transform 0.2s, color 0.2s;";
+
+            // 헤더 생성
+            const makeHeader = (label, fieldId) => {
+                if (pinnedFields.includes(fieldId)) return `<span style="color:#2C5CA3;">🔒 ${label}</span>`;
+                return `
+                    ${label}
+                    <button onclick="promoteToCommon('${fieldId}')" title="${label} 공통 항목으로 설정" style="${pinBtnStyle}" onmouseover="this.style.color='#E53E3E'; this.style.transform='scale(1.2)'" onmouseout="this.style.color='#CBD5E0'; this.style.transform='scale(1)'">📌</button>
+                `;
+            };
+
+            // [SVG 아이콘 정의] 스타일 통일을 위한 벡터 그래픽
+            const svgs = {
+                right: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`,
+                left: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>`,
+                round: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>`
+            };
+
+            const rowsHtml = items.map((item, idx) => {
+                const isGeneral = item.type === '일반비용';
+                const amountVal = item.amount ? parseInt(item.amount.replace(/[^0-9]/g, '')) || 0 : 0;
+                let dateVal = item.date || '';
+                if (dateVal.includes('.')) dateVal = dateVal.replace(/\./g, '-').replace(/\s/g, '');
+
+                // 화살표 상태 설정
+                const dir = item.route_direction || 'right';
+                const arrowConfig = {
+                    'right': { icon: svgs.right, color: '#CBD5E0', hoverColor: '#718096', title: '편도 (기본)' },
+                    'round': { icon: svgs.round, color: '#2C5CA3', hoverColor: '#1E447A', title: '왕복' },
+                    'left': { icon: svgs.left, color: '#E53E3E', hoverColor: '#C53030', title: '역방향 (복사 시 자동반전)' }
+                };
+                const cur = arrowConfig[dir];
+
+                return `
+                <tr style="background: ${idx % 2 === 0 ? '#fff' : '#F9FAFB'}; transition: background 0.2s;" onmouseover="this.style.background='#EDF2F7'" onmouseout="this.style.background='${idx % 2 === 0 ? '#fff' : '#F9FAFB'}'">
+                    <td style="${tdStyle} text-align:center; width: 40px;">
+                        <button onclick="removeGridItem(${idx})" style="color:#CBD5E0; border:none; background:none; cursor:pointer; font-weight:bold; font-size:1.5rem; line-height:1;" onmouseover="this.style.color='#E53E3E'" onmouseout="this.style.color='#CBD5E0'">×</button>
+                    </td>
+                    <td style="${tdStyle} width: 40px; color:#AAA; font-size:0.8rem; text-align:center;">${idx + 1}</td>
+                    
+                    <td style="${tdStyle} width: 130px;">
+                        <input type="date" value="${dateVal}" style="${inputStyle} font-family:inherit; color:var(--text-dark);" onchange="updateGridItem(${idx}, 'date', this.value)">
+                    </td>
+                    
+                    <td style="${tdStyle} width: 110px;">
+                        <select style="${inputStyle}" onchange="updateGridItem(${idx}, 'type', this.value)">
+                            <option value="교통비(자차)" ${!isGeneral ? 'selected' : ''}>교통비(자차)</option>
+                            <option value="일반비용" ${isGeneral ? 'selected' : ''}>일반비용</option>
+                        </select>
+                    </td>
+                    
+                    <td style="${tdStyle} width: 180px;">
+                        <select style="${inputStyle}; font-size:0.85rem; text-align:left;" onchange="updateGridItem(${idx}, 'projectCode', this.value)">
+                            <option value="">(프로젝트 선택)</option>
+                            ${projectOptions.map(p => `<option value="${p}" ${item.projectCode === p ? 'selected' : ''}>${p}</option>`).join('')}
+                        </select>
+                    </td>
+                    
+                    <td style="${tdStyle}">
+                        <div style="display: ${!isGeneral ? 'flex' : 'none'}; gap: 8px; align-items: center; justify-content: center;">
+                            <input type="text" value="${item.route_start || ''}" placeholder="출발지" style="${inputStyle}; flex:1;" onchange="updateGridItem(${idx}, 'route_start', this.value)">
+                            
+                            <button onclick="toggleGridDirection(${idx})" title="${cur.title}" 
+                                style="border:1px solid #E2E8F0; background:white; border-radius:8px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:${cur.color}; transition:all 0.2s; box-shadow:0 1px 2px rgba(0,0,0,0.05);"
+                                onmouseover="this.style.color='${cur.hoverColor}'; this.style.borderColor='${cur.hoverColor}'; this.style.background='#F7FAFC';"
+                                onmouseout="this.style.color='${cur.color}'; this.style.borderColor='#E2E8F0'; this.style.background='white';">
+                                ${cur.icon}
+                            </button>
+
+                            <input type="text" value="${item.route_end || ''}" placeholder="도착지" style="${inputStyle}; flex:1;" onchange="updateGridItem(${idx}, 'route_end', this.value)">
+                        </div>
+                        <input type="text" value="${item.itemName || ''}" placeholder="지출 상세 내역 입력" style="${inputStyle}; display: ${isGeneral ? 'block' : 'none'}; text-align:left;" onchange="updateGridItem(${idx}, 'itemName', this.value)">
+                    </td>
+                    
+                    <td style="${tdStyle}">
+                        <input type="text" value="${item.tripObjective || ''}" placeholder="업무/출장 목적" style="${inputStyle}; text-align:left;" onchange="updateGridItem(${idx}, 'tripObjective', this.value)">
+                    </td>
+                    
+                    <td style="${tdStyle} width: 110px;">
+                        <input type="text" value="${amountVal ? amountVal.toLocaleString() : ''}" placeholder="0" style="${inputStyle} text-align:right; font-weight:bold; color:#2C5CA3;" onkeyup="formatGridCurrency(this, ${idx})">
+                    </td>
+                    
+                    <td style="${tdStyle} width: 110px;">
+                        <input type="text" value="${item.proof || ''}" placeholder="참조1" style="${inputStyle}" onchange="updateGridItem(${idx}, 'proof', this.value)">
+                    </td>
+                </tr>
+                `;
+            }).join('');
+
+            const totalAmt = items.reduce((acc, cur) => acc + (parseInt((cur.amount || '0').replace(/[^0-9]/g, '')) || 0), 0);
+
+            itemsContainer.innerHTML = `
+                <div style="background:white; border-radius:8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); overflow:hidden; border:1px solid #E2E8F0; margin-bottom:2rem;">
+                    <div style="padding:1rem; background:#EDF2F7; border-bottom:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <span style="font-weight:bold; color:#2D3748; font-size:1.05rem;">📝 상세 내역 (Grid Mode)</span>
+                            <span style="font-size:0.85rem; color:#718096; margin-left:0.5rem;">* 헤더의 📌 아이콘을 누르면 해당 항목이 공통 정보로 승격됩니다.</span>
+                        </div>
+                        <div style="font-weight:bold; color:#2C5CA3;">총 ${items.length}건</div>
+                    </div>
+                    <table style="width:100%; border-collapse:collapse;">
+                        <thead>
+                            <tr>
+                                <th style="${thStyle}"></th>
+                                <th style="${thStyle}">No</th>
+                                <th style="${thStyle}">${makeHeader('일자', 'date')}</th>
+                                <th style="${thStyle}">${makeHeader('구분', 'type')}</th>
+                                <th style="${thStyle}">${makeHeader('프로젝트', 'projectCode')}</th>
+                                <th style="${thStyle}">이동구간 (클릭하여 변경)</th>
+                                <th style="${thStyle}">${makeHeader('목적/상세', 'tripObjective')}</th>
+                                <th style="${thStyle}">금액(원)</th>
+                                <th style="${thStyle}">${makeHeader('증빙', 'proof')}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rowsHtml}
+                            <tr style="background:#FFFFF0;">
+                                <td colspan="7" style="padding:15px; text-align:right; border-top:2px solid #CBD5E0; color:#4A5568; font-weight:bold; font-size:1rem;">합계 (총 청구금액) :</td>
+                                <td style="padding:15px; text-align:right; border-top:2px solid #CBD5E0; color:#E53E3E; font-weight:bold; font-size:1.2rem;">${totalAmt.toLocaleString()}</td>
+                                <td style="border-top:2px solid #CBD5E0;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="padding:10px; text-align:center; border-top:1px solid #E2E8F0; background:#F7FAFC;">
+                        <button onclick="addGridItem()" class="button button-secondary" style="width:100%; padding:1rem; border:1px dashed #CBD5E0; font-size:0.95rem;">+ 행 추가하기 (직전 내용 복사)</button>
+                    </div>
+                </div>
+            `;
+        }
+        // [신규 기능] 화살표 방향 토글 (오른쪽 -> 왕복 -> 왼쪽 -> 반복)
+        window.toggleGridDirection = function (idx) {
+            const currentDir = items[idx].route_direction || 'right';
+            let nextDir = 'right';
+            if (currentDir === 'right') nextDir = 'round';
+            else if (currentDir === 'round') nextDir = 'left';
+            else if (currentDir === 'left') nextDir = 'right';
+
+            items[idx].route_direction = nextDir;
+            render(); // 재렌더링하여 아이콘 업데이트
+        };
+
+        // 기존 헬퍼 함수들 유지
+        window.updateGridItem = function (idx, field, val) {
+            items[idx][field] = val;
+            saveState();
+            updateFloatingBar();
+            if (field === 'type') render();
+        };
+        window.formatGridCurrency = function (el, idx) {
+            let val = el.value.replace(/[^0-9]/g, '');
+            if (!val) { items[idx].amount = ''; return; }
+            const num = parseInt(val, 10);
+            el.value = num.toLocaleString();
+            items[idx].amount = num.toLocaleString();
+            saveState();
+            updateFloatingBar();
+        };
+        window.removeGridItem = function (idx) {
+            items.splice(idx, 1);
+            if (items.length === 0) items.push({});
+            render();
+        };
+        window.addGridItem = function () {
+            const lastItem = items[items.length - 1] || {};
+            items.push({
+                date: lastItem.date || '',
+                type: lastItem.type || '교통비(자차)',
+                projectCode: lastItem.projectCode || '',
+                tripObjective: lastItem.tripObjective || '',
+                proof: lastItem.proof || '',
+                route_direction: lastItem.route_direction || 'right' // 방향도 복사
+            });
+            render();
+        };
+        window.promoteToCommon = function (fieldId) {
+            const firstVal = items.length > 0 ? (items[0][fieldId] || '') : '';
+            commonData[fieldId] = firstVal;
+            if (!pinnedFields.includes(fieldId)) pinnedFields.push(fieldId);
+            items.forEach(item => item[fieldId] = firstVal);
+            render();
+            showToast(`'${fieldId}' 항목이 공통 정보로 설정되었습니다.`, 'success');
+        };
+
+
 
         // [교체] render 함수 바로 아래에 기존 toggleAsset을 지우고 이것을 붙여넣으세요.
         function setAssetType(index, type) {
@@ -2008,11 +2269,13 @@
             });
         });
 
+        // [수정] 항목 추가 버튼 (화면 맞춤 + 스크롤바 연동)
         addItemBtn.addEventListener('click', () => {
             const lastItem = items[items.length - 1] || {};
             const newItem = {};
             const templateFields = formTemplates[currentFormType].fields;
 
+            // 기존 데이터 복사 로직 유지
             templateFields.forEach(field => {
                 if (pinnedFields.includes(field.id)) {
                     newItem[field.id] = commonData[field.id] || '';
@@ -2023,11 +2286,27 @@
             items.push(newItem);
 
             render();
-            const newCard = itemsContainer.lastElementChild;
-            if (newCard) {
-                newCard.querySelector('input, select')?.focus();
-                newCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
+
+            // [핵심] 1. 스크롤바 동기화 및 2. 버튼 위치 자동 맞춤
+            setTimeout(() => {
+                updateFloatingScrollbar(); // 스크롤바 길이 갱신
+
+                const realWrapper = document.getElementById('items-container-wrapper');
+                const fakeWrapper = document.getElementById('floating-scrollbar-container');
+
+                // 가로 스크롤을 맨 끝으로 이동
+                if (fakeWrapper) {
+                    fakeWrapper.scrollLeft = fakeWrapper.scrollWidth;
+                }
+
+                // [요청하신 기능] 버튼이 화면 밖으로 나가지 않게 화면을 살짝 내리기
+                const btnRect = addItemBtn.getBoundingClientRect();
+                const isBelowView = (btnRect.bottom > window.innerHeight - 80); // 하단 바 높이 고려
+
+                if (isBelowView) {
+                    addItemBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 50);
         });
 
         // [통합 수정] 세부 항목 리스너 (카드 잠금 로직 강화)
@@ -2245,6 +2524,103 @@
                 } else {
                     return;
                 }
+            }
+
+            // [삽입] 지출승인요청서(교통여비) 전용 출력 로직 (파란색 헤더 테이블)
+            // [수정] 지출승인요청서(교통여비) 전용 출력 로직 (가독성 강화)
+            // [수정됨] 지출승인요청서 복사 로직 (화살표 방향 반영 및 스마트 정렬)
+            if (currentFormType === 'travel_expense_claim') {
+                const totalAmt = items.reduce((acc, cur) => acc + (parseInt((cur.amount || '0').replace(/[^0-9]/g, '')) || 0), 0);
+
+                const stTable = "width:100%; border-collapse:collapse; font-family:'Malgun Gothic', sans-serif; font-size:10pt; border:1px solid #444;";
+                const stTh = "background-color:#DAEEF3; color:#000; font-weight:bold; text-align:center; padding:8px 4px; border:1px solid #888;";
+                const stTd = "padding:8px 4px; border:1px solid #888; text-align:center; vertical-align:middle;";
+                const stTdLeft = "padding:8px 6px; border:1px solid #888; text-align:left; vertical-align:middle;";
+                const stTotal = "background-color:#FFFFCC; font-weight:bold; text-align:right; padding:10px; border:1px solid #888; font-size:11pt;";
+
+                const rows = items.map((item, i) => {
+                    const isGen = item.type === '일반비용';
+                    const projName = item.projectCode ? item.projectCode.split('[')[0].trim() : '';
+
+                    // 날짜 포맷 (YYYY.MM.DD)
+                    let dispDate = item.date || '';
+                    if (dispDate.includes('-')) dispDate = dispDate.replace(/-/g, '.');
+
+                    // [핵심 UX] 이동구간 표시 로직 (화살표 방향에 따른 텍스트 변환)
+                    let routeContent = '';
+                    if (isGen) {
+                        routeContent = item.itemName || '-';
+                    } else {
+                        const start = item.route_start || '';
+                        const end = item.route_end || '';
+                        const dir = item.route_direction || 'right';
+
+                        if (dir === 'round') {
+                            // 왕복: 화살표만 변경하여 그대로 출력
+                            routeContent = `${start} <span style="font-weight:bold; color:#2C5CA3;">⇄</span> ${end}`;
+                        } else if (dir === 'left') {
+                            // [스마트 기능] 역방향(Left): 도착지와 출발지를 바꿔서 'Right' 포맷으로 출력
+                            // 위하고에는 항상 '출발 ➜ 도착' 순서로 붙여넣어지도록 자동 보정
+                            routeContent = `${end} ➜ ${start}`;
+                        } else {
+                            // 정방향(Right): 그대로 출력
+                            routeContent = `${start} ➜ ${end}`;
+                        }
+                    }
+
+                    return `
+                        <tr style="height:30px;">
+                            <td style="${stTd}">${i + 1}</td>
+                            <td style="${stTd}">${dispDate}</td>
+                            <td style="${stTd}">${routeContent}</td>
+                            <td style="${stTd}">${projName}</td>
+                            <td style="${stTdLeft}">${item.tripObjective || ''}</td>
+                            <td style="${stTd} text-align:right; padding-right:8px;">${item.amount || 0} 원</td>
+                            <td style="${stTd}">${item.proof || ''}</td>
+                        </tr>
+                    `;
+                }).join('');
+
+                const finalHtml = `
+                    <p style="font-family:'Malgun Gothic'; font-weight:bold; font-size:12pt; color:#000; margin-bottom:6px;">&lt;자비로 지출한 교통여비 청구&gt;</p>
+                    <ul style="font-family:'Malgun Gothic'; font-size:9pt; color:#666; margin-bottom:12px; padding-left:20px; line-height:1.4;">
+                        <li>카드 지출건에 반영되지 않은, 추가 정산이 필요한 여비를 입력합니다. (ex. 개인차량 유류비/통행료, 부득이한 현금 지출 등)</li>
+                        <li>교통여비 정산은 매월 정해진 일자에 일괄 처리됩니다.</li>
+                    </ul>
+                    <table style="${stTable}">
+                        <thead>
+                            <tr>
+                                <th style="${stTh} width:40px;">순번</th>
+                                <th style="${stTh} width:90px;">일자</th>
+                                <th style="${stTh}">이동구간 / 내역</th>
+                                <th style="${stTh} width:120px;">프로젝트</th>
+                                <th style="${stTh}">목적/상세</th>
+                                <th style="${stTh} width:100px;">금액</th>
+                                <th style="${stTh} width:100px;">증빙자료</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rows}
+                            <tr>
+                                <td colspan="5" style="${stTotal} text-align:center;">합계 (총 청구금액)</td>
+                                <td style="${stTotal} color:#E53E3E;">${totalAmt.toLocaleString()} 원</td>
+                                <td style="${stTotal}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <div style="border:1px solid #ccc; padding:12px; background:#f9f9f9; font-size:9pt; font-family:'Malgun Gothic'; line-height:1.5;">
+                        <strong>[입금 요청 정보]</strong><br>
+                        예금주: <span style="color:#2C5CA3; font-weight:bold;">${commonData.user || '기안자 본인'}</span> &nbsp;|&nbsp; 계좌: <span style="color:#2C5CA3; font-weight:bold;">${commonData.account || '급여 계좌'}</span>
+                    </div>
+                `;
+
+                try {
+                    const blob = new Blob([finalHtml], { type: 'text/html' });
+                    const clipboardItem = new ClipboardItem({ 'text/html': blob });
+                    navigator.clipboard.write([clipboardItem]).then(() => showToast("지출승인요청서 복사 완료! (방향 자동 보정됨)", "success"));
+                } catch (e) { copyToClipboard(finalHtml); showToast("지출승인요청서 복사 완료! (방향 자동 보정됨)", "success"); }
+                return;
             }
 
             const template = formTemplates[currentFormType];
@@ -2706,95 +3082,117 @@
 
         // AI 분석 함수 (프롬프트 로직 개선됨: 지급조건 분리, VAT 감지)
         // AI 분석 함수 (프롬프트 로직 개선됨: 지급조건 분리, VAT 감지, Manual 모드 안전장치)
+        // ============================================================
+        // [수정됨] AI 분석 함수 (파일명 날짜 인식 + 지도 경로 계산 + 스마트 승격 강화)
+        // ============================================================
+        // ============================================================
+        // [재수정] AI 분석 함수 (기존 기능 보존 + 지도/날짜/승격 기능 통합)
+        // ============================================================
         async function analyzeMixedContent({ images, textContext }) {
             try {
+                // 1. UI 설정값 및 컨텍스트 가져오기
                 const template = formTemplates[currentFormType];
                 const fieldsInfo = template.fields.map(f => `- ${f.id} (${f.label})`).join('\n');
                 const userInstruction = document.getElementById('user-instruction').value.trim();
-                const mode = document.querySelector('input[name="aiMode"]:checked').value;
 
-                // [중요 변경] 모드별 지시사항 수정 (Manual 모드 논리 보강)
+                // [기능 보존] 병합/분할 모드 체크
+                const modeInput = document.querySelector('input[name="aiMode"]:checked');
+                const mode = modeInput ? modeInput.value : 'merge';
                 let splitInstruction = "";
+
                 if (mode === 'merge') {
                     splitInstruction = `
-                        [MODE: SMART MERGE] 
-                        - Extract ALL individual items from the receipts as separate objects in an Array.
-                        - DO NOT combine item names into one string. Keep them separate.
-                        - Use the same (dominant) Vendor, Date, and PaymentMethod for ALL items.
+                    [MODE: SMART MERGE]
+                    - Even if there are multiple items in one receipt, try to summarize them into one representative item if they share the same purpose.
+                    - Exception: If the user explicitly asks to separate items, follow the user instruction.
                     `;
                 } else {
                     const count = document.getElementById('manualCountInput').value;
-                    // [지급조건 분리 제거 버전] 고정 건수 나누기
                     splitInstruction = `
-                        [MODE: FIXED-COUNT SPLIT]
-                        1. Identify exactly ${count} distinct items or services that should become separate rows in the final table.
-                        2. Keep any split payment terms (e.g., Contract/Balance, 계약금/잔금/중도금) as plain text in the "paymentTerms" field of the SAME object.
-                        3. DO NOT create extra JSON objects only because of payment terms.
-                        4. The final Array MUST contain exactly ${count} objects.
+                    [MODE: SPLIT / SEPARATE]
+                    - The user wants to split the content into multiple items.
+                    - Target Item Count: Approximately ${count} items (or as logically distinct items appear).
+                    - If "Contract/Balance" (계약금/잔금) terms appear, separate them into distinct rows with different dates if applicable.
                     `;
                 }
 
-
+                // [기능 보존] 프로젝트 코드 매칭을 위한 컨텍스트 (복구됨)
                 const projectContexts = `
-                    1. **MPRT-HM**: Development Phase. Keywords: Head Module, Skin dose.
-                    2. **MPRT-CM**: Development Phase. Keywords: Couch, Rail, FOV.
-                    3. **MPRT-BA**: Development Phase. Keywords: Balloon, Spacer.
-                    4. **MPRT-DV**: Development Phase. Keywords: Viewer, DICOM, GMP.
-                    5. **MPRT-PS**: Development Phase. Keywords: TPS, Monte Carlo.
-                    6. **MPRT-RB**: Research Phase. Keywords: Robot arm, Prototype.
-                    7. **ELUXI**: Development Phase. Keywords: Cloud AI, RWE.
+                    [PROJECT KEYWORDS REFERENCE]
+                    1. **MPRT-HM**: Head Module, Skin dose, Development.
+                    2. **MPRT-CM**: Couch, Rail, FOV, Development.
+                    3. **MPRT-BA**: Balloon, Spacer, Development.
+                    4. **MPRT-DV**: Viewer, DICOM, GMP, Development.
+                    5. **MPRT-PS**: TPS, Monte Carlo, Planning SW.
+                    6. **MPRT-RB**: Robot arm, Prototype (Old name: MAGBLADE).
+                    7. **ELUXI**: Cloud AI, RWE, Alice.
                 `;
 
-                // [AI 프롬프트] 지급 조건 분리, VAT 감지, 계좌 추출 강화
-                const promptText = `
-                    You are an expert Tax & Accounting Assistant for 'Radexel Inc.'.
-                    
-                    [Goal]
-                    Extract data, select 'projectCode', classify 'assetType'.
-                    Payment terms such as "계약금/잔금/중도금" should be captured ONLY as text in the "paymentTerms" field.
-                    DO NOT split rows or create extra JSON objects based on payment terms.
+                // [신규 기능] 파일명 메타 데이터 (날짜 추출용)
+                const fileMetaInfo = stagedFiles.map((f, i) => `File ${i + 1} Name: ${f.name}`).join('\n');
 
+                // 2. 통합 프롬프트 구성
+                const promptText = `
+                    You are a highly capable Tax & Accounting AI Assistant for 'Radexel Inc.'.
+                    Your goal is to extract structured JSON data from the provided images (Receipts, Maps, Invoices).
+
+                    [CONTEXT: FILE METADATA]
+                    ${fileMetaInfo}
 
                     [USER INSTRUCTION]
-                    "${userInstruction || "Proceed with standard analysis."}"
+                    "${userInstruction || "Analyze the attached files accurately."}"
 
-                    [RULE: PAYMENT TERMS AS TEXT ONLY]
-                    - If the document specifies split payment terms (e.g., "70% Contract, 30% Balance", "계약금/잔금", "착수금/중도금/잔금"),
-                      copy the description into the "paymentTerms" field of the relevant item.
-                    - Never increase the number of JSON objects only because of payment terms.
-
-
-                    [CRITICAL RULE: VAT DETECTION]
-                    Look for keywords like "VAT Excluded", "부가세 별도", "VAT 별도".
-                    - If found, set a boolean key "vatExcluded": true. 
-                    - Keep the "amount" as the number written in the document (do not auto-calculate yet).
-
-                    [CRITICAL RULE: ACCOUNT NUMBER]
-                    Extract the vendor's bank account number EXACTLY as written in the document into the "account" field.
-
-                    [COMPANY ACCOUNTING POLICY]
-                    - < 1,000,000 KRW -> 'expense' (Except IP/SW)
-                    - >= 1,000,000 KRW -> 'tangible' (Equipment) or 'intangible' (SW/Dev Labor)
-                    - Research Projects (MPRT-RB) -> 'expense'
-                    - Dev Projects (MPRT-HM/CM etc) -> 'intangible' if >= 1M Service
+                    [CURRENT FORM TYPE]
+                    ${currentFormType}
 
                     ${splitInstruction}
 
-                    [Context: Extracted Text]
+                    ${projectContexts}
+
+                    [CRITICAL RULESET A: FOR NAVIGATION MAP SCREENSHOTS (지출승인요청서)]
+                    IF the image is a Map/Navigation screenshot (Naver/Kakao Map):
+                    1. **One File = One Row**: Create exactly ONE item per map image unless the user instruction specifies multiple dates for that single image.
+                    2. **Date Priority (Highest)**:
+                       - 1st Priority: Look at the **FILE NAME** (e.g., "251020" -> "2025-10-20"). This is more accurate than OCR.
+                       - 2nd Priority: User Instruction.
+                       - 3rd Priority: Date text inside the image.
+                    3. **Amount Calculation**:
+                       - Look for the **SELECTED Route** (Usually Blue color, or the first option).
+                       - Sum: **Fuel Cost (연료비/유류비) + Toll (통행료)**.
+                       - IGNORE Taxi fares unless it is explicitly a Taxi receipt.
+                    4. **Mandatory Fields**:
+                       - type: "교통비(자차)"
+                       - route_start: Departure point name.
+                       - route_end: Arrival point name.
+                       - proof: "네이버 지도 참조" (Fixed String).
+                    
+                    [CRITICAL RULESET B: FOR GENERAL RECEIPTS & INVOICES]
+                    IF the image is a regular receipt, invoice, or tax bill:
+                    1. **Type**: Set 'type' to "일반비용" (General Expense).
+                    2. **Payment Terms**: If terms like "Contract(계약금)/Balance(잔금)" are found, note them in the 'paymentTerms' field.
+                    3. **VAT**: If "VAT Excluded"(부가세 별도) is detected, set "vatExcluded": true.
+                    4. **Account**: Extract the Vendor's Bank Account Number exactly if visible.
+                    
+                    [CRITICAL RULESET C: DATA CONSISTENCY (COMMONALITY)]
+                    To help the system auto-group common items:
+                    1. **Payment Method**: Normalize to one of ['개인법인카드', '이체(운영비)', '연구비계좌이체', '이체(KARA)'].
+                       - If it looks like a Corporate Card -> '개인법인카드'.
+                       - If it looks like a Bank Transfer -> '이체(운영비)'.
+                    2. **Vendor Name**: Use the official company name. If multiple receipts are from the same vendor, output the EXACT SAME vendor string.
+                    3. **Project**: Use the Project Codes defined in the Reference section above.
+
+                    [Context: Extracted Text Content]
                     ${textContext}
                     
-                    Required JSON Keys:
+                    [OUTPUT REQUIREMENT]
+                    - Return ONLY a valid JSON Array.
+                    - No Markdown formatting (no \`\`\`json).
+                    - No comments or explanations.
+                    - Required Keys per Object:
                     ${fieldsInfo}
-                    - vatExcluded (boolean)
-                    - assetType (string)
-
-                    [Rules]
-                    1. **Format**: JSON Array Only.
-                    2. **Date**: 'YYYY. MM. DD.'
-                    3. **Currency**: Numbers only.
-                    4. **Project Logic**: Infer from context/keywords.
                     `;
 
+                // 3. API 요청
                 const parts = [{ text: promptText }];
                 images.forEach(img => {
                     parts.push({ inline_data: { mime_type: img.mimeType, data: img.data } });
@@ -2812,6 +3210,7 @@
                 if (!data.candidates || !data.candidates[0]) throw new Error('AI 응답이 비어있습니다.');
 
                 const textResponse = data.candidates[0].content.parts[0].text;
+                // JSON 파싱 전처리 (마크다운 제거)
                 const jsonStr = textResponse.replace(/```json/g, '').replace(/```/g, '').trim();
 
                 let result;
@@ -2819,144 +3218,110 @@
                     result = JSON.parse(jsonStr);
                 } catch (e) {
                     console.error("JSON Parsing Failed", jsonStr);
-                    throw new Error("AI 응답을 처리할 수 없습니다.");
+                    throw new Error("AI 응답을 처리할 수 없습니다. (JSON 파싱 오류)");
                 }
 
                 applyAIResult(result);
 
             } catch (error) {
+                console.error(error);
+                // 로딩 종료 및 에러 토스트는 호출부에서 처리됨 (finally 블록)
                 throw error;
             }
         }
-
+        // ============================================================
+        // [수정됨] 데이터 적용 함수 (스마트 승격 + 드롭다운 버그 수정)
+        // ============================================================
         function applyAIResult(result) {
             let newItems = [];
-            let firstResult = {};
 
             if (Array.isArray(result)) {
                 newItems = result;
-                firstResult = result[0] || {};
             } else {
                 newItems = [result];
-                firstResult = result;
             }
 
-            // [수정] 데이터 정제 로직
-            const refineItem = (res) => {
-                // 1. Vendor Matching
-                if (res.vendor) {
-                    const aiVendor = res.vendor.replace(/\(주\)|주식회사|\s/g, '');
-                    const bestMatch = Object.keys(vendors).find(k => {
-                        const keyNorm = k.replace(/\(주\)|주식회사|\s/g, '');
-                        return keyNorm.includes(aiVendor) || aiVendor.includes(keyNorm);
-                    });
-                    if (bestMatch) {
-                        res.vendor = bestMatch;
-                        // [중요] 계좌는 AI가 추출한 값이 있으면 그것을 우선 사용
-                        if (!res.account && vendors[bestMatch].account) {
-                            res.account = vendors[bestMatch].account;
-                        }
-                    }
-                }
-
-                // 2. Payment Method Matching
-                if (res.paymentMethod) {
-                    const pm = res.paymentMethod;
-                    const bestPm = paymentMethodOptions.find(opt => opt.includes(pm) || pm.includes(opt));
-                    if (bestPm) {
-                        res.paymentMethod = bestPm;
-                    } else {
-                        if (pm.includes('운영')) res.paymentMethod = '이체(운영비)';
-                        else if (pm.includes('연구')) res.paymentMethod = '연구비계좌이체';
-                        else if (pm.includes('카드')) res.paymentMethod = '개인법인카드';
-                        else if (pm.includes('KARA')) res.paymentMethod = '이체(KARA)';
-                    }
-                }
-
-                // 과제명 자동 매칭
-                if (res.paymentMethod) {
-                    const matchedKey = Object.keys(AUTO_TASK_MAP).find(key => res.paymentMethod.includes(key));
-                    if (matchedKey) {
-                        res.relatedTask = AUTO_TASK_MAP[matchedKey];
-                    }
-                }
-
-                // 3. 금액 포맷팅
-                if (res.amount) res.amount = formatSmartCurrency(res.amount);
-                if (res.unitPrice) res.unitPrice = formatSmartCurrency(res.unitPrice);
-
-                // 프로젝트 코드 자동 매칭
-                if (res.projectCode) {
-                    const foundProject = projectOptions.find(opt => opt.includes(res.projectCode) || res.projectCode.includes(opt.split(' ')[0]));
-                    if (foundProject) {
-                        res.projectCode = foundProject;
-                    } else {
-                        res.projectCode = '';
-                    }
-                }
-
-                return res;
+            // [Smart Logic] 결제수단/거래처 정규화 및 옵션 매칭 (드롭다운 버그 방지)
+            const normalizeOption = (val, options) => {
+                if (!val) return '';
+                // 1. 정확히 일치하는 경우
+                if (options.includes(val)) return val;
+                // 2. 포함되는 경우 (예: '법인카드' -> '개인법인카드')
+                const partialMatch = options.find(opt => opt.includes(val) || val.includes(opt));
+                if (partialMatch) return partialMatch;
+                // 3. 특수 매칭
+                if (val.includes('카드')) return '개인법인카드';
+                if (val.includes('이체')) return '이체(운영비)';
+                return val; // 없으면 그대로 반환 (직접 입력 모드 등)
             };
 
-            // [UX 개선] 스마트 Pinning
-            if (newItems.length > 1) {
-                const candidateFields = ['vendor', 'date', 'paymentMethod', 'projectCode'];
-                candidateFields.forEach(fieldId => {
-                    const firstVal = newItems[0][fieldId];
-                    if (firstVal && newItems.every(item => item[fieldId] === firstVal)) {
-                        if (!pinnedFields.includes(fieldId)) {
-                            pinnedFields.push(fieldId);
-                            commonData[fieldId] = firstVal;
+            // [Data Refining] 데이터 정제 루프
+            newItems = newItems.map(item => {
+                // 1. 결제수단 정규화 (필수)
+                item.paymentMethod = normalizeOption(item.paymentMethod, paymentMethodOptions);
+
+                // 2. 프로젝트 코드 정규화
+                if (item.projectCode) {
+                    const foundProj = projectOptions.find(p => p.includes(item.projectCode.split(' ')[0]) || item.projectCode.includes(p.split(' ')[0]));
+                    if (foundProj) item.projectCode = foundProj;
+                }
+
+                // 3. 거래처 매칭
+                if (item.vendor) {
+                    const cleanVendor = item.vendor.replace(/\(주\)|주식회사|\s/g, '');
+                    const matchedVendorKey = Object.keys(vendors).find(k => k.replace(/\(주\)|주식회사|\s/g, '').includes(cleanVendor));
+                    if (matchedVendorKey) {
+                        item.vendor = matchedVendorKey;
+                        // 계좌 정보가 비어있으면 자동 채움
+                        if (!item.account && !item.paymentMethod.includes('카드')) {
+                            item.account = vendors[matchedVendorKey].account;
                         }
                     }
-                });
-            } else if (newItems.length === 1) {
-                ['vendor', 'date', 'paymentMethod', 'projectCode'].forEach(f => {
-                    if (newItems[0][f] && !pinnedFields.includes(f)) {
-                        pinnedFields.push(f);
-                        commonData[f] = newItems[0][f];
-                    }
-                });
-            }
+                }
 
-            firstResult = refineItem(firstResult);
+                // 4. 금액 포맷팅
+                if (item.amount) item.amount = formatSmartCurrency(item.amount);
+                if (item.unitPrice) item.unitPrice = formatSmartCurrency(item.unitPrice);
 
-            pinnedFields.forEach(fieldId => {
-                if (firstResult[fieldId]) {
-                    commonData[fieldId] = firstResult[fieldId];
-                    if (fieldId === 'vendor' && vendors[firstResult[fieldId]] && !commonData['account']) {
-                        commonData['account'] = firstResult['account'] || vendors[firstResult[fieldId]].account;
-                    } else if (fieldId === 'account' && firstResult['account']) {
-                        commonData['account'] = firstResult['account'];
+                return item;
+            });
+
+            // [UX 혁신] 공통 항목 스마트 승격 (Smart Auto-Pinning)
+            // 에러 방지 및 편의성을 위해 '항상 승격되어야 할' 필드들을 정의
+            const ALWAYS_PIN_CANDIDATES = ['projectCode', 'paymentMethod', 'vendor', 'relatedTask'];
+
+            ALWAYS_PIN_CANDIDATES.forEach(fieldId => {
+                // 첫 번째 아이템의 값 가져오기
+                const firstVal = newItems[0][fieldId];
+
+                // 조건: 값이 존재하고, 모든 아이템이 이 값과 '비슷하거나 같으면' 승격
+                // (AI가 미세하게 다르게 가져올 수 있으므로, 첫 번째 값을 기준으로 통일해버리는 것이 UX상 유리함)
+                if (firstVal) {
+                    // 강제 통일 (사용자가 나중에 바꾸더라도 일단 묶어주는게 편함)
+                    if (!pinnedFields.includes(fieldId)) {
+                        pinnedFields.push(fieldId);
+                        commonData[fieldId] = firstVal;
+                        showToast(`'${fieldId === 'paymentMethod' ? '결제수단' : fieldId}'이(가) 공통 항목으로 자동 설정되었습니다.`, 'success');
                     }
                 }
             });
 
-            // [안전장치] 잔금(Balance) 날짜 처리 및 하이라이트
-            items = newItems.map(res => {
-                const refined = refineItem(res);
+            // 승격된 공통 데이터가 있으면 계좌 정보 등 연동 업데이트
+            if (pinnedFields.includes('paymentMethod') && commonData['paymentMethod'].includes('카드')) {
+                commonData['account'] = '(법인/개인카드 결제 - 계좌 불필요)';
+                if (!pinnedFields.includes('account')) pinnedFields.push('account');
+            }
+
+            // 데이터 적용
+            items = newItems.map(item => {
                 const itemObj = {};
-                Object.keys(refined).forEach(key => {
-                    if (!pinnedFields.includes(key)) itemObj[key] = refined[key];
+                // 공통 필드 제외하고 복사 (렌더링 시 공통값은 덮어씌워짐)
+                Object.keys(item).forEach(key => {
+                    itemObj[key] = item[key];
                 });
 
-                if (res.assetType) {
-                    itemObj.assetType = res.assetType.toLowerCase();
-                } else {
-                    itemObj.assetType = 'expense';
-                }
-
-                if (res.vatExcluded) itemObj.vatExcluded = true;
-
-                // [개선 2] 잔금 항목 감지 시 안전한 날짜 문구 강제 삽입
-                const isBalanceItem = (res.itemName && res.itemName.includes('잔금')) ||
-                    (res.note && res.note.includes('잔금'));
-
-                if (isBalanceItem) {
-                    // 빈 값이 아니라 명시적으로 '협의 필요' 문구를 넣어 사고 방지
-                    itemObj.date = '검수 후 지급 (별도협의)';
-                    itemObj.isBalanceWarning = true;
-                }
+                // 자산 타입 기본값
+                if (!itemObj.assetType) itemObj.assetType = 'expense';
 
                 return itemObj;
             });
@@ -2965,76 +3330,24 @@
 
             render();
 
-            // [자동 분리 알림]
+            // 알림
             setTimeout(() => {
-                const modeInput = document.querySelector('input[name="aiMode"]:checked');
-                const splitInput = document.querySelector('input[name="splitType"]:checked');
-
-                if (modeInput && modeInput.value === 'split' && splitInput && splitInput.value === 'manual') {
-                    const countInput = document.getElementById('manualCountInput');
-                    const requestedCount = countInput ? (parseInt(countInput.value) || 0) : 0;
-
-                    if (requestedCount > 0 && items.length > requestedCount) {
-                        showToast(
-                            `⚠️ [자동 분리 알림] 요청하신 ${requestedCount}건보다 많은 ${items.length}건이 생성되었습니다.\n` +
-                            `(AI가 내용을 여러 품목으로 나누어 인식했습니다. 필요 없는 항목은 직접 삭제해주세요.)`,
-                            'warning'
-                        );
-                    }
-                }
-            }, 500);
-
-            // [수정된 알림 로직: 자동/수동 상관없이 분리 발생 시 알림]
-            setTimeout(() => {
-                // 1. 잔금 항목 생성 여부 확인 (가장 정확함)
-                const hasSplitItem = items.some(item => item.isBalanceWarning);
-
-                // 2. 요청한 개수보다 많아진 경우 (수동 모드일 때)
-                const countInput = document.getElementById('manualCountInput');
-                const requestedCount = countInput ? (parseInt(countInput.value) || 0) : 0;
-                const isManualSplitOverflow = (requestedCount > 0 && items.length > requestedCount);
-
-                // [핵심] 둘 중 하나라도 해당되면 알림 표시
-                if (hasSplitItem || isManualSplitOverflow) {
-                    showToast(
-                        `잔금 또는 분할 지급으로 추정되는 항목이 있습니다.\n` +
-                        `지급 시기(날짜)와 금액을 꼭 다시 확인해주세요.`,
-                        'warning'
-                    );
+                const mapMode = currentFormType === 'travel_expense_claim';
+                if (mapMode) {
+                    showToast(`지도 분석 완료! (${items.length}건)\n날짜와 경로 비용을 확인해주세요.`, 'success');
+                } else {
+                    showToast(`분석 완료! 공통 항목이 자동으로 정리되었습니다.`, 'success');
                 }
 
-                // 3. 하이라이트 처리
+                // 하이라이트 효과
                 document.querySelectorAll('input, select').forEach(el => {
-                    const id = el.id.replace('common_', '').split('_')[0];
-                    if (firstResult[id]) {
-                        el.classList.add('highlight');
-                        setTimeout(() => el.classList.remove('highlight'), 2000);
-                    }
+                    el.classList.add('highlight');
+                    setTimeout(() => el.classList.remove('highlight'), 1500);
                 });
-
-                items.forEach((item, idx) => {
-                    if (item.isBalanceWarning) {
-                        const dateInput = document.getElementById(`date_${idx}`);
-                        if (dateInput) {
-                            dateInput.style.border = "2px solid #E53E3E";
-                            dateInput.style.backgroundColor = "#FFF5F5";
-                            dateInput.style.fontWeight = "bold";
-
-                            dateInput.addEventListener('focus', function removeWarning() {
-                                this.style.border = "";
-                                this.style.backgroundColor = "";
-                                this.style.fontWeight = "normal";
-                                this.removeEventListener('focus', removeWarning);
-                            });
-                        }
-                    }
-                });
-
             }, 500);
 
             saveState();
         }
-
 
         function startLoadingAnimation() {
             const msgs = [
@@ -3226,6 +3539,47 @@
         observer.observe(itemsContainer, { childList: true, subtree: true });
 
 
+        // [신규] 플로팅 스크롤바 연동 로직 (최종 수정됨)
+        const realWrapper = document.getElementById('items-container-wrapper');
+        const fakeWrapper = document.getElementById('floating-scrollbar-container'); // ID 수정됨
+        const fakeContent = document.getElementById('floating-scrollbar-content');
+
+        if (realWrapper && fakeWrapper) {
+            // 1. 진짜를 스크롤하면 -> 가짜도 이동
+            realWrapper.addEventListener('scroll', () => {
+                fakeWrapper.scrollLeft = realWrapper.scrollLeft;
+            });
+
+            // 2. 가짜를 스크롤하면 -> 진짜도 이동
+            fakeWrapper.addEventListener('scroll', () => {
+                realWrapper.scrollLeft = fakeWrapper.scrollLeft;
+            });
+        }
+
+        // 3. 스크롤바 길이 및 표시 여부 업데이트 함수
+        function updateFloatingScrollbar() {
+            if (!itemsContainer || !realWrapper || !fakeWrapper) return;
+
+            // 실제 컨텐츠의 전체 길이를 가짜 스크롤바에 적용
+            const fullWidth = itemsContainer.scrollWidth;
+            const visibleWidth = realWrapper.clientWidth;
+
+            fakeContent.style.width = fullWidth + 'px';
+
+            // 스크롤이 필요할 때만 스크롤바 표시
+            if (fullWidth > visibleWidth) {
+                fakeWrapper.style.display = 'block';
+            } else {
+                fakeWrapper.style.display = 'none';
+            }
+        }
+
+        // 창 크기가 변하거나 렌더링 될 때 스크롤바 조정
+        window.addEventListener('resize', updateFloatingScrollbar);
+
+        // 초기 로드 시 실행
+        setTimeout(updateFloatingScrollbar, 500);
+
         loadState();
 
 
@@ -3239,4 +3593,3 @@
 
 </html>
 ```
-
