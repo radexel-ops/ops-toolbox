@@ -2155,16 +2155,47 @@
                 </div>
             `;
         }
-        // [신규 기능] 화살표 방향 토글 (오른쪽 -> 왕복 -> 왼쪽 -> 반복)
+// [수정됨] 화살표 방향 토글 + 금액 자동 계산 로직
         window.toggleGridDirection = function (idx) {
             const currentDir = items[idx].route_direction || 'right';
             let nextDir = 'right';
-            if (currentDir === 'right') nextDir = 'round';
-            else if (currentDir === 'round') nextDir = 'left';
-            else if (currentDir === 'left') nextDir = 'right';
 
+            // 현재 입력된 금액 가져오기 (콤마 제거 후 숫자로 변환)
+            let currentAmt = parseInt((items[idx].amount || '0').replace(/[^0-9]/g, '')) || 0;
+            let msg = "";
+
+            // 1. 편도(Right) -> 왕복(Round) : 금액 2배
+            if (currentDir === 'right') {
+                nextDir = 'round';
+                if (currentAmt > 0) {
+                    currentAmt = currentAmt * 2;
+                    msg = "왕복 설정: 금액이 2배로 적용되었습니다.";
+                }
+            }
+            // 2. 왕복(Round) -> 역방향 편도(Left) : 금액 절반 (원복)
+            else if (currentDir === 'round') {
+                nextDir = 'left';
+                if (currentAmt > 0) {
+                    currentAmt = Math.floor(currentAmt / 2); // 정수로 나눔
+                    msg = "편도(역방향) 설정: 금액이 절반으로 조정되었습니다.";
+                }
+            }
+            // 3. 역방향 편도(Left) -> 정방향 편도(Right) : 금액 변동 없음
+            else if (currentDir === 'left') {
+                nextDir = 'right';
+                // 편도끼리의 전환이므로 금액은 유지
+            }
+
+            // 데이터 업데이트
             items[idx].route_direction = nextDir;
-            render(); // 재렌더링하여 아이콘 업데이트
+            items[idx].amount = currentAmt > 0 ? currentAmt.toLocaleString() : ''; // 0이면 빈칸, 아니면 콤마 포맷
+
+            saveState(); // 저장
+            updateFloatingBar(); // 하단 합계 갱신
+            render(); // 화면 다시 그리기
+
+            // 변경 사항이 있으면 알림 표시
+            if (msg) showToast(msg, 'success');
         };
 
         // 기존 헬퍼 함수들 유지
@@ -3358,6 +3389,7 @@
                     5. **MPRT-PS**: Planning SW(TPS 보완) | Fast Monte Carlo | 환자당 ~20분 목표 | DV↔PS↔모듈 워크플로우 검증 | 개발단계·인허가 신청. 
                     6. **MPRT-RB**: Robot arm | IORT/FLASH-RT 적용 구상 | 연구단계·시제품 제작 단계 | [alias] MagBlade(구) . 
                     7. **ELUXI**: Cloud AI Assistant(Alice) | RWE 연동 | DV 링크·스케줄러 | 개발단계·MVP 완료,베타테스트 단계 | 프로덕션 배포 준비.
+                    8. **기타 연구개발비**: [1순위/기본값] 일반 외근, 학회, 출장, 교통비 등. 특정 프로젝트명이 명시되지 않았다면 이것을 선택.
                     `;
 
 
@@ -3436,11 +3468,34 @@
                        - 2순위: 파일 이름 (예: "251020" -> "2025-10-20"). 이것이 OCR보다 정확합니다.
                        - 3순위: 이미지 내 텍스트.
                     3. **금액 계산**: 선택된 경로(주로 파란색 등의 음영 표시가 되어있음)의 **연료비 + 통행료**를 합산하세요. (택시비 제외)
-                    4. **필수 필드 설정**:
+                    4. **[핵심] 프로젝트 코드 선택 규칙**:
+                       - **기본값(1순위)**: "기타 연구개발비" (교통비/외근은 우선적으로 이 코드를 할당하세요).
+                       - **예외**: 파일명이나 내용에 다른 프로젝트 키워드(HM, Alice, Balloon 등)가 **명확하게** 포함된 경우에만 해당 코드를 사용하세요.
+                    5. **필수 필드 설정**:
                        - type: "교통비(자차)"
                        - route_start: 출발지 명칭
                        - route_end: 도착지 명칭
                        - proof: "네이버 지도 참조" (고정 문자열)
+                    6. **[핵심] 왕복/편도 판단 ('route_direction')**:
+                       다음 중 하나라도 해당하면 무조건 **'왕복(round)'**입니다.
+                       - 출발지와 도착지 텍스트가 동일함 (A -> ... -> A).
+                       - 경로 목록에 장소가 3개 이상임 (A -> B -> A).
+                       - 파일명에 '왕복' 포함.
+                       그 외에는 **'편도(right)'**입니다.
+                    7. **[핵심] 필드 설정 및 도착지명('route_end') 추출 규칙**:
+                       - type: "교통비(자차)"
+                       - proof: "네이버 지도 참조"
+                       - route_start: 이미지의 '출발지' 텍스트.
+
+                       **route_end (도착지) 값 결정 방법**:
+                       (1) **편도(right)인 경우**:
+                           - 이미지의 '도착지' 텍스트를 그대로 사용하세요.
+
+                       (2) **왕복(round)인 경우**:
+                           - 출발지와 도착지가 같으므로(집->회사->집), 이미지상의 도착지를 쓰면 안됩니다. **실제 방문한 목적지**를 써야 합니다.
+                           - **1순위 (파일명)**: 파일명에 있는 장소나 업체명 (예: '강원대병원_외근.jpg' -> '강원대병원').
+                           - **2순위 (경유지)**: 이미지 경로 리스트의 중간에 있는 **'경유지'** 텍스트.
+                           - **3순위 (이미지)**: 파일명에 정보가 없다면, 이미지 내의 도착지 텍스트.
 
                     
                     [테이블 처리/구분]: 위 [모드: 스마트 구조 분석 (Smart Contextual Extraction)] 지침을 항상 따르세요.
@@ -3465,6 +3520,7 @@
                     ${fieldsInfo}
                     - "vatExcluded": (Boolean)
                     - "assetType": (String) 'expense' | 'tangible' | 'intangible'
+                    - "route_direction": string ('right' or 'round')
                 `;
 
                 // 3. API 요청 (기존 로직 유지)
@@ -3955,4 +4011,3 @@
 </body>
 
 </html>
-```
