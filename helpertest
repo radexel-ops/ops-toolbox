@@ -1266,7 +1266,7 @@
             </p>
 
             <div id="g_id_onload"
-                data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                data-client_id="473621300539-5qd7ktdrfdmm8u0he3ojlpgppmp54peg.apps.googleusercontent.com"
                 data-callback="handleCredentialResponse"
                 data-auto_select="true"
                 data-login_uri="">
