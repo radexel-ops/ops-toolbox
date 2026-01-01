@@ -6,25 +6,34 @@
     <title>WEHAGO 전자결재 폼 생성기 (v3.3)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* =========================================
+           1. 변수 정의 및 기본 설정 (Variables & Reset)
+           ========================================= */
         :root {
-            /* [수정] 시그니처 블루 적용 (메인 컬러) */
+            /* [수정] 메인 컬러: 시그니처 블루 */
             --primary-color: #2C5CA3;
-            /* [수정] 호버 시 더 깊은 블루 */
+            /* 호버 시 더 깊은 블루 */
             --primary-hover: #1E447A;
 
+            /* [수정] 성공/완료: 시그니처 그린 */
+            --success-color: #22A699;
+
+            /* 기본 UI 컬러 */
             --border-color: #e2e8f0;
             --background-light: #f7fafc;
             --background-white: #ffffff;
             --text-dark: #2d3748;
             --text-light: #718096;
 
-            /* [수정] 시그니처 그린 적용 (성공/완료) */
-            --success-color: #22A699;
+            /* 상태 알림 컬러 */
+            --danger-color: #E53E3E;
+            --warning-bg: #FFFAF0;
+            --warning-border: #ED8936;
+            --warning-text: #C05621;
         }
 
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
-        /* --- 레이아웃 구조 --- */
         html {
             scroll-behavior: smooth;
         }
@@ -37,6 +46,9 @@
             box-sizing: border-box;
         }
 
+        /* =========================================
+           2. 레이아웃 및 타이포그래피 (Layout & Typography)
+           ========================================= */
         .main-wrapper {
             display: flex;
             flex-direction: column;
@@ -53,24 +65,14 @@
         .expandable-width-container {
             width: 100%;
             max-width: 900px;
-            /* JS에 의해 동적으로 변경됨 */
             transition: max-width 0.4s ease-in-out;
-            /* 너비 변경 애니메이션 */
         }
 
-        /* --- 공통 스타일 --- */
         h1 {
             font-size: 2rem;
             color: var(--text-dark);
             text-align: center;
             margin-bottom: 1rem;
-        }
-
-        .section {
-            background: var(--background-white);
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
         h2 {
@@ -81,62 +83,6 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .label-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        label {
-            font-weight: 500;
-            font-size: 0.875rem;
-            color: var(--text-light);
-        }
-
-
-
-        .label-icons {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-
-
-        input,
-        select {
-            width: 100%;
-            padding: 0.75rem;
-            font-size: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            box-sizing: border-box;
-            font-family: inherit;
-            transition: all 0.2s;
-        }
-
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            /* [수정] 파란색(#2C5CA3)의 투명도 조절 버전 */
-            box-shadow: 0 0 0 3px rgba(44, 92, 163, 0.15);
-        }
-
-        input::placeholder {
-            color: #cbd5e0;
-        }
-
-        input:read-only,
-        select:disabled {
-            background-color: #f7fafc;
-            color: #718096;
-            cursor: not-allowed;
-        }
-
-
-        /* --- 안내 문구 스타일 --- */
         .app-description {
             text-align: center;
             color: var(--text-light);
@@ -152,7 +98,73 @@
             padding-left: 0.25rem;
         }
 
-        /* --- 버튼 & 아이콘 --- */
+        /* [통합] 섹션 스타일: 깊은 그림자와 테두리 적용 */
+        .section {
+            background: var(--background-white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        /* =========================================
+           3. 폼 요소 스타일 (Form Elements)
+           ========================================= */
+        .label-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        label {
+            font-weight: 500;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        /* [UX 개선] 필수 항목 붉은 별표 표시 */
+        label.required::after {
+            content: " *";
+            color: var(--danger-color);
+            font-weight: bold;
+            margin-left: 2px;
+            vertical-align: top;
+        }
+
+        .label-icons {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(44, 92, 163, 0.15);
+        }
+
+        input::placeholder { color: #cbd5e0; }
+
+        input:read-only, select:disabled {
+            background-color: #f7fafc;
+            color: #718096;
+            cursor: not-allowed;
+        }
+
+        /* 버튼 스타일 */
         .button {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -167,453 +179,26 @@
             transition: background-color 0.2s;
         }
 
-        .button:hover {
-            background-color: var(--primary-hover);
-        }
+        .button:hover { background-color: var(--primary-hover); }
 
         .button-secondary {
             background-color: #edf2f7;
             color: var(--text-dark);
         }
+        .button-secondary:hover { background-color: #e2e8f0; }
 
-        .button-secondary:hover {
-            background-color: #e2e8f0;
-        }
-
+        /* 아이콘 버튼: 클릭 영역 확대 및 호버 효과 */
         .icon-btn {
             background: none;
             border: none;
             cursor: pointer;
             font-size: 1rem;
-            padding: 0;
             line-height: 1;
-            opacity: 0.3;
-            transition: opacity 0.2s;
-        }
-
-        .icon-btn:hover {
-            opacity: 1;
-        }
-
-        .hide-btn {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .lock-icon {
-            cursor: default;
-            opacity: 0.5;
-        }
-
-        /* --- 숨김/복원 기능 --- */
-        .restore-section {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px dashed var(--border-color);
-        }
-
-        .restore-section h4 {
-            margin: 0 0 1rem 0;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .restore-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .restore-btn {
-            background-color: #edf2f7;
-            border: 1px solid #e2e8f0;
-            border-radius: 1rem;
-            padding: 0.25rem 0.75rem;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .restore-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        /* --- 항목(Item) 카드 --- */
-        #items-container-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            margin-top: 1.5rem;
-        }
-
-        #items-container {
-            display: flex;
-            gap: 1.5rem;
-            padding-bottom: 1rem;
-        }
-
-        .item-card {
-            background-color: var(--background-light);
-            border: 1px solid #e2e8f0;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            transition: opacity 0.3s, transform 0.3s;
-            flex: 0 0 320px;
-        }
-
-        .item-card.single-item {
-            flex: 1 1 auto;
-        }
-
-        .item-fields-container>div {
-            margin-bottom: 1.25rem;
-        }
-
-        .item-fields-container>div:last-child {
-            margin-bottom: 0;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .item-header h3 {
-            margin: 0;
-            font-size: 1.1rem;
-        }
-
-        .remove-item-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-            line-height: 1;
-        }
-
-        /* --- UX 개선 --- */
-        #copyFeedback {
-            text-align: center;
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-top: 1rem;
-            opacity: 0;
-            transition: opacity 0.5s;
-            height: 24px;
-        }
-
-        .highlight {
-            transition: box-shadow 0.2s;
-            /* [수정] 하이라이트는 초록색(#22A699)을 사용하여 '적용됨/성공' 의미 부여 */
-            box-shadow: 0 0 0 3px rgba(32, 182, 133, 0.5);
-        }
-
-        .header-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* --- 피드백 및 버전 정보 --- */
-        .footer-notice {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-notice b {
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        /* --- AI Section 스타일 (Step 2 - 좌우 분할 레이아웃) --- */
-        .ai-section {
-            /* [수정] 회사 시그니처 컬러 그라데이션 (블루 -> 그린) */
-            background: linear-gradient(135deg, #2C5CA3 0%, #22A699 100%);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            color: white;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            position: relative;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        /* 드래그 오버 시 전체 효과 */
-        .ai-section.drag-over {
-            transform: scale(1.005);
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
-            /* 드래그 시 조금 더 밝은 톤으로 변경 */
-            background: linear-gradient(135deg, #386CB8 0%, #2BCFA0 100%);
-        }
-
-        .ai-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .ai-header h3 {
-            color: white;
-            margin: 0 0 0.5rem 0;
-            font-size: 1.4rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .ai-header p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        /* 좌우 분할 그리드 */
-        .ai-grid-container {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            /* 왼쪽 1 : 오른쪽 1.2 비율 */
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* (왼쪽) 업로드 카드 */
-        .upload-card {
-            border: 2px dashed rgba(255, 255, 255, 0.4);
-            border-radius: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 220px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .upload-card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: white;
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
-        }
-
-        .upload-text {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .upload-sub {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* (오른쪽) 파일 목록 & 지시사항 */
-        .info-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        /* 대기 중인 파일 박스 (어두운 배경) */
-        #file-list-box {
-            flex: 1;
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 0.75rem;
-            padding: 1rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.9);
-            overflow-y: auto;
-            max-height: 120px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            /* 내용 없을 때 중앙 정렬 */
-        }
-
-        .file-item {
-            padding: 0.4rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .file-item:last-child {
-            border-bottom: none;
-        }
-
-        /* 지시사항 입력 (흰색 박스) */
-        .instruction-box {
-            background: white;
-            border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .instruction-box input {
-            border: none;
-            outline: none;
-            width: 100%;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            background: transparent;
-            padding: 0;
-            height: auto;
-            /* 기존 input 높이 초기화 */
-        }
-
-        .instruction-box input:focus {
-            box-shadow: none;
-        }
-
-        /* 하단 분석 버튼 */
-        #run-analysis-btn {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            /* [수정] 버튼 텍스트를 메인 블루 컬러로 */
-            color: var(--primary-color);
-            font-weight: 800;
-            border: none;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        #run-analysis-btn:hover:not([disabled]) {
-            background: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            /* [수정] 호버 시 텍스트는 초록색으로 포인트 */
-            color: var(--success-color);
-        }
-
-        #run-analysis-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        /* 모바일 대응 */
-        @media (max-width: 768px) {
-            .ai-grid-container {
-                grid-template-columns: 1fr;
-            }
-
-            .upload-card {
-                min-height: 150px;
-            }
-        }
-
-
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            transform: translateY(20px);
-            transition: transform 0.3s;
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: translateY(0);
-        }
-
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 1rem;
-            z-index: 10;
-            color: var(--text-dark);
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #e2e8f0;
-            border-top: 4px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 1rem;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* --- [UX 개선] 기존 스타일 덮어쓰기 및 추가 --- */
-
-        /* 1. 카드 및 섹션 디자인: 더 깊은 그림자와 여유로운 간격 */
-        .section,
-        .item-card {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .item-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
-        }
-
-        /* 2. 아이콘 버튼: 클릭 영역 확대 및 호버 효과 */
-        .icon-btn {
             padding: 8px;
             border-radius: 50%;
-            transition: all 0.2s;
             color: var(--text-light);
             opacity: 0.6;
+            transition: all 0.2s;
         }
 
         .icon-btn:hover {
@@ -623,442 +208,57 @@
             transform: scale(1.1);
         }
 
-        /* 3. AI 섹션: 드래그 앤 드롭 시각화 강화 */
-        .ai-section {
-            border: 2px dashed rgba(255, 255, 255, 0.4);
-            /* 이미 위에서 그라데이션 정의됨 */
-        }
+        .hide-btn { font-size: 1.2rem; font-weight: bold; }
+        .lock-icon { cursor: default; opacity: 0.5; }
 
-        /* 4. [New] 토스트 알림 (Toast Notification) - 스택형 구조 변경 */
-        #toast-wrapper {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999 !important;
-            display: flex;
-            flex-direction: column-reverse;
-            /* 최신 알림이 위로 쌓이거나 아래로 쌓이게 조절 */
-            align-items: center;
-            gap: 10px;
-            /* 알림 간 간격 */
-            pointer-events: none;
-            /* 알림 사이의 빈 공간은 클릭 가능하게 */
-        }
-
-        .toast-message {
-            background-color: var(--text-dark);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            font-weight: 500;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            pointer-events: auto;
-            white-space: pre-line;
-            /* 줄바꿈 허용 */
-            text-align: center;
-        }
-
-        .toast-message.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- 고급 설정 (디자인 수정본 - 글자색 수정) --- */
-
-        /* 애니메이션 컨테이너 */
-        #ai-advanced-options {
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        #ai-advanced-options.open {
-            max-height: 500px;
-            opacity: 1;
-            transform: translateY(0);
+        /* 숨김/복원 섹션 */
+        .restore-section {
             margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--border-color);
         }
-
-        /* 내부 박스 스타일 (유리 효과) */
-        .advanced-settings-box {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: left;
-            color: white !important;
-            /* 박스 내 기본 글자색 흰색 강제 */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 라디오 버튼 행 정렬 */
-        .radio-row {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* 라벨 스타일 (흰색 강제 적용) */
-        .radio-label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            font-size: 1rem;
+        .restore-section h4 {
+            margin: 0 0 1rem 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
             font-weight: 500;
-            color: #ffffff !important;
-            /* [수정됨] 기존 회색 label 스타일 덮어쓰기 */
         }
-
-        .radio-label input[type="radio"] {
-            margin-right: 0.5rem;
-            width: 1.1rem;
-            height: 1.1rem;
-            accent-color: white;
+        .restore-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .restore-btn {
+            background-color: #edf2f7;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
             cursor: pointer;
-            appearance: auto;
-            box-shadow: none;
-            border: none;
-        }
-
-        .radio-label span {
-            color: #ffffff !important;
-            /* [수정됨] 텍스트 span도 확실하게 흰색으로 */
-        }
-
-        /* 하위 옵션 (나누기 상세) */
-        #split-detail-options {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px dashed rgba(255, 255, 255, 0.5);
-            /* 점선도 더 밝게 */
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            color: white !important;
-        }
-
-        /* 숫자 입력창 */
-        #manualCountInput {
-            width: 60px !important;
-            padding: 0.3rem !important;
-            border-radius: 0.4rem !important;
-            border: none !important;
-            text-align: center;
-            font-weight: bold;
-            /* [수정] 입력된 숫자는 메인 블루 컬러로 */
-            color: var(--primary-color);
-            background: white;
-            height: 30px !important;
-            margin: 0 0.5rem;
-        }
-
-        /* [수정] 심플한 가로형 자산 분류 버튼 (Segmented Control) */
-        .asset-segment-container {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            background: #F1F5F9;
-            padding: 0.75rem;
-            border-radius: 0.75rem;
-            border: 1px solid #E2E8F0;
-        }
-
-        .asset-segment-label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #4A5568;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .asset-segment-group {
-            display: flex;
-            background: #E2E8F0;
-            border-radius: 0.5rem;
-            padding: 0.25rem;
-            gap: 0.25rem;
-        }
-
-        .asset-option {
-            flex: 1;
-            border: none;
-            background: transparent;
-            padding: 0.6rem 0.25rem;
-            font-size: 0.85rem;
-            border-radius: 0.35rem;
-            cursor: pointer;
-            color: #718096;
             transition: all 0.2s;
+        }
+        .restore-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* 유틸리티: 경고 박스 및 뱃지 */
+        .account-warning-box {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            line-height: 1.2;
-        }
-
-        .asset-option span.main-text {
-            font-weight: 700;
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .asset-option span.sub-text {
-            font-size: 0.7rem;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-
-        .asset-option:hover {
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        /* 활성화 상태 디자인 */
-        .asset-option.active {
-            background: white;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            color: #2D3748;
-        }
-
-        /* 1. 비용 (기본) */
-        .asset-option[data-type="expense"].active {
-            background-color: #EDF2F7;
-            /* 회색 배경 */
-            color: #2D3748;
-            border: 1px solid #CBD5E0;
-            border-left: 5px solid #718096;
-            /* 진한 회색 띠 */
-            font-weight: bold;
-        }
-
-        .asset-option[data-type="tangible"].active {
-            background-color: #E6FFFA;
-            /* 연한 초록 배경 */
-            color: #22A699;
-            border: 1px solid #B2F5EA;
-            border-left: 5px solid #22A699;
-            /* 초록색 띠 */
-            font-weight: bold;
-        }
-
-        .asset-option[data-type="intangible"].active {
-            background-color: #FAF5FF;
-            /* 연한 보라 배경 */
-            color: #805AD5;
-            border: 1px solid #E9D8FD;
-            border-left: 5px solid #805AD5;
-            /* 보라색 띠 */
-            font-weight: bold;
-        }
-
-        /* --- [UX 개선 1] 자산 분류 버튼 슬림화 (공간 절약) --- */
-        /* --- [UX 개선 1] 자산 분류 버튼 스타일 (설명 표시) --- */
-        .asset-segment-container {
-            background: transparent;
-            border: none;
-            padding: 0;
-            margin-bottom: 1rem;
-        }
-
-        .asset-segment-label {
-            display: none;
-        }
-
-        .asset-segment-group {
-            background: #F7FAFC;
-            border: 1px solid #E2E8F0;
-            gap: 0.5rem;
+            background-color: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            color: var(--warning-text);
             padding: 0.5rem;
-            display: flex;
-            flex-direction: row;
-            /* 버튼들을 가로로 나열 */
-        }
-
-        .asset-option {
-            padding: 0.8rem 0.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column !important;
-            /* 아이콘-제목-설명을 세로로 배치 */
-            align-items: center;
-            justify-content: center;
-            gap: 0.2rem;
             border-radius: 0.5rem;
-            border: 1px solid transparent;
-            transition: all 0.2s;
-        }
-
-        .asset-option:hover {
-            background-color: white;
-            border-color: #e2e8f0;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        /* 활성화 된 상태 */
-        .asset-option.active {
-            background: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-            font-weight: bold;
-        }
-
-        .asset-option span.main-text {
-            margin-bottom: 0;
-            font-size: 0.95rem;
-            font-weight: 700;
-        }
-
-        /* [수정] 설명 텍스트 보이게 처리 */
-        .asset-option span.sub-text {
-            display: block !important;
-            /* 강제로 보이게 설정 */
-            font-size: 0.75rem;
-            font-weight: 400;
-            opacity: 0.7;
-            text-align: center;
-            line-height: 1.3;
-            margin-top: 2px;
-        }
-
-        /* [UX 개선] 엔지니어를 위한 회계 가이드 박스 */
-        .asset-guide-box {
-            background-color: #E6FFFA;
-            border: 1px solid #B2F5EA;
-            border-radius: 0.5rem;
-            padding: 0.75rem;
-            margin-bottom: 0.5rem;
             font-size: 0.85rem;
-            color: #234E52;
-            line-height: 1.4;
-        }
-
-        .asset-guide-box strong {
-            color: #2C7A7B;
-            font-weight: 700;
-        }
-
-        /* --- [UX 개선 2] 하단 플로팅 액션 바 (어디서든 복사 가능) --- */
-        .floating-bottom-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
+            gap: 0.5rem;
             width: 100%;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.98);
-            border-top: 1px solid #cbd5e0;
-            padding: 0 2rem;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: center;
-            /* 중앙 정렬 */
-            align-items: center;
-            z-index: 2000;
-            /* 최상위 */
-            transform: translateY(120%);
-            /* 기본적으로 숨김 */
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+        .account-warning-input {
+            border-color: var(--warning-border) !important;
+            background-color: var(--warning-bg) !important;
         }
 
-        .floating-bottom-bar.visible {
-            transform: translateY(0);
-            /* 보이기 */
-        }
-
-        .floating-content {
-            width: 100%;
-            max-width: 900px;
-            /* 메인 컨텐츠 폭과 맞춤 */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .floating-info {
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            font-weight: 600;
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .floating-info span.val {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-left: 0.2rem;
-        }
-
-        /* 기존 하단 버튼 숨김 (플로팅 바가 대체하므로) */
-        .fixed-width-container>#copyBtn {
-            display: none;
-        }
-
-        /* 카피 피드백 위치 조정 */
-        #copyFeedback {
-            margin-bottom: 80px;
-        }
-
-        /* --- [UX 개선 추가] 필수 항목 붉은 점 표시 --- */
-        label.required::after {
-            content: " *";
-            color: #E53E3E;
-            font-weight: bold;
-            margin-left: 2px;
-        }
-
-        /* --- [버그 수정] 토스트 알림이 다른 요소에 가려지지 않도록 z-index 최상위로 수정 --- */
-        .toast-container {
-            z-index: 9999 !important;
-        }
-
-        /* [UX 개선] 하단 고정 액션 바 (Sticky Footer) */
-        .sticky-action-bar {
-            position: sticky;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid #e2e8f0;
-            padding: 1rem 2rem;
-            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05);
-            z-index: 100;
-            /* 다른 요소 위에 표시 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
-            margin-top: 2rem;
-            /* 컨텐츠와의 간격 */
-        }
-
-        .sticky-action-bar .button {
-            width: 100%;
-            max-width: 600px;
-            padding: 1rem;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 6px rgba(44, 92, 163, 0.3);
-            /* 버튼 강조 그림자 */
-            transform: translateY(0);
-            transition: all 0.2s;
-        }
-
-        .sticky-action-bar .button:active {
-            transform: translateY(2px);
-        }
-
-        /* --- [신규 기능 스타일] VAT 보정 및 계좌 경고 --- */
         .vat-badge-btn {
             display: inline-flex;
             align-items: center;
@@ -1073,94 +273,503 @@
             margin-left: 0.5rem;
             animation: pulse 2s infinite;
         }
+        .vat-badge-btn:hover { background-color: #C53030; color: white; }
 
-        .vat-badge-btn:hover {
-            background-color: #C53030;
-            color: white;
+        /* =========================================
+           4. 항목 보기 스타일 (Table View & Item Card)
+           ========================================= */
+        #items-container-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 1.5rem;
+        }
+        /* 플로팅 스크롤바와 연동을 위해 자체 스크롤바 숨김 */
+        #items-container-wrapper::-webkit-scrollbar { height: 0px; }
+
+        #items-container {
+            display: flex;
+            gap: 1.5rem;
+            padding-bottom: 1rem;
         }
 
-        .account-warning-box {
-            display: flex;
-            align-items: center;
-            background-color: #FFFAF0;
-            border: 1px solid #ED8936;
-            color: #C05621;
-            padding: 0.5rem;
+        /* --- [A] 카드 뷰 스타일 (Card View) ---
+           모바일이나 특정 뷰 모드를 위해 유지 */
+        .item-card {
+            background-color: var(--background-light);
+            padding: 1.5rem;
             border-radius: 0.5rem;
-            margin-top: 0.5rem;
-            font-size: 0.85rem;
+            flex: 0 0 320px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+        }
+        .item-card.single-item { flex: 1 1 auto; }
+
+        .item-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .item-header h3 { margin: 0; font-size: 1.1rem; }
+        .remove-item-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            line-height: 1;
+        }
+
+        /* --- [B] 테이블형(Table) 스프레드시트 레이아웃 (최종 메인) --- */
+        .table-view-wrapper {
+            width: 100%;
+            overflow-x: auto; /* 가로 스크롤 */
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            background: white;
+            position: relative;
+        }
+
+        .we-table {
+            width: max-content; /* 내용물만큼 늘어남 */
+            border-collapse: separate; /* Sticky 테두리 충돌 방지 */
+            border-spacing: 0;
+            table-layout: fixed;
+        }
+
+        /* 공통 셀 스타일 */
+        .we-table th, .we-table td {
+            border-bottom: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            vertical-align: middle;
+            padding: 0;
+            margin: 0;
+            background: white;
+        }
+
+        /* 마지막 열 테두리 제거 */
+        .we-table th:last-child, .we-table td:last-child {
+            border-right: none;
+        }
+
+        /* 1. 좌측 고정 열 (Sticky) */
+        .we-table .sticky-col {
+            position: sticky;
+            left: 0;
+            z-index: 20;
+            background-color: #f8fafc; /* 배경색 필수 (투명하면 겹침) */
+            color: #4a5568;
+            font-weight: 600;
+            border-right: 2px solid #d1d5db; /* 구분선 명확히 */
+            width: 180px; /* 너비 고정 */
+            min-width: 180px;
+            max-width: 180px;
+
+            /* 텍스트 줄바꿈 처리 */
+            white-space: normal;
+            word-break: keep-all;
+            line-height: 1.4;
+            padding: 0.6rem 0.8rem;
+
+            /* 그림자로 입체감 효과 */
+            box-shadow: 4px 0 8px rgba(0,0,0,0.03);
+            clip-path: inset(0 -15px 0 0); /* 그림자가 오른쪽으로만 나오게 */
+        }
+
+        /* 헤더 행의 고정 열 (No.) */
+        .we-table th.sticky-col {
+            background-color: #edf2f7;
+            text-align: center;
+            z-index: 25; /* 다른 Sticky보다 더 위에 */
+        }
+
+        /* 2. 헤더 행 (항목 1, 2...) */
+        .we-table .header-cell {
+            background-color: #edf2f7;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: center;
+            height: 45px;
+            padding: 0.5rem;
+            min-width: 220px; /* 항목 최소 너비 */
+        }
+
+        /* 3. 데이터 입력 셀 */
+        .we-table .input-cell {
+            position: relative;
+            min-width: 220px;
+            height: 100%;
+        }
+
+        /* 입력창 스타일 (셀 꽉 차게) */
+        .we-table input,
+        .we-table select {
+            width: 100%;
+            height: 34px; /* 높이 명시 */
+            border: 2px solid transparent !important;
+            background: transparent !important;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.9rem;
+            border-radius: 0;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .we-table input:focus,
+        .we-table select:focus {
+            background: white !important;
+            border-color: var(--primary-color) !important;
+            z-index: 10;
+            position: relative;
+        }
+
+        .we-table input:hover,
+        .we-table select:hover {
+            background: #fcfcfc !important;
+        }
+
+        /* 자산 버튼 그룹 (테이블 내부) */
+        .table-asset-wrapper {
+            display: flex;
+            gap: 4px;
+            padding: 6px;
+        }
+
+        /* 자산 버튼 (그리드/테이블 공용) */
+        .grid-asset-btn {
+            flex: 1;
+            font-size: 0.8rem;
+            padding: 6px 0;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            color: #718096;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .grid-asset-btn.active {
+            font-weight: bold;
+            border-color: var(--primary-color);
+            background: #ebf8ff;
+            color: var(--primary-color);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .grid-asset-btn:hover:not(.active) {
+            background: #f7fafc;
+        }
+
+        /* =========================================
+           5. 자산 분류 탭 (Asset Segment Control)
+           ========================================= */
+        .asset-segment-container {
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
             gap: 0.5rem;
         }
 
-        .account-warning-input {
-            border-color: #ED8936 !important;
-            background-color: #FFFAF0 !important;
-        }
+        .asset-segment-label { display: none; } /* UX 개선: 라벨 숨김 */
 
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.4);
-            }
-
-            70% {
-                box-shadow: 0 0 0 6px rgba(229, 62, 62, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(229, 62, 62, 0);
-            }
-        }
-
-        /* [추가] 플로팅 스크롤바 스타일 */
-        #floating-scrollbar-container {
-            position: fixed;
-            bottom: 70px;
-            /* 하단 바 바로 위에 위치 */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 900px;
-            height: 18px;
-            overflow-x: auto;
-            overflow-y: hidden;
-            z-index: 1900;
-            display: none;
-            /* 내용이 길어지면 자동으로 나타남 */
-        }
-
-        #floating-scrollbar-content {
-            height: 1px;
-        }
-
-        /* 항목 컨테이너의 가로 스크롤바는 숨김 (플로팅 스크롤바만 사용) */
-        #items-container-wrapper::-webkit-scrollbar {
-            height: 0px;
-        }
-
-        /* [수정] 모달 창: 화면의 80% 높이만 차지하고, Flex 레이아웃 적용 */
-        /* [수정] 모달 창: 화면의 80% 높이만 차지하고, Flex 레이아웃 적용 */
-        .preview-content {
-            text-align: center;
-            width: 95%;
-            max-width: 800px;
-            /* 너무 넓지하게 적당히 조정 */
-
-            /* ▼▼▼ 높이 제한 및 레이아웃 (버튼 고정 핵심) ▼▼▼ */
-            max-height: 80vh;
-            /* 화면 높이의 80%까지만 커짐 */
-            display: flex;
-            /* 내부 요소를 유연하게 배치 */
-            flex-direction: column;
-            /* 위에서 아래로 쌓기 */
-            /* ▲▲▲ */
-
+        .asset-segment-group {
             background: #F7FAFC;
-            padding: 1.5rem;
-            border: 2px solid var(--primary-color);
+            border: 1px solid #E2E8F0;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            gap: 0.5rem;
+            display: flex;
+            flex-direction: row; /* 버튼 가로 나열 */
+        }
+
+        .asset-option {
+            flex: 1;
+            display: flex;
+            flex-direction: column !important;
+            align-items: center;
+            justify-content: center;
+            gap: 0.2rem;
+            padding: 0.8rem 0.5rem;
+            font-size: 0.85rem;
+            border-radius: 0.5rem;
+            border: 1px solid transparent;
+            background: transparent;
+            cursor: pointer;
+            color: #718096;
+            transition: all 0.2s;
+        }
+
+        .asset-option:hover {
+            background-color: white;
+            border-color: #e2e8f0;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* 활성화 상태 */
+        .asset-option.active {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            font-weight: bold;
+        }
+
+        /* 활성화 상태별 컬러 지정 */
+        .asset-option[data-type="expense"].active {
+            background-color: #EDF2F7;
+            color: #2D3748;
+            border: 1px solid #CBD5E0;
+            border-left: 5px solid #718096;
+        }
+        .asset-option[data-type="tangible"].active {
+            background-color: #E6FFFA;
+            color: var(--success-color);
+            border: 1px solid #B2F5EA;
+            border-left: 5px solid var(--success-color);
+        }
+        .asset-option[data-type="intangible"].active {
+            background-color: #FAF5FF;
+            color: #805AD5;
+            border: 1px solid #E9D8FD;
+            border-left: 5px solid #805AD5;
+        }
+
+        .asset-option span.main-text {
+            font-size: 0.95rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0;
+        }
+        .asset-option span.sub-text {
+            display: block !important; /* 강제 표시 */
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.7;
+            text-align: center;
+            line-height: 1.3;
+            margin-top: 2px;
+        }
+
+        .asset-guide-box {
+            background-color: #E6FFFA;
+            border: 1px solid #B2F5EA;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: #234E52;
+            line-height: 1.4;
+        }
+        .asset-guide-box strong { color: #2C7A7B; font-weight: 700; }
+
+        /* =========================================
+           6. AI 섹션 (Drag & Drop, Advanced Options)
+           ========================================= */
+        .ai-section {
+            background: linear-gradient(135deg, #2C5CA3 0%, #22A699 100%);
             border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+        }
+        .ai-section.drag-over {
+            transform: scale(1.005);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, #386CB8 0%, #2BCFA0 100%);
+        }
+
+        .ai-header { text-align: center; margin-bottom: 1.5rem; }
+        .ai-header h3 { color: white; margin: 0 0 0.5rem 0; font-size: 1.4rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .ai-header p { color: rgba(255,255,255,0.9); font-size: 0.9rem; margin: 0; }
+
+        .ai-grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-card {
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 220px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .upload-card:hover { background: rgba(255, 255, 255, 0.2); border-color: white; }
+        .upload-icon { font-size: 3rem; margin-bottom: 1rem; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+        .upload-text { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .upload-sub { font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); }
+
+        .info-panel { display: flex; flex-direction: column; gap: 1rem; }
+
+        #file-list-box {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            overflow-y: auto;
+            max-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .file-item {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .file-item:last-child { border-bottom: none; }
+
+        .instruction-box {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .instruction-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background: transparent;
+            padding: 0;
+            height: auto !important;
+        }
+
+        #run-analysis-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary-color);
+            font-weight: 800;
+            border: none;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        #run-analysis-btn:hover:not([disabled]) {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            color: var(--success-color);
+        }
+        #run-analysis-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        /* 고급 설정 (Glassmorphism) */
+        #ai-advanced-options {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        #ai-advanced-options.open {
+            max-height: 500px;
+            opacity: 1;
+            transform: translateY(0);
+            margin-top: 1.5rem;
+        }
+        .advanced-settings-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: left;
+            color: white !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .radio-row { display: flex; align-items: center; gap: 2rem; margin-bottom: 0.5rem; }
+        .radio-label {
+            display: flex; align-items: center; cursor: pointer;
+            font-size: 1rem; font-weight: 500; color: #ffffff !important;
+        }
+        .radio-label input[type="radio"] {
+            margin-right: 0.5rem; width: 1.1rem; height: 1.1rem;
+            accent-color: white; cursor: pointer; appearance: auto; border: none;
+        }
+        .radio-label span { color: #ffffff !important; }
+
+        #split-detail-options {
+            margin-top: 1rem; padding-top: 1rem;
+            border-top: 1px dashed rgba(255, 255, 255, 0.5);
+            display: flex; flex-direction: column; gap: 0.8rem; color: white !important;
+        }
+        #manualCountInput {
+            width: 60px !important; padding: 0.3rem !important; border-radius: 0.4rem !important;
+            border: none !important; text-align: center; font-weight: bold;
+            color: var(--primary-color); background: white; height: 30px !important; margin: 0 0.5rem;
+        }
+
+        /* =========================================
+           7. UI 컴포넌트: 모달, 토스트, 플로팅 바
+           ========================================= */
+
+        /* 모달 오버레이 */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+
+        /* [통합] 미리보기 컨텐츠 */
+        .preview-content, .modal-content {
+            background: var(--background-white);
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 95%; /* 모바일 대응 */
+            max-width: 800px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+            /* 높이 및 스크롤 설정 */
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+
+            transform: translateY(20px);
+            transition: transform 0.3s;
             position: relative;
         }
+
+        .preview-content {
+            text-align: center;
+            background: #F7FAFC;
+            border: 2px solid var(--primary-color);
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active .modal-content,
+        .modal-overlay.active .preview-content { transform: translateY(0); }
 
         .preview-header .success-icon {
             font-size: 3.5rem;
@@ -1168,74 +777,388 @@
             display: inline-block;
             animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        .preview-header h2 {
-            color: var(--primary-color);
-            margin: 0.5rem 0;
-            font-size: 1.4rem;
-        }
-
-        .preview-header p {
-            color: var(--text-dark);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
+        .preview-header h2 { color: var(--primary-color); margin: 0.5rem 0; font-size: 1.4rem; }
+        .preview-header p { color: var(--text-dark); font-size: 1rem; margin-bottom: 1.5rem; }
         .preview-header kbd {
-            background-color: #eee;
-            border-radius: 3px;
-            border: 1px solid #b4b4b4;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
-            color: #333;
-            display: inline-block;
-            font-size: 0.85em;
-            font-weight: 700;
-            line-height: 1;
-            padding: 2px 4px;
-            white-space: nowrap;
+            background-color: #eee; border-radius: 3px; border: 1px solid #b4b4b4;
+            box-shadow: 0 1px 1px rgba(0,0,0,.2), 0 2px 0 0 rgba(255,255,255,.7) inset;
+            color: #333; font-size: 0.85em; font-weight: 700; padding: 2px 4px; white-space: nowrap;
         }
 
-        /* [수정] 내부 미리보기 박스: 남는 공간을 차지하고 필요하면 스크롤 */
-        /* [수정] 내부 미리보기 박스: 스크롤 활성화 */
+        /* 미리보기 박스 (스크롤 가능) */
         .preview-box {
             background: white;
             border: 1px solid #CBD5E0;
             padding: 1.5rem;
             border-radius: 0.5rem;
 
-            /* ▼▼▼ 스크롤 설정 (핵심 수정) ▼▼▼ */
+            /* Flex Child Scroll Setup */
             flex: 1;
-            /* 남은 공간을 모두 차지 */
             overflow-y: auto;
-            /* 내용이 길면 스크롤 생성 */
             min-height: 0;
-            /* 플렉스 박스 내 스크롤 버그 방지 */
             pointer-events: auto;
-            /* [중요] 마우스 스크롤/클릭 허용 (이게 없어서 안됐던 것임) */
-            /* ▲▲▲ */
 
             text-align: left;
             font-size: 0.9rem;
             box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
             margin-bottom: 1rem;
-            /* 버튼과의 간격 */
         }
 
-        /* 팝인 애니메이션 */
+        /* 로딩 오버레이 */
+        .loading-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            border-radius: 1rem; z-index: 10; color: var(--text-dark);
+        }
+        .spinner {
+            width: 40px; height: 40px;
+            border: 4px solid #e2e8f0; border-top: 4px solid var(--primary-color);
+            border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem;
+        }
+
+        /* 토스트 알림 (스택형) */
+        #toast-wrapper {
+            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+            z-index: 9999 !important;
+            display: flex; flex-direction: column-reverse;
+            align-items: center; gap: 10px; pointer-events: none;
+        }
+        .toast-message {
+            background-color: var(--text-dark); color: white;
+            padding: 1rem 2rem; border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-weight: 500; opacity: 0; transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex; align-items: center; gap: 0.5rem;
+            pointer-events: auto; white-space: pre-line; text-align: center;
+        }
+        .toast-message.show { opacity: 1; transform: translateY(0); }
+
+        /* [UX 개선] 하단 플로팅 액션 바 */
+        .floating-bottom-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
+            background: rgba(255, 255, 255, 0.98); border-top: 1px solid #cbd5e0;
+            padding: 0 2rem; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2000; transform: translateY(120%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .floating-bottom-bar.visible { transform: translateY(0); }
+
+        .floating-content {
+            width: 100%; max-width: 900px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .floating-info {
+            font-size: 0.95rem; color: var(--text-dark); font-weight: 600;
+            display: flex; gap: 1.5rem;
+        }
+        .floating-info span.val { color: var(--primary-color); font-size: 1.1rem; margin-left: 0.2rem; }
+
+        /* 플로팅 스크롤바 */
+        #floating-scrollbar-container {
+            position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%);
+            width: 100%; max-width: 900px; height: 18px;
+            overflow-x: auto; overflow-y: hidden; z-index: 1900; display: none;
+        }
+        #floating-scrollbar-content { height: 1px; }
+
+        /* 로그인 화면 */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #2C5CA3 0%, #1a202c 100%);
+            z-index: 99999; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; color: white;
+        }
+        #login-box {
+            background: white; padding: 3rem; border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            text-align: center; color: #2d3748; width: 90%; max-width: 400px;
+        }
+
+        /* Footer & 기타 유틸리티 */
+        .footer-notice {
+            text-align: center; margin-top: 3rem; padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-notice b { color: var(--text-dark); font-weight: 600; }
+
+        .highlight {
+            transition: box-shadow 0.2s;
+            box-shadow: 0 0 0 3px rgba(32, 182, 133, 0.5);
+        }
+        .header-controls { display: flex; justify-content: space-between; align-items: center; }
+
+        /* 기존 버튼 숨김 (Floating Bar가 대체) */
+        .fixed-width-container > #copyBtn { display: none; }
+        #copyFeedback { text-align: center; color: var(--primary-color); font-weight: 600; margin-top: 1rem; opacity: 0; transition: opacity 0.5s; height: 24px; margin-bottom: 80px; }
+
+        /* 애니메이션 키프레임 */
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes popIn {
-            0% {
-                transform: scale(0) rotate(-20deg);
-                opacity: 0;
-            }
+            0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+            80% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(229, 62, 62, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0); }
+        }
 
-            80% {
-                transform: scale(1.1) rotate(5deg);
-                opacity: 1;
-            }
+        /* 반응형 미디어 쿼리 */
+        @media (max-width: 768px) {
+            .ai-grid-container { grid-template-columns: 1fr; }
+            .upload-card { min-height: 150px; }
+        }
+        /* [수정 4.0] 꽉 찬 화면(Full-width) 테이블 디자인 & 공백 제거 */
+        .table-view-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            background: white;
+            position: relative;
+        }
 
-            100% {
-                transform: scale(1) rotate(0deg);
-            }
+        .we-table {
+            width: 100%; /* [핵심] 테이블이 컨테이너를 가득 채움 */
+            border-collapse: separate;
+            border-spacing: 0;
+            table-layout: auto; /* [핵심] 내용에 따라 유동적으로 너비 조절 */
+        }
+
+        /* 공통 셀 스타일 */
+        .we-table th, .we-table td {
+            border-bottom: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            vertical-align: middle;
+            padding: 0;
+            margin: 0;
+            background: white;
+        }
+
+        /* 마지막 열 테두리 제거 (테이블이 꽉 찼을 때 이중 테두리 방지) */
+        .we-table th:last-child, .we-table td:last-child {
+            border-right: none;
+        }
+
+        /* --- 1. 좌측 고정 열 (Sticky) --- */
+        .we-table .sticky-col {
+            position: sticky;
+            left: 0;
+            z-index: 20;
+            background-color: #f8fafc;
+            color: #4a5568;
+            font-weight: 600;
+            border-right: 2px solid #d1d5db; /* 구분선 명확히 */
+
+            /* 고정 너비 유지 */
+            width: 180px;
+            min-width: 180px;
+            max-width: 180px;
+
+            white-space: normal;
+            word-break: keep-all;
+            line-height: 1.4;
+            padding: 0.4rem 0.5rem;
+
+            box-shadow: 4px 0 8px rgba(0,0,0,0.03); /* 입체감 */
+            clip-path: inset(0 -15px 0 0);
+        }
+
+        .we-table th.sticky-col {
+            background-color: #edf2f7;
+            text-align: center;
+            z-index: 25;
+        }
+
+        /* --- 2. 데이터 열 (항목) --- */
+        /* 헤더 셀 */
+        .we-table .header-cell {
+            background-color: #edf2f7;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: center;
+            height: 45px;
+            padding: 0.5rem;
+
+            /* [핵심] 최소 너비 설정 (항목이 많아지면 스크롤 발생) */
+            min-width: 240px;
+        }
+
+        /* 입력 셀 */
+        .we-table .input-cell {
+            position: relative;
+            height: 100%;
+            /* [핵심] 최소 너비 설정 */
+            min-width: 240px;
+        }
+
+        /* 입력창 스타일 */
+        .we-table input,
+        .we-table select {
+            width: 100%;
+            height: 44px;
+            border: 2px solid transparent !important;
+            background: transparent !important;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.9rem;
+            border-radius: 0;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .we-table input:focus,
+        .we-table select:focus {
+            background: white !important;
+            border-color: var(--primary-color) !important;
+            z-index: 10;
+            position: relative;
+        }
+
+        .we-table input:hover,
+        .we-table select:hover {
+            background: #fcfcfc !important;
+        }
+
+        /* 자산 버튼 그룹 */
+        .table-asset-wrapper {
+            display: flex;
+            gap: 4px;
+            padding: 6px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 버튼들이 공간을 꽉 채우도록 설정 */
+        .grid-asset-btn {
+            flex: 1;
+            padding: 6px 0;
+            font-size: 0.8rem;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            color: #718096;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+        }
+        .grid-asset-btn.active {
+            border-color: var(--primary-color);
+            background: #ebf8ff;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        /* =========================================
+           [재수정] 자산 버튼 그룹 (초슬림/컴팩트 버전)
+           ========================================= */
+        .table-asset-wrapper {
+            display: flex;
+            gap: 2px; /* 버튼 사이 간격 최소화 */
+            padding: 4px 0;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* 컴팩트 버튼 스타일 */
+        .rich-asset-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 2px; /* 내부 여백 대폭 축소 */
+            border: 1px solid #eef2f6; /* 평소에는 거의 안 보이는 테두리 */
+            background: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            min-height: auto; /* 고정 높이 제거 (내용물에 맞춤) */
+        }
+
+        .rich-asset-btn:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e0;
+            z-index: 1; /* 호버 시 위로 */
+        }
+
+        /* 텍스트 스타일 (사이즈 축소) */
+        .rich-asset-btn .btn-title {
+            font-size: 0.8rem; /* 약 11.5px */
+            font-weight: 700;
+            margin-bottom: 2px;
+            display: block;
+            color: #4A5568;
+            letter-spacing: -0.5px; /* 자간 좁힘 */
+        }
+
+        .rich-asset-btn .btn-desc {
+            font-size: 0.67rem; /* 약 10px */
+            color: #718096;
+            line-height: 1.15; /* 줄간격 좁힘 */
+            word-break: keep-all;
+            opacity: 0.9;
+            letter-spacing: -0.5px;
+        }
+
+        /* 활성화 상태 (선택 시에만 박스 느낌 강조) */
+        .rich-asset-btn.active[data-type="expense"] {
+            border: 1px solid #718096;
+            background: #F7FAFC;
+            font-weight: bold;
+        }
+        .rich-asset-btn.active[data-type="tangible"] {
+            border: 1px solid #3182ce;
+            background: #EBF8FF;
+            font-weight: bold;
+
+        }
+        .rich-asset-btn.active[data-type="intangible"] {
+            border: 1px solid #805AD5;
+            background: #FAF5FF;
+            font-weight: bold;
+        }
+
+        /* 선택된 항목의 텍스트 색상 강조 */
+        .rich-asset-btn.active .btn-title { color: inherit; }
+
+        /* [말풍선 수정] 위치 및 크기 조정 */
+        .asset-check-bubble {
+            position: absolute;
+            top: -17px; /* 버튼이 작아져서 위치 조정 */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2D3748;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.65rem; /* 폰트 축소 */
+            font-weight: bold;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+            animation: bounce 2s infinite;
+            pointer-events: none;
+        }
+        .asset-check-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 3px 3px 0;
+            border-style: solid;
+            border-color: #2D3748 transparent transparent transparent;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-3px);}
+            60% {transform: translateX(-50%) translateY(-2px);}
         }
         /* [구글 로그인] 로그인 화면 스타일 */
         #login-overlay {
@@ -1250,12 +1173,14 @@
             text-align: center; color: #2d3748; width: 90%; max-width: 400px;
         }
     </style>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
+
 
     <div id="login-overlay">
         <div id="login-box">
@@ -1283,7 +1208,6 @@
             <p id="login-error-msg" style="display:none; color:#E53E3E; margin-top:1rem; font-weight:bold;"></p>
         </div>
     </div>
-
     <div class="main-wrapper" id="main-app" style="display: none;">
         <button id="settings-btn" class="settings-btn" title="설정">⚙️</button>
         <div class="fixed-width-container">
@@ -1441,7 +1365,7 @@
     </div>
     <div class="footer-notice">
         <p>
-            위하고 폼 생성기 베타 테스트 (v5.4-구글 보안, GEMINI3FLASH 적용)<br>
+            위하고 폼 생성기 베타 테스트 (v6.0-최종 배포 버전)<br>
             거래처 추가 요청이나 개선 의견은 언제든지 환영합니다. 경영기획팀에 문의해주세요.<br>
             <b>FOR RADEXEL INC. USE ONLY</b>
         </p>
@@ -1601,7 +1525,7 @@
             qty: { id: 'qty', label: '수량', example: '2, 4' },
             unitPrice: { id: 'unitPrice', label: '단가(외화인 경우 통화 기재)', example: '22,000,000 원 / 10 USD' },
             amount: { id: 'amount', label: '총 금액(부가세 포함)', example: '44,000,000 원 / 40 USD' },
-            date: { id: 'date', label: '지출(예정) 일자', example: '2025. 11. 19.' },
+            date: { id: 'date', label: '지출 일자(지출 예상 일자)', example: '2025. 11. 19.' },
             note: { id: 'note', label: '기타사항(필요 시 작성)', example: '특별 요청사항 또는 부가 정보' },
             user: { id: 'user', label: '사용자/사용부서', example: '사용할 임직원, 부서, 공용 등' },
             manufacturer: { id: 'manufacturer', label: '제조사', example: '한성컴퓨터, MS, 출판사 등' },
@@ -1948,117 +1872,177 @@
             });
         }
 
-        // [신규 함수: 기존 로직 격리] 카드 뷰 렌더러 (기존 render 함수 내부 코드를 그대로 가져옴)
+        // [신규 함수: 기존 로직 격리] 카드 뷰 렌더러 (공통 항목 UI 개선: 해지 기능, 수정 허용, 음영 처리)
+        // [신규 함수: 기존 로직 격리] 카드 뷰 렌더러 (공통 항목 디자인 수정: 글자색 일반화, 행 음영 적용)
+        // [신규 함수: 기존 로직 격리] 카드 뷰 렌더러 (공통 항목 디자인 수정: 셀 배경색 강제 적용)
         function renderCardView(template) {
             const allFields = template.fields;
             const currentMandatory = [...MANDATORY_FIELDS['all'], ...(MANDATORY_FIELDS[currentFormType] || [])];
-            const allVisibleFields = sortFields(allFields.filter(f => !hiddenFields.includes(f.id)));
 
-            itemsContainer.style.display = 'flex';
-            itemsContainer.style.flexDirection = 'row';
-            itemsContainer.style.width = items.length > 1 ? `${(items.length * 320) + (Math.max(0, items.length - 1) * 24)}px` : '100%';
+            // 공통 항목이어도 리스트에서 제거하지 않음 (숨김 항목만 제외)
+            const visibleFields = sortFields(allFields.filter(f => !hiddenFields.includes(f.id)));
 
-            itemsContainer.innerHTML = items.map((itemData, index) => {
-                const assetType = itemData.assetType || 'expense';
+            // 컨테이너 초기화
+            itemsContainer.style.display = 'block';
+            itemsContainer.style.width = '100%';
+            itemsContainer.innerHTML = '';
 
-                // 자산 분류 버튼 (기존 소스 유지)
-                const assetSelectorHtml = `
-                    <div class="asset-segment-container" style="margin-bottom: 1.5rem;">
-                        <div class="asset-segment-group" style="display:flex; gap:0.5rem; background:#F7FAFC; padding:0.5rem; border-radius:0.75rem; border:1px solid #E2E8F0;">
-                            <button class="asset-option ${assetType === 'expense' ? 'active' : ''}" onclick="setAssetType(${index}, 'expense')" data-type="expense" tabindex="-1" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0.8rem 0.5rem; border:1px solid transparent; border-radius:0.5rem; cursor:pointer; transition:all 0.2s;">
-                                <span class="main-text" style="font-size:0.95rem; margin-bottom:0.2rem;">🔧 소모·주문제작·활동비</span>
-                                <span class="sub-text" style="font-size:0.75rem; opacity:0.7; font-weight:normal;">쓰면 사라지거나 전용으로 사용<br>(주문제작 부품, 회의비, 소모품)</span>
-                            </button>
-                            <button class="asset-option ${assetType === 'tangible' ? 'active' : ''}" onclick="setAssetType(${index}, 'tangible')" data-type="tangible" tabindex="-1" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0.8rem 0.5rem; border:1px solid transparent; border-radius:0.5rem; cursor:pointer; transition:all 0.2s;">
-                                <span class="main-text" style="font-size:0.95rem; margin-bottom:0.2rem;">💻 기성품 기기·비품</span>
-                                <span class="sub-text" style="font-size:0.75rem; opacity:0.7; font-weight:normal;">다른 곳에 재사용/판매 가능<br>(기성품 부품, 계측기, 완제품)</span>
-                            </button>
-                            <button class="asset-option ${assetType === 'intangible' ? 'active' : ''}" onclick="setAssetType(${index}, 'intangible')" data-type="intangible" tabindex="-1" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0.8rem 0.5rem; border:1px solid transparent; border-radius:0.5rem; cursor:pointer; transition:all 0.2s;">
-                                <span class="main-text" style="font-size:0.95rem; margin-bottom:0.2rem;">💾 SW·권리·용역비</span>
-                                <span class="sub-text" style="font-size:0.75rem; opacity:0.7; font-weight:normal;">눈에 보이지 않는 자산<br>(특허, SW, 외주용역)</span>
-                            </button>
-                        </div>
-                    </div>
-                `;
+            // Table 구조 시작
+            let html = `<div class="table-view-wrapper" id="we-table-scroll">
+                        <table class="we-table">`;
 
-                const itemFieldsHtml = allVisibleFields.map(field => {
-                    const isPinned = pinnedFields.includes(field.id);
+            // --- 1. 헤더 행 (<thead>) ---
+            html += `<thead><tr>`;
+            // 1-1. No. (Sticky)
+            html += `<th class="sticky-col">No.</th>`;
+            // 1-2. 항목 1, 2...
+            items.forEach((_, idx) => {
+                const delBtn = items.length > 1
+                    ? `<button class="remove-item-btn" data-index="${idx}" style="margin-left:8px; width:24px; height:24px; border-radius:50%; background:white; border:1px solid #cbd5e0; color:#e53e3e; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; vertical-align:middle;">×</button>`
+                    : '';
+                html += `<th class="header-cell">
+                            <span>항목 ${idx + 1}</span>
+                            ${delBtn}
+                         </th>`;
+            });
+            html += `</tr></thead>`;
+
+            // --- 2. 본문 행 (<tbody>) ---
+            html += `<tbody>`;
+
+            // 2-1. 자산 성격 행
+            html += `<tr>
+                        <td class="sticky-col">
+                            자산 성격<br>
+                            <span style="font-size:0.75rem; color:#E53E3E; font-weight:normal;">(기안자 확인)</span>
+                        </td>
+                        ${items.map((item, idx) => {
+                            const assetType = item.assetType || 'expense';
+                            return `<td class="input-cell" style="background:#fff; padding: 0;">
+                                        <div class="table-asset-wrapper">
+                                            <div class="asset-check-bubble">회계담당자는 몰라요! 확인필수</div>
+
+                                            <div class="rich-asset-btn ${assetType === 'expense' ? 'active' : ''}"
+                                                 data-type="expense"
+                                                 onclick="setAssetType(${idx}, 'expense')">
+                                                <span class="btn-title">소모·주문제작</span>
+                                                <span class="btn-desc">쓰면 사라지거나 전용으로 사용<br>(주문제작 부품, 소모품, 회의비)</span>
+                                            </div>
+
+                                            <div class="rich-asset-btn ${assetType === 'tangible' ? 'active' : ''}"
+                                                 data-type="tangible"
+                                                 onclick="setAssetType(${idx}, 'tangible')">
+                                                <span class="btn-title">기성품 기기·비품</span>
+                                                <span class="btn-desc">다른 곳에 재사용/판매 가능<br>(기성품 부품, 계측기)</span>
+                                            </div>
+
+                                            <div class="rich-asset-btn ${assetType === 'intangible' ? 'active' : ''}"
+                                                 data-type="intangible"
+                                                 onclick="setAssetType(${idx}, 'intangible')">
+                                                <span class="btn-title">SW·권리</span>
+                                                <span class="btn-desc">보이지 않는 자산<br>(특허, SW, 용역)</span>
+                                            </div>
+                                        </div>
+                                    </td>`;
+                        }).join('')}
+                     </tr>`;
+
+            // 2-2. 데이터 필드 행 반복
+            visibleFields.forEach(field => {
+                const isRequired = currentMandatory.includes(field.id) ? 'required' : '';
+                const isPinned = pinnedFields.includes(field.id);
+
+                // 라벨 포맷팅
+                let formattedLabel = field.label;
+                if (formattedLabel.includes('(')) {
+                    formattedLabel = formattedLabel.replace(/\((.*?)\)/g, '<br><span style="font-size:0.75rem; font-weight:normal; opacity:0.8;">($1)</span>');
+                }
+
+                // [유지] 공통 항목인 경우 행 전체에 연한 파란색 음영 적용
+                const rowStyle = isPinned ? 'background-color: #f0f9ff;' : '';
+
+                html += `<tr style="${rowStyle}">`;
+
+                // (1) 좌측 고정 라벨 (Sticky)
+                html += `<td class="sticky-col" style="${rowStyle}">
+                            <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                                <label class="${isRequired}" title="${field.label}" style="cursor:help; ${isPinned ? 'font-weight:bold;' : ''}">
+                                    ${formattedLabel}
+                                </label>
+                                <div class="label-icons" style="margin-left:4px; display:flex;">
+                                    ${isPinned
+                                        ? `<button class="icon-btn pin-btn" data-pin-action="unpin" data-field-id="${field.id}" title="공통 설정 해제 (클릭 시 개별 입력으로 전환)" style="color:var(--primary-color); opacity:1;">🔒</button>`
+                                        : `<button class="icon-btn pin-btn" data-pin-action="pin" data-field-id="${field.id}" title="공통 항목으로 설정">📌</button>`
+                                    }
+                                    <button class="icon-btn hide-btn" data-field-id="${field.id}">×</button>
+                                </div>
+                            </div>
+                         </td>`;
+
+                // (2) 각 항목 데이터 입력 셀
+                items.forEach((itemData, idx) => {
                     const value = itemData[field.id] || '';
-                    const uniqueId = `${field.id}_${index}`;
-                    const isRequired = currentMandatory.includes(field.id) ? 'required' : '';
+                    const uniqueId = `${field.id}_${idx}`;
+                    let inputHtml = '';
 
-                    let iconsHtml = isPinned
-                        ? `<button class="icon-btn lock-icon">🔒</button>`
-                        : `<button class="icon-btn pin-btn" data-pin-action="pin" data-field-id="${field.id}">📌</button><button class="icon-btn hide-btn" data-field-id="${field.id}">×</button>`;
+                    // 공통 항목이라도 수정 가능, 배경색은 행 스타일(rowStyle)을 따름(투명)
+                    let extraStyle = 'background-color: transparent !important;';
+                    let warningHtml = '';
 
-                    let labelExtra = '';
-                    if ((field.id === 'amount' || field.id === 'unitPrice') && itemData.vatExcluded) {
-                        labelExtra = `<span class="vat-badge-btn" data-index="${index}" data-field="${field.id}">⚠️ VAT 별도 감지 (+10% 적용하기)</span>`;
+                    // VAT 감지
+                    if ((field.id === 'amount' || field.id === 'unitPrice') && itemData.vatExcluded && !isPinned) {
+                        warningHtml = `<span class="vat-badge-btn" data-index="${idx}" data-field="${field.id}" style="position:absolute; right:4px; top:4px; font-size:0.65rem; padding:2px 4px; pointer-events:auto; z-index:15;">VAT별도 감지 (+10% 적용하기)</span>`;
                     }
 
-                    let isDisabled = false;
-                    let extraStyle = "";
+                    // 계좌 필드 특수 처리
                     if (field.id === 'account') {
                         const payMethod = itemData['paymentMethod'] || '';
                         if (payMethod.includes('카드')) {
-                            isDisabled = true;
-                            extraStyle = "background-color: #f0f0f0; color: #aaa; cursor: not-allowed;";
-                        }
-                    }
-
-                    let fieldHtml = `<div><div class="label-wrapper"><label for="${uniqueId}" class="${isRequired}">${field.label}${labelExtra}</label><div class="label-icons">${iconsHtml}</div></div>`;
-
-                    // 계좌 불일치 경고 및 거래처 선택 로직 보존
-                    let accountWarningHtml = '';
-                    let inputClass = '';
-
-                    if (field.id === 'account' && !isPinned && !isDisabled) {
-                        const currentVendor = itemData.vendor;
-                        if (currentVendor && vendors[currentVendor] && vendors[currentVendor].account) {
-                            const savedAccount = vendors[currentVendor].account;
-                            if (value.replace(/\s/g, '') !== savedAccount.replace(/\s/g, '')) {
-                                inputClass = 'account-warning-input';
-                                accountWarningHtml = `<div class="account-warning-box"><span>⚠️ DB 정보 불일치</span><button class="button button-secondary" style="padding:0.2rem 0.5rem; font-size:0.75rem;" onclick="items[${index}].account='${savedAccount}'; render();">DB값으로 변경 (${savedAccount})</button></div>`;
+                            extraStyle = 'background:#f1f5f9 !important; color:#a0aec0; pointer-events:none;';
+                        } else if (!isPinned) {
+                            const currentVendor = itemData.vendor;
+                            if (currentVendor && vendors[currentVendor] && vendors[currentVendor].account) {
+                                const savedAccount = vendors[currentVendor].account;
+                                if (value.replace(/\s/g, '') !== savedAccount.replace(/\s/g, '')) {
+                                    extraStyle += 'background:#fffaf0 !important; border:1px solid #ed8936 !important;';
+                                    warningHtml = `<button onclick="items[${idx}].account='${savedAccount}'; render();" style="position:absolute; right:5px; top:50%; transform:translateY(-50%); border:1px solid #ed8936; background:white; color:#ed8936; border-radius:4px; font-size:0.7rem; cursor:pointer; padding:2px 6px; z-index:15;">DB복원</button>`;
+                                }
                             }
                         }
                     }
 
-                    if (field.id === 'vendor' && !isPinned) {
+                    // 입력 컨트롤 생성
+                    if (field.id === 'vendor') {
                         const isDirectMode = value && !vendors[value];
                         if (!isDirectMode) {
                             const optionsHtml = Object.keys(vendors).map(k => `<option value="${k}" ${value === k ? 'selected' : ''}>${k}</option>`).join('');
-                            fieldHtml += `<select id="${uniqueId}" class="vendor-select-item" data-index="${index}"><option value="">-- 거래처 선택 --</option>${optionsHtml}<option value="__DIRECT__" style="color:var(--primary-color); font-weight:bold;">+ 직접 입력 (새로운 거래처)</option></select>`;
+                            inputHtml = `<select id="${uniqueId}" class="vendor-select-item" data-index="${idx}" style="${extraStyle}"><option value="">(선택)</option>${optionsHtml}<option value="__DIRECT__" style="color:var(--primary-color); font-weight:bold;">+ 직접 입력</option></select>`;
                         } else {
-                            fieldHtml += `<div style="display:flex; gap:0.5rem; align-items: center;"><input type="text" id="${uniqueId}" value="${value}" placeholder="거래처명 입력" style="flex:1;"><button class="button button-secondary vendor-reset-btn" data-index="${index}" style="padding:0.75rem; font-size:0.8rem; white-space:nowrap;">📋 목록 선택</button></div>`;
+                            inputHtml = `<div style="display:flex; width:100%; height:100%;"><input type="text" id="${uniqueId}" value="${value}" style="flex:1; ${extraStyle}" placeholder="직접 입력"><button class="vendor-reset-btn" data-index="${idx}" style="width:30px; border:none; background:#f1f5f9; cursor:pointer; color:#718096; opacity: 0.5;">↺</button></div>`;
                         }
                     } else if (field.type === 'select') {
                         const options = field.options || [];
                         const optionsHtml = options.map(o => `<option value="${o}" ${value === o ? 'selected' : ''}>${o}</option>`).join('');
-                        fieldHtml += `<select id="${uniqueId}"><option value="">-- 선택 --</option>${optionsHtml}</select>`;
+                        inputHtml = `<select id="${uniqueId}" style="${extraStyle}"><option value="">(선택)</option>${optionsHtml}</select>`;
                     } else {
-                        fieldHtml += `<input type="text" id="${uniqueId}" value="${value}" class="${inputClass}" ${isDisabled ? 'disabled' : ''} style="${extraStyle}">`;
+                        inputHtml = `<input type="text" id="${uniqueId}" value="${value}" style="${extraStyle}">`;
                     }
 
-                    return fieldHtml + accountWarningHtml + `</div>`;
-                }).join('');
+                    // [수정] td 태그에도 rowStyle을 직접 적용하여 배경색이 셀에 표시되도록 함
+                    html += `<td class="input-cell" style="${rowStyle}">
+                                ${inputHtml}
+                                ${warningHtml}
+                             </td>`;
+                });
+                html += `</tr>`;
+            });
 
-                return `
-                    <div class="item-card ${items.length === 1 ? 'single-item' : ''}" data-index="${index}">
-                        <div class="item-header"><h3>항목 ${index + 1}</h3>${items.length > 1 ? '<button class="remove-item-btn">×</button>' : ''}</div>
-                        ${assetSelectorHtml} <div class="item-fields-container">${itemFieldsHtml}</div>
-                    </div>`;
-            }).join('');
+            html += `</tbody></table></div>`;
+            itemsContainer.innerHTML = html;
         }
 
-        // [신규 함수] 지출승인요청서 전용 그리드 렌더러 (Excel-like UX)
-        // [수정] 지출승인요청서 전용 그리드 렌더러 (달력 적용, UX 개선)
-        // [수정] 지출승인요청서 전용 그리드 렌더러 (헤더 핀 기능 추가 + Full UX)
-        // ============================================================
-        // [수정됨] 지출승인요청서 그리드 렌더러 (화살표 UX 강화)
-        // ============================================================
-        // ============================================================
-        // [디자인 개선] 지출승인요청서 그리드 (SVG 아이콘 적용)
-        // ============================================================
+        // [수정] 지출승인요청서 전용 그리드 렌더러 (공통 항목 UI 개선: 해지 및 수정 가능)
+        // [수정] 지출승인요청서 전용 그리드 렌더러 (공통 항목 디자인 수정: 글자색 일반화, 셀 음영 적용)
         function renderGridView(template) {
             itemsContainer.style.display = 'block';
             itemsContainer.style.width = '100%';
@@ -2068,16 +2052,29 @@
             const inputStyle = "width: 100%; border: 1px solid #E2E8F0; padding: 8px; border-radius: 4px; font-size: 0.9rem; text-align:center; transition: all 0.2s;";
             const pinBtnStyle = "margin-left:4px; cursor:pointer; border:none; background:none; color:#CBD5E0; font-size:1rem; vertical-align:middle; transition: transform 0.2s, color 0.2s;";
 
+            // [유지] 공통 항목일 때 적용할 연한 파란색 배경 스타일 (셀 음영 역할)
+            const pinnedInputStyle = "background-color: #f0f9ff !important; border-color: #cbd5e0 !important;";
+
             // 헤더 생성
             const makeHeader = (label, fieldId) => {
-                if (pinnedFields.includes(fieldId)) return `<span style="color:#2C5CA3;">🔒 ${label}</span>`;
+                if (pinnedFields.includes(fieldId)) {
+                    // [수정] 텍스트 색상 파란색(#2C5CA3) 제거 -> 일반 글자색 적용
+                    return `
+                        <span style="font-weight:bold;">${label}</span>
+                        <button class="pin-btn" data-pin-action="unpin" data-field-id="${fieldId}" title="공통 설정 해제" style="${pinBtnStyle}; color:#2C5CA3; opacity:1;" onmouseover="this.style.color='#E53E3E'" onmouseout="this.style.color='#2C5CA3'">🔒</button>
+                    `;
+                }
                 return `
                     ${label}
                     <button onclick="promoteToCommon('${fieldId}')" title="${label} 공통 항목으로 설정" style="${pinBtnStyle}" onmouseover="this.style.color='#E53E3E'; this.style.transform='scale(1.2)'" onmouseout="this.style.color='#CBD5E0'; this.style.transform='scale(1)'">📌</button>
                 `;
             };
 
-            // [SVG 아이콘 정의] 스타일 통일을 위한 벡터 그래픽
+            // 스타일 생성 헬퍼
+            const isPinned = (fieldId) => pinnedFields.includes(fieldId);
+            const getStyle = (fieldId, extraStyle = '') => isPinned(fieldId) ? `${inputStyle} ${extraStyle} ${pinnedInputStyle}` : `${inputStyle} ${extraStyle}`;
+
+            // [SVG 아이콘 정의]
             const svgs = {
                 right: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`,
                 left: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>`,
@@ -2090,7 +2087,6 @@
                 let dateVal = item.date || '';
                 if (dateVal.includes('.')) dateVal = dateVal.replace(/\./g, '-').replace(/\s/g, '');
 
-                // 화살표 상태 설정
                 const dir = item.route_direction || 'right';
                 const arrowConfig = {
                     'right': { icon: svgs.right, color: '#CBD5E0', hoverColor: '#718096', title: '편도 (기본)' },
@@ -2105,51 +2101,51 @@
                         <button onclick="removeGridItem(${idx})" style="color:#CBD5E0; border:none; background:none; cursor:pointer; font-weight:bold; font-size:1.5rem; line-height:1;" onmouseover="this.style.color='#E53E3E'" onmouseout="this.style.color='#CBD5E0'">×</button>
                     </td>
                     <td style="${tdStyle} width: 40px; color:#AAA; font-size:0.8rem; text-align:center;">${idx + 1}</td>
-                    
+
                     <td style="${tdStyle} width: 130px;">
-                        <input type="date" value="${dateVal}" style="${inputStyle} font-family:inherit; color:var(--text-dark);" onchange="updateGridItem(${idx}, 'date', this.value)">
+                        <input type="date" value="${dateVal}" style="${getStyle('date', 'font-family:inherit; color:var(--text-dark);')}" onchange="updateGridItem(${idx}, 'date', this.value)">
                     </td>
-                    
+
                     <td style="${tdStyle} width: 110px;">
-                        <select style="${inputStyle}" onchange="updateGridItem(${idx}, 'type', this.value)">
+                        <select style="${getStyle('type')}" onchange="updateGridItem(${idx}, 'type', this.value)">
                             <option value="교통비(자차)" ${!isGeneral ? 'selected' : ''}>교통비(자차)</option>
                             <option value="일반비용" ${isGeneral ? 'selected' : ''}>일반비용</option>
                         </select>
                     </td>
-                    
+
                     <td style="${tdStyle} width: 180px;">
-                        <select style="${inputStyle}; font-size:0.85rem; text-align:left;" onchange="updateGridItem(${idx}, 'projectCode', this.value)">
+                        <select style="${getStyle('projectCode', 'font-size:0.85rem; text-align:left;')}" onchange="updateGridItem(${idx}, 'projectCode', this.value)">
                             <option value="">(프로젝트 선택)</option>
                             ${projectOptions.map(p => `<option value="${p}" ${item.projectCode === p ? 'selected' : ''}>${p}</option>`).join('')}
                         </select>
                     </td>
-                    
+
                     <td style="${tdStyle}">
                         <div style="display: ${!isGeneral ? 'flex' : 'none'}; gap: 8px; align-items: center; justify-content: center;">
-                            <input type="text" value="${item.route_start || ''}" placeholder="출발지" style="${inputStyle}; flex:1;" onchange="updateGridItem(${idx}, 'route_start', this.value)">
-                            
-                            <button onclick="toggleGridDirection(${idx})" title="${cur.title}" 
+                            <input type="text" value="${item.route_start || ''}" placeholder="출발지" style="${getStyle('route_start', 'flex:1;')}" onchange="updateGridItem(${idx}, 'route_start', this.value)">
+
+                            <button onclick="toggleGridDirection(${idx})" title="${cur.title}"
                                 style="border:1px solid #E2E8F0; background:white; border-radius:8px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:${cur.color}; transition:all 0.2s; box-shadow:0 1px 2px rgba(0,0,0,0.05);"
                                 onmouseover="this.style.color='${cur.hoverColor}'; this.style.borderColor='${cur.hoverColor}'; this.style.background='#F7FAFC';"
                                 onmouseout="this.style.color='${cur.color}'; this.style.borderColor='#E2E8F0'; this.style.background='white';">
                                 ${cur.icon}
                             </button>
 
-                            <input type="text" value="${item.route_end || ''}" placeholder="도착지" style="${inputStyle}; flex:1;" onchange="updateGridItem(${idx}, 'route_end', this.value)">
+                            <input type="text" value="${item.route_end || ''}" placeholder="도착지" style="${getStyle('route_end', 'flex:1;')}" onchange="updateGridItem(${idx}, 'route_end', this.value)">
                         </div>
-                        <input type="text" value="${item.itemName || ''}" placeholder="지출 상세 내역 입력" style="${inputStyle}; display: ${isGeneral ? 'block' : 'none'}; text-align:left;" onchange="updateGridItem(${idx}, 'itemName', this.value)">
+                        <input type="text" value="${item.itemName || ''}" placeholder="지출 상세 내역 입력" style="${getStyle('itemName', `display: ${isGeneral ? 'block' : 'none'}; text-align:left;`)}" onchange="updateGridItem(${idx}, 'itemName', this.value)">
                     </td>
-                    
+
                     <td style="${tdStyle}">
-                        <input type="text" value="${item.tripObjective || ''}" placeholder="업무/출장 목적" style="${inputStyle}; text-align:left;" onchange="updateGridItem(${idx}, 'tripObjective', this.value)">
+                        <input type="text" value="${item.tripObjective || ''}" placeholder="업무/출장 목적" style="${getStyle('tripObjective', 'text-align:left;')}" onchange="updateGridItem(${idx}, 'tripObjective', this.value)">
                     </td>
-                    
+
                     <td style="${tdStyle} width: 110px;">
-                        <input type="text" value="${amountVal ? amountVal.toLocaleString() : ''}" placeholder="0" style="${inputStyle} text-align:right; font-weight:bold; color:#2C5CA3;" onkeyup="formatGridCurrency(this, ${idx})">
+                        <input type="text" value="${amountVal ? amountVal.toLocaleString() : ''}" placeholder="0" style="${getStyle('amount', 'text-align:right; font-weight:bold; color:#2C5CA3;')}" onkeyup="formatGridCurrency(this, ${idx})">
                     </td>
-                    
+
                     <td style="${tdStyle} width: 110px;">
-                        <input type="text" value="${item.proof || ''}" placeholder="참조1" style="${inputStyle}" onchange="updateGridItem(${idx}, 'proof', this.value)">
+                        <input type="text" value="${item.proof || ''}" placeholder="참조1" style="${getStyle('proof')}" onchange="updateGridItem(${idx}, 'proof', this.value)">
                     </td>
                 </tr>
                 `;
@@ -2195,7 +2191,7 @@
                 </div>
             `;
         }
-// [수정됨] 화살표 방향 토글 + 금액 자동 계산 로직
+        // [수정됨] 화살표 방향 토글 + 금액 자동 계산 로직
         window.toggleGridDirection = function (idx) {
             const currentDir = items[idx].route_direction || 'right';
             let nextDir = 'right';
@@ -2358,22 +2354,36 @@
             handlePinClick(e);
         });
         // [수정] 세부 항목 클릭 이벤트 (삭제, 핀, 숨김 + 거래처 목록 복귀 버튼)
+        // [수정] 항목 컨테이너 클릭 이벤트 핸들러 (그리드 뷰 대응)
         itemsContainer.addEventListener('click', (e) => {
+            // 1. 공통 기능: 핀(Pin) 및 숨김(Hide)
             handleIconClick(e);
             handlePinClick(e);
 
-            // 항목 삭제
-            if (e.target.classList.contains('remove-item-btn')) {
-                items.splice(e.target.closest('.item-card').dataset.index, 1);
-                if (items.length === 0) items.push({});
-                render();
+            // 2. [수정됨] 항목 삭제 버튼 (그리드 헤더에 위치)
+            // .closest('.remove-item-btn')으로 버튼을 찾고, data-index를 읽습니다.
+            const removeBtn = e.target.closest('.remove-item-btn');
+            if (removeBtn) {
+                const index = parseInt(removeBtn.dataset.index, 10);
+                if (!isNaN(index)) {
+                    // 항목 삭제 로직
+                    items.splice(index, 1);
+                    // 모두 지워지면 빈 항목 1개 추가
+                    if (items.length === 0) items.push({});
+                    render();
+                    updateFloatingBar();
+                }
+                return; // 이벤트 종료
             }
 
-            // [신규] 세부 항목에서 '목록 선택' 버튼 클릭 시 (Input -> Select 복귀)
-            if (e.target.classList.contains('vendor-reset-btn')) {
-                const index = e.target.dataset.index;
-                items[index].vendor = ''; // 값을 비워 Select 모드로 복귀
-                render();
+            // 3. 거래처 직접입력 -> 목록복귀 버튼
+            const resetBtn = e.target.closest('.vendor-reset-btn');
+            if (resetBtn) {
+                const index = parseInt(resetBtn.dataset.index, 10);
+                if (!isNaN(index)) {
+                    items[index].vendor = ''; // 값을 비워 Select 모드로 복귀
+                    render();
+                }
             }
         });
 
@@ -4027,94 +4037,95 @@
         updateFileStatus(); // 초기화 확인
 
         // ==========================================
-    // ==========================================
-    // [구글 로그인] 개선된 인증 로직 (자동 로그인 + 로그아웃)
-    // ==========================================
-    const ALLOWED_DOMAINS = ['radexel.com']; // 허용할 도메인
+        // [구글 로그인] 개선된 인증 로직 (자동 로그인 + 로그아웃)
+        // ==========================================
+        const ALLOWED_DOMAINS = ['radexel.com']; // 허용할 도메인
 
-    // [1] 페이지가 열리자마자 '저장된 로그인 기록'이 있는지 확인
-    window.addEventListener('load', () => {
-        const savedEmail = localStorage.getItem('radexel_login_user');
+        // [1] 페이지가 열리자마자 '저장된 로그인 기록'이 있는지 확인
+        window.addEventListener('load', () => {
+            const savedEmail = localStorage.getItem('radexel_login_user');
 
-        if (savedEmail) {
-            // 기록이 있으면 -> 로그인 창 즉시 숨김 & 메인 화면 표시
-            document.getElementById('login-overlay').style.display = 'none';
-            document.getElementById('main-app').style.display = 'flex';
-            console.log("자동 로그인 성공:", savedEmail);
-
-            // 로그아웃 버튼 만들기
-            createLogoutButton(savedEmail);
-        }
-    });
-
-    // [2] 구글 토큰 해독 함수 (기존과 동일)
-    function parseJwt(token) {
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-        return JSON.parse(jsonPayload);
-    }
-
-    // [3] 로그인 성공 시 실행 (최초 1회)
-    window.handleCredentialResponse = function(response) {
-        try {
-            const responsePayload = parseJwt(response.credential);
-            const userEmail = responsePayload.email;
-            const userDomain = userEmail.split('@')[1];
-
-            console.log("로그인 시도: " + userEmail);
-
-            if (ALLOWED_DOMAINS.includes(userDomain)) {
-                // [성공]
-                // ★ 핵심: 브라우저에 로그인 기록 저장 (반영구)
-                localStorage.setItem('radexel_login_user', userEmail);
-
+            if (savedEmail) {
+                // 기록이 있으면 -> 로그인 창 즉시 숨김 & 메인 화면 표시
                 document.getElementById('login-overlay').style.display = 'none';
                 document.getElementById('main-app').style.display = 'flex';
+                console.log("자동 로그인 성공:", savedEmail);
 
                 // 로그아웃 버튼 만들기
-                createLogoutButton(userEmail);
-
-                // (선택) 환영 메시지 (필요 없으면 주석 처리)
-                // alert(`${responsePayload.name}님 환영합니다.`);
-            } else {
-                // [실패]
-                const errorMsg = document.getElementById('login-error-msg');
-                errorMsg.style.display = 'block';
-                errorMsg.innerText = "⛔ '" + userDomain + "' 계정은 접근 권한이 없습니다.";
-                localStorage.removeItem('radexel_login_user'); // 혹시 모를 기록 삭제
+                createLogoutButton(savedEmail);
             }
-        } catch (e) {
-            console.error(e);
-            alert("로그인 처리 중 오류가 발생했습니다.");
-        }
-    };
-
-    // [4] 우측 상단에 '로그아웃' 버튼을 만드는 함수
-    function createLogoutButton(email) {
-        if (document.getElementById('custom-logout-btn')) return; // 이미 있으면 중단
-
-        const btn = document.createElement('button');
-        btn.id = 'custom-logout-btn';
-        btn.innerText = "🔒 로그아웃";
-        // 스타일 설정 (우측 상단 고정)
-        Object.assign(btn.style, {
-            position: 'fixed', top: '10px', right: '10px', zIndex: '99999',
-            padding: '5px 10px', fontSize: '12px', cursor: 'pointer',
-            backgroundColor: '#718096', color: 'white', border: 'none', borderRadius: '4px'
         });
 
-        // 클릭 시 로그아웃 처리
-        btn.onclick = function() {
-            if(confirm('로그아웃 하시겠습니까?')) {
-                localStorage.removeItem('radexel_login_user'); // 기록 삭제
-                location.reload(); // 새로고침 (로그인 창 다시 뜸)
+        // [2] 구글 토큰 해독 함수 (기존과 동일)
+        function parseJwt(token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        }
+
+        // [3] 로그인 성공 시 실행 (최초 1회)
+        window.handleCredentialResponse = function(response) {
+            try {
+                const responsePayload = parseJwt(response.credential);
+                const userEmail = responsePayload.email;
+                const userDomain = userEmail.split('@')[1];
+
+                console.log("로그인 시도: " + userEmail);
+
+                if (ALLOWED_DOMAINS.includes(userDomain)) {
+                    // [성공]
+                    // ★ 핵심: 브라우저에 로그인 기록 저장 (반영구)
+                    localStorage.setItem('radexel_login_user', userEmail);
+
+                    document.getElementById('login-overlay').style.display = 'none';
+                    document.getElementById('main-app').style.display = 'flex';
+
+                    // 로그아웃 버튼 만들기
+                    createLogoutButton(userEmail);
+
+                    // (선택) 환영 메시지 (필요 없으면 주석 처리)
+                    // alert(`${responsePayload.name}님 환영합니다.`);
+                } else {
+                    // [실패]
+                    const errorMsg = document.getElementById('login-error-msg');
+                    errorMsg.style.display = 'block';
+                    errorMsg.innerText = "⛔ '" + userDomain + "' 계정은 접근 권한이 없습니다.";
+                    localStorage.removeItem('radexel_login_user'); // 혹시 모를 기록 삭제
+                }
+            } catch (e) {
+                console.error(e);
+                alert("로그인 처리 중 오류가 발생했습니다.");
             }
         };
-        document.body.appendChild(btn);
-    }
+
+        // [4] 우측 상단에 '로그아웃' 버튼을 만드는 함수
+        function createLogoutButton(email) {
+            if (document.getElementById('custom-logout-btn')) return; // 이미 있으면 중단
+
+            const btn = document.createElement('button');
+            btn.id = 'custom-logout-btn';
+            btn.innerText = "🔒 로그아웃";
+            // 스타일 설정 (우측 상단 고정)
+            Object.assign(btn.style, {
+                position: 'fixed', top: '10px', right: '10px', zIndex: '99999',
+                padding: '5px 10px', fontSize: '12px', cursor: 'pointer',
+                backgroundColor: '#718096', color: 'white', border: 'none', borderRadius: '4px'
+            });
+
+            // 클릭 시 로그아웃 처리
+            btn.onclick = function() {
+                if(confirm('로그아웃 하시겠습니까?')) {
+                    localStorage.removeItem('radexel_login_user'); // 기록 삭제
+                    location.reload(); // 새로고침 (로그인 창 다시 뜸)
+                }
+            };
+            document.body.appendChild(btn);
+        }
+
+
 
     </script>
     <div class="modal-overlay" id="copy-preview-modal" style="backdrop-filter: blur(2px);">
