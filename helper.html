@@ -2934,9 +2934,9 @@
                 const userSelection = item.assetType || 'expense';
 
                 const typeLabels = {
-                    'expense': '비용 (소모/제작)',
-                    'tangible': '유형자산 (비품)',
-                    'intangible': '무형자산 (SW/권리)'
+                    'expense': '소모품, 주문제작, 비용',
+                    'tangible': '기성품 기기/부품, 유형자산',
+                    'intangible': 'SW/권리, 무형자산'
                 };
                 const userLabel = typeLabels[userSelection] || userSelection;
                 const userBadge = `<span style="display:inline-block; padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid #cbd5e0; background:#f7fafc; color:#2d3748;">👤 기안자 선택: ${userLabel}</span>`;
@@ -4153,6 +4153,7 @@
 </body>
 
 </html>
+
 
 
 
