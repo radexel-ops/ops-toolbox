@@ -1519,22 +1519,24 @@
         const DEFAULT_PINNED_IDS = [];
 
         // [수정] 개별 필드: 관련 과제명 추가 및 라벨 업데이트
+        // [수정] 개별 필드: 부가세(VAT) 추가 및 관련 과제명 유지
         const FIELD = {
             itemName: { id: 'itemName', label: '품목명', example: '업무용 모니터 (제조사: 삼성전자)' },
             spec: { id: 'spec', label: '규격/설명/용역내용/지출내용', example: '간략한 세부 내용' },
             qty: { id: 'qty', label: '수량', example: '2, 4' },
-            unitPrice: { id: 'unitPrice', label: '단가(외화인 경우 통화 기재)', example: '22,000,000 원 / 10 USD' },
-            amount: { id: 'amount', label: '총 금액(부가세 포함)', example: '44,000,000 원 / 40 USD' },
+            unitPrice: { id: 'unitPrice', label: '단가(공급가액)', example: '20,000,000' }, // 라벨 명확화
+            vat: { id: 'vat', label: '부가세(VAT)', example: '2,000,000' }, // [New] 부가세 필드
+            amount: { id: 'amount', label: '총 금액(부가세 포함)', example: '22,000,000' },
             date: { id: 'date', label: '지출 일자(지출 예상 일자)', example: '2025. 11. 19.' },
             note: { id: 'note', label: '기타사항(필요 시 작성)', example: '특별 요청사항 또는 부가 정보' },
             user: { id: 'user', label: '사용자/사용부서', example: '사용할 임직원, 부서, 공용 등' },
             manufacturer: { id: 'manufacturer', label: '제조사', example: '한성컴퓨터, MS, 출판사 등' },
             paymentTerms: { id: 'paymentTerms', label: '지급 조건(필요 시 작성)', example: '1) 계약금: 30% || 2) 잔금: 70%' },
 
-            // [추가] 관련 과제명 (연구비 이체 시 필수)
+            // 관련 과제명 (연구비 이체 시 필수)
             relatedTask: { id: 'relatedTask', label: '관련 과제명 (*연구비 계좌 이체 시 기재)', example: '방사선융복합산업지원 사업 지원금' },
 
-            // 기존 필드들 (다른 양식용 유지)
+            // 기존 필드들
             isRecurring: { id: 'isRecurring', label: '정기결제 여부', example: '일시납 / 매년 / 매월 등' },
             recurringPeriod: { id: 'recurringPeriod', label: '자동 결제 기간', example: '무기한, 2023.3.14 ~ 2024.3.14' },
             recurringDate: { id: 'recurringDate', label: '자동 결제일', example: '매달 10일, 매년 3월 둘째 주 등' },
@@ -1562,22 +1564,23 @@
         const T = (title, ...fields) => ({ title, fields: [...BASE_COMMON_FIELDS, ...Object.values(FIELD).filter(f => fields.includes(f))] });
 
         // [전역 설정] 필드 정렬 순서 정의 (첨부해주신 이미지 순서와 100% 동기화)
-        // 순서: 품목 > 단가 > 수량 > 금액 > 날짜 > 지급조건 > 사용자 > 결제수단 > 거래처 > 계좌 > 과제 > 목적 > 비고
+        // [수정] 순서: 품목 > 단가 > 부가세(New) > 수량 > 금액 > ...
         const FIELD_ORDER = [
             'itemName',      // 1. 품목명
             'projectCode',   // 2. [필수] 프로젝트 (최상단)
             'unitPrice',     // 3. 단가
-            'qty',           // 4. 수량
-            'amount',        // 5. 총 금액
-            'date',          // 6. 구매일자
-            'paymentTerms',  // 7. 지급 조건
-            'user',          // 8. 사용자/사용부서
-            'paymentMethod', // 9. [필수] 결제 수단
-            'vendor',        // 10. [필수] 거래처명
-            'account',       // 11. 계좌 정보
-            'relatedTask',   // 12. 관련 과제명
-            'purpose',       // 13. 구매 목적
-            'note',          // 14. 기타사항 (비고)
+            'vat',           // 4. [New] 부가세
+            'qty',           // 5. 수량
+            'amount',        // 6. 총 금액
+            'date',          // 7. 구매일자
+            'paymentTerms',  // 8. 지급 조건
+            'user',          // 9. 사용자/사용부서
+            'paymentMethod', // 10. [필수] 결제 수단
+            'vendor',        // 11. [필수] 거래처명
+            'account',       // 12. 계좌 정보
+            'relatedTask',   // 13. 관련 과제명
+            'purpose',       // 14. 구매 목적
+            'note',          // 15. 기타사항 (비고)
 
             // 기타 양식용 필드 (순서 뒤로 배치)
             'service', 'course', 'tripObjective',
@@ -1589,22 +1592,23 @@
         const orderIndex = (id) => { const i = FIELD_ORDER.indexOf(id); return i === -1 ? 1000 : i; };
         const sortFields = (arr) => arr.slice().sort((a, b) => orderIndex(a.id) - orderIndex(b.id));
 
-        // [수정] 양식 정의 (이미지 순서대로 필드 재배치)
+        // [수정] 양식 정의 (지출품의서 계열에 FIELD.vat 추가)
         const formTemplates = {
             'general_expense': T('지출품의서 - 일반',
-                FIELD.itemName, FIELD.unitPrice, FIELD.qty, FIELD.amount,
+                FIELD.itemName, FIELD.unitPrice, FIELD.vat, FIELD.qty, FIELD.amount, // vat 추가
                 FIELD.date, FIELD.paymentTerms, FIELD.user, FIELD.paymentMethod,
                 FIELD.vendor, FIELD.account, FIELD.relatedTask, FIELD.purpose, FIELD.note
             ),
-            'meeting_expense': T('지출품의서 - 사내 사외 회의비', FIELD.itemName, FIELD.date, FIELD.amount, FIELD.user, FIELD.place, FIELD.attendees, FIELD.paymentMethod, FIELD.vendor, FIELD.note),
-            'outsourcing_expense': T('지출품의서 - 외주용역', FIELD.service, FIELD.date, FIELD.periodFrom, FIELD.periodTo, FIELD.spec, FIELD.user, FIELD.amount, FIELD.paymentMethod, FIELD.vendor, FIELD.paymentTerms, FIELD.note),
-            'education_expense': T('지출품의서 - 교육비', FIELD.course, FIELD.date, FIELD.provider, FIELD.periodFrom, FIELD.periodTo, FIELD.place, FIELD.attendees, FIELD.amount, FIELD.paymentMethod, FIELD.relatedTask, FIELD.note),
-            'software_expense': T('지출품의서 - 소프트웨어', FIELD.license, FIELD.date, FIELD.unitPrice, FIELD.seats, FIELD.manufacturer, FIELD.amount, FIELD.paymentMethod, FIELD.paymentTerms, FIELD.user, FIELD.note),
-            'ip_expense': T('지출품의서 - 지식재산권', FIELD.ipMgmtNo, FIELD.date, FIELD.spec, FIELD.invoiceNo, FIELD.amount, FIELD.paymentTerms, FIELD.note),
-            // [변경] 지출승인요청서: 엑셀형 그리드(Grid) 모드 활성화
+            'meeting_expense': T('지출품의서 - 사내 사외 회의비', FIELD.itemName, FIELD.date, FIELD.unitPrice, FIELD.vat, FIELD.amount, FIELD.user, FIELD.place, FIELD.attendees, FIELD.paymentMethod, FIELD.vendor, FIELD.note), // vat, unitPrice 추가하여 상세 계산 가능하도록
+            'outsourcing_expense': T('지출품의서 - 외주용역', FIELD.service, FIELD.date, FIELD.periodFrom, FIELD.periodTo, FIELD.spec, FIELD.user, FIELD.unitPrice, FIELD.vat, FIELD.amount, FIELD.paymentMethod, FIELD.vendor, FIELD.paymentTerms, FIELD.note), // vat, unitPrice 추가
+            'education_expense': T('지출품의서 - 교육비', FIELD.course, FIELD.date, FIELD.provider, FIELD.periodFrom, FIELD.periodTo, FIELD.place, FIELD.attendees, FIELD.unitPrice, FIELD.vat, FIELD.amount, FIELD.paymentMethod, FIELD.relatedTask, FIELD.note), // vat, unitPrice 추가
+            'software_expense': T('지출품의서 - 소프트웨어', FIELD.license, FIELD.date, FIELD.unitPrice, FIELD.vat, FIELD.seats, FIELD.manufacturer, FIELD.amount, FIELD.paymentMethod, FIELD.paymentTerms, FIELD.user, FIELD.note), // vat 추가
+            'ip_expense': T('지출품의서 - 지식재산권', FIELD.ipMgmtNo, FIELD.date, FIELD.spec, FIELD.invoiceNo, FIELD.unitPrice, FIELD.vat, FIELD.amount, FIELD.paymentTerms, FIELD.note), // vat, unitPrice 추가
+
+            // [변경 없음] 지출승인요청서: 엑셀형 그리드(Grid) 모드 (부가세 제외 유지)
             'travel_expense_claim': {
                 title: '지출승인요청서 (교통여비/실비)',
-                mode: 'grid', // 이 플래그가 있으면 카드 대신 엑셀형 테이블로 렌더링
+                mode: 'grid',
                 fields: [
                     { id: 'date', label: '일자', type: 'date' },
                     { id: 'type', label: '구분', type: 'select', options: ['교통비(자차)', '일반비용'] },
@@ -1875,6 +1879,7 @@
         // [신규 함수: 기존 로직 격리] 카드 뷰 렌더러 (공통 항목 UI 개선: 해지 기능, 수정 허용, 음영 처리)
         // [신규 함수: 기존 로직 격리] 카드 뷰 렌더러 (공통 항목 디자인 수정: 글자색 일반화, 행 음영 적용)
         // [신규 함수: 기존 로직 격리] 카드 뷰 렌더러 (공통 항목 디자인 수정: 셀 배경색 강제 적용)
+        // [수정 Step 3] 카드 뷰 렌더러 (VAT 버튼 & 프로젝트 말풍선 UI 추가)
         function renderCardView(template) {
             const allFields = template.fields;
             const currentMandatory = [...MANDATORY_FIELDS['all'], ...(MANDATORY_FIELDS[currentFormType] || [])];
@@ -1893,9 +1898,7 @@
 
             // --- 1. 헤더 행 (<thead>) ---
             html += `<thead><tr>`;
-            // 1-1. No. (Sticky)
             html += `<th class="sticky-col">No.</th>`;
-            // 1-2. 항목 1, 2...
             items.forEach((_, idx) => {
                 const delBtn = items.length > 1
                     ? `<button class="remove-item-btn" data-index="${idx}" style="margin-left:8px; width:24px; height:24px; border-radius:50%; background:white; border:1px solid #cbd5e0; color:#e53e3e; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; vertical-align:middle;">×</button>`
@@ -1910,7 +1913,7 @@
             // --- 2. 본문 행 (<tbody>) ---
             html += `<tbody>`;
 
-            // 2-1. 자산 성격 행
+            // 2-1. 자산 성격 행 (기존 유지)
             html += `<tr>
                         <td class="sticky-col">
                             비용 성격<br>
@@ -1921,26 +1924,17 @@
                             return `<td class="input-cell" style="background:#fff; padding: 0;">
                                         <div class="table-asset-wrapper">
                                             <div class="asset-check-bubble">회계담당자는 몰라요! 확인필수</div>
-
-                                            <div class="rich-asset-btn ${assetType === 'expense' ? 'active' : ''}"
-                                                 data-type="expense"
-                                                 onclick="setAssetType(${idx}, 'expense')">
+                                            <div class="rich-asset-btn ${assetType === 'expense' ? 'active' : ''}" data-type="expense" onclick="setAssetType(${idx}, 'expense')">
                                                 <span class="btn-title">소모·주문제작</span>
-                                                <span class="btn-desc">쓰면 사라지거나 전용으로 사용<br>(주문제작 부품, 소모품, 회의비)</span>
+                                                <span class="btn-desc">쓰면 사라지거나 전용<br>(주문제작, 소모품)</span>
                                             </div>
-
-                                            <div class="rich-asset-btn ${assetType === 'tangible' ? 'active' : ''}"
-                                                 data-type="tangible"
-                                                 onclick="setAssetType(${idx}, 'tangible')">
-                                                <span class="btn-title">기성품 기기·비품</span>
-                                                <span class="btn-desc">다른 곳에 재사용/판매 가능<br>(기성품 부품, 계측기)</span>
+                                            <div class="rich-asset-btn ${assetType === 'tangible' ? 'active' : ''}" data-type="tangible" onclick="setAssetType(${idx}, 'tangible')">
+                                                <span class="btn-title">기성품 기기</span>
+                                                <span class="btn-desc">재사용/판매 가능<br>(PC, 비품, 기계)</span>
                                             </div>
-
-                                            <div class="rich-asset-btn ${assetType === 'intangible' ? 'active' : ''}"
-                                                 data-type="intangible"
-                                                 onclick="setAssetType(${idx}, 'intangible')">
+                                            <div class="rich-asset-btn ${assetType === 'intangible' ? 'active' : ''}" data-type="intangible" onclick="setAssetType(${idx}, 'intangible')">
                                                 <span class="btn-title">SW·권리</span>
-                                                <span class="btn-desc">보이지 않는 자산<br>(특허, SW, 용역)</span>
+                                                <span class="btn-desc">보이지 않는 자산<br>(특허, 용역, SW)</span>
                                             </div>
                                         </div>
                                     </td>`;
@@ -1952,18 +1946,16 @@
                 const isRequired = currentMandatory.includes(field.id) ? 'required' : '';
                 const isPinned = pinnedFields.includes(field.id);
 
-                // 라벨 포맷팅
                 let formattedLabel = field.label;
                 if (formattedLabel.includes('(')) {
                     formattedLabel = formattedLabel.replace(/\((.*?)\)/g, '<br><span style="font-size:0.75rem; font-weight:normal; opacity:0.8;">($1)</span>');
                 }
 
-                // [유지] 공통 항목인 경우 행 전체에 연한 파란색 음영 적용
                 const rowStyle = isPinned ? 'background-color: #f0f9ff;' : '';
 
                 html += `<tr style="${rowStyle}">`;
 
-                // (1) 좌측 고정 라벨 (Sticky)
+                // (1) 좌측 고정 라벨
                 html += `<td class="sticky-col" style="${rowStyle}">
                             <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
                                 <label class="${isRequired}" title="${field.label}" style="cursor:help; ${isPinned ? 'font-weight:bold;' : ''}">
@@ -1971,7 +1963,7 @@
                                 </label>
                                 <div class="label-icons" style="margin-left:4px; display:flex;">
                                     ${isPinned
-                                        ? `<button class="icon-btn pin-btn" data-pin-action="unpin" data-field-id="${field.id}" title="공통 설정 해제 (클릭 시 개별 입력으로 전환)" style="color:var(--primary-color); opacity:1;">🔒</button>`
+                                        ? `<button class="icon-btn pin-btn" data-pin-action="unpin" data-field-id="${field.id}" title="공통 설정 해제">🔒</button>`
                                         : `<button class="icon-btn pin-btn" data-pin-action="pin" data-field-id="${field.id}" title="공통 항목으로 설정">📌</button>`
                                     }
                                     <button class="icon-btn hide-btn" data-field-id="${field.id}">×</button>
@@ -1979,19 +1971,31 @@
                             </div>
                          </td>`;
 
-                // (2) 각 항목 데이터 입력 셀
+                // (2) 데이터 셀
                 items.forEach((itemData, idx) => {
                     const value = itemData[field.id] || '';
                     const uniqueId = `${field.id}_${idx}`;
                     let inputHtml = '';
-
-                    // 공통 항목이라도 수정 가능, 배경색은 행 스타일(rowStyle)을 따름(투명)
                     let extraStyle = 'background-color: transparent !important;';
                     let warningHtml = '';
 
-                    // VAT 감지
-                    if ((field.id === 'amount' || field.id === 'unitPrice') && itemData.vatExcluded && !isPinned) {
-                        warningHtml = `<span class="vat-badge-btn" data-index="${idx}" data-field="${field.id}" style="position:absolute; right:4px; top:4px; font-size:0.65rem; padding:2px 4px; pointer-events:auto; z-index:15;">VAT별도 감지 (+10% 적용하기)</span>`;
+                    // [New 1] 프로젝트 코드 말풍선 추가
+                    if (field.id === 'projectCode') {
+                         warningHtml += `<div class="asset-check-bubble" style="top: -10px; width: 140px;">회계담당자는 몰라요! 확인필수</div>`;
+                    }
+
+                    // [New 2] VAT 별도 감지 버튼 (부가세 필드에 표시)
+                    // 조건: AI가 vatExcluded=true로 판단했거나, 부가세가 비어있는데 단가는 있는 경우
+                    if (field.id === 'vat') {
+                        const hasPrice = itemData.unitPrice && itemData.unitPrice !== '0';
+                        const noVat = !value || value === '0';
+
+                        // AI가 별도라고 했거나, 단가는 있는데 부가세가 없는 경우 버튼 노출
+                        if (itemData.vatExcluded || (hasPrice && noVat)) {
+                            warningHtml += `<button onclick="applyVat(${idx})" class="vat-badge-btn" style="position:absolute; right:4px; top:8px; z-index:15; border:1px solid #E53E3E; background:#FFF5F5; color:#E53E3E; border-radius:12px; font-size:0.7rem; font-weight:bold; cursor:pointer; padding:2px 8px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+                                VAT 별도 감지! (+10% 적용)
+                            </button>`;
+                        }
                     }
 
                     // 계좌 필드 특수 처리
@@ -2005,13 +2009,13 @@
                                 const savedAccount = vendors[currentVendor].account;
                                 if (value.replace(/\s/g, '') !== savedAccount.replace(/\s/g, '')) {
                                     extraStyle += 'background:#fffaf0 !important; border:1px solid #ed8936 !important;';
-                                    warningHtml = `<button onclick="items[${idx}].account='${savedAccount}'; render();" style="position:absolute; right:5px; top:50%; transform:translateY(-50%); border:1px solid #ed8936; background:white; color:#ed8936; border-radius:4px; font-size:0.7rem; cursor:pointer; padding:2px 6px; z-index:15;">DB복원</button>`;
+                                    warningHtml += `<button onclick="items[${idx}].account='${savedAccount}'; render();" style="position:absolute; right:5px; top:50%; transform:translateY(-50%); border:1px solid #ed8936; background:white; color:#ed8936; border-radius:4px; font-size:0.7rem; cursor:pointer; padding:2px 6px; z-index:15;">DB복원</button>`;
                                 }
                             }
                         }
                     }
 
-                    // 입력 컨트롤 생성
+                    // 입력 컨트롤 생성 (기존 로직 유지)
                     if (field.id === 'vendor') {
                         const isDirectMode = value && !vendors[value];
                         if (!isDirectMode) {
@@ -2028,7 +2032,6 @@
                         inputHtml = `<input type="text" id="${uniqueId}" value="${value}" style="${extraStyle}">`;
                     }
 
-                    // [수정] td 태그에도 rowStyle을 직접 적용하여 배경색이 셀에 표시되도록 함
                     html += `<td class="input-cell" style="${rowStyle}">
                                 ${inputHtml}
                                 ${warningHtml}
@@ -2040,6 +2043,33 @@
             html += `</tbody></table></div>`;
             itemsContainer.innerHTML = html;
         }
+
+        // [New] VAT 적용 버튼 클릭 시 동작하는 헬퍼 함수
+        window.applyVat = function(idx) {
+            const rawPrice = String(items[idx].unitPrice || '0').replace(/[^0-9]/g, '');
+            const rawQty = String(items[idx].qty || '1').replace(/[^0-9]/g, ''); // 수량 없으면 1
+
+            const price = parseInt(rawPrice, 10);
+            const qty = parseInt(rawQty, 10) || 1;
+
+            if (price > 0) {
+                // 부가세 10% 계산
+                const vat = Math.floor(price * 0.1);
+                // 총액 = (단가 + 부가세) * 수량
+                const total = (price + vat) * qty;
+
+                // 데이터 업데이트
+                items[idx].vat = vat.toLocaleString();
+                items[idx].amount = total.toLocaleString();
+                items[idx].vatExcluded = false; // 경고 해제
+
+                // 알림 및 렌더링
+                showToast("부가세(10%)가 적용되었습니다.", "success");
+                render();
+            } else {
+                showToast("단가가 입력되지 않았습니다.", "error");
+            }
+        };
 
         // [수정] 지출승인요청서 전용 그리드 렌더러 (공통 항목 UI 개선: 해지 및 수정 가능)
         // [수정] 지출승인요청서 전용 그리드 렌더러 (공통 항목 디자인 수정: 글자색 일반화, 셀 음영 적용)
@@ -2558,17 +2588,17 @@
                 itemsContainer.addEventListener('change', handleItemFieldEdit);
 
                 // [통합 수정] 세부 항목 리스너 (Table View에서도 동작하도록 index 추출 로직 보강)
+                // [수정 Step 2] 자동 계산 및 필드 수정 핸들러 (4방향 연동 로직 적용)
                 function handleItemFieldEdit(e) {
                     if (!(e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) return;
 
-                    // render() 내부에서 이미 별도 처리하는 select들은 중복 처리 방지
+                    // Select 요소 중 별도 핸들러가 있는 경우 제외
                     if (e.type === 'change' && e.target.tagName === 'SELECT') {
                         if (e.target.classList.contains('vendor-select-item')) return;
                         if (e.target.id && e.target.id.startsWith('paymentMethod_')) return;
                     }
 
-                    // 테이블 뷰에서는 .item-card가 없으므로 id에서 index를 추출
-                    // (id 규칙: `${fieldId}_${index}`)
+                    // ID에서 index와 fieldId 추출 (예: unitPrice_0)
                     const rawId = e.target.id || '';
                     const parts = rawId.split('_');
                     if (parts.length < 2) return;
@@ -2580,6 +2610,7 @@
                     const fieldId = parts.slice(0, -1).join('_');
                     let value = e.target.value;
 
+                    // [기존 로직 유지 1] 거래처 직접 입력 처리
                     if (fieldId === 'vendor') {
                         if (value === '__DIRECT__') {
                             items[index].vendor = " ";
@@ -2590,26 +2621,20 @@
                             }, 50);
                             return;
                         }
-
-                        // [방어 로직] 카드가 아닐 때만 DB 계좌 연동
                         const currentMethod = items[index].paymentMethod || '';
                         if (!currentMethod.includes('카드') && vendors[value]) {
                             items[index].account = vendors[value].account;
-                            render(); // 값 변경 후 UI 업데이트
+                            render();
                             return;
                         }
                     }
 
-                    // [수정] 2. 개별 항목 결제수단 변경 -> 과제명 자동 입력 (딸깍 기능 복구)
+                    // [기존 로직 유지 2] 결제수단 변경 시 과제명/계좌 연동
                     if (fieldId === 'paymentMethod') {
-                        // (1) 키워드 매칭
                         const matchedKey = Object.keys(AUTO_TASK_MAP).find(key => value.includes(key));
                         const targetTaskName = matchedKey ? AUTO_TASK_MAP[matchedKey] : '';
-
-                        // (2) 데이터 업데이트
                         items[index].relatedTask = targetTaskName;
 
-                        // (3) [중요] 화면(Input)에 즉시 반영
                         const relatedTaskInput = document.getElementById(`relatedTask_${index}`);
                         if (relatedTaskInput) {
                             relatedTaskInput.value = targetTaskName;
@@ -2617,13 +2642,11 @@
                             setTimeout(() => relatedTaskInput.classList.remove('highlight'), 1000);
                         }
 
-                        // (4) 기존 카드 결제 시 계좌 잠금 로직 (기존 코드 유지)
                         if (value.includes('카드')) {
                             items[index].account = '(법인/개인카드 결제 - 계좌 불필요)';
-                            render(); // UI 비활성화를 위해 재렌더링
+                            render();
                             return;
                         } else {
-                            // 카드 해제 시 복구
                             const currentVendor = items[index].vendor;
                             items[index].account = (currentVendor && vendors[currentVendor]) ? vendors[currentVendor].account : '';
                             render();
@@ -2631,22 +2654,96 @@
                         }
                     }
 
-                    if (fieldId === 'amount' || fieldId === 'unitPrice') {
-                        // INPUT에서만 커서 보정 가능
-                        const oldCursor = (typeof e.target.selectionEnd === 'number') ? e.target.selectionEnd : null;
+                    // ============================================================
+                    // [New] 4방향 자동 계산 로직 (단가 ↔ 부가세 ↔ 수량 ↔ 총액)
+                    // ============================================================
+                    if (['amount', 'unitPrice', 'vat', 'qty'].includes(fieldId)) {
+                        // 1. 숫자 포맷팅 및 커서 보존 (기존 로직 강화)
+                        const oldCursor = (e.target.type === 'text' && typeof e.target.selectionEnd === 'number') ? e.target.selectionEnd : null;
                         const oldLength = e.target.value.length;
 
-                        value = formatSmartCurrency(value);
-                        e.target.value = value;
+                        // 숫자가 아닌 문자 제거 후 콤마 적용
+                        if (fieldId !== 'qty') {
+                            value = formatSmartCurrency(value);
+                            e.target.value = value;
+                        }
 
+                        // 커서 위치 복원
                         if (oldCursor !== null) {
                             const newLength = value.length;
                             const newCursor = oldCursor + (newLength - oldLength);
                             try { e.target.setSelectionRange(newCursor, newCursor); } catch (_) { }
                         }
+
+                        // 현재 필드 값 우선 저장
+                        items[index][fieldId] = value;
+
+                        // 2. 계산을 위한 숫자 파싱 (콤마 제거)
+                        const parseNum = (v) => parseInt(String(v || '0').replace(/[^0-9]/g, '')) || 0;
+                        const formatNum = (n) => Math.floor(n).toLocaleString();
+
+                        let uP = parseNum(items[index].unitPrice); // 단가
+                        let vT = parseNum(items[index].vat);       // 부가세
+                        let qT = parseNum(items[index].qty);       // 수량
+                        let aM = parseNum(items[index].amount);    // 총액
+
+                        // 수량이 없거나 0이면 기본 1로 계산
+                        const calcQty = qT === 0 ? 1 : qT;
+
+                        // 3. 트리거별 계산 로직
+                        if (fieldId === 'amount') {
+                            // [Case A] 총액 입력 시 -> 단가/부가세 역산 (가장 중요)
+                            // 공식: 공급가 = 총액 / 1.1
+                            const supplyTotal = Math.round(aM / 1.1);
+                            vT = aM - supplyTotal;                  // 부가세
+                            uP = Math.floor(supplyTotal / calcQty); // 단가
+
+                            items[index].vat = formatNum(vT);
+                            items[index].unitPrice = formatNum(uP);
+
+                            // 총액 입력 시 수량이 비어있으면 '1'로 자동 세팅
+                            if (!items[index].qty) {
+                                items[index].qty = '1';
+                                qT = 1;
+                            }
+
+                        } else if (fieldId === 'unitPrice') {
+                            // [Case B] 단가 입력 시 -> 부가세(10%) -> 총액 계산
+                            vT = Math.floor(uP * 0.1);
+                            aM = (uP + vT) * calcQty;
+
+                            items[index].vat = formatNum(vT);
+                            items[index].amount = formatNum(aM);
+
+                        } else if (fieldId === 'vat') {
+                            // [Case C] 부가세 직접 수정 시 -> 총액 재계산 (단가는 유지)
+                            // (면세품이나 세금 차액 보정용)
+                            aM = (uP + vT) * calcQty;
+                            items[index].amount = formatNum(aM);
+
+                        } else if (fieldId === 'qty') {
+                            // [Case D] 수량 변경 시 -> 총액 재계산 (단가/부가세 유지)
+                            aM = (uP + vT) * qT; // 여기서는 실제 입력된 0도 허용
+                            items[index].amount = formatNum(aM);
+                        }
+
+                        // 4. 화면(DOM) 즉시 동기화 (재렌더링 없이 값만 변경하여 포커스 유지)
+                        const updateDOM = (fid, val) => {
+                            if (fid === fieldId) return; // 현재 입력 중인 칸은 건드리지 않음
+                            const el = document.getElementById(`${fid}_${index}`);
+                            if (el) el.value = val;
+                        };
+
+                        updateDOM('unitPrice', items[index].unitPrice);
+                        updateDOM('vat', items[index].vat);
+                        updateDOM('qty', items[index].qty);
+                        updateDOM('amount', items[index].amount);
+
+                    } else {
+                        // 그 외 일반 필드 저장
+                        items[index][fieldId] = value;
                     }
 
-                    items[index][fieldId] = value;
                     saveState();
                     updateFloatingBar();
                 }
