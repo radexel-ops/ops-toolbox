@@ -1925,11 +1925,11 @@
                                         <div class="table-asset-wrapper">
                                             <div class="asset-check-bubble">회계담당자는 몰라요! 확인필수</div>
                                             <div class="rich-asset-btn ${assetType === 'expense' ? 'active' : ''}" data-type="expense" onclick="setAssetType(${idx}, 'expense')">
-                                                <span class="btn-title">소모·주문제작</span>
-                                                <span class="btn-desc">쓰면 사라지거나 전용<br>(주문제작, 소모품)</span>
+                                                <span class="btn-title">소모·주문제작·업무경비</span>
+                                                <span class="btn-desc">쓰면 사라지거나 전용부품<br>(주문제작, 소모품)</span>
                                             </div>
                                             <div class="rich-asset-btn ${assetType === 'tangible' ? 'active' : ''}" data-type="tangible" onclick="setAssetType(${idx}, 'tangible')">
-                                                <span class="btn-title">기성품 기기</span>
+                                                <span class="btn-title">기성품 기기·비품</span>
                                                 <span class="btn-desc">재사용/판매 가능<br>(PC, 비품, 기계)</span>
                                             </div>
                                             <div class="rich-asset-btn ${assetType === 'intangible' ? 'active' : ''}" data-type="intangible" onclick="setAssetType(${idx}, 'intangible')">
@@ -3037,7 +3037,7 @@
                 const userSelection = item.assetType || 'expense';
 
                 const typeLabels = {
-                    'expense': '소모품, 주문제작, 비용',
+                    'expense': '소모품, 주문제작, 업무경비',
                     'tangible': '기성품 기기/부품, 유형자산',
                     'intangible': 'SW/권리, 무형자산'
                 };
@@ -4293,6 +4293,7 @@
 </body>
 
 </html>
+
 
 
 
