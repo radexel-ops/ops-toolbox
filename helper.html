@@ -2554,81 +2554,103 @@
         });
 
         // [통합 수정] 세부 항목 리스너 (카드 잠금 로직 강화)
-        itemsContainer.addEventListener('input', (e) => {
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') {
-                const card = e.target.closest('.item-card');
-                if (!card) return;
+        itemsContainer.addEventListener('input', handleItemFieldEdit);
+                itemsContainer.addEventListener('change', handleItemFieldEdit);
 
-                const index = card.dataset.index;
-                const fieldId = e.target.id.split('_')[0];
-                let value = e.target.value;
+                // [통합 수정] 세부 항목 리스너 (Table View에서도 동작하도록 index 추출 로직 보강)
+                function handleItemFieldEdit(e) {
+                    if (!(e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) return;
 
-                if (fieldId === 'vendor') {
-                    if (value === '__DIRECT__') {
-                        items[index].vendor = " ";
-                        saveState(); render();
-                        setTimeout(() => {
-                            const newItemInput = document.getElementById(`vendor_${index}`);
-                            if (newItemInput) { newItemInput.value = ""; newItemInput.focus(); }
-                        }, 50);
-                        return;
+                    // render() 내부에서 이미 별도 처리하는 select들은 중복 처리 방지
+                    if (e.type === 'change' && e.target.tagName === 'SELECT') {
+                        if (e.target.classList.contains('vendor-select-item')) return;
+                        if (e.target.id && e.target.id.startsWith('paymentMethod_')) return;
                     }
 
-                    // [방어 로직] 카드가 아닐 때만 DB 계좌 연동
-                    const currentMethod = items[index].paymentMethod || '';
-                    if (!currentMethod.includes('카드') && vendors[value]) {
-                        items[index].account = vendors[value].account;
-                        render(); // 값 변경 후 UI 업데이트
-                        return;
+                    // 테이블 뷰에서는 .item-card가 없으므로 id에서 index를 추출
+                    // (id 규칙: `${fieldId}_${index}`)
+                    const rawId = e.target.id || '';
+                    const parts = rawId.split('_');
+                    if (parts.length < 2) return;
+
+                    const maybeIndex = parts[parts.length - 1];
+                    const index = parseInt(maybeIndex, 10);
+                    if (isNaN(index) || !items[index]) return;
+
+                    const fieldId = parts.slice(0, -1).join('_');
+                    let value = e.target.value;
+
+                    if (fieldId === 'vendor') {
+                        if (value === '__DIRECT__') {
+                            items[index].vendor = " ";
+                            saveState(); render();
+                            setTimeout(() => {
+                                const newItemInput = document.getElementById(`vendor_${index}`);
+                                if (newItemInput) { newItemInput.value = ""; newItemInput.focus(); }
+                            }, 50);
+                            return;
+                        }
+
+                        // [방어 로직] 카드가 아닐 때만 DB 계좌 연동
+                        const currentMethod = items[index].paymentMethod || '';
+                        if (!currentMethod.includes('카드') && vendors[value]) {
+                            items[index].account = vendors[value].account;
+                            render(); // 값 변경 후 UI 업데이트
+                            return;
+                        }
                     }
+
+                    // [수정] 2. 개별 항목 결제수단 변경 -> 과제명 자동 입력 (딸깍 기능 복구)
+                    if (fieldId === 'paymentMethod') {
+                        // (1) 키워드 매칭
+                        const matchedKey = Object.keys(AUTO_TASK_MAP).find(key => value.includes(key));
+                        const targetTaskName = matchedKey ? AUTO_TASK_MAP[matchedKey] : '';
+
+                        // (2) 데이터 업데이트
+                        items[index].relatedTask = targetTaskName;
+
+                        // (3) [중요] 화면(Input)에 즉시 반영
+                        const relatedTaskInput = document.getElementById(`relatedTask_${index}`);
+                        if (relatedTaskInput) {
+                            relatedTaskInput.value = targetTaskName;
+                            relatedTaskInput.classList.add('highlight');
+                            setTimeout(() => relatedTaskInput.classList.remove('highlight'), 1000);
+                        }
+
+                        // (4) 기존 카드 결제 시 계좌 잠금 로직 (기존 코드 유지)
+                        if (value.includes('카드')) {
+                            items[index].account = '(법인/개인카드 결제 - 계좌 불필요)';
+                            render(); // UI 비활성화를 위해 재렌더링
+                            return;
+                        } else {
+                            // 카드 해제 시 복구
+                            const currentVendor = items[index].vendor;
+                            items[index].account = (currentVendor && vendors[currentVendor]) ? vendors[currentVendor].account : '';
+                            render();
+                            return;
+                        }
+                    }
+
+                    if (fieldId === 'amount' || fieldId === 'unitPrice') {
+                        // INPUT에서만 커서 보정 가능
+                        const oldCursor = (typeof e.target.selectionEnd === 'number') ? e.target.selectionEnd : null;
+                        const oldLength = e.target.value.length;
+
+                        value = formatSmartCurrency(value);
+                        e.target.value = value;
+
+                        if (oldCursor !== null) {
+                            const newLength = value.length;
+                            const newCursor = oldCursor + (newLength - oldLength);
+                            try { e.target.setSelectionRange(newCursor, newCursor); } catch (_) { }
+                        }
+                    }
+
+                    items[index][fieldId] = value;
+                    saveState();
+                    updateFloatingBar();
                 }
 
-                // [수정] 2. 개별 항목 결제수단 변경 -> 과제명 자동 입력 (딸깍 기능 복구)
-                if (fieldId === 'paymentMethod') {
-                    // (1) 키워드 매칭
-                    const matchedKey = Object.keys(AUTO_TASK_MAP).find(key => value.includes(key));
-                    const targetTaskName = matchedKey ? AUTO_TASK_MAP[matchedKey] : '';
-
-                    // (2) 데이터 업데이트
-                    items[index].relatedTask = targetTaskName;
-
-                    // (3) [중요] 화면(Input)에 즉시 반영
-                    const relatedTaskInput = document.getElementById(`relatedTask_${index}`);
-                    if (relatedTaskInput) {
-                        relatedTaskInput.value = targetTaskName;
-                        relatedTaskInput.classList.add('highlight');
-                        setTimeout(() => relatedTaskInput.classList.remove('highlight'), 1000);
-                    }
-
-                    // (4) 기존 카드 결제 시 계좌 잠금 로직 (기존 코드 유지)
-                    if (value.includes('카드')) {
-                        items[index].account = '(법인/개인카드 결제 - 계좌 불필요)';
-                        render(); // UI 비활성화를 위해 재렌더링
-                        return;
-                    } else {
-                        // 카드 해제 시 복구
-                        const currentVendor = items[index].vendor;
-                        items[index].account = (currentVendor && vendors[currentVendor]) ? vendors[currentVendor].account : '';
-                        render();
-                        return;
-                    }
-                }
-
-                if (fieldId === 'amount' || fieldId === 'unitPrice') {
-                    const oldCursor = e.target.selectionEnd;
-                    const oldLength = e.target.value.length;
-                    value = formatSmartCurrency(value);
-                    e.target.value = value;
-                    const newLength = value.length;
-                    const newCursor = oldCursor + (newLength - oldLength);
-                    e.target.setSelectionRange(newCursor, newCursor);
-                }
-
-                items[index][fieldId] = value;
-                saveState();
-                updateFloatingBar();
-            }
-        });
 
 
         formTypeSelector.addEventListener('change', (e) => {
@@ -3218,6 +3240,41 @@
             const runBtn = document.getElementById('run-analysis-btn');
             const instructionText = userInstructionInput.value.trim();
 
+            // [추가] grid/flex에서 긴 파일명이 부모 폭을 밀어내지 않도록 방어
+            fileListBox.style.minWidth = "0";
+            fileListBox.style.maxWidth = "100%";
+            fileListBox.style.overflowX = "hidden";
+
+            // [추가] 안전한 HTML 출력(파일명)
+            const escapeHtml = (str) => String(str).replace(/[&<>"']/g, (m) => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            }[m]));
+
+            // [추가] 긴 파일명은 가운데를 요약(확장자 유지)
+            const summarizeFileName = (name, maxLen = 42) => {
+                const s = String(name || '');
+                if (s.length <= maxLen) return s;
+
+                // 확장자 추정(마지막 점 기준)
+                const lastDot = s.lastIndexOf('.');
+                const hasExt = lastDot > 0 && lastDot < s.length - 1 && (s.length - lastDot) <= 8;
+                const ext = hasExt ? s.slice(lastDot) : '';
+                const base = hasExt ? s.slice(0, lastDot) : s;
+
+                // maxLen 안에 base + "…" + ext가 들어가도록 자르기
+                const budget = Math.max(1, maxLen - 1 - ext.length); // 1 = '…'
+                const headLen = Math.max(1, Math.floor(budget * 0.6));
+                const tailLen = Math.max(0, budget - headLen);
+
+                const head = base.slice(0, headLen);
+                const tail = tailLen > 0 ? base.slice(-tailLen) : '';
+                return `${head}…${tail}${ext}`;
+            };
+
             // 파일 목록 렌더링
             if (stagedFiles.length === 0) {
                 fileListBox.innerHTML = `
@@ -3226,14 +3283,19 @@
                         </div>`;
                 fileListBox.style.justifyContent = "center";
             } else {
-                const listHtml = stagedFiles.map((f, idx) => `
-                        <div class="file-item">
+                const listHtml = stagedFiles.map((f, idx) => {
+                    const fullName = f && f.name ? f.name : '';
+                    const displayName = summarizeFileName(fullName, 42);
+
+                    return `
+                        <div class="file-item" style="min-width:0;">
                             <span>📄</span>
-                            <span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${f.name}</span>
+                            <span title="${escapeHtml(fullName)}" style="flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(displayName)}</span>
                             <span style="font-size:0.8rem; opacity:0.7;">${(f.size / 1024).toFixed(1)}KB</span>
                             <span style="cursor:pointer;" onclick="removeStagedFile(${idx})">✖</span>
                         </div>
-                    `).join('');
+                    `;
+                }).join('');
 
                 fileListBox.innerHTML = listHtml;
                 fileListBox.style.justifyContent = "flex-start";
@@ -3255,6 +3317,7 @@
                 runBtn.style.cursor = "not-allowed";
             }
         }
+
 
         function removeStagedFile(index) {
             stagedFiles.splice(index, 1);
