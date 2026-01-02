@@ -2829,6 +2829,7 @@
         // -----------------------------------------------------------
         // [Logic Fixed] 하드코딩 제거 & 사용자 선택 존중 로직
         // -----------------------------------------------------------
+        // [수정 Step 4] 최종 복사 로직 (부가세 열 추가 및 병합 규칙 업데이트)
         copyBtn.addEventListener('click', () => {
 
             // 1. [검증] 필수 항목 체크
@@ -2902,9 +2903,7 @@
                 }
             }
 
-            // [삽입] 지출승인요청서(교통여비) 전용 출력 로직 (파란색 헤더 테이블)
-            // [수정] 지출승인요청서(교통여비) 전용 출력 로직 (가독성 강화)
-            // [수정됨] 지출승인요청서 복사 로직 (화살표 방향 반영 및 스마트 정렬)
+            // [유지] 지출승인요청서(교통여비) 전용 출력 로직 (부가세 제외)
             if (currentFormType === 'travel_expense_claim') {
                 const totalAmt = items.reduce((acc, cur) => acc + (parseInt((cur.amount || '0').replace(/[^0-9]/g, '')) || 0), 0);
 
@@ -2918,11 +2917,9 @@
                     const isGen = item.type === '일반비용';
                     const projName = item.projectCode ? item.projectCode.split('[')[0].trim() : '';
 
-                    // 날짜 포맷 (YYYY.MM.DD)
                     let dispDate = item.date || '';
                     if (dispDate.includes('-')) dispDate = dispDate.replace(/-/g, '.');
 
-                    // [핵심 UX] 이동구간 표시 로직 (화살표 방향에 따른 텍스트 변환)
                     let routeContent = '';
                     if (isGen) {
                         routeContent = item.itemName || '-';
@@ -2932,14 +2929,10 @@
                         const dir = item.route_direction || 'right';
 
                         if (dir === 'round') {
-                            // 왕복: 화살표만 변경하여 그대로 출력
                             routeContent = `${start} <span style="font-weight:bold; color:#2C5CA3;">⇄</span> ${end}`;
                         } else if (dir === 'left') {
-                            // [스마트 기능] 역방향(Left): 도착지와 출발지를 바꿔서 'Right' 포맷으로 출력
-                            // 위하고에는 항상 '출발 ➜ 도착' 순서로 붙여넣어지도록 자동 보정
                             routeContent = `${end} ➜ ${start}`;
                         } else {
-                            // 정방향(Right): 그대로 출력
                             routeContent = `${start} ➜ ${end}`;
                         }
                     }
@@ -2991,11 +2984,10 @@
                     </div>
                 `;
 
-                // ▼▼▼ [수정된 복사 실행 로직] ▼▼▼
                 const copyToClipboard = (html) => {
                     const listener = (e) => {
                         e.clipboardData.setData("text/html", html);
-                        e.clipboardData.setData("text/plain", html); // 텍스트만 붙여넣는 경우 대비
+                        e.clipboardData.setData("text/plain", html);
                         e.preventDefault();
                     };
                     document.addEventListener("copy", listener);
@@ -3003,33 +2995,25 @@
                     document.removeEventListener("copy", listener);
                 };
 
-                // ▼▼▼ [수정] 일반/회의비 등 모든 양식에도 미리보기 모달 적용 ▼▼▼
-                // ▼▼▼ [수정] 일반/회의비 등 모든 양식에도 미리보기 모달 적용 ▼▼▼
-                // ▼▼▼ [수정] 지출품의서(일반, 회의비 등) 미리보기 모달 적용 ▼▼▼
                 try {
                     const blob = new Blob([finalHtml], { type: 'text/html' });
                     const clipboardItem = new ClipboardItem({ 'text/html': blob });
-
                     navigator.clipboard.write([clipboardItem]).then(() => {
-                        // [핵심 수정] 성공 시 토스트 대신 미리보기 모달 호출
                         showCopyPreviewModal(finalHtml);
                     }).catch(() => {
-                        // 실패 시(구형 호환): fallback 실행 후 모달 호출
                         copyToClipboard(finalHtml);
                         showCopyPreviewModal(finalHtml);
                     });
                 } catch (e) {
-                    // 에러 발생 시: fallback 실행 후 모달 호출
                     copyToClipboard(finalHtml);
                     showCopyPreviewModal(finalHtml);
                 }
-                // ▲▲▲ [수정 완료] ▲▲▲
-                // ▲▲▲ [수정 완료] ▲▲▲
-                // ▲▲▲ [수정 완료] ▲▲▲
-                // ▲▲▲ [수정 완료] ▲▲▲
                 return;
             }
 
+            // ============================================================
+            // [수정] 일반 양식 출력 로직 (부가세 포함)
+            // ============================================================
             const template = formTemplates[currentFormType];
             const FONT = "font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; font-size: 10pt;";
             const TD_LABEL = `padding: 5px 8px; font-weight: bold; text-align: center; background-color: #f2f2f2; border: 1px solid #ccc; ${FONT}`;
@@ -3037,21 +3021,21 @@
             const TD_TOTAL_LABEL = `padding: 10px; font-weight: bold; text-align: center; background-color: #e6fffa; border: 1px solid #ccc; color: #2C5CA3; ${FONT}`;
             const TD_TOTAL_VAL = `padding: 10px; font-weight: bold; text-align: left; background-color: #e6fffa; border: 1px solid #ccc; color: #2C5CA3; font-size: 11pt; ${FONT}`;
 
-            const SPLIT_FIELDS_FOR_MERGE = ['itemName', 'spec', 'unitPrice', 'qty', 'amount', 'license', 'seats'];
+            // [New] 병합 모드일 때도 개별로 보여줘야 할 필드에 'vat' 추가
+            const SPLIT_FIELDS_FOR_MERGE = ['itemName', 'spec', 'unitPrice', 'vat', 'qty', 'amount', 'license', 'seats'];
+
             const allVisibleFields = template.fields.filter(field => !hiddenFields.includes(field.id));
-            const fieldsToCopy = sortFields(allVisibleFields);
+            const fieldsToCopy = sortFields(allVisibleFields); // 이미 vat 순서 포함됨
 
             const headerCells = items.map((_, i) => `<td style="${TD_LABEL}">항목 ${i + 1}</td>`).join('');
             const headerRow = `<tr><td style="${TD_LABEL} width: 140px;">${template.title}</td>${headerCells}</tr>`;
 
-            // ▼▼▼ [Clean Logic] 사용자 선택 중심 회계 로직 ▼▼▼
-            // ▼▼▼ [Logic Update] 소액 자산 검토 로직 강화 ▼▼▼
             const getAccountingGuideTag = (item) => {
                 const rawAmt = parseInt(String(item.amount || '0').replace(/[^0-9]/g, '')) || 0;
                 const name = (item.itemName || item.spec || '').toLowerCase();
                 const proj = (item.projectCode || '').toUpperCase();
                 const userSelection = item.assetType || 'expense';
-            
+
                 const typeLabels = {
                     'expense': '소모품, 주문제작, 비용',
                     'tangible': '기성품 기기/부품, 유형자산',
@@ -3059,46 +3043,39 @@
                 };
                 const userLabel = typeLabels[userSelection] || userSelection;
                 const userBadge = `<span style="display:inline-block; padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid #cbd5e0; background:#f7fafc; color:#2d3748;">👤 기안자 선택: ${userLabel}</span>`;
-            
+
                 const RESEARCH_PROJECTS = ['MPRT-RB', 'MAGBLADE'];
                 const DEV_PROJECTS = ['MPRT-HM', 'MPRT-CM', 'MPRT-BA', 'MPRT-DV', 'MPRT-PS', 'ELUXI'];
-            
+
                 const isHighValue = rawAmt >= 1000000;
                 const isDevProject = DEV_PROJECTS.some(p => proj.includes(p));
                 const isResearchProject = RESEARCH_PROJECTS.some(p => proj.includes(p));
-            
-                // IP 관련 키워드 세분화 (1.0 로직 반영)
+
                 const isIP = name.includes('특허') || name.includes('상표') || name.includes('출원') || name.includes('실용신안');
                 const isIPMaintenance = name.includes('연차료') || name.includes('유지') || name.includes('갱신') || name.includes('포기');
                 const isOfficialFee = name.includes('관납') || name.includes('특허청');
-            
+
                 let recType = 'expense';
                 let recLabel = '비용';
                 let reason = '소액 또는 소모성';
-            
-                // Rule 1: IP 심사 단계 (최우선 적용 - 1.0)
+
                 if (isIP || isOfficialFee) {
                     if (isIPMaintenance) {
-                        // 1.2 NO (유지/포기 목적)
                         recType = 'expense';
                         recLabel = isOfficialFee ? '비용 (세금과공과)' : '비용 (지급수수료)';
                         reason = 'IP 유지/포기 목적 지출';
                     } else {
-                        // 1.2 YES (건설/취득 목적)
                         if (name.includes('등록') || name.includes('성공보수')) {
-                            // 1.3 YES (등록 단계)
                             recType = 'intangible';
                             recLabel = name.includes('상표') ? '무형자산 (상표권)' : '무형자산 (특허권)';
                             reason = 'IP 권리 확정/등록 단계';
                         } else {
-                            // 1.3 NO (출원/중간사건 단계)
                             recType = 'intangible';
                             recLabel = '무형자산 (건설중인자산)';
                             reason = 'IP 취득 진행 중 (출원/심사)';
                         }
                     }
                 }
-                // Rule 2: 자산화(B/S) 심사 단계 (2.0)
                 else if (userSelection === 'intangible') {
                     if (isResearchProject) {
                         recType = 'expense';
@@ -3106,8 +3083,8 @@
                         reason = '연구단계 발생 비용 처리 원칙';
                     } else {
                         if (isHighValue || name.includes('라이선스')) {
-                            recType = 'intangible'; 
-                            recLabel = isDevProject ? '무형자산 (개발비)' : '무형자산 (소프트웨어)'; 
+                            recType = 'intangible';
+                            recLabel = isDevProject ? '무형자산 (개발비)' : '무형자산 (소프트웨어)';
                             reason = '장기적 효익 및 권리 확보';
                         } else {
                             recType = 'check_dev';
@@ -3116,7 +3093,6 @@
                         }
                     }
                 }
-                // Rule 3: 유형자산 분류 (2.2)
                 else if (userSelection === 'tangible') {
                     if (isHighValue) {
                         recType = 'tangible';
@@ -3134,24 +3110,22 @@
                         }
                     }
                 }
-                // Rule 4: 비용 선택 및 기타 (3.0 / 4.0)
                 else {
                     if (isHighValue && isDevProject) {
                         recType = 'intangible'; recLabel = '무형자산 (개발비)'; reason = '개발단계 직접 투입비 (자산화 권장)';
                     } else if (isResearchProject) {
                         recType = 'expense'; recLabel = '비용 (경상연구비)'; reason = '연구소/R&D 발생 경비';
                     } else {
-                        recType = 'expense'; 
+                        recType = 'expense';
                         recLabel = isHighValue ? '비용 (판관비)' : '비용 (소모품비)';
                         reason = isHighValue ? '일반 운영/유지 경비' : '100만원 미만 소액';
                     }
                 }
-            
-                // [Style & Icon 로직]
+
                 const isMismatch = (userSelection !== recType) && (recType !== 'check_dev');
                 let icon = isMismatch ? '💡' : '✅';
                 let boxStyle = "";
-            
+
                 if (recType === 'check_dev') {
                     boxStyle = "background:#FFFFF0; color:#B7791F; border:1px solid #F6E05E;";
                     icon = '🔍';
@@ -3162,7 +3136,7 @@
                 } else if (recType === 'intangible') {
                     boxStyle = "background:#FAF5FF; color:#553C9A; border:1px solid #9F7AEA;";
                 }
-            
+
                 return `
                     <div style="font-family:'Malgun Gothic', sans-serif;">
                         ${userBadge}
@@ -3173,6 +3147,7 @@
                     </div>
                 `;
             };
+
             let bodyRows = '';
             let totalRow = '';
 
@@ -3183,7 +3158,6 @@
                         const valueCells = items.map(item => {
                             let val = item[field.id] || '';
 
-                            // [기능 유지] 카드 결제 시 계좌 숨김
                             if (field.id === 'account') {
                                 const pm = item.paymentMethod || '';
                                 if (pm.includes('카드')) {
@@ -3197,7 +3171,6 @@
                     } else {
                         let commonVal = items[0][field.id] || '';
 
-                        // [기능 유지] 공통 항목 카드 결제 시 계좌 숨김
                         if (field.id === 'account') {
                             const pm = items[0].paymentMethod || '';
                             if (pm.includes('카드')) {
@@ -3213,7 +3186,6 @@
 
             bodyRows = generateBodyRows(currentMode === 'merge');
 
-            // (회계처리 참고용) 행 추가
             const guideCells = items.map(item => {
                 return `<td style="${TD_VALUE} vertical-align:top;">${getAccountingGuideTag(item)}</td>`;
             }).join('');
@@ -3246,12 +3218,10 @@
                 document.removeEventListener("copy", listener);
             };
 
-            // ▼▼▼ [수정됨] 일반 양식도 프리뷰 모달 띄우기 ▼▼▼
             try {
                 const blob = new Blob([finalHtml], { type: 'text/html' });
                 const clipboardItem = new ClipboardItem({ 'text/html': blob });
                 navigator.clipboard.write([clipboardItem]).then(() => {
-                    // showToast 대신 프리뷰 모달 호출
                     showCopyPreviewModal(finalHtml);
                 }).catch(() => {
                     copyToClipboard(finalHtml);
@@ -3261,7 +3231,6 @@
                 copyToClipboard(finalHtml);
                 showCopyPreviewModal(finalHtml);
             }
-            // ▲▲▲ [수정 완료] ▲▲▲
         });
 
 
