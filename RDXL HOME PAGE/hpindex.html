@@ -1,0 +1,818 @@
+<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+
+<style>
+  /* --- 디자인 시스템 (RADEXEL Standard) --- */
+  .radexel-patent-widget {
+    --primary: #2C5CA3;
+    --primary-light: #EBF5FF;
+    --point: #20B685;
+    --point-light: #E8F8F3;
+    --text-main: #4B4B4B;
+    --text-sub: #888888;
+    --border: #E0E0E0;
+    --bg-gray: #F8F9FA;
+
+    font-family: 'Spoqa Han Sans Neo', sans-serif;
+    color: var(--text-main);
+    width: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+
+  .radexel-patent-widget * { box-sizing: border-box; }
+
+  .patent-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  /* --- 1. 통계 대시보드 --- */
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  /* 클릭 가능한 카드 스타일 */
+  .stat-item {
+    background: var(--bg-gray);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+    cursor: pointer; /* 손가락 모양 커서 */
+    position: relative;
+  }
+
+  .stat-item:hover {
+    background: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(44, 92, 163, 0.08);
+    transform: translateY(-5px);
+  }
+
+  /* 활성화된 카드 (현재 보고 있는 모드) */
+  .stat-item.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 5px 15px rgba(44, 92, 163, 0.3);
+  }
+
+  .stat-item.active .stat-num,
+  .stat-item.active .stat-label { color: #fff; }
+
+  /* 호버 시 안내 문구 */
+  .stat-item::after {
+    content: "👆 Click to View";
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: var(--primary);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-weight: 700;
+  }
+
+  .stat-item:hover::after { opacity: 1; }
+  .stat-item.active::after { content: "Currently Viewing"; color: #fff; opacity: 0.7; }
+
+  .stat-num {
+    display: block;
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
+
+  .stat-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-main);
+  }
+
+  /* --- 2. 컨트롤 패널 --- */
+  .control-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .filter-area {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .btn-filter {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--text-sub);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    font-family: inherit;
+  }
+
+  .btn-filter:hover { background: var(--bg-gray); color: var(--text-main); }
+
+  .btn-filter.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    font-weight: 700;
+  }
+
+  /* 검색 영역 */
+  .search-sort-area {
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+    justify-content: flex-end;
+    min-width: 300px;
+  }
+
+  .sort-select {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--text-main);
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .search-wrapper {
+    position: relative;
+    flex-grow: 1;
+    max-width: 300px;
+  }
+
+  .inp-search {
+    width: 100%;
+    padding: 8px 12px 8px 36px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+    color: var(--text-main);
+  }
+
+  .inp-search:focus { border-color: var(--primary); }
+
+  .icon-search {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--text-sub);
+  }
+
+  /* --- 3. 데이터 리스트 (테이블) --- */
+  .data-table-header {
+    display: grid;
+    grid-template-columns: 90px 90px 1fr 220px;
+    padding: 15px 20px;
+    background: var(--bg-gray);
+    border-top: 2px solid var(--text-main);
+    border-bottom: 1px solid var(--border);
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .header-cell.title { text-align: left; padding-left: 10px; }
+
+  .patent-list {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .patent-row {
+    display: grid;
+    grid-template-columns: 90px 90px 1fr 220px;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    transition: background 0.2s;
+    text-align: center;
+  }
+
+  .patent-row:last-child { border-bottom: none; }
+  .patent-row:hover { background-color: #FAFCFF; }
+
+  .cell-title {
+    text-align: left;
+    padding-left: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--text-main);
+    word-break: break-all;
+  }
+
+  .cell-num {
+    font-size: 15px;
+    color: var(--text-sub);
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  /* 뱃지 */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 13px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .badge-reg { background: var(--point-light); color: var(--point); border: 1px solid rgba(32, 182, 133, 0.3); }
+  .badge-app { background: #F0F0F0; color: #888; border: 1px solid #DDD; }
+
+  .country-txt {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 15px;
+  }
+
+  /* --- 4. 그래프 섹션 --- */
+  .graph-section {
+    display: none; /* 기본 숨김 */
+    padding: 30px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 30px;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .graph-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+    color: var(--text-main);
+  }
+
+  .chart-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .chart-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 40px;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .chart-label {
+    font-weight: 700;
+    font-size: 14px;
+    text-align: right;
+    color: var(--text-main);
+  }
+
+  .chart-bar-bg {
+    width: 100%;
+    height: 24px;
+    background: #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .chart-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--point) 100%);
+    width: 0;
+    border-radius: 12px;
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .chart-value {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--primary);
+    font-family: 'Roboto', sans-serif;
+  }
+
+  /* --- 5. 페이지네이션 --- */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 40px;
+  }
+
+  .page-btn {
+    min-width: 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text-main);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+  }
+
+  .page-btn:hover { background: var(--bg-gray); }
+  .page-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    font-weight: 700;
+  }
+  .page-btn:disabled { opacity: 0.5; cursor: default; }
+
+  /* --- 모바일 반응형 --- */
+  @media (max-width: 768px) {
+    .stats-container { grid-template-columns: 1fr; gap: 10px; }
+    .stat-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; }
+    .stat-num { margin-bottom: 0; font-size: 32px; }
+
+    .control-panel { flex-direction: column; align-items: stretch; padding: 15px; }
+    .filter-area { width: 100%; overflow-x: auto; padding-bottom: 10px; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+    .search-sort-area { width: 100%; flex-direction: column; gap: 10px; }
+    .sort-select, .search-wrapper { width: 100%; max-width: none; }
+
+    .data-table-header { display: none; }
+
+    .patent-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .mobile-only { display: block !important; }
+    .pc-only { display: none !important; }
+
+    .mobile-header-row {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cell-title { padding-left: 0; font-size: 16px; margin: 5px 0; }
+
+    .mobile-meta-box {
+      width: 100%;
+      background: var(--bg-gray);
+      padding: 12px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #666;
+    }
+    .meta-key { font-weight: 700; color: var(--text-main); margin-right: 10px; }
+  }
+
+  @media (min-width: 769px) {
+    .mobile-only { display: none !important; }
+  }
+</style>
+
+<div class="radexel-patent-widget">
+  <div class="patent-inner">
+
+    <div class="stats-container">
+      <div class="stat-item active" id="cardTotal" onclick="handleStatClick('total')">
+        <span class="stat-num" id="statTotal">0</span>
+        <span class="stat-label">Total Patents</span>
+      </div>
+      <div class="stat-item" id="cardReg" onclick="handleStatClick('reg')">
+        <span class="stat-num" id="statReg">0</span>
+        <span class="stat-label">Registered (등록)</span>
+      </div>
+      <div class="stat-item" id="cardCountry" onclick="handleStatClick('country')">
+        <span class="stat-num" id="statCountry">0</span>
+        <span class="stat-label">Global Countries</span>
+      </div>
+    </div>
+
+    <div class="control-panel">
+        <div class="filter-area">
+          <button class="btn-filter active" onclick="setFilter('all')">전체</button>
+          <button class="btn-filter" onclick="setFilter('등록')">등록완료</button>
+          <button class="btn-filter" onclick="setFilter('KR')">국내 (KR)</button>
+          <button class="btn-filter" onclick="setFilter('US')">미국 (US)</button>
+          <button class="btn-filter" onclick="setFilter('GLOBAL')">해외 (Global)</button>
+        </div>
+
+      <div class="search-sort-area">
+        <select class="sort-select" id="sortSelect" onchange="handleSort()">
+          <option value="id_desc">최신순</option>
+          <option value="country_asc">국가순</option>
+          <option value="status_desc">등록 우선</option>
+        </select>
+
+        <div class="search-wrapper">
+          <svg class="icon-search" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input type="text" class="inp-search" id="searchInput" placeholder="명칭, 출원번호 검색" onkeyup="handleSearch()">
+        </div>
+      </div>
+    </div>
+
+    <div class="graph-section" id="graphContainer">
+      <div class="graph-title">국가별 특허 현황</div>
+      <div class="chart-wrapper" id="barChartArea"></div>
+    </div>
+
+    <div id="listWrapper">
+      <div class="data-table-header">
+        <div class="header-cell">상태</div>
+        <div class="header-cell">출원국</div>
+        <div class="header-cell title">출원명칭 (Title)</div>
+        <div class="header-cell">출원번호</div>
+      </div>
+
+      <div class="patent-list" id="listContainer"></div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // [데이터] 71건 전체 (출원국: 2글자 코드 / 출원번호: 순수 번호)
+  const rawData = [
+    {id:12412672, status:"등록", country:"KR", title:"자기장을 이용한 체내 점막조직 선량 제어 방사선 치료장치", appNum:"10-2014-0187083"},
+    {id:12414840, status:"등록", country:"KR", title:"자기장을 이용한 종양표면선량 강화 방사선 치료장치", appNum:"10-2015-0144652"},
+    {id:12414954, status:"등록", country:"US", title:"Mucosal dose control radiotherapy apparatus using magnetic fields", appNum:"14/976,945"},
+    {id:12425334, status:"등록", country:"US", title:"Tumor surface dose enhancing radiotherapy apparatus using magnetic field", appNum:"15/293,293"},
+    {id:12425454, status:"등록", country:"US", title:"Tumor surface dose enhancing radiotherapy apparatus using magnetic field", appNum:"16/213,859"},
+    {id:12425940, status:"등록", country:"KR", title:"자기장 생성 장치 및 그의 제어 방법", appNum:"10-2020-0050300"},
+    {id:12426053, status:"등록", country:"KR", title:"자기장 생성 장치 및 그의 제어 방법", appNum:"10-2021-0052174"},
+    {id:12427139, status:"등록", country:"KR", title:"전자선 펜슬 빔 기반 자기 조절 전자선치료 장치 및 시스템", appNum:"10-2022-0000349"},
+    {id:17075619, status:"등록", country:"KR", title:"자기장 생성 장치 및 그의 제어 방법", appNum:"10-2022-0073279"},
+    {id:17075627, status:"출원", country:"MX", title:"Device for generating magnetic field and method for controlling same", appNum:"MX/a/2022/013249"},
+    {id:17075634, status:"등록", country:"AU", title:"Device for generating magnetic field and method for controlling same", appNum:"2021259040"},
+    {id:17075640, status:"출원", country:"IN", title:"Device for generating magnetic field and method for controlling same", appNum:"202217060109"},
+    {id:17075646, status:"공개", country:"CA", title:"Device for generating magnetic field and method for controlling same", appNum:"3176349"},
+    {id:17075651, status:"공개", country:"PH", title:"Device for generating magnetic field and method for controlling same", appNum:"1-2022-552810"},
+    {id:17075655, status:"등록", country:"ZA", title:"Device for generating magnetic field and method for controlling same", appNum:"2022/11547"},
+    {id:17075662, status:"공개", country:"SG", title:"Device for generating magnetic field and method for controlling same", appNum:"11202254325E"},
+    {id:17075669, status:"등록", country:"CN", title:"磁场生成装置及磁场生成装置的控制方法(Device for generating magnetic field and method for controlling same)", appNum:"202180030545.5"},
+    {id:17075683, status:"등록", country:"JP", title:"磁場生成装置及びその制御方法(Device for generating magnetic field and method for controlling same)", appNum:"2022-564796"},
+    {id:17075690, status:"등록", country:"US", title:"DEVICE FOR GENERATING MAGNETIC FIELD AND METHOD FOR CONTROLLING SAME", appNum:"18/049,090"},
+    {id:17075696, status:"공개", country:"VN", title:"THIẾT BỊ TẠO TỪ TRƯỜNG VÀ PHƯƠNG PHÁP KIỂM SOÁT THIẾT BỊ NÀY(Device for generating magnetic field and method for controlling same)", appNum:"1-2022-07159"},
+    {id:17075701, status:"등록", country:"RU", title:"УСТРОЙСТВО ГЕНЕРАЦИИ МАГНИТНОГО ПОЛЯ И СПОСОБ УПРАВЛЕНИЯИМ(Device for generating magnetic field and method for controlling same)", appNum:"2022128563"},
+    {id:17075709, status:"등록", country:"EP", title:"DEVICE FOR GENERATING MAGNETIC FIELD AND METHOD FOR CONTROLLING SAME", appNum:"21791842.4"},
+    {id:17075719, status:"등록", country:"ID", title:"PERANGKAT UNTUK MEMBANGKITKAN BIDANG MAGNET DAN METODE UNTUK MENGENDALIKAN PERANGKAT TERSEBUT(자기장 생성 장치 및 그의 제어 방법)", appNum:"W00202204780"},
+    {id:17075735, status:"출원", country:"KR", title:"자기장 생성 장치 및 그의 제어 방법", appNum:"10-2023-0132611"},
+    {id:17075740, status:"등록", country:"KR", title:"자기장 생성 장치 및 그의 제어 방법", appNum:"10-2023-0132553"},
+    {id:17075743, status:"등록", country:"RU", title:"자기장 생성 장치 및 그의 제어 방법", appNum:"2023128283"},
+    {id:111137181, status:"등록", country:"JP", title:"放射線及び磁場生成装置及びその制御方法(Device for generating magnetic field and method for controlling same)", appNum:"2023-214954"},
+    {id:111137744, status:"출원", country:"AU", title:"Device for generating magnetic field and method for controlling same", appNum:"2024201778"},
+    {id:111138351, status:"등록", country:"KR", title:"자기장과 산란체를 이용한 광자선의 선량상승영역 변조 장치, 이를 포함하는 광자선 기반의 방사선치료장치 및 자기장과 산란체를 이용한 광자선의 선량상승영역 변조 방법", appNum:"10-2017-0079502"},
+    {id:111138804, status:"등록", country:"US", title:"Radiotherapy assistant apparatus for modulating build-up region of photon beam, radiotherapy system and method therefor", appNum:"16/015,974"},
+    {id:111139271, status:"출원", country:"EP", title:"ELECTRON PENCIL BEAM-BASED MAGNETIC ADJUSTMENT ELECTRON RAY TREATMENT APPARATUS AND SYSTEM", appNum:"22916658.2"},
+    {id:111139733, status:"출원", country:"CN", title:"基于电子射线笔形束的磁场调节电子射线治疗装置及系统(ELECTRON PENCIL BEAM-BASED MAGNETIC ADJUSTMENT ELECTRON RAY TREATMENT APPARATUS AND SYSTEM)", appNum:"202280087534.5"},
+    {id:111140175, status:"등록", country:"JP", title:"電子線ペンシルビーム基盤の磁気調整電子線治療装置及びシステム(전자선 펜슬 빔 기반 자기 조절 전자선 치료 장치 및 시스템)", appNum:"2024-540655"},
+    {id:111140651, status:"출원", country:"US", title:"ELECTRON PENCIL BEAM-BASED MAGNETIC ADJUSTMENT ELECTRON RAY TREATMENT APPARATUS AND SYSTEM", appNum:"18/762,975"},
+    {id:111142567, status:"출원", country:"IN", title:"ELECTRON PENCIL BEAM-BASED MAGNETIC ADJUSTMENT ELECTRON RAY TREATMENT APPARATUS AND SYSTEM", appNum:"202417051180"},
+    {id:111143146, status:"출원", country:"US", title:"ELECTRON BEAM OUTPUT DEVICE FOR MEDICAL USE", appNum:"18/644,247"},
+    {id:111143694, status:"출원", country:"KR", title:"의료용 펜슬빔 형태의 전자선 출력 장치", appNum:"10-2024-0074851"},
+    {id:111144238, status:"등록", country:"AU", title:"ELECTRON BEAM OUTPUT DEVICE FOR MEDICAL USE(의료용 펜슬빔 형태의 전자선 출력 장치)", appNum:"2024204339"},
+    {id:111144761, status:"출원", country:"CN", title:"医疗用电子束输出装置(ELECTRON BEAM OUTPUT DEVICE FOR MEDICAL USE)", appNum:"202410833019.8"},
+    {id:111145130, status:"등록", country:"RU", title:"УСТРОЙСТВО ВЫВОДА ЭЛЕКТРОННОГО ПУЧКА ДЛЯ МЕДИЦИНСКОГО ПРИМЕНЕНИЯ(의료용 펜슬빔 형태의 전자선 출력 장치)", appNum:"2024117693"},
+    {id:111145485, status:"출원", country:"SG", title:"ELECTRON BEAM OUTPUT DEVICE FOR MEDICAL USE", appNum:"10202401885R"},
+    {id:111145834, status:"출원", country:"IN", title:"ELECTRON BEAM OUTPUT DEVICE FOR MEDICAL USE", appNum:"202414049176"},
+    {id:111147115, status:"출원", country:"EP", title:"ELECTRON BEAM OUTPUT DEVICE FOR MEDICAL USE", appNum:"24185289.6"},
+    {id:111147321, status:"등록", country:"JP", title:"医療用電子ビーム出力装置(의료용 펜슬빔 형태의 전자선 출력 장치)", appNum:"JP 2024-105188"},
+    {id:164506659, status:"등록", country:"KR", title:"자기장 생성 장치 및 그의 제어 방법", appNum:"10-2017-0079502"},
+    {id:164508410, status:"출원", country:"KR", title:"어플리케이터 적용상황에 대한 방사선 치료 사전시뮬레이션 데이터에 기반한 환자 치료 계획 방법", appNum:"10-2024-0143849"},
+    {id:164508421, status:"출원", country:"US", title:"Device for generating magnetic field and method for controlling same", appNum:"18/948,170"},
+    {id:164508432, status:"출원", country:"KR", title:"전자선 펜슬 빔 기반 자기 조절 전자선 치료 장치 및 시스템", appNum:"10-2024-0169441"},
+    {id:164508439, status:"출원", country:"CN", title:"磁场生成控制装置(Device for generating magnetic field)", appNum:"202411978818"},
+    {id:164508451, status:"출원", country:"KR", title:"자기장 생성 장치 및 그의 제어 방법", appNum:"10-2025-0005615"},
+    {id:164508460, status:"출원", country:"AU", title:"BALLOON CATHETER", appNum:"2025201721"},
+    {id:164508470, status:"출원", country:"JP", title:"バルーンカテーテル(BALLOON CATHETER)", appNum:"2025-038662"},
+    {id:164508477, status:"출원", country:"CN", title:"球囊导管(BALLOON CATHETER)", appNum:"202510281766.X"},
+    {id:164508483, status:"출원", country:"EP", title:"BALLOON CATHETER", appNum:"25162971.3"},
+    {id:164508490, status:"출원", country:"CA", title:"BALLOON CATHETER", appNum:"3267820"},
+    {id:164508502, status:"출원", country:"EP", title:"Device for generating magnetic field and method for controlling same", appNum:"25173860.5"},
+    {id:168329716, status:"출원완료", country:"JP", title:"磁場生成装置及びその制御方法", appNum:"2025-086945"},
+    {id:168329740, status:"출원완료", country:"IN", title:"Device for generating magnetic field and method for controlling same", appNum:"202518067114"},
+    {id:168329745, status:"출원완료", country:"JP", title:"電子線ペンシルビーム基盤自己調節電子線治療装置及びシステム", appNum:"2025-158294"},
+    {id:168329749, status:"출원완료", country:"CA", title:"ELECTRON BEAM OUTPUT DEVICE FOR MEDICAL USE", appNum:"3245993"},
+    {id:168329760, status:"출원완료", country:"JP", title:"磁場生成装置及びその制御方法(의료용 전자빔 출력 장치)", appNum:"2025-158288"},
+    {id:168329764, status:"출원완료", country:"RU", title:"УСТРОЙСТВО ВЫВОДА ЭЛЕКТРОННОГО ПУЧКА ДЛЯ МЕДИЦИНСКОГО ПРИМЕНЕНИЯ (의료용 전자빔 출력 장치)", appNum:"2025119810"},
+    {id:168329770, status:"출원완료", country:"AU", title:"ELECTRON BEAM OUTPUT DEVICE FOR MEDICAL USE (의료용 전자빔 출력 장치)", appNum:"2025208557"},
+    {id:168329776, status:"출원완료", country:"KR", title:"3D 기반의 경계 영역에 대한 방사선 정보 제공 장치 및 방법(DEVICE AND METHOD FOR PROVIDING RADIATION INFORMATION ABOUT 3D-BASED BORDER AREAS)", appNum:"10-2025-0146502"},
+    {id:168329778, status:"출원완료", country:"IN", title:"Balloon catheter (벌룬 카테터)", appNum:"202514023535"},
+    {id:168329781, status:"출원완료", country:"KR", title:"벌룬 카테터", appNum:"10-2025-0113997"},
+    {id:168329786, status:"출원완료", country:"CN", title:"球囊导管 (벌룬 카테터)", appNum:"202511385843"},
+    {id:168329791, status:"출원완료", country:"AU", title:"BALLOON CATHETER (벌룬 카테터)", appNum:"2025238127"},
+    {id:168329801, status:"출원완료", country:"EP", title:"BALLOON CATHETER (벌룬 카테터)", appNum:"25205486"},
+    {id:168329805, status:"출원완료", country:"JP", title:"磁場生成装置及びその制御方法(벌룬 카테터)", appNum:"2025-165609"},
+    {id:168329816, status:"출원완료", country:"CA", title:"BALLOON CATHETER (벌룬 카테터)", appNum:"3287914"},
+    {id:168329820, status:"출원완료", country:"SG", title:"BALLOON CATHETER (벌룬 카테터)", appNum:"10202502857Y"},
+    {id:168329824, status:"출원완료", country:"US", title:"BALLOON CATHETER (벌룬 카테터)", appNum:"19/350,621"},
+    {id:168329828, status:"출원완료", country:"IN", title:"BALLOON CATHETER (벌룬 카테터)", appNum:"202514097883"},
+    {id:168329833, status:"출원완료", country:"RU", title:"BALLOON CATHETER (벌룬 카테터)", appNum:"2025128684"}
+  ];
+
+  // 상태 관리
+  let state = {
+    view: 'list', // 'list' or 'graph'
+    filter: 'all',
+    sort: 'id_desc',
+    search: '',
+    currentPage: 1,
+    itemsPerPage: 10
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateStats();
+    applyLogic();
+  });
+
+  /* 1. 통계 업데이트 */
+  function updateStats() {
+    const total = rawData.length;
+    const regCount = rawData.filter(i => i.status === '등록').length;
+    const countries = new Set(rawData.map(i => i.country));
+
+    animateValue("statTotal", 0, total, 1000);
+    animateValue("statReg", 0, regCount, 1000);
+    animateValue("statCountry", 0, countries.size, 1000);
+  }
+
+  function animateValue(id, start, end, duration) {
+    const obj = document.getElementById(id);
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      obj.innerHTML = Math.floor(progress * (end - start) + start);
+      if (progress < 1) window.requestAnimationFrame(step);
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  /* 2. 대시보드 클릭 핸들러 (뷰 전환) */
+  function handleStatClick(type) {
+    // 버튼 활성화 UI
+    document.getElementById('cardTotal').classList.remove('active');
+    document.getElementById('cardReg').classList.remove('active');
+    document.getElementById('cardCountry').classList.remove('active');
+
+    if (type === 'total') {
+      document.getElementById('cardTotal').classList.add('active');
+      state.view = 'list';
+      setFilter('all'); // 전체 목록 리셋
+    }
+    else if (type === 'reg') {
+      document.getElementById('cardReg').classList.add('active');
+      state.view = 'list';
+      setFilter('등록'); // 등록된 것만 필터링
+    }
+    else if (type === 'country') {
+      document.getElementById('cardCountry').classList.add('active');
+      state.view = 'graph';
+      applyLogic(); // 그래프 모드로 갱신
+    }
+  }
+
+  /* 3. 로직 (필터 -> 검색 -> 정렬 -> 뷰렌더링) */
+  /* 3. 로직 (필터 -> 검색 -> 정렬 -> 뷰렌더링) - 교체할 applyLogic 함수 */
+    /* 3. 로직 (필터 -> 검색 -> 정렬 -> 뷰렌더링) - 전체 교체 */
+    function applyLogic() {
+      let result = [...rawData];
+
+      // [수정] 필터링 조건문 최적화
+      if (state.filter === 'KR') {
+        result = result.filter(i => i.country === 'KR');
+      } else if (state.filter === 'US') {
+        result = result.filter(i => i.country === 'US');
+      } else if (state.filter === 'GLOBAL') {
+        result = result.filter(i => i.country !== 'KR'); // 한국 제외 전체
+      } else if (state.filter === '등록') {
+        result = result.filter(i => i.status === '등록' || i.status === '등록완료');
+      }
+
+      // 검색 필터
+      if (state.search) {
+        const keyword = state.search.toLowerCase();
+        result = result.filter(i =>
+          i.title.toLowerCase().includes(keyword) ||
+          i.appNum.toLowerCase().includes(keyword)
+        );
+      }
+
+      // 정렬 처리
+      if (state.sort === 'country_asc') {
+        result.sort((a, b) => a.country.localeCompare(b.country));
+      } else if (state.sort === 'status_desc') {
+        result.sort((a, b) => (b.status === '등록' ? 1 : 0) - (a.status === '등록' ? 1 : 0));
+      } else {
+        result.sort((a, b) => b.id - a.id);
+      }
+
+      // 렌더링 실행
+      const listWrapper = document.getElementById('listWrapper');
+      const graphSection = document.getElementById('graphContainer');
+
+      if (state.view === 'list') {
+        listWrapper.style.display = 'block';
+        graphSection.style.display = 'none';
+        renderTable(result);
+        renderPagination(result.length);
+      } else {
+        listWrapper.style.display = 'none';
+        graphSection.style.display = 'block';
+        renderGraph(result);
+      }
+    }
+
+    /* 7. 이벤트 핸들러 - setFilter 함수 전체 교체 */
+  function setFilter(type) {
+      state.filter = type;
+      state.currentPage = 1;
+
+      // 버튼 활성화 UI 업데이트
+      document.querySelectorAll('.btn-filter').forEach(btn => {
+        btn.classList.remove('active');
+        const onclickAttr = btn.getAttribute('onclick');
+        // 클릭한 타입이 인자에 포함되어 있다면 active 클래스 추가
+        if (onclickAttr && onclickAttr.includes(`'${type}'`)) {
+          btn.classList.add('active');
+        }
+      });
+
+      applyLogic();
+    }
+
+  /* 4. 리스트 렌더링 */
+  function renderTable(data) {
+    const container = document.getElementById('listContainer');
+    container.innerHTML = '';
+
+    if (data.length === 0) {
+      container.innerHTML = '<div style="text-align:center; padding:60px; color:#888;">검색 결과가 없습니다.</div>';
+      document.getElementById('pagination').innerHTML = '';
+      return;
+    }
+
+    const start = (state.currentPage - 1) * state.itemsPerPage;
+    const end = start + state.itemsPerPage;
+    const paginatedData = data.slice(start, end);
+
+    paginatedData.forEach(item => {
+      const isReg = item.status === '등록';
+      const badgeClass = isReg ? 'badge-reg' : 'badge-app';
+      const badgeText = item.status;
+
+      const rowDiv = document.createElement('div');
+      rowDiv.className = 'patent-row';
+      rowDiv.innerHTML = `
+        <div class="pc-only badge ${badgeClass}">${badgeText}</div>
+        <div class="pc-only country-txt">${item.country}</div>
+        <div class="pc-only cell-title">${item.title}</div>
+        <div class="pc-only cell-num">${item.appNum}</div>
+
+        <div class="mobile-only mobile-wrapper" style="width:100%">
+          <div class="mobile-header-row">
+            <span class="badge ${badgeClass}">${badgeText}</span>
+            <span class="country-txt">${item.country}</span>
+          </div>
+          <div class="cell-title" style="padding:0; margin:10px 0;">${item.title}</div>
+          <div class="mobile-meta-box">
+            <span class="meta-key">Application No</span>
+            <span style="font-family:'Roboto'">${item.appNum}</span>
+          </div>
+        </div>
+      `;
+      container.appendChild(rowDiv);
+    });
+  }
+
+  /* 5. 그래프 렌더링 */
+  function renderGraph(data) {
+    const container = document.getElementById('barChartArea');
+    container.innerHTML = '';
+
+    if (data.length === 0) {
+      container.innerHTML = '<div style="text-align:center; color:#888; padding:30px;">표시할 데이터가 없습니다.</div>';
+      return;
+    }
+
+    // 국가별 집계
+    const counts = {};
+    data.forEach(item => {
+      counts[item.country] = (counts[item.country] || 0) + 1;
+    });
+
+    const sortedCounts = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    const maxVal = sortedCounts[0][1];
+
+    sortedCounts.forEach(([country, count]) => {
+      const percentage = (count / maxVal) * 100;
+
+      const row = document.createElement('div');
+      row.className = 'chart-row';
+      row.innerHTML = `
+        <div class="chart-label">${country}</div>
+        <div class="chart-bar-bg">
+          <div class="chart-bar-fill" style="width: ${percentage}%"></div>
+        </div>
+        <div class="chart-value">${count}</div>
+      `;
+      container.appendChild(row);
+    });
+  }
+
+  /* 6. 페이지네이션 */
+  function renderPagination(totalItems) {
+    const container = document.getElementById('pagination');
+    container.innerHTML = '';
+    const totalPages = Math.ceil(totalItems / state.itemsPerPage);
+
+    if (totalPages <= 1) return;
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'page-btn';
+    prevBtn.innerHTML = '&lt;';
+    prevBtn.onclick = () => changePage(state.currentPage - 1);
+    if (state.currentPage === 1) prevBtn.disabled = true;
+    container.appendChild(prevBtn);
+
+    let startPage = Math.max(1, state.currentPage - 2);
+    let endPage = Math.min(totalPages, startPage + 4);
+    if (endPage - startPage < 4) startPage = Math.max(1, endPage - 4);
+
+    for (let i = startPage; i <= endPage; i++) {
+      const btn = document.createElement('button');
+      btn.className = `page-btn ${i === state.currentPage ? 'active' : ''}`;
+      btn.textContent = i;
+      btn.onclick = () => changePage(i);
+      container.appendChild(btn);
+    }
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'page-btn';
+    nextBtn.innerHTML = '&gt;';
+    nextBtn.onclick = () => changePage(state.currentPage + 1);
+    if (state.currentPage === totalPages) nextBtn.disabled = true;
+    container.appendChild(nextBtn);
+  }
+
+  /* 7. 이벤트 핸들러 */
+
+
+  function handleSearch() {
+    state.search = document.getElementById('searchInput').value;
+    state.currentPage = 1;
+    applyLogic();
+  }
+
+  function handleSort() {
+    state.sort = document.getElementById('sortSelect').value;
+    applyLogic();
+  }
+
+  function changePage(page) {
+    state.currentPage = page;
+    applyLogic();
+  }
+</script>

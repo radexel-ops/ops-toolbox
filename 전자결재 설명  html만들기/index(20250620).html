@@ -1,0 +1,728 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Expense Rules Tree</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/*--------------------------------------------------
+  0) 변수: 테마·간격·타이포그라피
+---------------------------------------------------*/
+:root {
+  /* 컬러 */
+  --color-blue:    #2C5CA3;   /* 파란색 */
+  --color-green:   #20B685;   /* 초록색 */
+  --color-text:    #424242;   /* 일반 텍스트 색상 */
+
+  /* 기본 폰트 크기 범위 */
+  --fs-opt-min:    18px;
+  --fs-opt-vw:     8vw;
+  --fs-opt-max:    40px;
+
+  /* 화면 여백 */
+  --pad-desk-v:    0px;
+  --pad-desk-h:    24px;
+  --pad-mob-h:     5px;
+
+  /* 최종 패널 패딩 */
+  --pad-final-top:    50px;
+  --pad-final-bot:    40px;
+
+  /* 버튼 크기 및 패딩 */
+  --fs-home:       22px;
+  --pad-home-v:    16px;
+  --pad-home-h:    24px;
+
+  /* 옵션 사이 간격 */
+  --gap-desk:      24px;
+  --gap-land:      25px;
+  --gap-port:      20px;
+  --gap-port-two:  40px;
+}
+
+/*--------------------------------------------------
+  1) 공통 스타일
+---------------------------------------------------*/
+html, body {
+  margin: 0; height: 100%;
+  font-family: 'Noto Sans', sans-serif;
+  background: #fff; color: var(--color-text);
+  overflow: hidden;
+}
+
+/* 옵션 기본 */
+.option {
+  font-weight: 700;
+  font-size: clamp(var(--fs-opt-min), var(--fs-opt-vw), var(--fs-opt-max));
+  line-height: 1.4;
+  text-align: center;
+  white-space: normal;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+  color: var(--color-text);
+  margin-bottom: var(--gap-desk);
+}
+
+/* 강조 텍스트 (초록색) */
+.highlight {
+  color: var(--color-green);
+  font-weight: bold;
+}
+
+.option:focus-visible {
+  outline: 3px solid var(--color-green);
+  border-radius: 4px;
+}
+
+/* HOME 버튼 */
+#backBtn, #homeBtn, .home-btn {
+  position: fixed; bottom: 18px; left: var(--pad-mob-h);
+  padding: var(--pad-home-v) var(--pad-home-h);
+  font-size: var(--fs-home);
+  border: none; border-radius: 8px;
+  background: var(--color-blue); color: #fff;
+  font-weight: 700; cursor: pointer; z-index: 9999;
+}
+
+/*--------------------------------------------------
+  2) 데스크탑·landscape 기본
+---------------------------------------------------*/
+/* 스테이지 기본 */
+#stage {
+  display: flex; flex-direction: column; align-items: center;
+  padding: var(--pad-desk-v) var(--pad-desk-h);
+  gap: var(--gap-desk);
+  height: 100vh; overflow-y: auto;
+  transition: opacity .25s ease;
+}
+/* 두 칸 모드 (가로 화면) */
+#stage.two {
+  flex-direction: row; flex-wrap: wrap;
+  align-items: center; align-content: center;
+  padding: 0 var(--pad-desk-h);
+  gap: var(--gap-land);
+}
+
+/* 최종 패널 */
+#finalPanel {
+  position: fixed; inset: 0; background: #fff;
+  display: none; flex-direction: column; align-items: center;
+  padding: var(--pad-final-top) var(--pad-desk-h) var(--pad-final-bot);
+  overflow-y: auto; transition: opacity .25s ease; opacity: 0;
+}
+#finalPanel.show {
+  display: flex; opacity: 1;
+}
+#finalPanel h1 {
+  font-size: 1.8rem; color: var(--color-blue);
+  margin: 0 0 1.2rem; text-align: center;
+}
+#finalPanel section {
+  width: 100%; max-width: 1200px;
+  font-size: 20px; line-height: 1.55;
+}
+#finalPanel iframe {
+  width: 100%; height: 600px;
+  border: 1px solid #ccc; border-radius: 8px;
+  margin: 18px 0;
+}
+
+/*--------------------------------------------------
+  3) landscape 추가 조정
+---------------------------------------------------*/
+@media (orientation: landscape) {
+  #stage {
+    justify-content: center;
+    gap: var(--gap-land);
+  }
+  #stage.two {
+    justify-content: center;
+    gap: var(--gap-land);
+  }
+}
+
+/*--------------------------------------------------
+  4) portrait 모드 (모바일 버전)
+---------------------------------------------------*/
+@media (orientation: portrait) {
+  #stage {
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 0 var(--pad-mob-h);
+    gap: var(--gap-port);
+    height: 100vh;
+  }
+  /* 두 칸 모드도 세로 스택 & 옵션 간격 넓힘 */
+  #stage.two {
+    flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 0 var(--pad-mob-h);
+    gap: var(--gap-port-two);
+  }
+
+  /* 옵션 margin 제거 (gap으로만 제어) */
+  .option {
+    margin: 0;
+  }
+
+  /* HOME 버튼 유지 */
+  #homeBtn, #homeBtnFP {
+    padding: var(--pad-home-v) var(--pad-home-h);
+    font-size: var(--fs-home);
+  }
+
+  /* 최종 패널 간격 조정 */
+  #finalPanel {
+    padding: 40px var(--pad-mob-h);
+  }
+  #finalPanel h1 {
+    font-size: 1.8rem;
+    color: var(--color-blue);
+    margin-bottom: 1rem;
+  }
+  #finalPanel section {
+    font-size: 20px;
+    line-height: 1.6;
+    max-width: 92%;
+  }
+  #finalPanel iframe {
+    height: 500px;
+  }
+}
+
+</style>
+<!-- ---------- SCRIPT (HOME 버튼 포함, 기존 로직 유지) ---------- -->
+<script type="module">
+/* ---------------------- 기본 설정 ---------------------------*/
+const HIGHLIGHTS=['미만','이상','무관','금액무관'];
+
+/* --------------------- CSV → 트리 --------------------------*/
+const rows=d3.csvParse(document.getElementById('csvData').textContent.trim());
+const LV=Object.keys(rows[0]).filter(k=>/^분류\d+$/.test(k)).sort((a,b)=>+a.slice(2)-+b.slice(2));
+const L2_KEY=Object.keys(rows[0]).find(k=>k.startsWith('매월말'));
+function upsert(p,l){return p.children.find(c=>c.name===l)||(p.children.push({name:l,children:[]}),p.children.at(-1));}
+
+function build(data){
+  const root={name:'ROOT',children:[]};
+  data.forEach(r=>{
+    let n=root;
+    LV.forEach(lv=>{
+      const v=(r[lv]||'').trim();
+      if(v) n=upsert(n,v);
+    });
+    n.payload={
+      cat3:(r['분류3']||'').trim(),
+      cash:(r['분류4']||'').trim(),
+      pay :(r['분류5']||'').trim(),
+      big :(r['대분류']||'').trim(),
+      desc:(r['프로세스 설명']||'').replace(/•/g,'<br>•').replace(/\\n\\s*/g,'<br>'),
+      l1  :(r['신청 방법']||'').trim(),
+      l2  : L2_KEY ? (r[L2_KEY]||'').trim() : ''
+    };
+  });
+  return root;
+}
+const tree=build(rows);
+
+/* ------------------------- 요소 -----------------------------*/
+const stage      =document.getElementById('stage');
+const finalPanel =document.getElementById('finalPanel');
+const hist       =[];
+
+/* ------------- 공통 유틸 & 폰트 리사이즈 --------------------*/
+const highlight=t=>HIGHLIGHTS.reduce((s,w)=>s.replaceAll(w,`<span class="highlight">${w}</span>`),t);
+
+const scrollTopAll=()=>{window.scrollTo(0,0);stage.scrollTop=0;finalPanel.scrollTop=0;};
+
+function resizeFont(){
+  const opts=[...stage.querySelectorAll('.option')]; if(!opts.length) return;
+  opts.forEach(o=>{o.style.fontSize='';o.style.margin='4px 0';});
+  let size=parseFloat(getComputedStyle(opts[0]).fontSize);let tries=0;
+  while(stage.scrollHeight>stage.clientHeight && size>18 && ++tries<30){
+    size-=2;const m=Math.max(2,4-(tries>5?1:0));
+    opts.forEach(o=>{o.style.fontSize=size+'px';o.style.margin=`${m}px 0`;});
+  }
+}
+
+/* ---------------------- 렌더 -------------------------------*/
+function auto(node){
+  while(node.children?.length===1 && !node.children[0].payload){hist.push(node);node=node.children[0];}
+  if(node.children?.length===1 && node.children[0].payload){show(node.children[0].payload);return null;}
+  return node;
+}
+function render(node){
+  node=auto(node);if(!node) return false;if(stage.dataset.busy==='1') return false;stage.dataset.busy='1';
+  stage.style.opacity='0';
+  const handleFadeOut=e=>{
+    if(e.target!==stage) return;
+    stage.classList.toggle('two', node.children.length===2);stage.removeEventListener('transitionend',handleFadeOut);
+    stage.innerHTML='';
+    node.children.forEach(c=>{
+      const el=document.createElement('div');el.className='option';el.innerHTML=highlight(c.name);
+      el.setAttribute('tabindex','0');el.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();el.click();}});
+      el.onclick=()=>{hist.push(node);c.payload?show(c.payload):render(c);};
+      stage.appendChild(el);
+    });
+    resizeFont();void stage.offsetWidth;stage.style.opacity='1';
+    stage.addEventListener('transitionend',e2=>{if(e2.target===stage) stage.dataset.busy='0';},{once:true});
+  };
+  stage.addEventListener('transitionend',handleFadeOut,{once:true});
+  return true;
+}
+
+/* ------------------- 최종 패널 -----------------------------*/
+function title(d){const t=`${d.cat3} / ${d.cash}`;return t.length>24?`${d.cat3}<br>${d.cash}`:t;}
+function show(d) {
+  const pay = d.pay || '';
+  document.getElementById('fpTitle').innerHTML = title(d);
+  document.getElementById('fpBody').innerHTML = `
+    <p><b>대분류 :</b> ${d.big || '-'}</p>
+    <p><b>금액범위 :</b> ${d.cash || '-'}</p>
+    <p><b>결재수단 :</b> ${pay || '-'}</p><hr>
+    <p>${d.desc}</p>
+    ${pay.includes('개인법인카드') ? `
+      <p style="margin-top:18px;font-weight:700;color:var(--color-blue)">
+        # 개인법인카드를 사용한 건은 월말에 지출건을 모아 지출승인요청서를 작성합니다.
+      </p>` : ''}
+    ${d.l1 ? `<h3>신청 매뉴얼</h3>
+      <iframe src="${d.l1}" allowfullscreen></iframe>` : ''}
+    ${pay.includes('개인법인카드') && d.l2 ? `<h3>월말 지출승인요청서 매뉴얼</h3>
+      <iframe src="${d.l2}" allowfullscreen></iframe>` : ''}
+  `;
+  finalPanel.classList.add('show');
+  scrollTopAll();
+}
+
+/* -------------- stage → finalPanel 페이드아웃 --------------*/
+const _origShow=show;
+function fadeToFinal(p){
+  if(stage.dataset.busy==='1'){_origShow(p);return;}
+  stage.dataset.busy='1';stage.style.opacity='0';
+  stage.addEventListener('transitionend',function h(e){
+    if(e.target!==stage) return;stage.removeEventListener('transitionend',h);
+    _origShow(p);stage.style.opacity='1';stage.dataset.busy='0';
+  },{once:true});
+}
+show=p=>fadeToFinal(p);
+
+/* -------------------- HOME 기능 ----------------------------*/
+const homeBtn=document.getElementById('backBtn');homeBtn.id='homeBtn';homeBtn.textContent='HOME';
+const homeBtnFP=document.createElement('button');homeBtnFP.id='homeBtnFP';homeBtnFP.textContent='HOME';
+homeBtnFP.style.cssText=`position:fixed;bottom:18px;left:18px;padding:12px 24px;border:none;border-radius:8px;background:${getComputedStyle(document.documentElement).getPropertyValue('--blue')};color:#fff;font-weight:700;cursor:pointer;z-index:9999;`;
+finalPanel.appendChild(homeBtnFP);
+
+function resetApp(){
+  finalPanel.classList.remove('show');finalPanel.style.opacity='';hist.length=0;
+  stage.dataset.busy='0';stage.classList.remove('two');stage.innerHTML='';render(tree);scrollTopAll();
+}
+homeBtn.onclick=resetApp;homeBtnFP.onclick=resetApp;
+
+/* ------------------------- 시작 -----------------------------*/
+render(tree);scrollTopAll();
+</script>
+
+
+<!-- Polyfills ------------------------------------------------->
+<script>
+/* ★ Array.at, String.replaceAll 구형 브라우저 대응 */
+if(!Array.prototype.at){
+  Array.prototype.at=function(n){
+    n=Math.trunc(n)||0;
+    if(n<0) n+=this.length;
+    return (n<0||n>=this.length)?undefined:this[n];
+  };
+}
+if(!String.prototype.replaceAll){
+  String.prototype.replaceAll=function(search,replace){
+    return this.split(search).join(replace);
+  };
+}
+</script>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+<div id="stage" data-busy="0"></div>
+<button id="backBtn">HOME</button>
+
+<div id="finalPanel">
+  <h1 id="fpTitle"></h1>
+  <section id="fpBody"></section>
+</div>
+
+<!-- CSV 붙여넣기 --------------------------------------------->
+<script id="csvData" type="text/csv">
+분류1,분류2,분류3,분류4,분류5,프로세스 설명,대분류,신청 방법,매월말 지출승인요청서 신청방법 : 개인법인카드를 한번이라도 사용한 이력이 있으면 작성
+임직원,비용 지출,사내 회의비·사외 접대비,100만원 미만,개인법인카드,"100만원 미만 사내 회의비·사외 접대비은 팀리더 구두 승인 후 개인법인카드로 결제하고 월말에 월간지출승인요청서만 작성하면 됩니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 지출품의서 생략 → 월말 지출승인요청서만 작성
+• 증빙: 월말 지출승인요청서에 동석인원·목적 명시
+• 예시: 야근 식사비, 팀 회식비, 협력업체 식사비",비용 지출 - 팀장 승인 사항,,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,사내 회의비·사외 접대비,100만원 미만,법인계좌이체,"카드결제가 어려운 100만원 미만 사내 회의비·사외 접대비는 지출품의서를 작성한 후 법인계좌이체로 결제해야 합니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 지출품의서 작성 (사후 작성 가능)  → 자금담당자 계좌이체
+• 양식: 라덱셀 양식 > 지출품의서 – 사내 회의비/접대비
+• 결재라인: 기안자 → 팀리더 (전결 권한 위임자: 부문리더, CEO)
+• 증빙: 동석인원, 목적 명시
+• 수신: 참조 : 업무관련자, 경영기획
+• 예시: 야근 식사비(카드 한도 초과 시)",비용 지출 - 팀장 승인 사항,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,사내 회의비·사외 접대비,100만원 이상,법인계좌이체,"100만원 이상 사내 회의비·사외 접대비은 법인계좌이체로 결제하기 전에 지출품의서를 사전 작성해야 합니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 사전 지출품의서 작성 → 최종 결재 획득 → 자금담당자 계좌이체(또는 개인법인카드 결재)
+• 양식: 라덱셀 양식 > 지출품의서 – 사내 회의비/접대비
+• 결재라인: 기안자 → 팀리더 → 부문리더 → CEO
+• 증빙: 동석인원, 목적 명시, 업무 상 지출임을 명료하게 입증
+• 수신: 참조 : 경영기획팀, 업무관련자
+• 예시: 외부 고급 접대비",비용 지출 - CEO 승인 사항,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,일반 구매,100만원 미만,개인법인카드,"100만원 미만 일반 구매는 팀리더 구두 승인 후 개인법인카드로 결제하고 월말에 월간지출승인요청서만 작성하면 됩니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 지출품의서 생략 → 월말 지출승인요청서만 작성
+• 예시: 문구류, 소모성 부품 등",비용 지출 - 팀장 승인 사항,,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,일반 구매,100만원 미만,법인계좌이체,"카드결제가 불가한 100만원 미만 일반 구매는 지출품의서를 작성한 후 법인계좌이체로 결제해야 합니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 지출품의서 작성  → 자금담당자 계좌이체
+• 양식: 라덱셀 양식 > 지출품의서 – 일반
+• 결재라인: 기안자 → 팀리더 (전결 권한 위임자: 부문리더, CEO)
+• 증빙: 금액이 명시된 견적서·계약서·청구서 등 첨부
+• 수신: 참조 : 경영기획팀, 업무관련자
+• 예시: 공구류, 소형 가구, 소모성 재료비 등",비용 지출 - 팀장 승인 사항,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,일반 구매,100만원 이상,법인계좌이체,"100만원 이상 일반 구매는 법인계좌이체로 결제하기 전에 지출품의서를 사전 작성해야 합니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 사전 지출품의서 작성 → 최종 결재 획득 → 자금담당자 계좌이체
+• 양식: 라덱셀 양식 > 지출품의서 – 일반
+• 결재라인: 기안자 → 팀리더 → 부문리더 → CEO
+• 증빙: 금액이 명시된 견적서·계약서·청구서 등 첨부
+• 수신: 참조 : 경영기획팀, 업무관련자
+• 예시: 가구, PC, 재료비 등",비용 지출 - CEO 승인 사항,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,외주용역·자문료,100만원 미만,개인법인카드,"카드결제가 가능한 100만원 미만 외주용역·자문료는 팀장 승인을 득한 후 개인법인카드로 결제하고 월말에 월간지출승인요청서만 작성하면 됩니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 지출품의서 생략 → 월말 지출승인요청서 작성
+• 증빙: 금액이 명시된 견적서·계약서·청구서 등 첨부
+• 예시: 단기 외부 컨설턴트 자문료",비용 지출 - 팀장 승인 사항,,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,외주용역·자문료,100만원 미만,법인계좌이체,"100만원 미만 외주용역·자문료은 지출품의서를 작성한 후 법인계좌이체로 결제해야 합니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 지출품의서 작성 → 자금담당자 계좌이체
+• 양식: 라덱셀 양식 > 지출품의서 – 외주용역/자문
+• 결재라인: 기안자 → 팀리더 (전결 권한 위임자: 부문리더, CEO)
+• 증빙: 금액이 명시된 견적서·계약서·청구서 등 첨부
+• 수신: 참조 : 업무관련자, 경영기획팀
+• 예시: 단기 외주 용역 비용",비용 지출 - 팀장 승인 사항,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,외주용역·자문료,100만원 이상,법인계좌이체,"100만원 이상의 외주용역·자문료는 법인계좌이체로 결제하기 전에 지출품의서를 사전 작성해야 합니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 사전 지출품의서 작성 → 최종 결재 획득 → 자금담당자 계좌이체
+• 양식: 라덱셀 양식 > 지출품의서 – 외주용역/자문
+• 결재라인: 기안자 → 팀리더 → 부문리더 → CEO
+• 증빙: 금액이 명시된 견적서·계약서·청구서 등 첨부
+• 수신: 참조 : 업무관련자, 경영기획팀
+• 예시: 장기 컨설팅 계약비",비용 지출 - CEO 승인 사항,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,교육비,금액무관,개인법인카드,"금액과 무관하게 교육비는 지출품의서를 먼저 작성하여 승인을 얻은 후 개인법인카드로 결제해야 합니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 지출품의서 작성 → 최종 결재 획득 → 개인법인카드 결제
+• 양식: 라덱셀 양식 > 지출품의서 – 교육비
+• 결재라인: 기안자 → 팀리더 → 부문리더 → CEO
+• 증빙: 금액이 명시된 교육 견적서·계약서 첨부
+• 수신: 참조 : 업무관련자, 경영기획팀
+• 예시: 단기 워크숍, 온라인 강의",비용 지출 - CEO 승인 사항,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,교육비,금액무관,법인계좌이체,"카드결제가 불가한 교육비는 금액과 무관하게 지출품의서를 먼저 작성하여 CEO 승인을 얻은 후 법인계좌이체로 결제해야 합니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 사전 지출품의서 작성 → 최종 결재 획득 → 자금담당자 계좌이체
+• 양식: 라덱셀 양식 > 지출품의서 – 교육비
+• 결재라인: 기안자 → 팀리더 → 부문리더 → CEO
+• 증빙: 금액이 명시된 교육 견적서·계약서 첨부
+• 수신: 참조 : 업무관련자, 경영기획팀
+• 예시: 장기 연수 프로그램, 직무 온라인 강의 등",비용 지출 - CEO 승인 사항,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,업무툴·소프트웨어,금액무관,SW카드,"금액과 무관하게 업무툴·소프트웨어는 지출품의서를 먼저 작성하여 CEO 승인을 얻은 후 SW카드로 결제해야 합니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 지출품의서 작성 → 최종 결재 획득 → SW카드 결제
+• 양식: 라덱셀 양식 > 지출품의서 – 소프트웨어
+• 결재라인: 기안자 → 팀리더 → 부문리더 → CEO
+• 증빙: 금액이 명시된 라이선스 계약서 첨부
+• 수신: 참조 : 업무관련자, 경영기획팀
+• 예시: SaaS 구독료, 개발툴 라이선스",비용 지출 - CEO 승인 사항,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,다과(쿠팡·간식 서비스·카페),금액무관,다과카드,"금액무관 다과(쿠팡·간식 서비스·카페)는 별도의 승인과정이 필요없으며, 일반 구매 절차를 따라 팀장 승인하에 개인법인카드로 구매해도 되고, 간편하게 슬랙 채널로 요청하셔도 됩니다.  구체적인 가이드는 아래를 참고하세요.
+• 진행: 슬랙 ‘구매요청’ 채널 → 자금담당자 일괄 결제
+• 예시: 콜라, 캡슐커피 등",비용 지출 - 승인 불필요,,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,소모성 사무용품,10만원 이하,사무잡비카드,"10만원 이하의 소모성 사무용품은 별도의 승인과정이 필요없으며, 일반 구매 절차를 따라 팀장 승인하에 개인법인카드로 구매해도 되고, 간편하게 슬랙 채널로 요청하셔도 됩니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 슬랙 '구매요청’ 채널 → 자금담당자 일괄 결제
+• 예시: 볼펜, 메모지",비용 지출 - 승인 불필요,,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,비용 지출,카드계산이 불가한 소액 잡비,금액무관,법인계좌이체,"금액무관 3만원 이하의 카드계산이 불가한 잡비는 별도 승인과정이 필요없으며, 자금담당자에게 요청하여 법인계좌이체로 결제하면 됩니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 승인 생략
+• 증빙: 현금영수증 등
+• 예시: 화물 용달비",비용 지출 - 승인 불필요,,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,출장,출장,"육로, 1박 2일 이내의 출장","유류비·통행료 - 실비지급 / 그 외 - 개인법인카드","육로, 1박 2일 이내의 출장 출장은 별도의 출장신청이 필요없으며, 팀리더 구두 승인하에 진행하시면 됩니다. 출장 중 발생한 여비는 일반구매절차에 따르면 됩니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 출장품의서 생략
+• 여비: 유류비, 통행료의 경우 자비로 지출한 후 월말 지출승인요청서로 청구
+• 증빙: 유류비, 통행료 (네이버 캡쳐화면 첨부)
+• 예시: 당일 외근, 대전 1박 2일 출장",출장 - 팀장 승인 사항,,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,출장,출장,그 외의 출장,"1) 개인법인카드 우선,
+2) 법인계좌이체가 차선,
+3) 현금 결재가 최후의 수단
+","육로 이동이 아니거나, 1박 2일을 초과하는 출장은 출장품의서를 먼저 작성하여야 합니다.구체적인 가이드는 아래를 참고하세요.
+• 진행: 위하고 근태관리 > 출장신청
+• 결재라인: 기안자 → 팀리더 → 부문리더 → CEO
+• 여비: 출장규칙 참고
+• 증빙: 항목별 금액이 명시된 첨부
+• 수신: 참조 : 업무관련자, 경영기획팀
+• 예시: 1주일간의 제주도 출장, 해외 출장",출장 - CEO 승인 사항,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,휴가,휴가,,,"기간과 관계없이 휴가는 근태관리 시스템에서 신청하면 됩니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 근태관리 시스템 > 휴가신청
+• 결재라인: 기안자 →  직속리더 (전결 권한 위임자: 부문리더, CEO)
+• 예시: 연차, 조퇴, 반차",휴가 - 팀장 승인 사항, https://app.supademo.com/embed/cm9164cwo1phweyp0roo785gu?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,휴직/복직/사직,휴직/복직/사직,,,"기간과 관계없이 휴직/복직/사직은 신청서를 통해 CEO승인을 얻은 후 진행절차를 따라야 합니다. 구체적인 가이드는 아래를 참고하세요.
+• 진행: 라덱셀양식 > 휴직신청서/사직서 작성
+• 양식: 라덱셀> 휴직신청서/사직서 작성
+• 결재라인: 기안자 → 팀리더 → 부문리더 → CEO
+• 증빙: 휴직 사유서, 사직 사유서
+• 예시: 육아휴직, 퇴사",휴직/복직/사직,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+임직원,증명서 발급,증명서 발급,,,"재직·경력·소득 증명서는 ‘나하고’ 앱에서 신청하면 HR팀이 승인 후 발급합니다.
+• 진행: 나하고 앱 > 증명서 신청
+• 예시: 재직증명서, 경력증명서
+• 비고 : 1시간 내 미발급 시 HR담당자에게 슬랙 문의",증명서 발급,,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+업무 담당자,비용지출,채용수수료,금액무관,SW카드,"• 조건 : 모든 금액, 카드 사용 가능
+• 전자결재 : 지출품의서 생략 → 카드 결제
+• 품의서 양식 : 라덱셀양식 > 지출품의서 - 일반
+• 결재라인 : 기안자 → 팀리더 (전결 권한 위임자: 부문리더, CEO)
+• 증빙서류 : 채용계약서·견적서 첨부
+• 예시 : 헤드헌팅 수수료",비용지출,,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+업무 담당자,비용지출,채용수수료,금액무관,법인계좌이체," • 조건 : SW카드 사용 불가
+ • 전자결재 : 지출품의서 작성 → 최종 결재 획득 → 자금담당자 계좌이체
+ • 품의서 양식 : 라덱셀양식 > 지출품의서 - 일반
+ • 결재라인 : 기안자 → 팀리더 (전결 권한 위임자: 부문리더, CEO)
+ • 증빙서류 : 채용계약서, 견적서 등 첨부
+ • 예시 : 원티드 채용성사 수수료 등",비용지출,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+업무 담당자,비용지출,면접비,금액무관,법인계좌이체," • 전자결재 : 지출품의서 생략 → 계좌이체
+ • 결재라인 : 기안자 → 팀리더 (전결 권한 위임자: 부문리더, CEO)
+ • 예시 : 지원자 교통비, 과제면섭 수행비",비용지출,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+업무 담당자,비용지출,지적재산권(특허·상표권),금액무관,법인계좌이체," • 조건 : 모든 금액
+ • 전자결재 : 라덱셀양식 > 지출품의서 - 지식재산권
+ • 결재라인 : 기안자 → 팀리더 (전결 권한 위임자: 부문리더, CEO)
+ • 증빙서류 : 청구서 첨부
+ • 비고 : 노션 특허리스트로 승인 절차 대체",비용지출,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+업무 담당자,비용지출,임대·관리비,금액무관,법인계좌이체," • 조건 : 모든 금액
+ • 전자결재 : 라덱셀양식 > 지출품의서 - 임대/관리비
+ • 결재라인 : 기안자 → 팀리더 (전결 권한 위임자: 부문리더, CEO)
+ • 증빙서류 : 청구서 첨부",비용지출,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+업무 담당자,비용지출,경조금 지급,금액무관,경조금 지급 규칙에 따름," • 조건 : 모든 경조사
+ • 전자결재 : 라덱셀양식 > 경조금 지급 신청서 작성
+ • 결재라인 : HR담당자 → 팀리더 → 부문리더 → CEO
+ • 증빙서류 : 경조사 증빙(초대장, 사망진단서 등)
+ • 비고 : 사내 경조금 지급 규칙 준수",비용지출,https://app.supademo.com/embed/cm918m28p1rigeyp0ni07t0et?embed_v=2,https://app.supademo.com/embed/cm8woiw0c0sybdmompggdzkmh?embed_v=2
+
+</script>
+
+<!-- 메인 스크립트 ------------------------------------------->
+<script type="module">
+/* ---------------------- 기본 설정 ---------------------------*/
+const HIGHLIGHTS=['미만','이상','무관','금액무관'];
+
+/* --------------------- CSV → 트리 --------------------------*/
+const rows=d3.csvParse(document.getElementById('csvData').textContent.trim());
+const LV=Object.keys(rows[0]).filter(k=>/^분류\d+$/.test(k)).sort((a,b)=>+a.slice(2)-+b.slice(2));
+const L2_KEY=Object.keys(rows[0]).find(k=>k.startsWith('매월말'));
+function upsert(p,l){return p.children.find(c=>c.name===l)||(p.children.push({name:l,children:[]}),p.children.at(-1));}
+
+function build(data){
+  const root={name:'ROOT',children:[]};
+  data.forEach(r=>{
+    let n=root;
+    LV.forEach(lv=>{
+      const v=(r[lv]||'').trim();
+      if(v) n=upsert(n,v);
+    });
+    n.payload={
+      cat3:(r['분류3']||'').trim(),
+      cash:(r['분류4']||'').trim(),
+      pay :(r['분류5']||'').trim(),
+      big :(r['대분류']||'').trim(),
+      desc:(r['프로세스 설명']||'')
+              .replace(/•/g,'<br>•')
+              .replace(/\\n\\s*/g,'<br>'),
+      l1  :(r['신청 방법']||'').trim(),
+      l2  : L2_KEY ? (r[L2_KEY]||'').trim() : ''
+    };
+  });
+  return root;
+}
+const tree=build(rows);
+
+/* ------------------------- 요소 -----------------------------*/
+const stage      =document.getElementById('stage');
+const finalPanel =document.getElementById('finalPanel');
+const hist       =[];                              // 스테이지 히스토리
+
+/* ------------- 공통 유틸 & 폰트 리사이즈 --------------------*/
+const highlight=t=>
+  HIGHLIGHTS.reduce((s,w)=>s.replaceAll(w,`<span class="highlight">${w}</span>`),t);
+
+const scrollTopAll=()=>{
+  window.scrollTo(0,0);
+  stage.scrollTop=0;
+  finalPanel.scrollTop=0;
+};
+
+function resizeFont(){
+  const opts=[...stage.querySelectorAll('.option')];
+  if(!opts.length) return;
+  opts.forEach(o=>{o.style.fontSize='';o.style.margin='4px 0';});
+
+  let size=parseFloat(getComputedStyle(opts[0]).fontSize);
+  let tries=0;
+  while(stage.scrollHeight>stage.clientHeight && size>18 && ++tries<30){
+    size-=2;
+    const m=Math.max(2,4-(tries>5?1:0));
+    opts.forEach(o=>{
+      o.style.fontSize=size+'px';
+      o.style.margin=`${m}px 0`;
+    });
+  }
+}
+
+/* ---------------------- 렌더 -------------------------------*/
+function auto(node){
+  while(node.children?.length===1 && !node.children[0].payload){
+    hist.push(node);
+    node=node.children[0];
+  }
+  if(node.children?.length===1 && node.children[0].payload){
+    show(node.children[0].payload);
+    return null;
+  }
+  return node;
+}
+
+/* ---------------------- 렌더링 로직 ---------------------- */
+function render(node) {
+  node = auto(node);
+  if (!node || stage.dataset.busy === '1') return false;
+  stage.dataset.busy = '1';
+  stage.style.opacity = '0';
+
+  const onFade = e => {
+    if (e.target !== stage) return;
+    stage.removeEventListener('transitionend', onFade);
+    stage.classList.toggle('two', node.children.length === 2);
+    stage.innerHTML = '';
+
+    node.children.forEach(c => {
+      const el = document.createElement('div');
+      el.className = 'option';
+      el.innerHTML = highlight(c.name);
+      el.tabIndex = 0;
+      el.addEventListener('keydown', ev => {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          el.click();
+        }
+      });
+      el.onclick = () => {
+        hist.push(node);
+        c.payload ? show(c.payload) : render(c);
+      };
+      stage.appendChild(el);
+    });
+
+    /* resizeFont(); */  // ← 주석 처리: CSS clamp()만으로 충분히 제어
+    stage.style.opacity = '1';
+    stage.dataset.busy = '0';
+  };
+
+  stage.addEventListener('transitionend', onFade, { once: true });
+  return true;
+}
+
+/* ------------------- 최종 패널 -----------------------------*/
+function title(d) {
+  const catRaw  = (d.cat3  || '').trim();
+  const cashRaw = (d.cash  || '').trim();
+
+  // '-' 은 금액무관 표시로 간주 → 빈 문자열로 치환
+  const cash = (cashRaw && cashRaw !== '-') ? cashRaw : '';
+  const cat  = catRaw;
+
+  // 둘 다 있을 때
+  if (cat && cash) {
+    const combined = `${cat} / ${cash}`;
+    // 24자 넘으면 줄바꿈
+    return combined.length > 24
+      ? combined.replace(' / ', '<br>/')
+      : combined;
+  }
+  // cat만 있을 때
+  if (cat) {
+    return cat;
+  }
+  // cash만 있을 때
+  if (cash) {
+    return cash;
+  }
+  // 둘 다 없으면
+  return '';
+}
+function show(d){
+  const pay = d.pay || '';
+
+  document.getElementById('fpTitle').innerHTML=title(d);
+  document.getElementById('fpBody').innerHTML=`
+    <p><b>대분류 :</b> ${d.big||'-'}</p>
+    <p><b>금액범위 :</b> ${d.cash||'-'}</p>
+    <p><b>결재수단 :</b> ${pay||'-'}</p><hr>
+    <p>${d.desc}</p>
+    ${pay.includes('개인법인카드')?`
+      <p style="margin-top:18px;font-weight:700;color:var(--blue)">
+        # 개인법인카드를 사용한 건은 월말에 지출건을 모아 지출승인요청서를 작성합니다.
+      </p>`:''}
+    ${d.l1?`<h3>신청 매뉴얼</h3><iframe src="${d.l1}" allowfullscreen></iframe>`:''}
+    ${pay.includes('개인법인카드')&&d.l2?`
+      <h3>월말 지출승인요청서 매뉴얼</h3><iframe src="${d.l2}" allowfullscreen></iframe>`:''}
+  `;
+  finalPanel.classList.add('show');
+  scrollTopAll();
+}
+
+/* -------------------- 페이드 인/아웃 보강 -------------------*/
+const _origShow = show;
+function fadeToFinal(payload){
+  if(stage.dataset.busy==='1'){ _origShow(payload); return; }
+  stage.dataset.busy='1';
+  stage.style.opacity='0';
+  stage.addEventListener('transitionend',function h(e){
+    if(e.target!==stage) return;
+    stage.removeEventListener('transitionend',h);
+    _origShow(payload);
+    stage.style.opacity='1';
+    stage.dataset.busy='0';
+  },{once:true});
+}
+show = p => fadeToFinal(p);
+
+/* -------------------- HOME 기능 ----------------------------*/
+/* 1) 기존 Back 버튼을 HOME 버튼으로 전환 */
+const homeBtn=document.getElementById('backBtn');
+homeBtn.textContent='HOME';
+
+/* 2) 최종 패널 내부에도 HOME 버튼 생성 (스크롤 상관없이 고정) */
+const homeBtnFP=document.createElement('button');
+homeBtnFP.id='homeBtnFP';
+homeBtnFP.textContent='HOME';
+homeBtnFP.style.cssText=`
+  position:fixed;bottom:18px;left:18px;
+  padding:8px 14px;border:none;border-radius:6px;
+  background:${getComputedStyle(document.documentElement).getPropertyValue('--blue')};
+  color:#fff;font-weight:700;cursor:pointer;z-index:9999;
+`;
+finalPanel.appendChild(homeBtnFP);
+
+/* 3) 앱 초기화 함수 */
+function resetApp(){
+  finalPanel.classList.remove('show');
+  finalPanel.style.opacity='';
+  hist.length=0;
+  stage.dataset.busy='0';
+  stage.classList.remove('two');
+  stage.innerHTML='';
+  render(tree);
+  scrollTopAll();
+}
+
+/* 4) HOME 버튼 동작 */
+homeBtn.onclick   = resetApp;
+homeBtnFP.onclick = resetApp;
+
+/* ------------------------- 시작 -----------------------------*/
+  render(tree);
+  scrollTopAll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RADEXEL - Excellence in Oncology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+<style>
+  /* --- 1. BRAND VARIABLES (From PDF Guidelines) --- */
+  :root {
+    /* Brand Colors */
+    --gobelin-blue: #2C5CA3;    /* Main: Trust, Technology  */
+    --emerald-green: #208685;   /* Accent: Precision, Life [cite: 41] */
+    --blue-gray: #557482;       /* Sub: Professional Text  */
+    --tech-black: #1a1a1a;
+    --clean-white: #ffffff;
+    --light-bg: #f4f6f9;        /* 아주 연한 블루 그레이 톤 배경 */
+  }
+
+  /* --- 2. GLOBAL STYLES --- */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', sans-serif;
+    color: var(--tech-black);
+    background-color: var(--clean-white);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif; /* 로고와 유사한 폰트 */
+    margin: 0;
+  }
+
+  /* --- 3. HERO SECTION (First Impression) --- */
+  .hero-section {
+    background: linear-gradient(135deg, var(--gobelin-blue) 0%, #1a3a6c 100%);
+    color: white;
+    padding: 120px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 배경에 은은한 그래픽 요소 (선) 추가 */
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.5;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .tagline {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--emerald-green); /* 브랜드 포인트 컬러 [cite: 41] */
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: inline-block;
+    background: rgba(32, 134, 133, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+  }
+
+  .hero-title {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+  
+  .hero-desc {
+    font-size: 18px;
+    color: rgba(255,255,255, 0.85);
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .cta-button {
+    background-color: var(--emerald-green);
+    color: white;
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(32, 134, 133, 0.4);
+    display: inline-block;
+  }
+
+  .cta-button:hover {
+    background-color: #176665; /* Darker Green */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(32, 134, 133, 0.6);
+  }
+
+  /* --- 4. PIPELINE SECTION --- */
+  .pipeline-section {
+    padding: 100px 20px;
+    background-color: var(--light-bg);
+  }
+
+  .section-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  }
+
+  .section-header {
+    margin-bottom: 60px;
+    text-align: left;
+    border-left: 5px solid var(--gobelin-blue);
+    padding-left: 20px;
+  }
+
+  .section-title {
+    font-size: 32px;
+    color: var(--gobelin-blue);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  /* Pipeline Grid CSS (Previous Logic + New Colors) */
+  .pipeline-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .stage-header {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column: 2 / 3;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #eef2f6;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+  }
+
+  .stage-label { position: relative; }
+  
+  /* 세로 가이드라인: 더 은은하게 변경 */
+  .stage-label::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -250px;
+    width: 1px; height: 250px;
+    background: repeating-linear-gradient(to bottom, #e0e6ed 0, #e0e6ed 5px, transparent 5px, transparent 10px);
+    z-index: 0;
+  }
+
+  .product-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gobelin-blue);
+  }
+
+  .track-container {
+    position: relative;
+    height: 44px;
+    background-color: #eef2f6;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  /* 그라데이션 적용: Blue(시작) -> Green(완성)의 흐름 */
+  .progress-bar {
+    height: 100%;
+    /* Gobelin Blue에서 Emerald Green으로 이어지는 그라데이션 */
+    background: linear-gradient(90deg, var(--gobelin-blue), var(--emerald-green)); 
+    border-radius: 0 8px 8px 0;
+    width: 0;
+    transition: width 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 2px 0 10px rgba(44, 92, 163, 0.3);
+  }
+
+  /* 마일스톤: Emerald Green 활용 */
+  .milestone {
+    width: 14px; height: 14px;
+    background-color: white;
+    border: 3px solid var(--emerald-green);
+    border-radius: 50%; /* 원형으로 변경하여 더 부드럽게 */
+    margin-left: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: var(--gobelin-blue);
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 10px;
+    position: absolute;
+    z-index: 10;
+    bottom: 130%;
+    left: 50%;
+    margin-left: -100px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: 'Pretendard';
+    font-weight: 400;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  
+  .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%; left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--gobelin-blue) transparent transparent transparent;
+  }
+
+  .progress-bar:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .hero-title { font-size: 32px; }
+    .pipeline-grid { grid-template-columns: 1fr; gap: 10px; }
+    .stage-header, .stage-label::after { display: none; }
+    .product-name { margin-bottom: 5px; }
+    .track-container { margin-bottom: 25px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="tagline">Excellence in Oncology</div> <h1 class="hero-title">Redefining Surgical Precision<br>with MPRT Technology</h1>
+    <p class="hero-desc">
+      RADEXEL은 정밀 제어 기술로 수술 로봇의 새로운 기준을 만듭니다.<br>
+      더 안전한 수술, 더 빠른 회복을 위한 우리의 도전은 계속됩니다.
+    </p>
+    <a href="#" class="cta-button">Our Technology</a>
+  </div>
+</section>
+
+<section class="pipeline-section">
+  <div class="section-container">
+    
+    <div class="section-header">
+      <h2 class="section-title">R&D PIPELINE</h2>
+      <p style="color: var(--blue-gray);">Developing the Future of Medical Robotics</p>
+    </div>
+
+    <div class="pipeline-grid">
+      <div class="stage-header">
+        <div class="stage-label">Feasibility</div>
+        <div class="stage-label">Design</div>
+        <div class="stage-label">V&V</div>
+        <div class="stage-label">Regulatory</div>
+        <div class="stage-label">Launch</div>
+      </div>
+
+      <div class="product-name">MPRT Module</div>
+      <div class="track-container">
+        <div class="progress-bar" style="width: 55%;">
+          <span class="tooltip-text">GLP(비임상) 완료 및<br>공인 시험 성적서 확보 중</span>
+          V&V Phase
+        </div>
+      </div>
+
+      <div class="product-name">MPRT Robot</div>
+      <div class="track-container">
+        <div class="progress-bar" style="width: 40%;">
+          <span class="tooltip-text">2025 2Q Design Freeze<br>(설계 동결 예정)</span>
+          Design Freeze <div class="milestone"></div>
+        </div>
+      </div>
+
+      <div class="product-name">Navi-Guide AI</div>
+      <div class="track-container">
+        <div class="progress-bar" style="width: 20%;">
+          <span class="tooltip-text">핵심 알고리즘 PoC 완료</span>
+          PoC
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  window.addEventListener('load', () => {
+    const bars = document.querySelectorAll('.progress-bar');
+    bars.forEach(bar => {
+      const targetWidth = bar.style.width;
+      bar.style.width = '0';
+      setTimeout(() => { bar.style.width = targetWidth; }, 300);
+    });
+  });
+</script>
+
+</body>
+</html>

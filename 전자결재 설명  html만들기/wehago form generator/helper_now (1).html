@@ -1,0 +1,1606 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WEHAGO 전자결재 폼 생성기 (v3.3)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            /* [수정] 시그니처 블루 적용 (메인 컬러) */
+            --primary-color: #2C5CA3;
+            /* [수정] 호버 시 더 깊은 블루 */
+            --primary-hover: #1E447A;
+
+            --border-color: #e2e8f0;
+            --background-light: #f7fafc;
+            --background-white: #ffffff;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+
+            /* [수정] 시그니처 그린 적용 (성공/완료) */
+            --success-color: #22A699;
+        }
+
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        /* --- 레이아웃 구조 --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--background-light);
+            margin: 0;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 2rem;
+        }
+
+        .fixed-width-container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .expandable-width-container {
+            width: 100%;
+            max-width: 900px;
+            /* JS에 의해 동적으로 변경됨 */
+            transition: max-width 0.4s ease-in-out;
+            /* 너비 변경 애니메이션 */
+        }
+
+        /* --- 공통 스타일 --- */
+        h1 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section {
+            background: var(--background-white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-top: 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .label-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        label {
+            font-weight: 500;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .label-icons {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            /* [수정] 파란색(#2C5CA3)의 투명도 조절 버전 */
+            box-shadow: 0 0 0 3px rgba(44, 92, 163, 0.15);
+        }
+
+        input::placeholder {
+            color: #cbd5e0;
+        }
+
+        input:read-only,
+        select:disabled {
+            background-color: #f7fafc;
+            color: #718096;
+            cursor: not-allowed;
+        }
+
+
+        /* --- 안내 문구 스타일 --- */
+        .app-description {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            font-size: 0.9rem;
+        }
+
+        .section-description {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: -0.75rem;
+            margin-bottom: 1.5rem;
+            padding-left: 0.25rem;
+        }
+
+        /* --- 버튼 & 아이콘 --- */
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+
+        .button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .button-secondary {
+            background-color: #edf2f7;
+            color: var(--text-dark);
+        }
+
+        .button-secondary:hover {
+            background-color: #e2e8f0;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0;
+            line-height: 1;
+            opacity: 0.3;
+            transition: opacity 0.2s;
+        }
+
+        .icon-btn:hover {
+            opacity: 1;
+        }
+
+        .hide-btn {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .lock-icon {
+            cursor: default;
+            opacity: 0.5;
+        }
+
+        /* --- 숨김/복원 기능 --- */
+        .restore-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .restore-section h4 {
+            margin: 0 0 1rem 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .restore-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .restore-btn {
+            background-color: #edf2f7;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .restore-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* --- 항목(Item) 카드 --- */
+        #items-container-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 1.5rem;
+        }
+
+        #items-container {
+            display: flex;
+            gap: 1.5rem;
+            padding-bottom: 1rem;
+        }
+
+        .item-card {
+            background-color: var(--background-light);
+            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            transition: opacity 0.3s, transform 0.3s;
+            flex: 0 0 320px;
+        }
+
+        .item-card.single-item {
+            flex: 1 1 auto;
+        }
+
+        .item-fields-container>div {
+            margin-bottom: 1.25rem;
+        }
+
+        .item-fields-container>div:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .item-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .remove-item-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            line-height: 1;
+        }
+
+        /* --- UX 개선 --- */
+        #copyFeedback {
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: opacity 0.5s;
+            height: 24px;
+        }
+
+        .highlight {
+            transition: box-shadow 0.2s;
+            /* [수정] 하이라이트는 초록색(#22A699)을 사용하여 '적용됨/성공' 의미 부여 */
+            box-shadow: 0 0 0 3px rgba(32, 182, 133, 0.5);
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* --- 피드백 및 버전 정보 --- */
+        .footer-notice {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-notice b {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* --- AI Section 스타일 (Step 2 - 좌우 분할 레이아웃) --- */
+        .ai-section {
+            /* [수정] 회사 시그니처 컬러 그라데이션 (블루 -> 그린) */
+            background: linear-gradient(135deg, #2C5CA3 0%, #22A699 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        /* 드래그 오버 시 전체 효과 */
+        .ai-section.drag-over {
+            transform: scale(1.005);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+            /* 드래그 시 조금 더 밝은 톤으로 변경 */
+            background: linear-gradient(135deg, #386CB8 0%, #2BCFA0 100%);
+        }
+
+        .ai-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-header h3 {
+            color: white;
+            margin: 0 0 0.5rem 0;
+            font-size: 1.4rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .ai-header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* 좌우 분할 그리드 */
+        .ai-grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            /* 왼쪽 1 : 오른쪽 1.2 비율 */
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* (왼쪽) 업로드 카드 */
+        .upload-card {
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 220px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .upload-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .upload-text {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-sub {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* (오른쪽) 파일 목록 & 지시사항 */
+        .info-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* 대기 중인 파일 박스 (어두운 배경) */
+        #file-list-box {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            overflow-y: auto;
+            max-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* 내용 없을 때 중앙 정렬 */
+        }
+
+        .file-item {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        /* 지시사항 입력 (흰색 박스) */
+        .instruction-box {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .instruction-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background: transparent;
+            padding: 0;
+            height: auto;
+            /* 기존 input 높이 초기화 */
+        }
+
+        .instruction-box input:focus {
+            box-shadow: none;
+        }
+
+        /* 하단 분석 버튼 */
+        #run-analysis-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            /* [수정] 버튼 텍스트를 메인 블루 컬러로 */
+            color: var(--primary-color);
+            font-weight: 800;
+            border: none;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        #run-analysis-btn:hover:not([disabled]) {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            /* [수정] 호버 시 텍스트는 초록색으로 포인트 */
+            color: var(--success-color);
+        }
+
+        #run-analysis-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .ai-grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .upload-card {
+                min-height: 150px;
+            }
+        }
+
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1rem;
+            z-index: 10;
+            color: var(--text-dark);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* --- [UX 개선] 기존 스타일 덮어쓰기 및 추가 --- */
+
+        /* 1. 카드 및 섹션 디자인: 더 깊은 그림자와 여유로운 간격 */
+        .section,
+        .item-card {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .item-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        /* 2. 아이콘 버튼: 클릭 영역 확대 및 호버 효과 */
+        .icon-btn {
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.2s;
+            color: var(--text-light);
+            opacity: 0.6;
+        }
+
+        .icon-btn:hover {
+            background-color: #edf2f7;
+            color: var(--primary-color);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* 3. AI 섹션: 드래그 앤 드롭 시각화 강화 */
+        .ai-section {
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            /* 이미 위에서 그라데이션 정의됨 */
+        }
+
+        /* 4. [New] 토스트 알림 (Toast Notification) */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background-color: var(--text-dark);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-weight: 500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toast-container.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* --- 고급 설정 (디자인 수정본 - 글자색 수정) --- */
+
+        /* 애니메이션 컨테이너 */
+        #ai-advanced-options {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        #ai-advanced-options.open {
+            max-height: 500px;
+            opacity: 1;
+            transform: translateY(0);
+            margin-top: 1.5rem;
+        }
+
+        /* 내부 박스 스타일 (유리 효과) */
+        .advanced-settings-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: left;
+            color: white !important;
+            /* 박스 내 기본 글자색 흰색 강제 */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 라디오 버튼 행 정렬 */
+        .radio-row {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 라벨 스타일 (흰색 강제 적용) */
+        .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ffffff !important;
+            /* [수정됨] 기존 회색 label 스타일 덮어쓰기 */
+        }
+
+        .radio-label input[type="radio"] {
+            margin-right: 0.5rem;
+            width: 1.1rem;
+            height: 1.1rem;
+            accent-color: white;
+            cursor: pointer;
+            appearance: auto;
+            box-shadow: none;
+            border: none;
+        }
+
+        .radio-label span {
+            color: #ffffff !important;
+            /* [수정됨] 텍스트 span도 확실하게 흰색으로 */
+        }
+
+        /* 하위 옵션 (나누기 상세) */
+        #split-detail-options {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255, 255, 255, 0.5);
+            /* 점선도 더 밝게 */
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            color: white !important;
+        }
+
+        /* 숫자 입력창 */
+        #manualCountInput {
+            width: 60px !important;
+            padding: 0.3rem !important;
+            border-radius: 0.4rem !important;
+            border: none !important;
+            text-align: center;
+            font-weight: bold;
+            /* [수정] 입력된 숫자는 메인 블루 컬러로 */
+            color: var(--primary-color);
+            background: white;
+            height: 30px !important;
+            margin: 0 0.5rem;
+        }
+
+        /* [수정] 심플한 가로형 자산 분류 버튼 (Segmented Control) */
+        .asset-segment-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: #F1F5F9;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            border: 1px solid #E2E8F0;
+        }
+
+        .asset-segment-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #4A5568;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .asset-segment-group {
+            display: flex;
+            background: #E2E8F0;
+            border-radius: 0.5rem;
+            padding: 0.25rem;
+            gap: 0.25rem;
+        }
+
+        .asset-option {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 0.6rem 0.25rem;
+            font-size: 0.85rem;
+            border-radius: 0.35rem;
+            cursor: pointer;
+            color: #718096;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+        }
+
+        .asset-option span.main-text {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .asset-option span.sub-text {
+            font-size: 0.7rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .asset-option:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* 활성화 상태 디자인 */
+        .asset-option.active {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            color: #2D3748;
+        }
+
+        /* 1. 비용 (기본) */
+        .asset-option[data-type="expense"].active {
+            color: #4A5568;
+            border-left: 3px solid #718096;
+        }
+
+        /* 2. 유형 (기성품) */
+        .asset-option[data-type="tangible"].active {
+            color: #22A699;
+            border-left: 3px solid #22A699;
+        }
+
+        /* 3. 무형 (SW) */
+        /* 3. 무형 (SW) */
+        .asset-option[data-type="intangible"].active {
+            color: #805AD5;
+            border-left: 3px solid #805AD5;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+
+    <!-- Login Overlay (Gatekeeper) -->
+    <div id="login-overlay"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white;">
+        <div
+            style="background: #2D3748; padding: 2rem; border-radius: 1rem; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); max-width: 400px; width: 90%;">
+            <h2 style="margin-bottom: 1rem; color: #E2E8F0;">🔒 RADEXEL Access Control</h2>
+            <p style="margin-bottom: 2rem; color: #A0AEC0;">이 도구는 사내 업무용입니다.<br>@radexel.com 계정으로 로그인해주세요.</p>
+            <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID" data-callback="handleCredentialResponse"
+                data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="filled_blue"
+                data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+            </div>
+            <p id="login-error-msg" style="color: #FC8181; margin-top: 1rem; font-size: 0.9rem; display: none;"></p>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <button id="settings-btn" class="settings-btn" title="설정">⚙️</button>
+        <div class="fixed-width-container">
+            <h1>WEHAGO 전자결재 폼 생성기 💡</h1>
+            <p class="app-description">모든 입력 내용과 설정은 새로고침해도 자동으로 복원됩니다.</p>
+
+            <div class="section" style="margin-bottom: 2rem; border: 2px solid var(--primary-color);">
+                <div class="header-controls">
+                    <h2>0. 양식 종류 선택 (Step 1)</h2>
+                    <button id="reset-btn" class="button button-secondary" style="padding: 0.5rem 1rem;">[↻] 새로
+                        작성</button>
+                </div>
+                <select id="masterFormType" class="button"
+                    style="width:100%; text-align:left; margin-top: 1rem; background-color: white; color: var(--text-dark); border: 1px solid var(--border-color);">
+                    <option value="general_expense">지출품의서 - 일반</option>
+                    <option value="meeting_expense">지출품의서 - 사내 사외 회의비</option>
+                    <option value="outsourcing_expense">지출품의서 - 외주용역</option>
+                    <option value="education_expense">지출품의서 - 교육비</option>
+                    <option value="software_expense">지출품의서 - 소프트웨어</option>
+                    <option value="ip_expense">지출품의서 - 지식재산권</option>
+                    <option value="travel_expense_claim">지출승인요청서 - 교통여비 청구</option>
+                    <option value="business_trip_report">출장품의서 - 지출정보</option>
+                </select>
+            </div>
+
+            <div class="ai-section" id="drop-zone">
+                <div id="ai-loading" class="loading-overlay" style="display: none; border-radius: 1rem;">
+                    <div class="spinner"></div>
+                    <p id="loading-text" style="color: var(--text-dark); font-weight: bold;">분석 중...</p>
+                </div>
+
+                <div class="ai-header">
+                    <h3>🤖 AI 자동 입력 (Step 2)</h3>
+                    <p>영수증, 견적서, 엑셀을 드래그하거나 선택하여 폼을 자동으로 완성합니다.</p>
+                </div>
+
+                <div class="ai-grid-container">
+                    <div class="upload-card" onclick="document.getElementById('file-input').click()">
+                        <div class="upload-icon">📂</div>
+                        <div class="upload-text">파일 선택 또는 드래그</div>
+                        <div class="upload-sub">이미지, PDF, Excel, Word 지원</div>
+                        <input type="file" id="file-input"
+                            accept="image/*,application/pdf,.xlsx,.xls,.docx,.doc,.txt,.csv" multiple
+                            style="display: none;">
+                    </div>
+
+                    <div class="info-panel">
+                        <div id="file-list-box">
+                            <div style="text-align: center; color: rgba(255,255,255,0.6);">
+                                대기 중인 파일이 없습니다.
+                            </div>
+                        </div>
+
+                        <div class="instruction-box">
+                            <span style="font-size: 1.2rem;">💡</span>
+                            <input type="text" id="user-instruction" placeholder="AI 지시사항 (예: 운영계좌에서 이체할게. 부가세는 10%임.)">
+                        </div>
+                    </div>
+                </div>
+
+                <button id="run-analysis-btn" disabled>
+                    🚀 파일을 먼저 추가해주세요
+                </button>
+
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <button id="toggle-advanced-btn"
+                        style="background:none; border:none; color:rgba(255,255,255,0.8); cursor:pointer; font-size:0.9rem; text-decoration: underline; transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.3rem;">
+                        ⚙️ 고급 설정 (합산/분리 방식)
+                    </button>
+
+                    <div id="ai-advanced-options">
+                        <div class="advanced-settings-box">
+                            <div class="radio-row">
+                                <label class="radio-label">
+                                    <input type="radio" name="aiMode" value="merge" checked
+                                        onclick="toggleSplitOptions()">
+                                    <span>📄 1건으로 합치기</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="aiMode" value="split" onclick="toggleSplitOptions()">
+                                    <span>📑 여러 건으로 나누기</span>
+                                </label>
+                            </div>
+
+                            <div id="split-detail-options" style="display: none;">
+                                <label class="radio-label">
+                                    <input type="radio" name="splitType" value="auto" checked>
+                                    <span>🤖 AI 자동 분리 (내용에 따라 알아서)</span>
+                                </label>
+
+                                <div class="radio-row" style="margin-bottom: 0; gap: 0.5rem;">
+                                    <label class="radio-label">
+                                        <input type="radio" name="splitType" value="manual">
+                                        <span>🔢 직접 지정: </span>
+                                    </label>
+                                    <input type="number" id="manualCountInput" min="2" max="20" value="2">
+                                    <span>건으로 나누기</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="header-controls">
+                    <h2>1. 공통 정보 입력</h2>
+                </div>
+                <p class="section-description">
+                    여기에서 입력한 값은 모든 세부 항목에 즉시 적용됩니다.<br>
+                    공통 항목(🔒)은 아래 카드에도 같은 순서로 함께 표시되며, 🔓을 눌러 개별 입력으로 전환할 수 있습니다.
+                </p>
+                <div class="grid" id="common-inputs-container"></div>
+                <div id="common-restore-section" class="restore-section" style="display: none;"></div>
+                <button id="apply-common-btn" class="button" style="margin-top: 1rem;">[↓] 적용된 공통 항목 확인</button>
+            </div>
+        </div>
+
+        <div class="expandable-width-container">
+            <div class="section">
+                <div class="header-controls">
+                    <h2>2. 세부 항목 입력</h2>
+                    <div style="display:flex; gap:0.5rem;">
+                        <button id="summarize-btn" class="button"
+                            style="background-color:#D97706; font-size:0.9rem; padding:0.5rem 1rem;">📉 1건으로 요약</button>
+                        <button id="add-item-btn" class="button button-secondary">[+] 항목 추가</button>
+                    </div>
+                </div>
+
+                <p class="section-description">
+                    각 카드에서 값을 입력할 수 있습니다.<br>
+                    📌을 누르면 해당 필드가 공통 항목(🔒)으로 승격되어 모든 카드에 공유됩니다.
+                </p>
+                <div id="items-container-wrapper">
+                    <div id="items-container"></div>
+                </div>
+                <div id="item-restore-section" class="restore-section" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="fixed-width-container">
+            <button id="copyBtn" class="button" style="width:100%; padding: 1rem; font-size: 1.2rem;">🚀 최종 양식 생성 및
+                복사</button>
+            <div id="copyFeedback">✅ 복사 완료! WEHAGO에 붙여넣으세요.</div>
+        </div>
+    </div>
+    runBtn.style.cursor = "not-allowed";
+    }
+    }
+
+    function removeStagedFile(index) {
+    stagedFiles.splice(index, 1);
+    updateFileStatus();
+    document.getElementById('file-input').value = '';
+    }
+
+    // 분석 시작 버튼 클릭 시 실행
+    runAnalysisBtn.addEventListener('click', () => {
+    // [수정] 파일이 없어도 텍스트만 있으면 실행 가능
+    const instructionText = userInstructionInput.value.trim();
+
+    if (stagedFiles.length === 0 && instructionText === "") {
+    showToast('분석할 파일이나 지시사항이 없습니다.', 'error');
+    return;
+    }
+
+    handleFilesAnalysis();
+    });
+
+    async function handleFilesAnalysis() {
+    if (!GEMINI_API_KEY) {
+    // [UX 개선] 알림창 대신 설정 모달을 즉시 띄우고 입력창에 포커스
+    settingsBtn.click();
+
+    setTimeout(() => {
+    const inputEl = document.getElementById('api-key-input');
+    if (inputEl) inputEl.focus();
+    showToast("🔑 AI 분석을 위해 API Key를 먼저 입력해주세요.", "error");
+    }
+
+    , 300);
+    return;
+    }
+
+    // 로딩 애니메이션 시작 (이하 기존 코드 연결됨...)
+
+    // 로딩 애니메이션 시작
+    aiLoading.style.display = 'flex';
+    const loadingInterval = startLoadingAnimation();
+
+    try {
+    const processedData = {
+    images: [],
+    textContext: ""
+    }
+
+    ;
+
+    for (const file of stagedFiles) {
+    const ext = file.name.split('.').pop().toLowerCase();
+
+    if (file.type.startsWith('image/') || file.type === 'application/pdf') {
+    const base64 = await readFileAsBase64(file);
+
+    processedData.images.push({
+    mimeType: file.type, data: base64
+    });
+    }
+
+    else if (['xlsx', 'xls', 'csv'].includes(ext)) {
+    const text = await readExcelFile(file);
+
+    processedData.textContext += `\n\n--- File: $ {
+    file.name
+    }
+
+    (Excel Data) ---\n$ {
+    text
+    }
+
+    `;
+    }
+
+    else if (['docx'].includes(ext)) {
+    const text = await readWordFile(file);
+
+    processedData.textContext += `\n\n--- File: $ {
+    file.name
+    }
+
+    (Word Document) ---\n$ {
+    text
+    images, textContext
+
+    }) {
+    try {
+    const template = formTemplates[currentFormType];
+
+    const fieldsInfo = template.fields.map(f => `- $ {
+    f.id
+    }
+
+    ($ {
+    f.label
+    })`).join('\n');
+    const vendorListKeys = Object.keys(vendors).join(', ');
+    const userInstruction = document.getElementById('user-instruction').value.trim();
+    const mode = document.querySelector('input[name="aiMode"]:checked').value;
+
+    // [중요 변경] 모드별 지시사항 수정
+    let splitInstruction = "";
+
+    if (mode === 'merge') {
+    // 합치기 모드여도 품목은 개별로 유지하되, 거래처 정보만 통일하라는 지시
+    splitInstruction = ` [MODE: SMART MERGE] - Extract ALL individual items from the receipts as separate
+    objects in an Array. - DO NOT combine item names into one string. Keep them separate. - Use the same
+    (dominant) Vendor, Date, and PaymentMethod for ALL items. `;
+    }
+
+    else {
+    const splitType = document.querySelector('input[name="splitType"]:checked').value;
+
+    if (splitType === 'auto') {
+    splitInstruction = `[MODE: AUTO-SPLIT] Logically separate entries (by invoice, vendor, or category).
+    Return
+    an Array.`;
+    }
+
+    else {
+    const count = document.getElementById('manualCountInput').value;
+
+    splitInstruction = `[MODE: FIXED-COUNT SPLIT] Strictly create exactly $ {
+    count
+    }
+
+    entries. Return an Array of $ {
+    count
+    }
+
+    objects.`;
+    }
+    }
+
+    const validPaymentMethods = paymentMethodOptions.join("', '");
+    const projectListStr = projectOptions.join(', ');
+
+    // [신규] 프로젝트 단계 정의 (회계정책 근거)
+    const projectPhaseMap = {
+    'Research': ['MPRT-RB', 'MAGBLADE'], // 연구단계: 비용처리 원칙
+    'Development': ['MPRT-HM', 'MPRT-CM', 'MPRT-BA', 'MPRT-DV', 'MPRT-PS', 'ELUXI', 'MAGSABER', 'MAGSPACER']
+    //
+    개발단계: 자산화 가능
+    }
+
+    ;
+
+    // [AI 프롬프트] 회계정책 및 자산대장 기반 분석 로직
+    const projectContexts = ` 1. **MPRT-HM (Head Module)**: Development/Permit Phase. - Hardware add-on for
+    LINAC gantry accessory holder. - Keywords: Magnetic field module,
+    Add-on,
+    Skin dose reduction (50%),
+    Electron scattering control. 2. **MPRT-CM (Couch Module)**: Development/Permit Phase. - Rail-driven
+    magnetic
+    field module for treatment couch (Longitudinal). - Keywords: Scanning,
+    Body lesion targeting,
+    Rail system,
+    FOV expansion. 3. **MPRT-BA (Balloon Applicator)**: Development/Permit Phase. - Balloon-type spacer for
+    surface/organ protection. - Keywords: Air-gap,
+    Inverse square law,
+    Sterilization process,
+    Bio-safety. 4. **MPRT-DV (DICOM Viewer)**: Development/Permit Phase. - Specialized viewer for RT
+    planning
+    verification & Meta info processing. - Keywords: DICOM,
+    Workflow optimization,
+    GMP,
+    Technical documentation. 5. **MPRT-PS (Planning SW)**: Development/Permit Phase. - Dose calculation SW
+    with
+    Fast Monte Carlo engine under magnetic field. - Keywords: TPS,
+    Dose distribution,
+    20 min calculation,
+    MVP verification. 6. **MPRT-RB (Robot)**: Research Phase (Prototype). - Robot Arm based MPRT system for
+    IORT/Brachytherapy. - Keywords: Robot arm,
+    Cavity treatment,
+    Prototype,
+    Driving test. (Old name: MAGBLADE) 7. **ELUXI (Alice)**: Development/Beta Phase. - Cloud-based AI
+    Physician
+    Assistant. - Keywords: Cloud AI,
+    Efficiency,
+    Real-world Evidence (RWE),
+    Beta test. `;
+
+    // [AI 프롬프트] 회계정책, 자산대장, 프로젝트 정의 기반 분석
+    const promptText = ` You are an expert Tax & Accounting Assistant for 'Radexel Inc.' . [Goal] Extract
+    data,
+    select the correct 'projectCode',
+    and classify 'assetType' . [USER INSTRUCTION] "${userInstruction || " Proceed with standard analysis."}"
+
+    [REFERENCE: PROJECT DEFINITIONS] Use these descriptions to infer the 'projectCode' . **CRITICAL:** If
+    the
+    input clearly matches a description,
+    output the corresponding code (e.g., "MPRT-HM"). **IF NOT MENTIONED OR AMBIGUOUS,
+    RETURN NULL (Do not guess).** $ {
+    projectContexts
+    }
+
+    [REFERENCE: HISTORICAL ASSET REGISTRY] If the item matches this list,
+    prioritize 'tangible' /'intangible' . $ {
+    JSON.stringify(historicalDB)
+    }
+
+    [COMPANY ACCOUNTING POLICY (Strict Rules)] **STEP 1: The "1 Million KRW" Threshold** - Total Amount < 1, 000, 000
+        KRW ->**'expense' **. - EXCEPTION: IP/Patent fees are ALWAYS **'intangible' **. **STEP 2:
+        Project Phase Logic** - Research (MPRT-RB): Generally **'expense' **. (General equipment >1M is
+        'tangible') - Development (MPRT-HM/CM/BA/DV/PS, ELUXI): Service/Labor>=1M KRW ->**'intangible' **.
+        **STEP 3: Classification Categories** 1. **"expense" **: Items < 1M KRW, Custom parts (CNC, PCB), Consumables,
+            Repairs. 2. **"tangible" **: Items>=1M KRW,
+            General Equipment (PC, Monitor, Scope),
+            Resellable items. 3. **"intangible" **: SW Licenses>=1M,
+            Patent fees,
+            Dev Services>=1M (for Dev projects). $ {
+            splitInstruction
+            }
+
+            [Context: Extracted Text] $ {
+            textContext
+            }
+
+            [Target Fields & Logical Order] The system creates a report in this logical order for the
+            approver:
+            1. Project Code (Crucial) 2. Date (When) 3. Item Name & Spec (What) 4. Amount (How much) 5.
+            Vendor &
+            Payment (Who) 6. Purpose (Why) **Please ensure 'projectCode' and 'date' are accurately
+            extracted.**
+            Required JSON Keys: $ {
+            fieldsInfo
+            }
+
+            [Rules] 1. **Format**: JSON Array Only. No markdown formatting. 2. **Date**: 'YYYY. MM. DD.'
+            3. **Currency**: Numbers only (remove commas and currency symbols). 4. **Output Keys**: Include
+            ALL
+            keys listed in [Target Fields] above,
+            plus "projectCode" and "assetType" . 5. **Project Logic**: Only select a project if the text
+            contains specific keywords (e.g., "Robot Arm", "Balloon", "DICOM Viewer"). Otherwise null. 6.
+            **Field Priority**: Infer 'date' from the receipt/invoice date. `;
+
+
+
+            const parts = [{
+            text: promptText
+            }
+
+            ];
+
+            images.forEach(img => {
+            parts.push({
+            inline_data: {
+            mime_type: img.mimeType, data: img.data
+            }
+            });
+            });
+
+            const response = await fetch(`https:
+            //generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+            {
+
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            }
+
+            ,
+            body: JSON.stringify({
+            contents: [{
+            parts: parts
+            }
+
+            ]
+            })
+            });
+
+            const data = await response.json();
+
+            if (data.error) throw new Error(`API 오류: $ {
+            data.error.message
+            }
+
+            `);
+            if (!data.candidates || !data.candidates[0]) throw new Error('AI 응답이 비어있습니다.');
+
+            const textResponse = data.candidates[0].content.parts[0].text;
+            const jsonStr = textResponse.replace(/```json/g, '').replace(/```/g, '').trim();
+
+            let result;
+
+            try {
+            result = JSON.parse(jsonStr);
+            }
+
+            catch (e) {
+            console.error("JSON Parsing Failed", jsonStr);
+            throw new Error("AI 응답을 처리할 수 없습니다.");
+            }
+
+            applyAIResult(result);
+
+            }
+
+            catch (error) {
+            throw error;
+            }
+            }
+
+
+            function applyAIResult(result) {
+            let newItems = [];
+
+            let firstResult = {}
+
+            ;
+
+            if (Array.isArray(result)) {
+            newItems = result;
+
+            firstResult = result[0] || {}
+
+            ;
+            }
+
+
+            const bestMatch = Object.keys(vendors).find(k => {
+            const keyNorm = k.replace(/\(주\)|주식회사|\s/g, '');
+            return keyNorm.includes(aiVendor) || aiVendor.includes(keyNorm);
+            });
+
+            if (bestMatch) {
+            res.vendor = bestMatch;
+
+            if (!res.account && vendors[bestMatch].account) {
+            res.account = vendors[bestMatch].account;
+            }
+            }
+            }
+
+            // 2. Payment Method Matching
+            if (res.paymentMethod) {
+            const pm = res.paymentMethod;
+            const bestPm = paymentMethodOptions.find(opt => opt.includes(pm) || pm.includes(opt));
+
+            if (bestPm) {
+            res.paymentMethod = bestPm;
+            }
+
+            else {
+            if (pm.includes('운영')) res.paymentMethod = '이체(운영비)';
+            else if (pm.includes('연구')) res.paymentMethod = '연구비계좌이체';
+            else if (pm.includes('카드')) res.paymentMethod = '개인법인카드';
+            else if (pm.includes('KARA')) res.paymentMethod = '이체(KARA)';
+            }
+            }
+
+            // 과제명 자동 매칭
+            if (res.paymentMethod) {
+            if (res.paymentMethod.includes('KARA')) res.relatedTask = '방사선 융복합 산업 지원사업';
+            else if (res.paymentMethod.includes('데이터')) res.relatedTask = '데이터 활용 의료 건강 사업';
+            }
+
+            // 3. 금액 포맷팅
+            if (res.amount) res.amount = formatSmartCurrency(res.amount);
+            if (res.unitPrice) res.unitPrice = formatSmartCurrency(res.unitPrice);
+
+            // [신규] 프로젝트 코드 자동 매칭
+            if (res.projectCode) {
+            // AI가 코드를 줬을 때, 실제 옵션 목록에 있는지 확인 (부분 일치 허용)
+            const foundProject = projectOptions.find(opt => opt.includes(res.projectCode) ||
+            res.projectCode.includes(opt.split(' ')[0]));
+
+            if (foundProject) {
+            res.projectCode = foundProject;
+            }
+
+            else {
+            res.projectCode = ''; // 목록에 없으면 비워둠
+            }
+            }
+
+            return res;
+            }
+
+            ;
+
+            // [UX 개선] 스마트 Pinning: AI 결과에서 모든 항목의 값이 동일하면 자동으로 공통 항목(Pin)으로 승격
+            if (newItems.length > 1) {
+            // 자동 승격할 후보 필드들 (거래처, 날짜, 결제수단, 프로젝트, 계좌)
+            const candidateFields = ['vendor',
+            'date',
+            'paymentMethod',
+            'projectCode',
+            'account'];
+
+            candidateFields.forEach(fieldId => {
+            const firstVal = newItems[0][fieldId];
+
+            // 첫 번째 값이 존재하고, 나머지 모든 항목도 그 값과 동일하다면
+            if (firstVal && newItems.every(item => item[fieldId] === firstVal)) {
+            if (!pinnedFields.includes(fieldId)) {
+            pinnedFields.push(fieldId);
+            commonData[fieldId] = firstVal;
+            }
+            }
+            });
+            }
+
+            else if (newItems.length === 1) {
+
+            // 항목이 1개일 때는 주요 정보를 공통으로 잡는 것이 수정하기 편하므로 자동 Pin
+            ['vendor',
+            'date',
+            'paymentMethod',
+            'projectCode'].forEach(f => {
+            if (newItems[0][f] && !pinnedFields.includes(f)) {
+            pinnedFields.push(f);
+            commonData[f] = newItems[0][f];
+            }
+            });
+            }
+
+            // 첫 번째 결과 정제 (공통 필드용)
+            firstResult = refineItem(firstResult);
+
+            pinnedFields.forEach(fieldId => {
+            if (firstResult[fieldId]) {
+            commonData[fieldId] = firstResult[fieldId];
+
+            if (fieldId === 'vendor' && vendors[firstResult[fieldId]]) {
+            commonData['account'] = vendors[firstResult[fieldId]].account;
+            }
+            }
+            });
+
+            items = newItems.map(res => {
+            const refined = refineItem(res);
+
+            const itemObj = {}
+
+            ;
+
+            Object.keys(refined).forEach(key => {
+            if (!pinnedFields.includes(key)) itemObj[key] = refined[key];
+            });
+
+            // [핵심 수정] AI가 준 assetType을 그대로 적용 (없으면 expense)
+            // AI가 가끔 대소문자 섞어 줄 때를 대비해 소문자로 변환
+            if (res.assetType) {
+            itemObj.assetType = res.assetType.toLowerCase();
+            }
+
+            else {
+            itemObj.assetType = 'expense';
+            }
+
+            return itemObj;
+            });
+
+            if (items.length === 0) items.push({});
+
+            render();
+
+            // 하이라이트 효과
+            setTimeout(() => {
+            document.querySelectorAll('input, select').forEach(el => {
+            const id = el.id.replace('common_', '').split('_')[0];
+
+            if (firstResult[id]) {
+            el.classList.add('highlight');
+            setTimeout(() => el.classList.remove('highlight'), 2000);
+            }
+            });
+            }
+
+            , 100);
+
+            saveState();
+            }
+
+            function startLoadingAnimation() {
+            const msgs = ["파일 내용을 읽고 있습니다... 📖",
+            "AI가 중요한 정보를 찾고 있습니다... 🔍",
+            "양식에 맞춰 데이터를 정리 중입니다... ✍️",
+            "거의 다 되었습니다! 🚀"
+            ];
+            let idx = 0;
+            const textEl = document.getElementById('loading-text');
+            textEl.textContent = msgs[0];
+
+            return setInterval(() => {
+            idx = (idx + 1) % msgs.length;
+            textEl.textContent = msgs[idx];
+            }
+
+            , 2000);
+            }
+
+            function formatSmartCurrency(value) {
+            if (!value) return '';
+            // 1. 기존 콤마 제거
+            let raw = value.toString().replace(/, /g, '');
+
+            // 2. 숫자가 포함되어 있는지 확인
+            // 정규식 설명: \d+ (숫자 연속) 부분을 찾아 toLocaleString으로 변환
+            return raw.replace(/\d+/g, (num) => {
+            return parseInt(num, 10).toLocaleString('en-US');
+            });
+            }
+
+            function toggleSummaryMode() {
+
+            // 1. 상세 -> 요약 전환
+            if (!originalItemsBackup) {
+            if (items.length <= 1) { alert("요약할 항목이 2개 이상일 때만 가능합니다."); return; } if (!confirm("현재 항목들을 1건으로
+                합치시겠습니까?\n(품목명은 '첫번째 항목 외 N건' 으로 변경되며 금액은 합산됩니다.)")) return; // (1) 백업
+                originalItemsBackup=JSON.parse(JSON.stringify(items)); // (2) 금액 합산 let totalAmount=0;
+                items.forEach(item=> {
+                const amt = parseInt(String(item.amount || '0').replace(/[^0-9]/g, '')) || 0;
+                totalAmount += amt;
+                });
+
+                // (3) 자산 타입 결정 로직 (보수적 접근)
+                // 하나라도 tangible(유형)이 있으면 -> tangible
+                // 유형은 없는데 intangible(무형)이 있으면 -> intangible
+                // 둘 다 없으면 -> expense
+                let summaryAssetType = 'expense';
+
+                if (items.some(i => i.assetType === 'tangible')) {
+                summaryAssetType = 'tangible';
+                }
+
+                else if (items.some(i => i.assetType === 'intangible')) {
+                summaryAssetType = 'intangible';
+                }
+
+                // (4) 대표 데이터 생성
+                const firstItem = items[0];
+
+                const summaryItem = {
+
+                ...firstItem,
+                itemName: `$ {
+                firstItem.itemName
+                }
+
+                외 $ {
+                items.length - 1
+                }
+
+                건`,
+                spec: '세부 내역 첨부 파일 참조',
+                qty: '1',
+                unitPrice: totalAmount.toLocaleString(),
+                amount: totalAmount.toLocaleString(),
+                assetType: summaryAssetType // 결정된 자산 타입 적용
+                }
+
+                ;
+
+                // (5) 렌더링 및 UI 변경
+                items = [summaryItem];
+                render();
+
+                summarizeBtn.innerHTML = "↺ 상세 내역 복구";
+                summarizeBtn.style.backgroundColor = "#718096";
+                document.getElementById('add-item-btn').style.display = 'none';
+                showToast("1건으로 요약되었습니다.", "success");
+
+                }
+
+                // 2. 요약 -> 상세 복구
+                else {
+                items = JSON.parse(JSON.stringify(originalItemsBackup));
+                originalItemsBackup = null;
+
+                render();
+
+                summarizeBtn.innerHTML = "📉 1건으로 요약";
+                summarizeBtn.style.backgroundColor = "#D97706";
+                document.getElementById('add-item-btn').style.display = 'inline-block';
+                showToast("상세 내역이 복구되었습니다.", "success");
+                }
+                }
+
+
+                // [추가] 고급 설정 토글 이벤트
+                const toggleAdvBtn = document.getElementById('toggle-advanced-btn');
+                const advOptions = document.getElementById('ai-advanced-options');
+
+                toggleAdvBtn.addEventListener('click', () => {
+                advOptions.classList.toggle('open');
+                toggleAdvBtn.textContent = advOptions.classList.contains('open') ? "⚙️ 고급 설정 닫기"
+                : "⚙️ 고급 설정 (합산/분리 방식)";
+                });
+
+                loadState();
+                render();
+                updateFileStatus(); // 초기화 확인
+                </script>
+</body>
+
+</html>

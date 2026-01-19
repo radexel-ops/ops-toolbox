@@ -118,8 +118,29 @@ package-lock.json
 debate AIs/
 interactive ai/
 
+# Projects with large binary files
+북쉐프 자동캡쳐/
+카메라 움직임 감지/
+현금 유동성관리/
+지원자 자동 수집/
+
+# Large image/media files
+*.pdf
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.avi
+*.mov
+
+# Chrome profiles (large)
+**/chrome_profile/
+**/chromedriver*
+
 # Large binary files
 *.ttf
+*.ttc
 *.otf
 *.woff
 *.woff2
