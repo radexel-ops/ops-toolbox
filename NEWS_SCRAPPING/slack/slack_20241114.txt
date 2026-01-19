@@ -1,0 +1,28 @@
+:large_blue_circle:*2024. 11.14.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2235437|엘렉타, 서울대병원에 방사선 암 치료 선형가속기 설치>*  @의학신문  21시간 전
+🔸 *<https://consultqd.clevelandclinic.org/up-to-94-accuracy-at-predicting-wound-complications-after-sarcoma-resection|Up to 94% Accuracy at Predicting Wound Complications After Sarcoma Resection>*  @Cleveland Clinic  17시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2235492|고대안암병원, 로봇수술 1만례 돌파>*  @의학신문  10시간 전
+🔸 *<https://www.imaeil.com/page/view/2024111316482197859|국제신경재활학술대회 2026년 대구 엑스코에서 열린다>*  @매일신문  14시간 전
+🔸 *<http://www.popsci.co.kr/news/articleView.html?idxno=21986|[영상] 로봇이 의사 대신 ‘수술’을 할 수 있을까?>*  @파퓰러사이언스  20시간 전
+🔸 *<https://www.medicaldevice-network.com/news/jj-medtech-wins-ide-for-ottava-to-greenlight-trials-for-surgical-robot/|J&J MedTech wins IDE for Ottava to greenlight trials for surgical robot>*  @Medical Device Network  7시간 전
+🔸 *<https://scitechdaily.com/robot-that-watched-surgical-videos-now-operates-with-human-level-skill/|Robot That Watched Surgical Videos Now Operates With Human-Level Skill>*  @SciTechDaily  6시간 전
+🔸 *<https://indianexpress.com/article/technology/science/watch-robot-performs-surgery-with-the-skill-of-a-human-doctor-9668123/|Watch: Robot performs surgery with the skill of a human doctor>*  @The Indian Express  10시간 전
+🔸 *<https://www.opb.org/article/2024/11/13/ohsu-portland-keynote-address-sophia-the-robot-medicine-artificial-intelligence/|A popular OHSU Foundation keynote address features an unusual speaker to talk about medicine and AI: Sophia the robot>*  @Oregon Public Broadcasting - OPB  9시간 전
+🔸 *<https://blogs.nvidia.com/blog/japan-sovereign-ai-healthcare/|Japan Develops Next-Generation Drug Design, Healthcare Robotics and Digital Health Platforms>*  @NVIDIA Blog  21시간 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.k-health.com/news/articleView.html?idxno=76023|고려대구로병원-헬프트라이알, 원활한 의료기기 임상 위한 MOU 체결>*  @헬스경향  17시간 전
+🔸 *<https://www.newsis.com/view/NISX20241113_0002957609|'신의료기기 진입 간소화' 추진…업계 "기대 반, 우려 반">*  @뉴시스  17시간 전
+🔸 *<https://it.chosun.com/news/articleView.html?idxno=2023092127208|KTC, 제8회 체외진단의료기기 산업 활성화 세미나 개최>*  @IT조선  14시간 전
+🔸 *<https://www.dailydental.co.kr/news/article.html?no=131768|中 불법 치과기자재 침투 심각…국내 쇼핑몰도 잠식>*  @치의신보  12시간 전
+🔸 *<https://www.kfmn.co.kr/news/articleView.html?idxno=35356|의료기기산업협회, 의료기기 관련 외부 전문 강사 모집>*  @한국식품의약신문  15시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.medifonews.com/news/article.html?no=197030|블루엠텍, 디지털헬스케어 시너지 위해 엠디스퀘어에 투자>*  @메디포뉴스  22시간 전
+🔸 *<https://www.imaeil.com/page/view/2024111316482197859|국제신경재활학술대회 2026년 대구 엑스코에서 열린다>*  @매일신문  14시간 전
+🔸 *<https://biz.chosun.com/stock/market_trend/2024/11/13/OJLTBKJLCBESTBSZY7G7DR4FIY/|‘3조 대어’ 클래시스 관망하는 GS… 관건은 손잡을 사모펀드 등장 여부 - 조선비즈>*  @Chosunbiz  18시간 전
+🔸 *<http://medworld.co.kr/news/articleView.html?idxno=239410|SCL사이언스, KAIST와 전략적 MOU 체결>*  @메드월드뉴스  19시간 전

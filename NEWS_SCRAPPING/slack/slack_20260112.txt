@@ -1,0 +1,33 @@
+:large_blue_circle:*2026. 1.12.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2267355|엘렉타, 의정부을지대병원에 ‘버사HD’ 추가 설치>*  @의학신문  4일 전
+🔸 *<https://www.sisajournal.com/news/articleView.html?idxno=358661|이제 암 치료의 목표가 ‘생존’에서 ‘삶의 질’로 바뀌고 있다>*  @시사저널  20시간 전
+🔸 *<https://www.koreahealthlog.com/news/articleView.html?idxno=55377|[폐암 양성자치료 별별궁금증] 양성자치료, 폐암서 수술 대체 가능할까?>*  @코리아헬스로그  2일 전
+🔸 *<https://www.hani.co.kr/arti/hanihealth/medical/1238418.html|[건강한컷] 2~3기압 챔버의 매직…“산소만 마셔도 치료가 시작된다”>*  @한겨레  4일 전
+🔸 *<http://www.msn.com/ko-kr/news/other/%EC%82%BC%EC%B2%99%EC%8B%9C-%EC%9C%A0%EB%9F%BD-%ED%98%84%EC%9E%A5%EC%84%9C-%EC%A4%91%EC%9E%85%EC%9E%90-%EC%95%94%EC%B9%98%EB%A3%8C-%EC%8B%A4%ED%96%89-%ED%95%B4%EB%B2%95-%EB%AA%A8%EC%83%89/ar-AA1SpVEY?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1|삼척시, 유럽 현장서 중입자 암치료 '실행 해법' 모색>*  @MSN  4일 전
+🔸 *<https://www.news-medical.net/news/20260106/ASTRO-rebrands-research-foundation-to-accelerate-innovation-in-radiation-oncology.aspx|ASTRO rebrands research foundation to accelerate innovation in radiation oncology>*  @News-Medical  4 days ago
+🔸 *<https://www.ucihealth.org/blog/2026/01/cervical-cancer-mission-to-ethiopia|Medical mission brings advanced radiation therapy to fight cervical cancer in Ethiopia>*  @UCI Health  5 days ago
+🔸 *<https://www.news-press.com/story/news/local/2026/01/09/southwest-florida-proton-unveils-its-most-effective-cancer-weapon/88030851007/|Biggest advancement in cancer treatment in SWFL: What is it?>*  @The News-Press  2 days ago
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.biotimes.co.kr/news/articleView.html?idxno=26328|[피지컬 AI ①] 데이터에서 로봇으로… 의료 패러다임이 바뀐다>*  @바이오타임즈  4일 전
+🔸 *<https://m.medigatenews.com/news/790385366|인간 개입 없는 'AI 자율 수술' 중국에서 세계 최초로 성공>*  @MEDI:GATE NEWS  2일 전
+🔸 *<http://www.whosaeng.com/167065|서울성모병원 비뇨의학과, 로봇수술 7,000례 달성>*  @후생신보  5일 전
+🔸 *<https://www.inpnews.kr/news/articleView.html?idxno=6261|한전KPS, 고방사선 원자로 내부 진단 작업 'AI로봇' 개발>*  @인사이트N파워  5일 전
+🔸 *<https://m.newsprime.co.kr/section_view.html?no=718667&menu=1|고영, 빅테크 AI 투자 확대 '수혜' 속 수술로봇 본격 수출까지…"올해 로보틱스·AI 최선호주">*  @프라임경제  6일 전
+🔸 *<https://en.yna.co.kr/view/AEN20260106006300320|Samsung Electronics' robotics capabilities to prioritize manufacturing automation: CEO>*  @Yonhap News Agency  5 days ago
+🔸 *<https://www.koreatimes.co.kr/economy/others/20260108/tech-driven-listings-fuel-expectations-for-ipo-upcycle-in-korea|Tech-driven listings fuel expectations for IPO upcycle in Korea>*  @The Korea Times  3 days ago
+🔸 *<https://med-techinsights.com/2026/01/08/cmr-surgical-receives-ce-mark-for-use-of-versius-in-paediatric-surgery/|CMR Surgical receives CE Mark for use of Versius in paediatric surgery>*  @Med-Tech Insights  3 days ago
+🔸 *<https://www.techbriefs.com/component/content/article/54445-microrobots-enable-precision-drug-delivery?m=1418|Microrobots Enable Precision Drug Delivery>*  @Tech Briefs  3 days ago
+
+*<의료기기 인허가>*
+🔸 *<https://www.yna.co.kr/view/AKR20260108115300017|식약처, 방광암 진단 보조 목적 국산 신개발 의료기기 첫 허가>*  @연합뉴스  3일 전
+🔸 *<https://www.hitnews.co.kr/news/articleView.html?idxno=72763|AI 의료기기 '임상·허가 폭증' 대응… 식약처 전담조직 신설>*  @히트뉴스  2일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.businesspost.co.kr/BP?command=article_view&num=426171|다올투자 "파마리서치 올해도 실적 증가 전망, 유럽에서 의료기기 '리쥬란' 판매 시작">*  @비즈니스포스트  3일 전
+🔸 *<https://www.hitnews.co.kr/news/articleView.html?idxno=72764|[HIT알공] 리센스메디컬, 코스닥 상장 본격화>*  @히트뉴스  2일 전
+🔸 *<https://dentalnews.or.kr/news/article.html?no=46214|리뉴메디칼, 30억원 투자 유치>*  @치과신문  1일 전
+🔸 *<https://m.newsprime.co.kr/section_view.html?no=718667&menu=1|고영, 빅테크 AI 투자 확대 '수혜' 속 수술로봇 본격 수출까지…"올해 로보틱스·AI 최선호주">*  @프라임경제  6일 전
+🔸 *<https://www.thebionews.net/news/articleView.html?idxno=21352|로킷헬스케어, 中 1위 의료기기 기업 WEGO와 전략적 파트너십 계약 체결>*  @더바이오  3일 전

@@ -1,0 +1,36 @@
+★2024. 9.30.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <http://www.hitnews.co.kr/news/articleView.html?idxno=57712|'방사선 치료 AI' 기업 온코소프트, 110억 시리즈B 투자 유치>  @히트뉴스  6일 전
+🔸 <https://www.hankyung.com/article/2024092434561|단국대병원, 방사선 뇌수술 장비 'ZAP-X' 국내 최초 도입>  @한국경제  5일 전
+🔸 <https://www.kbmaeil.com/news/articleView.html?idxno=1013087|동국대학교경주병원 사선종양학과 방사선사 전원 전문자격 소지>  @경북매일  22시간 전
+🔸 <http://www.msn.com/ko-kr/news/other/%ED%95%9C%EB%A6%BC%EB%B3%91%EC%9B%90-%EC%95%94-%EC%B9%98%EB%A3%8C%ED%9A%A8%EA%B3%BC-%EB%86%92%EC%9D%BC-%ED%8A%B8%EB%A3%A8%EB%B9%94-%EB%B3%B8%EA%B2%A9-%EA%B0%80%EB%8F%99/ar-AA1qZEoX?apiversion=v2&noservercache=1&domshim=1&renderwebcomponents=1&wcseo=1&batchservertelemetry=1&noservertelemetry=1|한림병원, 암 치료효과 높일 '트루빔' 본격 가동>  @MSN  6일 전
+🔸 <https://www.frontiersin.org/research-topics/67249/innovative-approaches-in-precision-radiation-oncology|Innovative Approaches in Precision Radiation Oncology>  @Frontiers  2일 전
+🔸 <https://news.va.gov/134871/vas-3d-boluses-revolutionizing-radiation/|VA’s 3D printed boluses revolutionizing radiation therapy for Veterans>  @VA News (.gov)  2일 전
+🔸 <https://www.businesswire.com/news/home/20240926402407/en/GE-HealthCare-Showcases-the-Latest-AI-enhanced-Radiation-Therapy-Solutions-at-ASTRO-2024|GE HealthCare Showcases the Latest AI-enhanced Radiation Therapy Solutions at ASTRO 2024>  @Business Wire  3일 전
+
+<로봇수술 관련 뉴스>
+🔸 <https://www.pharmnews.com/news/articleView.html?idxno=250933|AI 발달로 변화하는 의료 산업, 美 마코⸱STAR 등 로봇 수술 도입>  @팜뉴스  3일 전
+🔸 <http://www.docdocdoc.co.kr/news/articleView.html?idxno=3021257|혁신의료기기 '3년 사용' 후 평가 방침에 환자들 “더 신중해야”>  @청년의사  5일 전
+🔸 <https://m.hani.co.kr/arti/hanihealth/medical/1159997.html|내시경 단 수술로봇, 자율주행으로 신장 속 결석 찾아 부순다>  @한겨레  2일 전
+🔸 <https://www.pressian.com/pages/articles/2024092516301440166|로봇과 인공지능기술 활용 정신건강 관리 플랫폼 개발 나서>  @프레시안  4일 전
+🔸 <http://www.whosaeng.com/155138|미래컴퍼니 ‘레보아이’ 이용 로봇 부갑상선절제술 첫 성공>  @후생신보  4일 전
+🔸 <https://bwhealthcareworld.com/article/intuitive-opens-global-capability-centre-in-bengaluru-expands-surgical-robotics-in-india-534539|Intuitive Opens Global Capability Centre In Bengaluru, Expands Surgical Robotics In India>  @BW Healthcare  2일 전
+🔸 <http://en.people.cn/n3/2024/0927/c90000-20224296.html|Prospering telemedicine a reflection of China's rapid internet development>  @People's Daily Online  2일 전
+🔸 <https://www.stocktitan.net/news/DOCS/mendaera-closes-73m-series-b-financing-to-scale-robotics-and-ai-ky96tz058sez.html|Mendaera Closes $73M Series B Financing to Scale Robotics and AI Across Mainstream Medical Procedures>  @Stock Titan  3일 전
+🔸 <https://www.eurekalert.org/news-releases/1059541|Surgical robot project receives up to $12 million in ARPA-H funding>  @EurekAlert!  3일 전
+🔸 <https://investingnews.com/daily/life-science-investing/medical-device-investing/surgical-robotics-stocks/|8 Surgical Robotics Stocks (Updated 2024)>  @Investing News Network  5일 전
+
+<의료기기 인허가>
+🔸 <http://www.hitnews.co.kr/news/articleView.html?idxno=57839|씨엔알리서치, 의료기기까지 임상시험 수행 확대>  @히트뉴스  4일 전
+🔸 <http://www.whosaeng.com/155126|“의료기기 시장진입 절차 획기적 개선 필요”>  @후생신보  5일 전
+🔸 <https://pharm.edaily.co.kr/News/Read?newsId=01649846639023728|美허가된 '클래시스' 피부·비만용 의료기기, 시장 출시 시점은?>  @팜이데일리  5일 전
+🔸 <http://www.docdocdoc.co.kr/news/articleView.html?idxno=3021257|혁신의료기기 '3년 사용' 후 평가 방침에 환자들 “더 신중해야”>  @청년의사  5일 전
+🔸 <https://www.medipana.com/article/view.php?page=1&sch_menu=1&sch_cate=F&news_idx=331655|정부, 의료AI·DTx 등 인허가 직후 의료현장 선 진입 추진>  @메디파나 뉴스  5일 전
+
+<의료로봇/기기 업계 동향>
+🔸 <https://www.biotimes.co.kr/news/articleView.html?idxno=17149|인공지능 진단, 의료계에 녹아든다…AI의료 기술 투자↑>  @바이오타임즈  6일 전
+🔸 <http://www.medworld.co.kr/news/articleView.html?idxno=237532|메디웨일, 158억 원 규모 시리즈B2 투자 유치 성공>  @메드월드뉴스  3일 전
+🔸 <https://pharm.edaily.co.kr/News/Read?newsId=01649846639023728|美허가된 '클래시스' 피부·비만용 의료기기, 시장 출시 시점은?>  @팜이데일리  5일 전
+🔸 <https://www.pharmnews.com/news/articleView.html?idxno=251037|中 의료기기 시장 가파른 성장세...GE 등 글로벌 기업 중국 진출 확대>  @팜뉴스  2시간 전
+🔸 <http://www.hitnews.co.kr/news/articleView.html?idxno=57782|'중국기업 SBT 손잡은 원텍, 실적 반등 계기 될까>  @히트뉴스  3일 전

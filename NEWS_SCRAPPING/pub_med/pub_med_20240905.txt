@@ -1,0 +1,10 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.9.4. ~ 2024.9.4)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39230755/|Impact of *_robotic_*-assisted *_surgery_* on length of hospital stay in Paris public hospitals: a retrospective analysis.>
+      번 : 파리 공립 병원에서의 입원 기간에 대한 로봇 보조 수술의 영향 : 후 향적 분석.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2024 Sep 4
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39230728/|Functional outcomes following *_external beam_* *_radiation_* therapy for patients with prior holmium laser enucleation of the prostate.>
+      번 : 전립선의 이전 Holmium Laser Enuclece를 가진 환자에 대한 외부 빔 방사선 요법 후 기능적 결과.
+      저널 : World J Urol (IF 4.23)    E-PUB : 2024 Sep 4

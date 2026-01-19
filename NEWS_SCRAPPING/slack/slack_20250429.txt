@@ -1,0 +1,29 @@
+:large_blue_circle:*2025. 4.29.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.ecns.cn/news/society/2025-04-28/detail-iheqztpw7823540.shtml|Shanghai hospital debuts world's first integrated CT ring linear accelerator>*  @Ecns.cn  15시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://news.nate.com/view/20250429n02198?mid=n0100|머스크 "수술 로봇, 5년 안에 최고 외과 의사 능가할 것">*  @네이트 뉴스  2시간 전
+🔸 *<https://www.k-health.com/news/articleView.html?idxno=80691|조치흠 계명대 동산의료원장, 자궁근종 약물치료법 개발 나선다>*  @헬스경향  11시간 전
+🔸 *<https://www.newstheai.com/news/articleView.html?idxno=7742|[창간 5주년 특집] 강경태·고민삼 한양대에리카 교수 “로봇, 단순 명령 수행 넘어 ‘인지적 협력자’로”>*  @THE AI  15시간 전
+🔸 *<https://www.pharmnews.com/news/articleView.html?idxno=259851|[학술·동정+] 식도암 단일공 로봇수술 회복·통증 개선 세계 최초 입증 外>*  @팜뉴스  18시간 전
+🔸 *<https://kpinews.kr/newsView/1065596912937714|＂′몸을 가진 AI′, 삶의 의미 바꿀 것…中, 국가적 사업＂>*  @KPI뉴스  15시간 전
+🔸 *<https://www.medtechdive.com/news/Medtronic-Hugo-FDA-submission-urology/746489/|Medtronic submits Hugo soft tissue robot for FDA approval>*  @MedTech Dive  7시간 전
+🔸 *<https://www.mddionline.com/robotics/medtronic-files-for-fda-submission-for-the-hugo-robotic-system|Medtronic Files for FDA Submission for the Hugo Robotic System>*  @Medical Device and Diagnostic industry  14시간 전
+🔸 *<https://www.chinadailyasia.com/article/610601|PolyU harnesses AI, robotics to drive medical innovation in Hong Kong>*  @chinadailyhk  9시간 전
+🔸 *<https://www.ctvnews.ca/winnipeg/article/an-extension-of-our-eyes-and-hands-winnipeg-hospital-gets-new-robotic-surgery-tool/|Robotic surgery tool now in place at Winnipeg hospital>*  @CTV News  5시간 전
+
+*<의료기기 인허가>*
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=64065|제테마, HA 필러 '에피티크' 중국 3등급 의료기기 허가 승인>*  @히트뉴스  15시간 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2247566|PSI CRO, 세브란스병원과 MOU 체결>*  @의학신문  16시간 전
+🔸 *<https://www.medworld.co.kr/news/articleView.html?idxno=245699|노을, 글로벌 사업 가속화 위한 전방위 역량 강화>*  @메드월드뉴스  18시간 전
+🔸 *<https://www.rapportian.com/news/articleView.html?idxno=220594|엘앤케이바이오, 오목가슴 임플란트 ‘팩투스’ FDA 허가 획득>*  @라포르시안  16시간 전
+🔸 *<https://www.dentalnews.or.kr/news/article.html?no=44004|덴티움, 차세대 임플란트 시스템 조명>*  @치과신문  20시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://news.nate.com/view/20250428n18863|RDN 의료기기 '하이퍼큐어' 개발사 딥큐어, 누적 250억 투자유치>*  @네이트 뉴스  19시간 전
+🔸 *<http://sisa-news.com/news/article.html?no=253845|대구광역시, 메가젠임플란트국내 매출 2위 ‘디지털센터’ 투자 유치>*  @시사뉴스  8시간 전
+🔸 *<https://magazine.hankyung.com/job-joy/article/202504164932d|한국보건산업진흥원 2024년 창업도약패키지 선정기업 의료 인공지능AI 솔루션 플랫폼 마이링크maiLink를 개발한 마이허브>*  @매거진한경  18시간 전
+🔸 *<https://m.economidaily.com/amp/20250428102837573|바이오헬스케어 업계, 작년 매출·수익 동반 상승…회복세 본격화>*  @이코노믹데일리  15시간 전
+🔸 *<https://news.nate.com/view/20250428n19766?mid=n0105|국내 의약품 R&D 투자 양극화…대기업은 늘리고 중소·중견 줄여>*  @네이트 뉴스  18시간 전

@@ -1,0 +1,33 @@
+★2025. 6.2.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <https://www.dailymedi.com/news/news_view.php?wr_id=925288|여의도성모병원, 최첨단 암 치료기 ‘트루빔’ 도입>  @데일리메디  5일 전
+🔸 <https://www.bosa.co.kr/news/articleView.html?idxno=2249818|진화하는 간세포암 치료, ‘방사선색전술’로 새 전기>  @의학신문  3일 전
+🔸 <https://www.sedaily.com/NewsView/2GTX06O2KN|세계 몇곳 없는 중입자·양성자치료…5년 내 전국 8곳에 들어선다>  @서울경제  3시간 전
+🔸 <https://www.koreadaily.com/article/20250526015114247|100주년 앞둔 고려대의료원, 중입자 대신 양성자 치료기 택한 이유>  @미주중앙일보  6일 전
+🔸 <https://news.mt.co.kr/mtview.php?no=2025052615192182614|"암 파괴할 양성자 도입" 투자 나선 고대의료원, 동탄에도 병원 짓는다>  @머니투데이  6일 전
+🔸 <https://www.nature.com/articles/s41598-025-02560-4|Barium nanoparticles enhance efficacy of external beam radiation therapy in a preclinical basal-like mammary cancer mouse model>  @Nature  2일 전
+🔸 <http://www.medscape.com/viewarticle/can-shorter-rt-offer-long-term-benefits-prostate-cancer-2025a1000ejm|Can Shorter RT Offer Long-Term Benefits in Prostate Cancer?>  @Medscape  2일 전
+🔸 <https://www.plataformamedia.com/en/2025/05/27/hksh-fosters-collaboration-for-innovation-at-asia-summit-on-global-health-2025-through-partnership-with-united-imaging-to-elevate-medical-imaging-excellence/|HKSH Fosters Collaboration for Innovation at Asia Summit on Global Health 2025, Through Partnership with United Imaging to Elevate Medical Imaging Excellence>  @Plataforma Media  5일 전
+
+<로봇수술 관련 뉴스>
+🔸 <https://brunch.co.kr/@@bwKa/240|[로봇산업 2편] 로봇기술의 핵심요소와 산업별 적용사례>  @브런치스토리  8시간 전
+🔸 <https://news.nate.com/view/20250529n33319|식약처, '의료기기의 날' 기념식 개최…"AI·로봇 기술 적극 지원">  @네이트 뉴스  3일 전
+🔸 <https://www.irobotnews.com/news/articleView.html?idxno=40290|한국기계연구원, 단순한 제어로 고효율·고안정성 파지 기능을 구현하는 로봇의수 기술 개발>  @로봇신문  3일 전
+🔸 <https://www.khanews.com/news/articleView.html?idxno=233355|부민병원, 로봇 인공관절수술 발전에 적극>  @병원신문  5일 전
+🔸 <https://www.hellot.net/mobile/article.html?no=101883|기계연, 초경량 로봇의수 국내 개발…절단장애인 삶의 질 향상 기대>  @헬로티  23시간 전
+🔸 <https://biz.chosun.com/en/en-realestate/2025/05/28/S7ZTLAUC6ZGQNKTHNGP66XO4TA/|Korea launches Smart+Building technology to enhance digital transformation in construction>  @Chosunbiz  5일 전
+🔸 <https://www.nature.com/articles/s41378-025-00955-x|Onboard visual micro-servoing on robotic surgery tools>  @Nature  3일 전
+🔸 <https://www.therobotreport.com/ubitus-mackay-memorial-hospital-co-develop-three-medical-robots/|Ubitus, MacKay Memorial Hospital co-develop three medical robots>  @The Robot Report  4일 전
+🔸 <https://biz.chosun.com/en/en-science/2025/05/30/W5HO5ICH4RBNVLVNVF3Y3FHNMY/|Pharmgen Science gains approval for generic gastric treatment Mipid Sustained Release>  @Chosunbiz  2일 전
+🔸 <https://healthcare-in-europe.com/en/news/robots-grip-dyspraxia.html|Robots could help patients get a grip on dyspraxia>  @healthcare-in-europe.com  4일 전
+
+<의료기기 인허가>
+🔸 <https://www.newsthevoice.com/news/articleView.html?idxno=42392|5년 유효기간 '의료기기 허가-인증' 갱신제...이것이 궁금>  @뉴스더보이스헬스케어  4일 전
+🔸 <https://www.medipana.com/health/view.php?news_idx=341915|[기고] 디지털의료기기 허가·심사체계 정비와 산업계 전략적 대응>  @메디파나뉴스  3일 전
+🔸 <http://www.hitnews.co.kr/news/articleView.html?idxno=65124|"신개발 의료기기 선진입·기득권 보호 지원하고 자료제출 간소화">  @히트뉴스  2일 전
+🔸 <https://www.yna.co.kr/view/AKR20250526039400530|디지털 재활의료기기 사용적합성평가 지원…"인허가 부담 해소">  @연합뉴스  6일 전
+🔸 <https://www.ibric.org/bric/trend/bio-news.do?mode=view&articleNo=9973383|[과학자의 두 번째 챕터: 연구실 밖의 삶] 의료기기 품목허가와 제조허가>  @BRIC  5일 전
+
+<의료로봇/기기 업계 동향>
+🔸 <https://www.yna.co.kr/view/AKR20250527102800009|"삼성벤처투자, 미국 의료기기 업체 투자 가능성">  @연합뉴스  5일 전

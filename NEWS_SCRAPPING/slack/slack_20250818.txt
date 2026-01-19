@@ -1,0 +1,37 @@
+:large_blue_circle:*2025. 8.18.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://m.dongascience.com/news.php?idx=73417|1초도 안되는 찰나에 암세포 파괴…삼성서울병원, 양성자 치료 핵심 기술 확보>*  @동아사이언스  5일 전
+🔸 *<https://www.monews.co.kr/news/articleView.html?idxno=405699|한 번의 고선량 방사선으로 암 치료하는 기술 연구에 속도 붙어>*  @메디칼업저버  5일 전
+🔸 *<https://www.ksilbo.co.kr/news/articleView.html?idxno=1034117|[기고]양성자 치료센터는 왜 필요한가>*  @경상일보  6일 전
+🔸 *<https://www.sedaily.com/NewsView/2GWLXHMGP8|“1초면 충분” 양성자 업그레이드…원샷 치료 시대 열린다[헬시타임]>*  @서울경제  5일 전
+🔸 *<https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2025.1644141/full|Application of Machine Learning for Prognostic Modeling in Unresectable Pancreatic Cancer Treated with Chemoradiotherapy>*  @Frontiers  6일 전
+🔸 *<https://news.vcu.edu/article/2025/08/a-portable-water-tank-is-designed-to-transform-cancer-radiation-therapy|A portable water tank from a VCU public-private partnership is designed to transform cancer radiation therapy>*  @VCU News  6일 전
+🔸 *<https://www.afr.com/policy/health-and-education/national-disgrace-why-australia-is-still-waiting-for-proton-therapy-20250722-p5mgt2|‘National disgrace’: Why Australia is still waiting for proton therapy>*  @AFR  2일 전
+🔸 *<https://www.tradingview.com/news/tradingview:b5fb64fbbfbbd:0-vivos-inc-sec-10-q-report/|VIVOS INC SEC 10-Q Report>*  @TradingView  4일 전
+🔸 *<https://www.metrosouth.health.qld.gov.au/about-us/news/pa-hospital/from-cadet-to-a-lifelong-career-michael-reflects-on-40-years-in-radiation-therapy|From cadet to a lifelong career: Michael reflects on 40 years in Radiation Therapy>*  @Metro South Health  3일 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.medicaltimes.com/Mobile/News/NewsView.html?ID=1164785|"로봇원격수술 전 세계적 트랜드인데…국내는 요원">*  @메디칼타임즈  6일 전
+🔸 *<https://www.k-health.com/news/articleView.html?idxno=84057|서울아산병원, “로봇 간절제술, 영상기술·형광조영물질 활용해 안전하게 시행 가능해요”>*  @헬스경향  4일 전
+🔸 *<https://www.irobotnews.com/news/articleView.html?idxno=41722|'눈 달린 마이크로 로봇' 외과 수술의 미래 바꾼다…자가 교정 마이크로 로봇 개발>*  @로봇신문  5일 전
+🔸 *<https://automation-world.co.kr/news/article.html?no=69152|‘메스를 잡은 로봇 핸드’ 에이딘로보틱스, 수술 보조 로봇 개발 착수한다>*  @자동화기술  4일 전
+🔸 *<https://www.kfmn.co.kr/news/articleView.html?idxno=38442|케이메디허브, K-의료기기 국제표준化 앞장>*  @한국식품의약신문  6일 전
+🔸 *<https://www.sciencedirect.com/science/article/abs/pii/S0924424725007629|Intelligent Sensing and Measurement Technologies for Medical Robotics：A Review>*  @ScienceDirect.com  6일 전
+🔸 *<https://www.nature.com/articles/s41598-025-14074-0|Analysis of collaborative robot technology patent map and research on development trends>*  @Nature  15시간 전
+🔸 *<https://www.koreabiomed.com/news/articleView.html?idxno=28573|Telesurgery still a long way off in Korea, says leading single-port robotic surgeon>*  @KBR  5일 전
+🔸 *<https://eu.36kr.com/en/p/3416268198251904|With an investment of $2.2 billion, Johnson & Johnson is doubling down on the tumor surgical robot.>*  @36Kr  6일 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.doctorsnews.co.kr/news/articleView.html?idxno=160734|의료기기 인허가 심사기관 지정 강화법안 '유효기간 기준 마련'>*  @의협신문  3일 전
+🔸 *<https://biotimes.co.kr/news/articleView.html?idxno=23359|㈜헬프트라이알, ‘뉴라이브’와 불면증 개선 의료기기 ‘소리클’ 확증 임상 개시>*  @바이오타임즈  3일 전
+🔸 *<https://www.medicaltimes.com/Users/News/NewsView.html/'http:/www.medigatenews.com/Users2/News/NewsView.html?ID=1117380|식약처, 의료기기 정책 및 허가·심사 동향 세미나>*  @메디칼타임즈  1일 전
+🔸 *<https://platum.kr/archives/268638|네이버, 임상시험 플랫폼 제이앤피메디에 투자…AI 기술 협력>*  @플래텀(Platum)  4일 전
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=67806|뉴메코, 보툴리눔 톡신 제제 '뉴럭스' 조지아 품목 허가>*  @히트뉴스  6일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.medifonews.com/news/article.html?no=205630|GE 헬스케어, AI 기반 의료 기기 FDA 승인 100건 등재 및 4년 연속 1위>*  @메디포뉴스  6일 전
+🔸 *<https://www.etoday.co.kr/news/view/2496519|양산시, 195억 투자 유치…가산산단에 식품·의료기기 기업 이전>*  @이투데이  5일 전
+🔸 *<https://www.wonjutoday.co.kr/news/curationView.html?idxno=206087|원주 의료기기.디지털헬스 민간 투자 촉진 협약>*  @원주투데이  6일 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2255282|메디스태프, 시리즈B 투자 유치 성공…누적 투자액 100억 원>*  @의학신문  5일 전
+🔸 *<https://platum.kr/archives/268638|네이버, 임상시험 플랫폼 제이앤피메디에 투자…AI 기술 협력>*  @플래텀(Platum)  4일 전

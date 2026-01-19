@@ -1,0 +1,39 @@
+:large_blue_circle:*2025. 7.28.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.joongang.co.kr/article/25353134|창원한마음병원, IBA 양성자 치료기 도입 우선 협상자 선정>*  @중앙일보  6일 전
+🔸 *<https://www.khanews.com/news/articleView.html?idxno=234851|조선대병원, 지역 암 치료 중심병원으로 도약>*  @병원신문  6일 전
+🔸 *<https://www.dailymedi.com/news/news_view.php?wr_id=927219|서울아산, 심뇌혈관 대신 '중입자치료센터' 건립>*  @데일리메디  4일 전
+🔸 *<https://www.idaegu.co.kr/news/articleView.html?idxno=517303|계명대학교 동산의료원, 양성자치료기 들인다>*  @대구신문  6일 전
+🔸 *<https://www.youthdaily.co.kr/news/article.html?no=190647|[청년발언대] 방사선, 위험하기만 할까?>*  @청년일보  21시간 전
+🔸 *<https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2025.1609421/full|Personalized diagnosis of radiation pneumonitis in breast cancer patients based on radiomics>*  @Frontiers  6일 전
+🔸 *<https://oncodaily.com/societies/cns-radiation-oncology-333500|The Latest Breakthroughs in CNS Radiation Oncology – ESTRO>*  @Oncodaily  6일 전
+🔸 *<https://www.curetoday.com/view/explaining-what-is-biology-guided-radiation-therapy-in-cancer-care|Explaining What is Biology-Guided Radiation Therapy in Cancer Care>*  @Curetoday  5일 전
+🔸 *<https://www.metrosouth.health.qld.gov.au/about-us/news/pa-hospital/radiation-oncology-upgrades-delivering-advanced-clinical-care|Radiation Oncology upgrades delivering advanced clinical care>*  @Metro South Health  2일 전
+🔸 *<https://www.globenewswire.com/news-release/2025/07/24/3120809/0/en/Radiation-Oncology-Strategic-Research-Report-2025-Market-to-Reach-10-2-Billion-by-2030-Surge-in-Awareness-Campaigns-on-Early-Cancer-Detection-Supports-Growth.html|Radiation Oncology Strategic Research Report 2025 | Market to Reach $10.2 Billion by 2030 - Surge in Awareness Campaigns on Early Cancer Detection Supports Growth>*  @GlobeNewswire  3일 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.industrynews.co.kr/news/articleView.html?idxno=67555|뉴로메카, ‘휴머노이드 수술보조로봇 개발’ 국가 프로젝트 수행기관 최종 선정>*  @인더스트리뉴스  4일 전
+🔸 *<https://zdnet.co.kr/view/?no=20250725170111|AI·로봇·유전자치료까지…보건의료 혁신 성과 한눈에>*  @지디넷코리아  2일 전
+🔸 *<https://www.irobotnews.com/news/articleView.html?idxno=41399|짐머 바이오멧, 모노그램 2400억원에 인수…정형외과 로봇 시장 선점 노린다>*  @로봇신문  3일 전
+🔸 *<https://www.newsis.com/view/NISX20250722_0003261872|전북대병원-대자인병원, 재활의료 로봇분야 기술교류 맞손>*  @뉴시스  5일 전
+🔸 *<https://pharm.edaily.co.kr/news/read?newsId=02391126642236816|큐렉소, 고관절 수술로봇 ‘큐비스-조인트 THA’ 국내 품목 허가 신청>*  @팜이데일리  6일 전
+🔸 *<https://biz.chosun.com/en/en-science/2025/07/24/ZRKBQOIGB5CLFJVIUXZHB7PUGQ/|Korea's brain surgery robot Geniant Cranial set for U.S. export after FDA approval - CHOSUNBIZ>*  @Chosunbiz  3일 전
+🔸 *<https://asianews.network/surgical-teams-from-china-uk-perform-remote-robotic-surgery-spanning-continents/|Surgical teams from China, UK perform remote robotic surgery spanning continents>*  @Asia News Network  6일 전
+🔸 *<http://www.novanthealth.org/healthy-headlines/how-is-robotic-surgery-different-from-traditional-surgery|How is robotic surgery different from traditional surgery?>*  @Novant Health  3일 전
+🔸 *<https://www.nbt.nhs.uk/about-us/news-media/latest-news/secretary-state-science-innovation-technology-visits-north-bristol-nhs-trust|Secretary of State for Science, Innovation and Technology visits North Bristol NHS Trust>*  @North Bristol NHS  3일 전
+🔸 *<https://www.hkstp.org/about-us/keepup/stories/cornerstone|Bot-Powered Logistics: Moving the World Intelligently>*  @Hong Kong Science & Technology Parks Corporation  6일 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.pharmnews.com/news/articleView.html?idxno=262127|식약처, 무릎 연골 재생 의료기기 새 허가기준 발표>*  @팜뉴스  3일 전
+🔸 *<https://pharm.edaily.co.kr/News/Read?newsId=02965126642238128|미용의료기기부터 동물실 임대까지…돌파구 찾는 비임상CRO 업계>*  @팜이데일리  2일 전
+🔸 *<http://www.kfdn.co.kr/70201|소프트웨어 의료기기 규제 대응사이버보안·SBOM·임상시험 설계 교육>*  @식약일보  5일 전
+🔸 *<https://www.etnews.com/20250721000283|디지털의료제품법 시행 6개월, 혁신기기 시장 진입 가속화...세부 가이드 과제>*  @전자신문  6일 전
+🔸 *<https://www.newsis.com/view/NISX20250724_0003264379|"시행 착오 최소화"…식약처, '이 분야' 허가 안내서 배포>*  @뉴시스  3일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://pharm.edaily.co.kr/news/read?newsId=04283686642237472|[생생확대경]증시에서 사라지는 우량 K의료기기 기업들>*  @팜이데일리  4일 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2253608|올 초 의료기 벤처투자 ‘워밍업’>*  @의학신문  3일 전
+🔸 *<https://www.thebionews.net/news/articleView.html?idxno=16724|韓 바이오·의료기기, 美 중심서 탈피…AI·미용의료로 신흥 시장 파고든다>*  @더바이오  4일 전
+🔸 *<https://news.nate.com/view/20250726n03493|"AI가 진단하고 로봇이 수술"…메디컬AI 산업에 투자[ETF언박싱]>*  @네이트  1일 전
+🔸 *<https://www.news1.kr/bio/healthcare/5853044|'창립 40주년' 삼성메디슨, 상반기 매출 역대 최대…"전방위 투자">*  @뉴스1  6일 전

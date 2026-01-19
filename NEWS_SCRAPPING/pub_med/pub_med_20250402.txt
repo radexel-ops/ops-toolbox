@@ -1,0 +1,114 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2025.4.1. ~ 2025.4.1)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39928116/|Correction: How effective and sustainable is proctoring in *_robotic_* *_surgery_*? A retrospective analysis based on interviews with surgeons.>
+      번 : 교정 : 로봇 수술에서 얼마나 효과적이고 지속 가능한가?외과 의사와의 인터뷰를 기반으로 한 후 향적 분석.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39892561/|Response to Dr. Dan Wan, Qing Liu, and Jia-Sha Wei's Letter to the Editor of *_Radiotherapy_* and Oncology regarding the paper titled "Comment on "Risk factors of level Ib lymph node metastasis and clinical outcome of its selectively prophylactic ir*_radiation_* in nasopharyngeal carcinoma: A real-world study".>
+      번 : Dan Wan 박사, Qing Liu 및 Jia-Sha Wei의 방사선 요법 및 종양 편집자에 대한 편지에 대한 답변은 "IB 림프절 전이 수준의 위험 요소"라는 논문에 관한 논문과 비 인두 암 발암종에서 선택적으로 예방 적 조사의 임상 결과에 대한 논평 : 실제 연구 : 실제 연구 ".
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/40072548/|Correction: Clinical implementation of the Versius *_robotic_* surgical system in visceral *_surgery_*-A single centre experience and review of the first 175 patients.>
+      번 : 교정 : 내장 수술에서 Bersius 로봇 수술 시스템의 임상 적 구현-단일 중심 경험 및 첫 175 명의 환자의 검토.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/40167937/|Retraction Note: Anesthetic considerations in *_robotic_* *_surgery_*: a comprehensive review.>
+      번 : 후퇴 참고 : 로봇 수술의 마취 고려 사항 : 포괄적 인 검토.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2025 Apr 1
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39924001/|Current advances in automation in *_radiotherapy_*.>
+      번 : 방사선 요법의 자동화의 현재 발전.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/40045060/|Correction: Novel force feedback technology improves suturing in *_robotic_*-assisted *_surgery_*: a pre-clinical study.>
+      번 : 교정 : 소설 강제 피드백 기술은 로봇 보조 수술의 봉합을 향상시킵니다 : 전임상 연구.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39823654/|Adjuvant *_radiation_* therapy is not associated with a survival benefit after R0 resection in non-metastatic adrenocortical carcinoma.>
+      번 : 보조 방사선 요법은 비-메조 성 부신 암종에서 R0 절제술 후 생존 이점과 관련이 없습니다.
+      저널 : Am J Surg (IF 2.56)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39837736/|The Co-IMPACT Consortium: Integrating Prostate-specific Membrane Antigen Positron Emission Tomography and *_Radiotherapy_* in Prostate Cancer Care.>
+      번 : 공동 영향 컨소시엄 : 전립선-특이 적 막 양전자 방출 단층 촬영 및 전립선 암 치료에 방사선 요법 통합.
+      저널 : Eur Urol (IF 20.1)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39894258/|*_Radiation_* therapy and immigration status in women with breast cancer.>
+      번 : 유방암 여성의 방사선 요법 및 이민 상태.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/40085228/|*_Robotic_* *_surgery_* for perihilar cholangiocarcinoma: a concise systematic review.>
+      번 : Perihilar cholangiocarcinoma에 대한 로봇 수술 : 간결한 체계적인 검토.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39994045/|Remote *_robotic_* *_surgery_*: implementing a technology 20 years in the making.>
+      번 : 원격 로봇 수술 : 20 년 동안 기술 구현.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39921143/|Letter to the editor regarding "The prognostic significance of sarcopenia in patients treated with definitive *_radiotherapy_*: A systematic review".>
+      번 : "결정적인 방사선 요법으로 치료받은 환자에서 육종 감소증의 예후 적 중요성 : 체계적인 검토"에 관한 편집자에게 보내는 편지.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39843304/|Re: Robert Huddart, Shaista Hafeez, Clare Griffin, et al. Dose-escalated Adaptive *_Radiotherapy_* for Bladder Cancer: Results of the Phase 2 RAIDER Randomized Controlled Trial. Eur Urol 2025;87:60-70.>
+      번 : Re : Robert Huddart, Shaista Hafeez, Clare Griffin 등방광암에 대한 용량-에스컬 화 된 적응 방사선 요법 : 2 단계 침입자 무작위 대조 시험 결과.Eur Urol 2025; 87 : 60-70.
+      저널 : Eur Urol (IF 20.1)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39933623/|Risk-adapted stereotactic body *_radiation_* therapy for the treatment of large (>3 cm) primary lung cancer with or without histologic confirmation: A propensity score matched and weighted analysis.>
+      번 : 조직 학적 확인 유무에 관계없이 큰 (> 3 cm) 1 차 폐암의 치료를위한 위험-적응 정위 신체 방사선 요법 : 성향 점수 일치 및 가중 분석.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39889967/|Synthetic CT generation using Zero TE MR for head-and-neck *_radiotherapy_*.>
+      번 : 헤드 및 넥 방사선 요법을 위해 Zero TE MR을 사용한 합성 CT 생성.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39894260/|Comparison of definitive *_radiotherapy_* outcomes between younger and older patients with high- or very-high-risk prostate cancer.>
+      번 : 위험이 높은 전립선 암을 가진 젊은이와 노인 환자의 결정적인 방사선 요법 결과의 비교.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39855601/|Large language model-augmented learning for auto-delineation of treatment targets in head-and-neck cancer *_radiotherapy_*.>
+      번 : 헤드 앤넥 암 방사선 요법에서 치료 목표의 자동 분해를위한 대형 언어 모델 강화 학습.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39947329/|On the significance of peak dose in normal tissue toxicity in spatially fractionated *_radiotherapy_*: The case of *_proton_* minibeam *_radiation_* therapy.>
+      번 : 공간적으로 분류 된 방사선 요법에서 정상 조직 독성에서 피크 용량의 중요성 : 양성자 미니 빔 방사선 요법의 경우.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/40000455/|*_Robotic_*-assisted *_surgery_* for locally advanced rectal cancer beyond total mesorectal excision planes: the Mayo Clinic experience.>
+      번 : 총 전진성 절제 평면 이외의 국소 고급 직장암에 대한 로봇 보조 수술 : Mayo Clinic Experience.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39788206/|Contour uncertainty assessment for MD-omitted daily adaptive online head and neck *_radiotherapy_*.>
+      번 : MD로 인한 일일 적응 형 온라인 헤드 및 목 방사선 요법에 대한 윤곽 불확실성 평가.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39914742/|Personalized auto-segmentation for *_magnetic_* resonance imaging-guided adaptive *_radiotherapy_* of large brain metastases.>
+      번 : 대형 뇌 전이의 자기 공명 영상 유도 적응 방사선 요법을위한 개인화 된 자동 세분화.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39952436/|Clinical experience with free-breathing expiration-gated 10MV FFF VMAT stereotactic lung *_radiotherapy_*.>
+      번 : 프리 호피 만약 10MV FFF VMAT 정위 폐 방사선 요법에 대한 임상 경험.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39862925/|Stereotactic body *_radiotherapy_* for non-spine bone metastases: A meta-analysis and international stereotactic radio*_surgery_* society (ISRS) clinical practice guidelines.>
+      번 : 비-스핀 뼈 전이에 대한 정위 신체 방사선 요법 : 메타 분석 및 국제 정위 방사선 수술 학회 (ISRS) 임상 실습 지침.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39894262/|Machine learning model for predicting DIBH non-eligibility in left-sided breast cancer *_radiotherapy_*: Development, validation and clinical impact analysis.>
+      번 : 왼쪽 유방암 방사선 요법에서 DIBH 비질 자격성을 예측하기위한 기계 학습 모델 : 개발, 검증 및 임상 영향 분석.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39914743/|Dose-volume constraints for severe acute gastrointestinal toxicity in cervical cancer patients receiving extended-field intensity-modulated *_radiotherapy_* and concurrent chemotherapy.>
+      번 : 장기 필드 강도 조절 방사선 요법 및 동시 화학 요법을받는 자궁 경부암 환자의 심각한 급성 위장 독성에 대한 용량-볼륨 제약.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39929288/|Assessing multiple MRI sequences in deep learning-based synthetic CT generation for MR-only *_radiation_* therapy of head and neck cancers.>
+      번 : 머리 및 목 암의 MR 전용 방사선 요법을위한 딥 러닝 기반 합성 CT 생성에서 여러 MRI 서열을 평가합니다.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39880308/|1-year efficacy results after MR-guided risk-adapted stereotactic *_radiotherapy_* of infra-diaphragmatic oligometastases in a multicenter phase II trial.>
+      번 : 다기관 2 상 시험에서 MR- 유도 위험-조정 정위 방사선 요법 후 1 년의 효능 결과.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39880307/|Stabilised hyaluronic acid gel marker versus surgical clips for tumour bed delineation in breast cancer *_radiotherapy_* using MRI-simulation.>
+      번 : MRI- 시뮬레이션을 이용한 유방암 방사선 요법에서 종양 침대 묘사를위한 안정화 된 히알루 론산 겔 마커 대 외과 적 클립.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Apr

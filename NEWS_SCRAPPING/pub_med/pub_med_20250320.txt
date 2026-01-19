@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2025.3.19. ~ 2025.3.19)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/40106060/|Evaluating the trainee impact on *_robotic_* *_surgery_* learning curves: a CUSUM analysis of large series pediatric robot-assisted laparoscopic pyeloplasty.>
+      번 : 로봇 수술 학습 곡선에 대한 연수생의 영향 평가 : 대형 시리즈 소아 로봇 보조 복강경 성형 성형술의 쌍 분석.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2025 Mar 19

@@ -1,0 +1,31 @@
+:large_blue_circle:*2025. 4.14.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://m.health.chosun.com/svc/news_view.html?contid=2025040702694|서울아산병원, ‘중입자 치료기’ 도입… 2031년 가동>*  @헬스조선  6일 전
+🔸 *<https://biz.chosun.com/en/en-science/2025/04/07/MYL743DKIVCLVCORUVN566XEPQ/|Seoul Asan Medical Center partners with Toshiba to launch advanced carbon ion therapy by 2031 - CHOSUNBIZ>*  @Chosunbiz  6일 전
+🔸 *<https://finance.yahoo.com/news/miradx-test-radiation-therapy-toxicity-112101330.html|MiraDx test for radiation therapy toxicity validated in new study>*  @Yahoo Finance  5일 전
+🔸 *<https://www.biospace.com/press-releases/innoblative-receives-u-s-ide-approval-for-its-novel-electrosurgical-device-for-breast-cancer-treatment|Innoblative Receives U.S. IDE Approval for its Novel Electrosurgical Device for Breast Cancer Treatment>*  @BioSpace  2일 전
+🔸 *<https://www.wbrz.com/news/mary-bird-perkins-cancer-center-showcases-latest-technology-in-radiation-oncology-partnership/|Mary Bird Perkins Cancer Center showcases latest technology in radiation oncology partnership>*  @WBRZ  4일 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.k-health.com/news/articleView.html?idxno=80065|강릉아산병원, 로봇수술 1000례 돌파…“환자 삶의 질 향상 이끌 것”>*  @헬스경향  6일 전
+🔸 *<https://www.newsis.com/view/NISX20250409_0003132737|소울소프트-마이크로의료로봇硏, AI 건강관리 서비스 구축 '맞손'>*  @뉴시스  4일 전
+🔸 *<https://www.khan.co.kr/article/202504071100001/?utm_source=khan_rss&utm_medium=rss&utm_campaign=total_news|현대차·기아 로봇기술 한림대의료원에 적용>*  @경향신문  6일 전
+🔸 *<https://www.youthdaily.co.kr/news/article.html?no=182549|[청년발언대] "로봇을 입고 다시 걷다"…웨어러블 기술이 바꾸는 재활의 미래>*  @청년일보  22시간 전
+🔸 *<https://m.news.nate.com/view/20250407n12679?mid=m02&list=recent&cpcd=|LG전자·현대차와 '로봇 병원' 구축 나섰다…이 병원 어디?>*  @네이트 뉴스  6일 전
+🔸 *<https://news.nate.com/view/20250407n25963|Hyundai Motor, Kia to offer robotics solutions to Hallym Medical Center>*  @네이트 뉴스  6일 전
+🔸 *<https://us.acrofan.com/detail.php?number=985100|Avalue Drives the Precise Upgrade of Surgical Robots with AI-Powered Computing>*  @us.acrofan.com  4일 전
+🔸 *<https://www.nationthailand.com/blogs/health-wellness/40048529|Thai-made brain surgery robot offers new hope for epilepsy>*  @Nation Thailand  4일 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.donga.com/news/Economy/article/all/20250410/131391764/2|생성형 AI 의료기기… 임상시험 국내 첫 승인>*  @동아일보  3일 전
+🔸 *<https://www.mtnews.net/news/articleView.html?idxno=21480|KTC, 임상시험수탁기관(CRO) 등록… 의료기기 제품화 전주기 지원>*  @기계신문  2일 전
+🔸 *<https://www.safetimes.co.kr/news/articleView.html?idxno=228317|식약처 '엑스레이 AI영상판독기' 임상승인>*  @세이프타임즈  2일 전
+🔸 *<https://www.biotimes.co.kr/news/articleView.html?idxno=20720|하이, 범불안장애 디지털 의료기기 국내 최초 식약처 품목허가 획득>*  @바이오타임즈  4일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.medigatenews.com/news/2576735864|체외진단 의료기기 스타트업 올메이드, 빅뱅벤처스로부터 시드 투자 유치>*  @MEDI:GATE NEWS  5일 전
+🔸 *<https://pharm.edaily.co.kr/News/Read?newsId=01420246642135792&mediaCodeNo=257|[한주의 제약바이오] 바이오플러스, 中서 의료기기 생산 시동>*  @팜이데일리  20시간 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2246208|‘장미 대선’ 의료기기 대표 단체도 목소리 낸다>*  @의학신문  3일 전
+🔸 *<https://www.medifonews.com/news/article.html?no=201653|“차기 정부, 의료기기 업계위축 인식∙전략적 제도 필요”>*  @메디포뉴스  3일 전
+🔸 *<https://www.topdaily.kr/articles/102556|이브이첨단소재, 전략적 투자로 셀론텍 생산 능력 5배 확장>*  @톱데일리  2일 전

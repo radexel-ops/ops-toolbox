@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.11.21. ~ 2024.11.21)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39567445/|KangDuo surgical robot versus *_da Vinci_* *_robotic_* system in urologic *_surgery_*: a systematic review and meta-analysis.>
+      번 : 비뇨기과 수술에서 Kangduo 수술 로봇 대 다빈치 로봇 시스템 : 체계적인 검토 및 메타 분석.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2024 Nov 21

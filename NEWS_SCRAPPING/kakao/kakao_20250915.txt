@@ -1,0 +1,33 @@
+★2025. 9.15.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <https://m.health.chosun.com/svc/news_view.html?contid=2025090403928|“사수가 과녁 맞히듯, 종양만 정확하게… 방사선 치료로 완치율 높인다”>  @헬스조선  6일 전
+🔸 <https://www.msn.com/ko-kr/news/other/%ED%8C%8C%ED%94%84%EB%A6%AC%EC%B9%B4%EB%9E%A9-%EA%B5%AD%EC%82%B0-%EB%B0%A9%EC%82%AC%EC%84%A0-%EC%B9%98%EB%A3%8C%EA%B8%B0%EA%B8%B0-%EC%95%84%EC%8B%9C%EC%95%84-5%EA%B0%9C%EA%B5%AD%EC%97%90-%EC%88%98%EC%B6%9C/ar-AA1LWdxS|파프리카랩, 국산 방사선 치료기기 아시아 5개국에 수출>  @MSN  5일 전
+🔸 <https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2025.1601493/full|Predictive Modeling of Acute Radiation-Induced Dermatitis in Nasopharyngeal Carcinoma Patients Undergoing TomoTherapy Using Machine Learning with Multimodal Data Integration>  @Frontiers  2일 전
+🔸 <https://www.britannica.com/science/dosimeter|Dosimeter | Radiation Detection, Dosimetry & Protection>  @Britannica  6일 전
+🔸 <https://www.bluewin.ch/en/news/switzerland/did-this-professor-want-to-adorn-himself-with-other-peoples-achievements-2870059.html|Dispute over fame: Did this professor want to adorn himself with other people's achievements? | blue News>  @blue News  11시간 전
+
+<로봇수술 관련 뉴스>
+🔸 <http://www.bosa.co.kr/news/articleView.html?idxno=2257456|미 말초혈관 원격 수술 로봇 승인>  @의학신문  3일 전
+🔸 <http://medworld.co.kr/news/articleView.html?idxno=250444|의료 로봇 성공하려면 가격경쟁력 갖추고 틈새 시장 노려야>  @메드월드뉴스  1일 전
+🔸 <https://www.hellot.net/news/article.html?no=105054|뉴로메카, ‘서비스형 제조 모델’ 사업 탄력...올해 매출 성장 기대>  @헬로티  6일 전
+🔸 <https://biz.heraldcorp.com/article/10573778|“의사 손 대신하는 의료로봇, 실제 의료진과 상호작용이 중요”>  @헤럴드경제  3일 전
+🔸 <https://www.joongboo.com/news/articleView.html?idxno=363702928|이춘택병원, 닥터 엘씨티 로봇 수술 500례 달성>  @중부일보  5일 전
+🔸 <https://biz.chosun.com/en/en-science/2025/09/09/PC6WMMMSEFH5TF4D3NCRAMT7CI/|Medisby joins NVIDIA Inception to develop AI rehabilitation robots - CHOSUNBIZ>  @Chosun Biz  5일 전
+🔸 <https://www.nature.com/articles/s41378-025-01002-5|A soft micron accuracy robot design and clinical validation for retinal surgery>  @Nature  5일 전
+🔸 <https://eu.36kr.com/en/p/3455164061652608|Shanghai: Breeding Future Unicorns - Two Doctors Develop Surgical Robots, Secure 478M Yuan Financing at Once>  @36Kr  6일 전
+🔸 <https://www.globenewswire.com/news-release/2025/09/11/3148742/0/en/Robotics-Technology-Market-Size-to-Lead-USD-375-95-Billion-by-2034-Driven-by-Automation-AI-Cobots-and-Healthcare-Growth.html|Robotics Technology Market Size to Lead USD 375.95 Billion>  @GlobeNewswire  3일 전
+
+<의료기기 인허가>
+🔸 <https://www.chosun.com/economy/tech_it/2025/09/08/ZKQEX7CB7VH3BDGXCYTINIYVRU/|美, 삼성·SK 반도체 장비 中 반출 ‘연간 허가’ 검토>  @조선일보  5일 전
+🔸 <https://www.medicaltimes.com/Main/News/NewsView.html?ID=1165160|까다로운 의료기기 해외 인허가 '국제인증지원센터'로 해결>  @메디칼타임즈  5일 전
+🔸 <https://www.hellot.net/news/article.html?no=105246|[KICEF 2025] 헬프트라이알, AI, 디지털 의료기기 임상시험 솔루션 선봬>  @헬로티  3일 전
+🔸 <https://www.biotimes.co.kr/news/articleView.html?idxno=24037|식약처, 『2025년 의료제품 임상통계 심사∙상담사례집』 발간∙배포>  @바이오타임즈  2일 전
+🔸 <https://news.unn.net/news/articleView.html?idxno=583592|[사람과 생각] 박치대 사이노슈어-루트로닉 RA팀 수석연구원 “의료기기 인허가 전문가, 꼼꼼함·소통능력으로 안전성 확보해야”>  @한국대학신문  6일 전
+
+<의료로봇/기기 업계 동향>
+🔸 <http://www.bosa.co.kr/news/articleView.html?idxno=2257539|J&J 中 수술 로봇 개발사 투자>  @의학신문  2일 전
+🔸 <https://www.medifonews.com/news/article.html?no=206599|제이앤피메디파트너스, 2025 데모데이 성료>  @메디포뉴스  4일 전
+🔸 <https://www.yna.co.kr/view/AKR20250910056000062|강원의료기기전시회 'GMES 2025' 개최…수출·내수 확대 기대>  @연합뉴스  4일 전
+🔸 <https://biz.heraldcorp.com/article/10573778|“의사 손 대신하는 의료로봇, 실제 의료진과 상호작용이 중요”>  @헤럴드경제  3일 전
+🔸 <https://www.investchosun.com/site/data/html_dir/2025/09/14/2025091480048.html|휴젤 매각설에 높은 '몸값'만 확인…K뷰티發 의료미용기기 관심 지속될까>  @인베스트조선  58분 전

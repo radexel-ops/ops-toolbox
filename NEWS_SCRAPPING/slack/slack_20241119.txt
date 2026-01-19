@@ -1,0 +1,31 @@
+:large_blue_circle:*2024. 11.19.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.incheontoday.com/news/articleView.html?idxno=257130|개원 24년 한림병원, 최첨단 암 치료 특화 종합병원으로 도약>*  @인천투데이  18시간 전
+🔸 *<https://www.thehindu.com/news/cities/chennai/conference-on-practical-radiology-held/article68883029.ece|Conference on practical radiology held>*  @The Hindu  6시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2235828|고대구로병원 “SP 흉부로봇수술, 전 세계 표준수술 정립”>*  @의학신문  14시간 전
+🔸 *<https://www.etnews.com/20241118000191|[대한민국 과학자] 강병전 전남대 교수 “초음파·자기장 기반 마이크로의료로봇 진단·치료 혁신 기여”>*  @전자신문  20시간 전
+🔸 *<https://zdnet.co.kr/view/?no=20241118140416|베조스부터 저커버그까지…로봇에 투자한 억만장자들>*  @지디넷코리아  17시간 전
+🔸 *<https://m.sedaily.com/NewsViewAmp/2DGW6IVKRM|“세계 유일 미·중·유럽 웨어러블로봇 의료기기 인증 획득”>*  @서울경제  12시간 전
+🔸 *<https://www.pharmnews.com/news/articleView.html?idxno=254149|전 세계 표준된 고대구로병원 단일공 로봇수술, 美·獨·佛·日 의료진 수술 교육...세계 최다 수술기록 보유>*  @팜뉴스  23시간 전
+🔸 *<https://www.therobotreport.com/rbr50-spotlight-robotic-ventricle-advances-understanding-of-heart-disease/|RBR50 Spotlight: Robotic ventricle advances understanding of heart disease>*  @The Robot Report  12시간 전
+🔸 *<https://www.azorobotics.com/News.aspx?newsID=15479|Successful Demonstration of Remote Robotic Laparoscopic Hysterectomy>*  @AZoRobotics  8시간 전
+🔸 *<https://www.urologytimes.com/view/thomas-mueller-md-on-the-removal-of-residual-stone-fragments|Thomas Mueller, MD, on the removal of residual stone fragments>*  @Urology Times  3시간 전
+🔸 *<https://healthcare-in-europe.com/en/news/medtronic-endoflip-ce-mark-gi-motility-testing-system.html|CE Mark for new GI motility testing system>*  @healthcare-in-europe.com  14시간 전
+🔸 *<https://www.washingtonpost.com/opinions/2024/11/18/ai-darpa-disasters-robots-artificial-intelligence/|Opinion | Some hope for AI’s future>*  @Washington Post  4시간 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.yakup.com/news/index.html?mode=view&pmode=&cat=12&cat2=&nid=302358&num_start=|[DI+의약정보] 비임상 CRO 섭렵 '바이오톡스텍' 신약개발 토탈 서비스 리더 도약>*  @약업신문  2시간 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2235628|인공지능 의료기기 표준화 동향 및 해외 정책 전망>*  @의학신문  2시간 전
+🔸 *<https://pharm.edaily.co.kr/News/Read?newsId=03594886639087032|[단독] 뷰노, 흉부 엑스레이 AI진단 솔루션 美 FDA 허가...뇌질환 AI 이어 두번째>*  @팜이데일리  13시간 전
+🔸 *<http://m.dailypharm.com/newsView.html?ID=317649|KR바이오텍, KOLAS 인증...바이러스 불활화 검정 리딩>*  @데일리팜  11시간 전
+🔸 *<https://www.pharmnews.com/news/articleView.html?idxno=254201|진매트릭스, A형간염 백신 ‘GMAI-02’ 국내 임상1상 IND 신청>*  @팜뉴스  18시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.businesspost.co.kr/BP?command=article_view&num=373253|파마리서치 의료기기 강한 성장세, 정상수 피부미용 빅마켓 유럽 내년 정조준>*  @비즈니스포스트  15시간 전
+🔸 *<https://zdnet.co.kr/view/?no=20241118140416|베조스부터 저커버그까지…로봇에 투자한 억만장자들>*  @지디넷코리아  17시간 전
+🔸 *<http://www.hansbiz.co.kr/news/articleView.html?idxno=721586|의료기기산업협회, 산업부‧코트라와 ‘중동 바이오메디컬 수출로드쇼’ 개최>*  @한스경제  16시간 전
+🔸 *<https://www.knnews.co.kr/news/articleView.php?idxno=1446927|시리즈벤처스, 의료기기 제조기업 덴티플에 투자>*  @경남신문  22시간 전
+🔸 *<https://www.dttoday.com/news/articleView.html?idxno=94349|K-치과의료기기, DenTech China에서도 성과 거둬>*  @덴탈투데이  22시간 전

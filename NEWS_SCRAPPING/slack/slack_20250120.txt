@@ -1,0 +1,37 @@
+:large_blue_circle:*2025. 1.20.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.biotimes.co.kr/news/articleView.html?idxno=19255|[인터뷰] 아우라케어, “반려동물용 방사선 치료기기로 반려동물 암 치료 분야의 게임체인저될 것”>*  @바이오타임즈  4일 전
+🔸 *<https://m.health.chosun.com/svc/news_view.html?contid=2025011301791|경북대병원·칠곡경북대병원, 첨단 방사선 암치료기 '바이탈 빔' 본격 가동>*  @헬스조선  6일 전
+🔸 *<https://www.yeongnam.com/web/view.php?key=20250119010002409|“첨단 암치료기 가동…경북대병원, 암 치료의 새 장 연다”>*  @www.yeongnam.com  18시간 전
+🔸 *<https://alphabiz.co.kr/news/view/1065573782387705|도시바（6502 JP）, UAE에 첨단 암 치료장비 수출 추진>*  @알파경제  5일 전
+🔸 *<https://www.lanl.gov/media/news/0116-ai-algorithms|Artificial intelligence algorithms used to tune particle accelerators>*  @Los Alamos National Laboratory (.gov)  3일 전
+🔸 *<https://www.wkyc.com/article/news/health/health-hub/breakthrough-radiation-therapy-university-hospitals-cuts-treatment-time-from-weeks-to-days/95-c971c253-5bda-498a-83d7-c54878c554bd|3News exclusive: Breakthrough radiation therapy at University Hospitals cuts treatment time from weeks to days>*  @WKYC  4일 전
+🔸 *<https://www.wagmtv.com/2025/01/14/medical-monday-radiation-therapy/|Medical Monday - Radiation Therapy>*  @WAGM  5일 전
+🔸 *<https://www.stocktitan.net/news/ARAY/accuray-announces-china-national-medical-products-administration-6npi6xd743cx.html|Accuray Secures Major China Approval for Revolutionary Cancer Treatment Systems>*  @Stock Titan  6일 전
+🔸 *<https://www.livescience.com/health/cancer/new-treatment-for-most-aggressive-brain-cancer-may-help-patients-live-longer|New treatment for most aggressive brain cancer may help patients live longer>*  @Live Science  6일 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.hankyung.com/article/2025011459431|AI 의료혁명 현실로…엔비디아 '신약 단백질 설계' 플랫폼 가동>*  @한국경제  5일 전
+🔸 *<https://www.pharmnews.com/news/articleView.html?idxno=256813|[동정+] 고려대학교 안암병원, 로봇수술 1만례 기념 심포지엄 개최 外>*  @팜뉴스  3일 전
+🔸 *<https://pharm.edaily.co.kr/News/Read?newsID=01367766642037392&mediaCodeNo=257|WSI, 수술 로봇 상용화에 주가 껑충…현대ADM·프롬바이오도 ↑[바이오맥짚기]>*  @팜이데일리  6일 전
+🔸 *<https://zdnet.co.kr/view/?no=20250118130134|"병원에서 가정까지…입는 로봇으로 재활치료 확장">*  @지디넷코리아  21시간 전
+🔸 *<https://kormedi.com/1788458/|척추 수술 받았어도 로봇 도움으로 계단 오른다>*  @코메디닷컴  5일 전
+🔸 *<https://biz.chosun.com/en/en-it/2025/01/14/47PJLFFN4RAEVPOOXCD366PVDM/|Kakao Ventures invests 14 billion won in AI, targets robotics and quantum technologies - CHOSUNBIZ>*  @Chosunbiz  5일 전
+🔸 *<https://bwhealthcareworld.com/article/global-experts-advocate-robotic-technology-for-tackling-indias-rising-cardiovascular-disease-crisis-545278|Global Experts Advocate Robotic Technology For Tackling India’s Rising Cardiovascular Disease Crisis>*  @BW Healthcare World  1일 전
+🔸 *<https://www.precedenceresearch.com/surgical-robotics-market|Surgical Robotics Market Size to surpass USD 45.93 Billion by 2034>*  @Precedence Research  6일 전
+🔸 *<https://www.mclaren.org/main/news/is-a-robot-performing-your-surgery-the-prevalence-5452|Is a Robot Performing Your Surgery? The Prevalence of Technology in Health Care>*  @McLaren Health  3일 전
+
+*<의료기기 인허가>*
+🔸 *<https://zdnet.co.kr/view/?no=20250116171327|‘혁신의료기기’ 제도…2020년 시행 이후 총 88개 제품 지정>*  @지디넷코리아  3일 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2240418|AI 임상 플랫폼 혁신 바탕…제이앤피메디, 의료기기 사업화 선도>*  @의학신문  3일 전
+🔸 *<https://www.medipana.com/article/view.php?news_idx=336532|"독감 진단키트, 전문가 거쳐야"…정부·의대 교수, 한 목소리>*  @메디파나 뉴스  5일 전
+🔸 *<https://www.medifonews.com/news/article.html?no=199052|[기고] “빌로이 치료 필요한 말기 위암환자, 벼랑 끝에 내몰면 안 돼”>*  @메디포뉴스  4일 전
+🔸 *<https://www.k-health.com/news/articleView.html?idxno=77676|원주의료기기테크노밸리, 강남세브란스병원과 의료기기기업 글로벌 진출 ‘맞손’>*  @헬스경향  5일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.chosun.com/economy/smb-venture/2025/01/15/ZOA2VWJINNCNDI2KZ57UTMSX3M/|[쫌아는기자들] 메디노드, 투자 혹한기와 의료대란에도 버틴 이들과 그들에게 투자한 이유>*  @조선일보  4일 전
+🔸 *<https://www.lawtimes.co.kr/news/203592|인도네시아 새 정부의 보건 및 의료기기 산업 우선순위>*  @법률신문  2일 전
+🔸 *<https://www.biospectator.com/news/view/24039|한독 액셀러레이터, 연세대와 '90억 벤처투자펀드' 조성>*  @바이오스펙테이터  6일 전
+🔸 *<https://www.dementianews.co.kr/news/articleView.html?idxno=10048|美 스피어바이오 “FDA, 자사 p-Tau 혈액 검사에 혁신의료기기 지정”>*  @디멘시아뉴스  4일 전
+🔸 *<https://www.medipana.com/article/view.php?news_idx=336476|유한양행, AHC 사업 영역↑...라인업 확장·투자 등 이어져>*  @메디파나 뉴스  6일 전

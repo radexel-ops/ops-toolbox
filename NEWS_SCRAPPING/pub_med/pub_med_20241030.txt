@@ -1,0 +1,10 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.10.29. ~ 2024.10.29)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39470929/|*_Robotic_* abdominopelvic *_surgery_*: a systematic review of cross-platform outcomes.>
+      번 : 로봇 복부 혈전 수술 : 교차 플랫폼 결과에 대한 체계적인 검토.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2024 Oct 29
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39470931/|*_Robotic_* micro*_surgery_* for pediatric peripheral nerve *_surgery_*.>
+      번 : 소아 말초 신경 수술을위한 로봇 미세 수술.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2024 Oct 29

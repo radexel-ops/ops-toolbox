@@ -1,0 +1,86 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.12.1. ~ 2024.12.1)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39159403/|Omission of *_Radiotherapy_* in Primary Mediastinal B-Cell Lymphoma: IELSG37 Trial Results.>
+      번 : 1 차 종격동 B- 세포 림프종에서 방사선 요법의 생략 : IELSG37 시험 결과.
+      저널 : J Clin Oncol (IF 44.54)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39303189/|*_Radiotherapy_* Versus Transoral *_Robotic_* *_Surgery_* for Oropharyngeal Squamous Cell Carcinoma: Final Results of the ORATOR Randomized Trial.>
+      번 : 인두 주형 편평 세포 암종에 대한 방사선 요법 대 경체 로봇 수술 : 연설자 무작위 시험의 최종 결과.
+      저널 : J Clin Oncol (IF 44.54)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39395671/|Transit-guided *_radiation_* therapy: a novel patient monitoring approach.>
+      번 : 통과 유도 방사선 요법 : 새로운 환자 모니터링 접근법.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39326522/|Is full-automation in *_radiotherapy_* treatment planning ready for take off?>
+      번 : 방사선 요법 치료 계획의 완전한 원자가 이륙 준비가 되나요?
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39297403/|Combination of immune checkpoint inhibitors and *_radiotherapy_* in locally advanced esophagogastric junction adenocarcinoma: A review.>
+      번 : 국소 적으로 진행된 식도 근처 선암종에서 면역 체크 포인트 억제제 및 방사선 요법의 조합 : 검토.
+      저널 : Cancer (IF 6.86)    E-PUB : 2024 Dec 1
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39182172/|Androgen deprivation therapy and postprostatectomy *_radiation_*: What is the optimal duration?>
+      번 : 안드로겐 박탈 치료 및 전립선 절제술 후 : 최적의 기간은 얼마입니까?
+      저널 : Cancer (IF 6.86)    E-PUB : 2024 Dec 1
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39032835/|Stereotactic ablative *_radiotherapy_* for locally advanced non-small cell lung cancer: A systematic review and meta-analysis.>
+      번 : 국소 고급 비소 세포 폐암에 대한 틀에 박힌 절제 방사선 요법 : 체계적인 검토 및 메타 분석.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39395666/|Study of upright patient positioning reproducibility in image-guided *_proton_* therapy for head and neck cancers.>
+      번 : 머리 및 목 암에 대한 이미지 유도 양성자 요법에서 직립 환자 포지셔닝 재현성 연구.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39616597/|A simple technique to improve docking time in *_robotic_* *_surgery_*.>
+      번 : 로봇 수술에서 도킹 시간을 개선하는 간단한 기술.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2024 Dec 1
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39326521/|Quantifying and visualising uncertainty in deep learning-based segmentation for *_radiation_* therapy treatment planning: What do *_radiation_* oncologists and therapists want?>
+      번 : 방사선 요법 치료 계획을위한 딥 러닝 기반 세분화의 불확실성을 정량화하고 시각화합니다. 방사선 종양 전문의와 치료사는 무엇을 원합니까?
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39393469/|The significance of dose heterogeneity on the anti-tumor response of minibeam *_radiation_* therapy.>
+      번 : 미니 빔 방사선 요법의 항 종양 반응에 대한 용량 이질성의 중요성.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39299574/|Artificial intelligence uncertainty quantification in *_radiotherapy_* applications - A scoping review.>
+      번 : 방사선 요법 응용 분야의 인공 지능 불확실성 정량화 - 범위 검토.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39284416/|GEC-ESTRO recommendations for head & neck cancer *_brachytherapy_* (interventional *_radiotherapy_*): 2nd update with focus on HDR and PDR.>
+      번 : 헤드 및 목 암 근접 치료에 대한 GEC-ESTRO 권장 사항 (중재 방사선 요법) : HDR 및 PDR에 중점을 둔 두 번째 업데이트.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39362607/|Stereotactic body *_radiotherapy_* with a focal boost to the intraprostatic tumor for intermediate and high risk prostate cancer: 5-year efficacy and toxicity in the hypo-FLAME trial.>
+      번 : 중간 및 고위험 전립선 암에 대한 중질 내 종양에 대한 초점 부스트를 갖는 틀에 박힌 신체 방사선 요법 : 저-불꽃 시험에서 5 년 효능 및 독성.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39414084/|Dose-averaged linear energy transfer within the gross tumor volume of non-small-cell lung cancer affects the local control in carbon-ion *_radiotherapy_*.>
+      번 : 비소 세포 폐암의 총 종양 부피 내에서 용량 평균 선형 에너지 전달은 탄소 이온 방사선 요법의 국소 조절에 영향을 미칩니다.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39278317/|Prognostic factors in post-prostatectomy salvage *_radiotherapy_* setting with and without hormonotherapy: An individual patient data analysis of randomized trials from ICECaP database.>
+      번 : 전립선 절제술 후의 예후 요인 호르몬 요법 유무에 관계없이 전립선 절제술 방사선 요법 설정 : ICECAP 데이터베이스의 무작위 시험의 개별 환자 데이터 분석.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39332638/|Feasibility, safety and outcomes of stereotactic *_radiotherapy_* for ultra-central thoracic oligometastatic disease guided by linear endobronchial ultrasound-inserted fiducials.>
+      번 : 선형 흉부 초음파 삽입 신세포에 의해 유도 된 초 중부 흉부 oligometastatic 질병에 대한 정위 방사선 요법의 타당성, 안전성 및 결과.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39341504/|Prediction of new-onset atrial fibrillation in patients with non-small cell lung cancer treated with curative-intent conventional *_radiotherapy_*.>
+      번 : 비소 세포 폐암 환자에서 새로운 발병 중방 세동의 예측은 치료-의도적 인 기존 방사선 요법으로 치료됩니다.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39395672/|p16 status or response to induction chemotherapy, which predicts survival outcomes in Chinese oropharyngeal cancer treated with definitive *_radiotherapy_*?>
+      번 : P16 결정 화학 요법에 대한 P16 상태 또는 반응은 결정적인 방사선 요법으로 치료 된 중국어 인두 암의 생존 결과를 예측 하는가?
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39374675/|Development and comprehensive evaluation of a national DBCG consensus-based auto-segmentation model for lymph node levels in breast cancer *_radiotherapy_*.>
+      번 : 유방암 방사선 요법에서 림프절 수준에 대한 국가 DBCG 컨센서스 기반 자동 분할 모델의 개발 및 포괄적 평가.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39278316/|Intra-prostatic recurrences after *_radiotherapy_* with focal boost: Location and dose mapping in the FLAME trial.>
+      번 : 초점 부스트와의 방사선 요법 후 전염성 재발 : 불꽃 시험에서 위치 및 용량 매핑.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Dec

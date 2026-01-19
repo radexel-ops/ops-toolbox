@@ -1,0 +1,36 @@
+:large_blue_circle:*2025. 11.17.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.news1.kr/bio/welfare-medical/5974803|암치료도 의료 한류…국립암센터, 20년 노하우 카자흐스탄에 전수>*  @뉴스1  3일 전
+🔸 *<https://www.thebionews.net/news/articleView.html?idxno=19788|국립암센터-카자흐스탄 NROC, 중앙아시아 최초 양성자 치료 개시>*  @더바이오  3일 전
+🔸 *<https://healtho.co.kr/m/view.php?idx=148501|이대서울병원, ‘바이오그래프 비전 쿼드라’ 동북아 최초 도입 … 최신 PET-CT, 저선량 기술로 방사선 노출 최소>*  @헬스오  3일 전
+🔸 *<https://medicalworldnews.co.kr/m/view.php?idx=1510971201&mcode=m308jo7|[11월 13일 병원계 이모저모⑤]국립암센터, 대전을지대, 분당제생, 중앙대광명병원 등 소식>*  @medicalworldnews.co.kr  3일 전
+🔸 *<https://news.nate.com/view/20251111n00399|중입자 이어 양성자도 추진…부산 '암 치료 특화도시' 시동>*  @네이트  6일 전
+🔸 *<https://www.koreabiomed.com/news/articleView.html?idxno=29614|Korea’s NCC helps Kazakhstan launch Central Asia’s 1st proton therapy center>*  @KBR  2 days ago
+🔸 *<https://www.froedtert.com/stories/easing-pelvic-cancer-treatment|Easing Pelvic Cancer Treatment>*  @Froedtert & MCW  5 days ago
+🔸 *<https://omannews.gov.om/topics/en/79/show/125474|Latest Integrated Automated Radiopharmaceutical Injector Device Inaugurated in Oman>*  @وكالة الأنباء العمانية  4 days ago
+🔸 *<https://kfor.com/news/local/proton-therapy-offered-at-one-other-facility-in-okc/|Proton therapy offered at one other facility in OKC>*  @KFOR.com  5 days ago
+🔸 *<https://7news.com.au/news/public-health/proton-beam-therapy-australians-still-waiting-a-decade-after-sa-vision-for-future-of-cancer-care-c-20656560|Proton beam therapy: Australians still waiting a decade after SA vision for ‘future of cancer care’>*  @7NEWS  4 days ago
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.medifonews.com/news/article.html?no=208802|한국보건산업진흥원, ‘보건의료 미래 리스크 대응 정책 포럼’ 개최>*  @메디포뉴스  2일 전
+🔸 *<https://www.biotimes.co.kr/news/articleView.html?idxno=25205|의료 로봇, 수술·재활·진단 연결 '플랫폼'으로 도약…혁신 주도 K-로봇 기업은?>*  @바이오타임즈  6일 전
+🔸 *<https://www.news1.kr/bio/welfare-medical/5969660|[K-헬스미래는 지금] 필수의료혁신의 도전, 피지컬 AI기반 휴머노이드 수술보조 로봇>*  @뉴스1  4일 전
+🔸 *<https://www.hitnews.co.kr/news/articleView.html?idxno=70882|큐렉소, '의료로봇 매출국가 다변화' 힘입어 3분기 흑자전환>*  @히트뉴스  4일 전
+🔸 *<https://www.irobotnews.com/news/articleView.html?idxno=43383|보훈공단-서울대병원, 의료 AI 개발 맞손… 보훈의료 서비스 도약>*  @로봇신문  2일 전
+🔸 *<https://www.dongascience.com/en/news/75108|Octopus-Inspired 'Transforming Robot' Changes Color, Moves, and Grasps Objects>*  @동아사이언스  20 hours ago
+🔸 *<https://www.chosun.com/english/industry-en/2025/11/13/4GQ4KVUG7ZD75LRTNIA4NZU5FY/|First Remote Stroke Surgery Demonstrated Across 6,400 km>*  @조선일보  4 days ago
+🔸 *<https://www.precedenceresearch.com/minimally-invasive-medical-robots-market|Minimally Invasive Medical Robots Market Size to Hit USD 183.07 Billion by 2034>*  @Precedence Research  4 days ago
+🔸 *<https://www.koreabiomed.com/news/articleView.html?idxno=29598|SNU Hospital adopts AI-backed kidney stone-removal robot for new training center>*  @KBR  3 days ago
+
+*<의료기기 인허가>*
+🔸 *<https://www.donga.com/news/It/article/all/20251111/132746552/1|원주연세의료원 “프라이빗 LLM으로 의료기기 AI 임상 시대 개막”>*  @동아일보  5일 전
+🔸 *<https://www.hitnews.co.kr/news/articleView.html?idxno=70941|식약처, AI·소프트웨어 특화 디지털의료기기 가이드라인 제정>*  @히트뉴스  3일 전
+🔸 *<https://www.medicaltimes.com/Main/News/NewsView.html?ID=1165976|제이시스메디칼, KOREADERMA 2025에서 피부 미용 기기 소개>*  @메디칼타임즈  6일 전
+🔸 *<https://www.dementianews.co.kr/news/articleView.html?idxno=10700|‘FDA 승인(Approval)’인가, ‘허가(Clearance)’인가”…국내 의료기기 기업 언론 표현 재검토해야>*  @디멘시아뉴스  2일 전
+🔸 *<https://www.medipana.com/news/articleView.html?idxno=401783|"'피지컬 AI' 앞둔 보건의료…안전·허가·책임체계 세워야">*  @메디파나뉴스  5일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.hitnews.co.kr/news/articleView.html?idxno=70984|의료기기산업협회, 남양주시와 의료기기산업 육성 MOU 체결>*  @히트뉴스  4일 전
+🔸 *<https://www.dailydental.co.kr/news/article.html?no=135609|첨단 의료기기 R&D에 7년간 9400억 투자>*  @치의신보  4일 전
+🔸 *<https://www.news1.kr/industry/sb-founded/5970554|스톤브릿지벤처스가 투자한 코넥티브, 유럽 의료기기 인증 받아>*  @뉴스1  6일 전

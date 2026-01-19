@@ -1,0 +1,28 @@
+:large_blue_circle:*2025. 10.8.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2025.1663293/full|Development and Validation of an Interpretable Machine Learning Model for Acute Radiation Dermatitis in Breast Cancer>*  @Frontiers  14시간 전
+🔸 *<https://www.nbcnews.com/news/us-news/us-women-are-increasingly-shut-breast-cancer-treatment-valued-world-rcna229395|U.S. women are increasingly shut out of a breast cancer treatment valued around the world>*  @NBC News  13시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://biz.chosun.com/science-chosun/medicine-health/2025/10/08/UVWVEHU6QFAARGZ7KDVS7IMEYA/|소부장 기업, 의료 기기 효자 수출 기업으로 변신 - 조선비즈>*  @Chosun Biz  2시간 전
+🔸 *<https://www.msn.com/ko-kr/news/other/%EC%B0%BD%EC%97%85%EA%B8%B0%EC%97%85-%EC%9E%87%EB%8B%A8-%ED%88%AC%EC%9E%90%EC%9C%A0%EC%B9%98-%EB%A1%9C%EB%B4%87%EC%9D%98-%EC%82%B0%EC%8B%A4-%EB%90%9C-kaist/ar-AA1MDItl?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1|창업기업 잇단 투자유치…'로봇의 산실'된 KAIST>*  @MSN  16시간 전
+🔸 *<https://www.insight.co.kr/news/523307|1만2천km 거리 두고 성공한 원격 수술... 인류 의학 새 장 열었다>*  @인사이트  21시간 전
+🔸 *<https://bernardmarr.com/robots-and-ai-are-rewriting-the-future-of-surgery/|Robots And AI Are Rewriting The Future Of Surgery>*  @Bernard Marr  14시간 전
+🔸 *<https://www.modernhealthcare.com/medical-devices/mh-zimmer-biomet-monogram-technologies-acquisition-2/|Zimmer Biomet completes Monogram Technologies acquisition>*  @Modern Healthcare  5시간 전
+🔸 *<https://www.todaysmedicaldevelopments.com/news/siemens-healthineers-stryker-announce-partnership-to-advance-robotic-neurovascular-interventions/|Siemens Healthineers, Stryker announce partnership to advance robotic neurovascular interventions>*  @Today's Medical Developments  17시간 전
+🔸 *<https://www.mywelshpool.co.uk/viewernews/articleId/28355/Robots-perform-more-operations-at-Shrewsbury-hospital|Robots perform more operations at Shrewsbury hospital>*  @mywelshpool  14시간 전
+
+*<의료기기 인허가>*
+🔸 *<https://biz.chosun.com/science-chosun/medicine-health/2025/10/08/UVWVEHU6QFAARGZ7KDVS7IMEYA/|소부장 기업, 의료 기기 효자 수출 기업으로 변신 - 조선비즈>*  @Chosun Biz  2시간 전
+🔸 *<https://reviewtimes.co.kr/reviewcolumn/189|[AI 칼럼] AI 진단시대, 의료의 본질을 다시 묻다>*  @리뷰타임스  1시간 전
+🔸 *<https://www.pohangtong.com/%EB%8D%94-%EB%A7%8E%EC%9D%80-%EB%89%B4%EC%8A%A4/%EC%A4%91%EA%B5%AD-%EC%BB%A4%EB%AE%A4%EB%8B%88%EC%BC%80%EC%9D%B4%EC%85%98-%EC%9E%A5%EB%B9%84%EC%97%90-%EB%B6%80%EA%B3%BC-%EB%90%9C-%EC%A0%9C%ED%95%9C%EC%9D%84-%EA%B0%95%ED%99%94%ED%95%98%EA%B8%B0/54848/|중국 커뮤니케이션 장비에 부과 된 제한을 강화하기 위해 투표하기위한 미국 연방 커뮤니케이션위원회>*  @포항통  23시간 전
+🔸 *<http://www.msn.com/ko-kr/news/other/%ED%8A%B9%EC%A7%95%EC%A3%BC-%EB%9D%BC%EB%A9%94%EB%94%94%ED%85%8D-%EB%A0%88%EC%9D%B4%EC%A0%80-%EC%B1%84%ED%98%88%EA%B8%B0-%E7%BE%8E-%EC%B5%9C%EB%8C%80-%EC%9D%98%EB%A3%8C%EA%B8%B0%EA%B8%B0%EC%82%AC%EC%97%90-%EB%93%B1%EB%A1%9D-%EC%99%84%EB%A3%8C-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%8B%9C%EC%9E%A5-%ED%99%95%EB%8C%80-%EA%B8%B0%EB%8C%80%EA%B0%90/ar-AA1N775S?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1|[특징주] 라메디텍, “레이저 채혈기 美 최대 의료기기사에 등록 완료“ 글로벌 시장 확대 기대감>*  @MSN  23시간 전
+🔸 *<http://www.msn.com/ko-kr/news/other/%EC%A0%84%EB%B6%81%EB%8C%80-%EB%B2%A0%ED%8A%B8%EB%82%A8-%EB%B9%88%EB%8C%80%ED%95%99-%EC%88%98%EC%9D%98%ED%95%99-%EC%97%AD%EB%9F%89%EA%B0%95%ED%99%94-%EC%84%B1%EA%B3%BC/ar-AA1M9IQi?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1|전북대, 베트남 빈대학 수의학 역량강화 '성과'>*  @MSN  23시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=69596|"복지부, 의료기기산업 육성에 2조7천억 투자했지만 성과 하락">*  @히트뉴스  23시간 전
+🔸 *<http://www.koreasisailbo.com/1985355|경북도, 첨단바이오산업으로 미래를 열다>*  @시사일보  8시간 전
+🔸 *<https://biz.chosun.com/industry/company/2025/10/07/U2PEXWERINCXXMFFOHSH5S4JVU/|[스타트UP] 재활 치료 웨어러블 로봇 개발…휴로틱스 - 조선비즈>*  @Chosun Biz  22시간 전
+🔸 *<https://www.dailypop.kr/news/articleView.html?idxno=91925|아톰에서 아이언맨까지..피지컬AI, 상상을 넘어 일상으로 온다>*  @데일리팝  21시간 전
+🔸 *<https://m.kr.investing.com/news/analyst-ratings/article-93CH-1660016?ampMode=1|에드워즈 라이프사이언스, 에버코어 ISI, 경쟁 완화에 등급 상향 Investing.com>*  @Investing.com 한국어  12시간 전

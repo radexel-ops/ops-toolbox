@@ -1,0 +1,37 @@
+★2025. 7.7.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <https://www.mk.co.kr/news/economy/11360514|“일본으로 수술하러 가는 비용도 보장”…중입자 치료 보험 범위 확대>  @매일경제  1일 전
+🔸 <https://www.dailymedi.com/news/news_view.php?wr_id=926030|빅5 포함 병원계 '양성자 치료' 경쟁 본격화>  @데일리메디  3일 전
+🔸 <https://www.dttoday.com/news/articleView.html?idxno=95345|의료장비 100만대 넘었다...10년간 51%↑>  @덴탈투데이  3일 전
+🔸 <https://www.msn.com/ko-kr/news/other/%EC%95%94-%EC%A0%95%EB%B0%80-%EC%B9%98%EB%A3%8C%EC%9D%98-%EC%A3%BC%EC%97%AD-%EB%B0%A9%EC%82%AC%EC%84%A0-%EC%A2%85%EC%96%91%ED%95%99%EC%9D%B4-%EC%82%AC%EB%9D%BC%EC%A7%84%EB%8B%A4/ar-AA1HNpNN|암 정밀 치료의 주역, 방사선 종양학이 사라진다>  @MSN  4일 전
+🔸 <https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2025.1609421/full|Personalized diagnosis of radiation pneumonitis in breast cancer patients based on radiomics>  @Frontiers  6일 전
+🔸 <https://www.insideprecisionmedicine.com/topics/oncology/new-ai-tool-enhances-precision-of-lung-cancer-radiation-therapy/|New AI Tool Enhances Precision of Lung Cancer Radiation Therapy>  @Inside Precision Medicine  6일 전
+🔸 <https://oncodaily.com/societies/radiotherapy-in-neuroblastoma-324558|Radiotherapy in Neuroblastoma in the Educational Lectures on Paediatric Radiation Oncology Series - SIOP>  @Oncodaily  1일 전
+🔸 <https://www.washingtonpost.com/health/2025/07/06/cancer-radiation-oncology-palliative-care/|Guest column | A patient’s eye view of radiation therapy: This is what it feels like>  @The Washington Post  5시간 전
+
+<로봇수술 관련 뉴스>
+🔸 <https://www.etnews.com/20250703000409|영남대, 차세대 AI 뉴로모픽 전자소자 개발…의료·로봇 등 다양한 분야에 활용 기대>  @전자신문  3일 전
+🔸 <https://www.hankyung.com/article/2025070246061|'이 좋은 수술 로봇을 왜 한국만 못 쓰나'…기막힌 상황>  @한국경제  4일 전
+🔸 <https://www.medipana.com/article/view.php?news_idx=343633|최신 로봇수술기 '다빈치5' 글로벌 영역 확장 본격화>  @메디파나뉴스  1일 전
+🔸 <https://www.irobotnews.com/news/articleView.html?idxno=40970|로엔서지컬 신장결석 수술로봇 ‘자메닉스’, 인도네시아에서 첫 수술 성공>  @로봇신문  3일 전
+🔸 <https://zdnet.co.kr/view/?no=20250703114753|로봇·AI 기술 집약 병원 노하우, 도시 공간에 적용한다>  @지디넷코리아  3일 전
+🔸 <https://biz.chosun.com/en/en-science/2025/07/07/HAIUMZKAINBDRCBA33X22P2C6E/|Femtech technology enhances women's health with AI and robotics in Korea - CHOSUNBIZ>  @Chosunbiz  2시간 전
+🔸 <https://www.mk.co.kr/en/stock/11358721|This article was reported on "Radar M," a paid media outlet specializing in the capital market in M..>  @매일경제  3일 전
+🔸 <https://www.kedglobal.com/robotics/newsView/ked202507030023|Allianz-backed Koh Young’s brain surgery robot set for US debut by end-August>  @KED Global  3일 전
+🔸 <https://kr.aving.net/news/articleView.html?idxno=1801781|[Pangyo StartUp] Cure-in showcases automated breast biopsy robot at 5th Pan-Pan Day>  @에이빙  5일 전
+🔸 <https://www.nature.com/articles/s41598-025-08437-w|Human–robot collaboration in surgery at the nexus of knowledge, agency, and ownership>  @Nature  3일 전
+
+<의료기기 인허가>
+🔸 <https://www.yna.co.kr/view/AKR20250704053700017|혁신제품 사전상담 품목 65개 임상시험 단계 진입>  @연합뉴스  2일 전
+🔸 <https://www.hankyung.com/article/2025070244861|의료기기 혁신해도…정부 심사만 490일>  @한국경제  4일 전
+🔸 <https://www.themedical.kr/news/articleView.html?idxno=2431|정부, 의료기기 허가·심사 어려운 기업 목소리 직접 듣는다>  @더메디컬  6일 전
+🔸 <https://www.dailymedi.com/news/news_view.php?wr_id=926585|의약품 2개·의료기기 17개 '허가·인증' 완료>  @데일리메디  2일 전
+🔸 <https://www.newspim.com/news/view/20250701000029|[하반기 달라지는 것] 의료기기 시장 진입 신속화…'임상평가제' 도입>  @뉴스핌  5일 전
+
+<의료로봇/기기 업계 동향>
+🔸 <https://www.businesspost.co.kr/BP?command=article_view&num=401561|다올투자 "파마리서치 2분기 의료기기 매출 역대 최대, 기업가치 상승 구간">  @비즈니스포스트  4일 전
+🔸 <https://www.irobotnews.com/news/articleView.html?idxno=41050|加 제네시스 AI, 범용 로봇 파운데이션 모델(RFM) 구축비 1400억원 유치>  @로봇신문  10시간 전
+🔸 <https://www.newstof.com/news/articleView.html?idxno=29184|스틱 뚝심 통할까...리센스메디컬 증시 ‘노크’>  @뉴스톱  2일 전
+🔸 <http://www.bosa.co.kr/news/articleView.html?idxno=2252476|의료기기협회, 임팩트재단과 업무협약 체결>  @의학신문  3일 전
+🔸 <http://www.docdocdoc.co.kr/news/articleView.html?idxno=3029847|중국 국제 의료기기전시회 내달 21일 개최>  @청년의사  2일 전

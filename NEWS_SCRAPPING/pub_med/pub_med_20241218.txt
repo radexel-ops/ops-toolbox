@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.12.17. ~ 2024.12.17)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39688774/|Virtual reality simulations in *_robotic_* *_surgery_* training: a systematic review and meta-analysis.>
+      번 : 로봇 수술 훈련의 가상 현실 시뮬레이션 : 체계적인 검토 및 메타 분석.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2024 Dec 17

@@ -1,0 +1,32 @@
+★2024. 8.26.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <https://www.nature.com/articles/s41598-024-69370-y|First independent validation of the proton-boron capture therapy concept>  @Nature  5일 전
+🔸 <https://www.uc.edu/news/articles/2024/08/lattice-therapy-can-help-target-tumors.html|Lattice therapy can help target tumors>  @University of Cincinnati  6일 전
+🔸 <https://www.ecoticias.com/en/magurele-laser-facility-machine/5574/|The End of the World Machine is turned on: 10 quadrillion watts fired at this place>  @ECOticias  3일 전
+
+<로봇수술 관련 뉴스>
+🔸 <https://www.k-health.com/news/articleView.html?idxno=74189|시민 누구나 로봇수술체험…인튜이티브, 서울로봇인공지능과학관에 ‘다빈치’ 기증>  @헬스경향  1일 전
+🔸 <https://www.khanews.com/news/articleView.html?idxno=229954|[DIPS 1000+ 창업기업 소개] 에어스ㆍ원소프트다임>  @병원신문  4시간 전
+🔸 <https://www.news1.kr/local/seoul/5515317|서울로봇인공지능과학관 20일 개관…"축구·수술 로봇도 있네">  @뉴스1  5일 전
+🔸 <http://m.irobotnews.com/news/articleView.html?idxno=35855|中 베이징 이좡, 50개 '로봇+ 응용 프로젝트' 추진한다>  @로봇신문사  4일 전
+🔸 <http://www.sisanews.kr/news/articleView.html?idxno=110070|서울시, AI 로봇 시대 열어...최첨단 기술⋅예술 접목>  @시사경제신문  2일 전
+🔸 <https://siliconcanals.com/leipzig-based-tediro-bags-funding/|Leipzig-based TEDIRO bags funding to develop the ‘smartphone on wheels’ for clinical care>  @Silicon Canals  3일 전
+🔸 <https://mmrjournal.biomedcentral.com/articles/10.1186/s40779-024-00566-z|Intelligent medicine in focus: the 5 stages of evolution in robot-assisted surgery for prostate cancer in the past 20 years and future implications>  @BioMed Central  4일 전
+🔸 <https://www.forbes.com/councils/forbestechcouncil/2024/08/23/tech-trends-in-mixed-reality-and-robotic-surgery/|Council Post: Tech Trends In Mixed Reality And Robotic Surgery>  @Forbes  2일 전
+🔸 <https://www.techno-science.net/en/news/this-dental-robot-performs-its-first-autonomous-procedure-on-human-N25437.html|💻 This dental robot performs its first autonomous procedure on a human>  @Techno-Science.net  2일 전
+🔸 <https://www.mskcc.org/news/robotic-neurosurgery-at-msk-speeds-recovery-from-some-spinal-tumors|Robotic Neurosurgery at MSK Speeds Recovery From Some Spinal Tumors>  @Memorial Sloan Kettering Cancer Center  4일 전
+
+<의료기기 인허가>
+🔸 <https://www.pharmnews.com/news/articleView.html?idxno=249007|KTR, 파라과이 의료기기 수출 규제 직접 대응>  @팜뉴스  5일 전
+🔸 <https://www.etnews.com/20240823000208|[K-제조, 현장을 가다]〈8〉임상연구·의료기기 개발 전진기지 '세라젬 클리니컬'>  @전자신문  18시간 전
+🔸 <https://www.donga.com/news/It/article/all/20240821/126613973/1|디티앤씨알오-티유브이슈드, ‘2024 의료기기 인허가 공동 심포지엄’ 개최>  @동아일보  5일 전
+🔸 <https://www.yakup.com/news/index.html?mode=view&pmode=&cat=12&cat2=&nid=298499&num_start=|노을, 중동 최대 시장 사우디서 3등급 AI 의료기기 시판 허가 획득>  @약업신문  14분 전
+🔸 <https://www.datasom.co.kr/news/articleView.html?idxno=201922|미허가 의약품 수백건 해외 플랫폼 통해 불법 유통 중>  @데이터솜  3일 전
+
+<의료로봇/기기 업계 동향>
+🔸 <https://www.newspim.com/news/view/20240820000942|글로버 사모펀드, 印 최대 의료기기 업체 SMT에 '눈길'>  @뉴스핌  5일 전
+🔸 <http://m.irobotnews.com/news/articleView.html?idxno=35851|美 넵튠 메디컬, 1290억원 유치···주피터 엔도베스큘러 분사>  @로봇신문사  4일 전
+🔸 <https://www.rapportian.com/news/articleView.html?idxno=210473|[in-터뷰] 파라과이가 한국 의료기기 기업 유치에 팔 걷은 이유>  @라포르시안  6일 전
+🔸 <https://www.newsthevoice.com/news/articleView.html?idxno=39275|"신의료기술평가, 혁신의료기기 시장진출 막는 수단돼선 안돼">  @뉴스더보이스헬스케어  4일 전
+🔸 <https://www.medicaltimes.com/Mobile/News/NewsView.html?ID=1160169|의대교수 설립 바이오벤처 눈길...'빅웨이브' 통해 투자유치 나서>  @메디칼타임즈  3일 전

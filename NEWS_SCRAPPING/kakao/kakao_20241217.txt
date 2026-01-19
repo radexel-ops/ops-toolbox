@@ -1,0 +1,32 @@
+★2024. 12.17.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <https://www.cureus.com/articles/324558-models-and-biomarkers-for-local-response-prediction-in-early-stage-and-oligometastatic-non-small-cell-lung-cancer-patients-treated-with-stereotactic-body-radiation-therapy-using-machine-learning|Models and Biomarkers for Local Response Prediction in Early-Stage and Oligometastatic Non-small Cell Lung Cancer Patients Treated With Stereotactic Body Radiation Therapy Using Machine Learning>  @Cureus  4시간 전
+🔸 <https://timesofindia.indiatimes.com/city/lucknow/all-med-colleges-should-have-cancer-depts-docs/articleshow/116379120.cms|All med colleges should have cancer depts: Docs>  @Times of India  4시간 전
+🔸 <https://www.tribuneindia.com/news/haryana/at-pgims-cancer-patients-treated-by-old-machines-nod-to-buy-new-ones-in-limbo/|At PGIMS, cancer patients treated by old machines, nod to buy new ones in limbo>  @The Tribune  20시간 전
+🔸 <https://en.vijesti.me/tv/shows/737065/problems-with-the-operation-of-the-radiation-apparatus%2C-the-priority-is-that-patients-are-not-deprived-of-therapy|Problems with the operation of the radiation apparatus: "The priority is that patients are not denied therapy">  @Vijesti.me  13시간 전
+🔸 <https://www.msn.com/en-us/health/other/candel-s-cancer-therapy-meets-late-stage-trial-goal-shares-soar/ar-AA1vFuEO|Candel's cancer therapy meets late-stage trial goal, shares soar>  @MSN  9시간 전
+
+<로봇수술 관련 뉴스>
+🔸 <https://www.thebionews.net/news/articleView.html?idxno=11479|삼성서울병원 "최신 로봇수술 장비 '다빈치5', 아시아 최초 수술 시행">  @더바이오  13시간 전
+🔸 <https://www.kookje.co.kr/news2011/asp/newsbody.asp?code=&key=20241217.22015005903|양산부산대병원, 부산경남 첫 위암 단일공 로봇수술 성공>  @국제신문  14시간 전
+🔸 <https://kr.investing.com/news/-1305172|Intuitive Surgical의 SWOT 분석 : 로봇 수술 리더의 주식 전망 By Investing.com>  @Investing.com 한국어  16시간 전
+🔸 <https://www.wcax.com/2024/12/16/robotic-technology-helping-uvm-medical-center-patients-relearn-how-walk/|Robotic technology helping UVM Medical Center patients relearn how to walk>  @WCAX  5시간 전
+🔸 <https://www.africanews.com/2024/12/16/in-2024-robots-exhibited-greater-ingenuity-utility/?utm_source=news.google.com&utm_campaign=feeds_news&utm_medium=referral|In 2024, robots exhibited greater ingenuity, utility>  @Africanews  11시간 전
+🔸 <https://www.newswise.com/articles/university-hospitals-is-the-first-health-system-in-northeast-ohio-utilizing-da-vinci-5-surgical-robot/?ad2f=1&aid=821382|University Hospitals is the First Health System in | Newswise>  @Newswise  5시간 전
+🔸 <https://stalbanstimes.co.uk/feature/behind-the-curtain-at-the-theatre-where-robots-help-with-surgery/|Behind the curtain at the theatre where robots help with surgery>  @St Albans Times  10시간 전
+🔸 <https://www.eetasia.com/microchip-expands-fpga-lineup-for-medical-imaging-smart-robotics/|Microchip Expands FPGA Lineup for Medical Imaging, Smart Robotics>  @EE Times Asia  20시간 전
+
+<의료기기 인허가>
+🔸 <http://www.newsthevoice.com/news/articleView.html?idxno=40616|'디지털치료기기' 임상시험 설계...자주묻는 질문은?>  @뉴스더보이스헬스케어  2시간 전
+🔸 <https://www.rapportian.com/news/articleView.html?idxno=215354|스마트임상시험신기술개발사업단, 19일 성과교류회 개최>  @라포르시안  18시간 전
+🔸 <https://m.health.chosun.com/svc/news_view.html?contid=2024121600924|심장질환 진단 의료기기 기업 ‘에이엠시지’ 코넥스 신규 상장 승인>  @헬스조선  22시간 전
+🔸 <http://www.hitnews.co.kr/news/articleView.html?idxno=60073|보스톤사이언티픽 왓치맨 플렉스, 항응고제 대비 출혈 위험 감소>  @히트뉴스  14시간 전
+🔸 <https://news.knn.co.kr/news/article/166531|[인물포커스] - 최희은 쉐어앤서비스 대표>  @부산경남대표방송 KNN 뉴스  23시간 전
+
+<의료로봇/기기 업계 동향>
+🔸 <https://www.medipana.com/article/view.php?news_idx=335424|파마리서치, 5년간 R&D 투자 3배↑…실적 상승으로 성과 입증>  @메디파나 뉴스  2시간 전
+🔸 <https://www.etnews.com/20241216000446|[에듀플러스]메디테크·한양대 ERICA 산학협력단, 중국 산학협력 현장 방문…“한국도 고부가가치 의료 분야 집중 육성해야”>  @전자신문  12시간 전
+🔸 <https://m.health.chosun.com/svc/news_view.html?contid=2024121600924|심장질환 진단 의료기기 기업 ‘에이엠시지’ 코넥스 신규 상장 승인>  @헬스조선  22시간 전
+🔸 <http://www.hitnews.co.kr/news/articleView.html?idxno=60079|동국생명과학, 증권신고서 제출…코스닥 상장 절차 돌입>  @히트뉴스  15시간 전
+🔸 <http://m.whosaeng.com/a.html?uid=157343|고려대 안암병원, ‘다빈치5’ 도입…아시아 최초>  @후생신보  20시간 전

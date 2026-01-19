@@ -1,0 +1,34 @@
+★2025. 9.1.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <https://www.hankyung.com/article/202508263362i|파프리카랩, 아시아 5개국 수출 본격화…"국산 방사선 치료기기 해외서도 인정">  @한국경제  5일 전
+🔸 <http://www.bosa.co.kr/news/articleView.html?idxno=2256185|조선대병원, 고난도 암 치료 선도>  @의학신문  5일 전
+🔸 <http://www.msn.com/ko-kr/news/other/%EA%B1%B4%EA%B5%AD%EB%8C%80%EB%B3%91%EC%9B%90-%EB%B0%A9%EC%82%AC%EC%84%A0-%EC%B9%98%EB%A3%8C%EA%B8%B0-%ED%97%AC%EC%8B%9C%EC%98%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EC%82%AC%EC%9D%B4%ED%8A%B8-%ED%8A%B8%EB%A3%A8%EB%B9%94-%EB%8F%84%EC%9E%85/ar-AA1KI5fe?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1|건국대병원, 방사선 치료기 ‘헬시온 하이퍼사이트’ ‘트루빔’ 도입>  @MSN  19시간 전
+🔸 <https://www.cchwyo.org/news/2025/august/campbell-county-health-brings-cutting-edge-cance/|CCH Brings Cutting-Edge Cancer Care to Gillette with New Linear Accelerator>  @Campbell County Health  2일 전
+🔸 <https://industrytoday.co.uk/health_and_safety/radiation-oncology-devices-market-set-to-reach-95-usd-billion-with-a-healthy-44-cagr-till-forecasts-2032|Radiation Oncology Devices Market Set to Reach 9.5 USD Billion, with a Healthy 4.4% CAGR Till Forecasts 2032>  @industrytoday.co.uk  10시간 전
+🔸 <https://county17.com/2025/08/28/cch-introducing-new-radiation-therapy-device-to-heptner-cancer-center/|CCH introducing new radiation therapy device to Heptner Cancer Center>  @County 17  3일 전
+🔸 <https://geiselmed.dartmouth.edu/news/2025/dartmouth-cancer-researcher-p-jack-hoopes-dies/|Dartmouth Cancer Researcher P. Jack Hoopes Dies>  @Geisel School of Medicine at Dartmouth  5일 전
+🔸 <https://cbs4indy.com/business/press-releases/cision/20250828IO61045/proton-center-in-south-korea-selects-raystation-and-raycare|Proton center in South Korea selects RayStation and RayCare>  @cbs4indy.com  3일 전
+
+<로봇수술 관련 뉴스>
+🔸 <https://www.irobotnews.com/news/articleView.html?idxno=42126|K-의료로봇 밝은 미래 열려면 말뿐인 국산화·창업 지원 ‘한계’>  @로봇신문  6시간 전
+🔸 <https://m.dongascience.com/news.php?idx=73629|원자력병원, 전립선암·신장암 동시 로봇 수술 성공>  @동아사이언스  6일 전
+🔸 <http://www.bosa.co.kr/news/articleView.html?idxno=2256191|광주 마이크로의료로봇 개발지원센터 준공>  @의학신문  5일 전
+🔸 <https://www.forbeskorea.co.kr/news/articleView.html?idxno=400499|美 대형사가 잠식한 시장, 국내 수술 로봇의 돌파구는>  @포브스코리아  2일 전
+🔸 <https://www.hinews.co.kr/view.php?ud=202508291702348180f6e2c25b70_48|South Korea’s Ilsan Hospital Unveils Advanced Da Vinci SP Robotic Surgery System to Enhance Precision Care>  @hinews.co.kr  2일 전
+🔸 <https://www.mk.co.kr/en/it/11403555|Nvidia, an artificial intelligence (AI) chip leader, is speeding up its efforts to tap into the robo..>  @매일경제  5일 전
+🔸 <https://www.nature.com/articles/s41598-025-11434-8|Comparable perioperative performance between three robotic system for robot-assisted partial nephrectomy to treat early renal cancer>  @Nature  5일 전
+🔸 <https://www.medscape.com/viewarticle/how-robot-performed-surgery-without-human-assistance-2025a1000mp6|How a Robot Performed Surgery Without Human Assistance>  @Medscape  3일 전
+
+<의료기기 인허가>
+🔸 <https://www.dailymedi.com/news/news_view.php?wr_id=928326|디지털의료기기 허가·심사-임상 규정 개선>  @데일리메디  4일 전
+🔸 <https://www.chosun.com/economy/tech_it/2025/08/29/NO3V3LCIG5A5RIJDFDXL3AKRLA/|美 “삼성·SK, 美반도체장비 中 반출시 건별 허가받아야”>  @조선일보  2일 전
+🔸 <https://www.hellot.net/news/article.html?no=104579|[KICEF 2025] “AI 의료기기 임상시험 새 표준” 헬프트라이알, K-의료기기 글로벌화 지원한다>  @헬로티  6일 전
+🔸 <https://www.medifonews.com/news/article.html?no=206100|원텍, ‘올리지오’ 시리즈 사우디 의료기기 허가…중동시장 존재감 키운다>  @메디포뉴스  4일 전
+
+<의료로봇/기기 업계 동향>
+🔸 <https://wowtale.net/2025/08/26/245958/|🎙️의료 영상 분석 SW ‘플로우닉스’, 10억원 시드 투자 유치>  @와우테일  5일 전
+🔸 <https://pharm.edaily.co.kr/News/Read?newsId=02348486642271256|국산 미용기기의 반격 '하나도 안아팠다' 피니프 시술 체험기>  @팜이데일리  6일 전
+🔸 <http://www.hitnews.co.kr/news/articleView.html?idxno=68403|"의료기기 간납업체 횡포"… 업계, 공정한 유통구조 호소>  @히트뉴스  3일 전
+🔸 <https://www.greened.kr/news/articleView.html?idxno=330281|게이츠 재단 만남부터 FDA등록까지… 국내 의료기기 수준은?>  @녹색경제신문  6일 전
+🔸 <http://www.bosa.co.kr/news/articleView.html?idxno=2256336|보건복지인재원, ‘외국인환자 유치사업 이해’ 표준 교육 시작>  @의학신문  3일 전

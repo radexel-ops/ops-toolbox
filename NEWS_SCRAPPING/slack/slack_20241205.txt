@@ -1,0 +1,30 @@
+:large_blue_circle:*2024. 12.5.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.manilatimes.net/2024/12/04/tmt-newswire/globenewswire/pompano-veterinary-oncology-partners-with-sensus-healthcare-to-provide-first-superficial-radiotherapy-services-in-a-mobile-configuration/2015989|Pompano Veterinary Oncology Partners with Sensus Healthcare to Provide First Superficial Radiotherapy Services in a Mobile Configuration>*  @The Manila Times  9시간 전
+🔸 *<https://www.dotmed.com/news/story/64037|Boston Scientific to acquire Intera Oncology>*  @DOTmed  18시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://m.health.chosun.com/svc/news_view.html?contid=2024120401812|실제 수술장 모습 그대로… 메드트로닉, 오송 ‘로봇 수술 연구·교육 센터’ 열어>*  @헬스조선  17시간 전
+🔸 *<https://www.etoday.co.kr/news/view/2425976|[특허, 톡!] AI 활용한 의료방법, 특허가 될까?>*  @이투데이  13시간 전
+🔸 *<http://www.whosaeng.com/157077|청년 ‘포-가 연구원’ 한국 바이오벤처기업 산실 '우뚝'>*  @후생신보  16시간 전
+🔸 *<https://www.kgnews.co.kr/news/article.html?no=820632|인하대병원 산부인과, 중증질환 고난도 로봇수술 300례 달성>*  @경기신문  16시간 전
+🔸 *<https://www.etnews.com/20241204000327|[소프트웨이브 2024]스마트병원 솔루션에서 수면데이터 플랫폼 등 신시장 개척 '눈길'>*  @전자신문  15시간 전
+🔸 *<https://www.tech42.co.kr/ai-%EA%B8%B0%EB%B0%98-%EB%A1%9C%EB%B4%87-%EC%9E%90%EC%9C%A8-%EC%88%98%EC%88%A0-%EB%8A%A5%EB%A0%A5-%ED%9A%8D%EA%B8%B0%EC%A0%81-%ED%96%A5%EC%83%81/|AI 기반 로봇, 자율 수술 능력 획기적 향상>*  @테크42  23시간 전
+🔸 *<https://medicalxpress.com/news/2024-12-robotic-augmented-reality-spine-surgery.html|Study compares robotic-assisted to augmented reality spine surgery, finds both precise and accurate>*  @Medical Xpress  9시간 전
+🔸 *<https://www.stvincenttimes.com/cayman-health-city-robotic-knee-replacement-caribbean/|Health City Performs First Robotic Knee Replacement in the Caribbean>*  @St Vincent Times  9시간 전
+🔸 *<https://www.azorobotics.com/News.aspx?newsID=15532|Spot Failures Early On>*  @AZoRobotics  12시간 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.hankyung.com/article/202412044260P|식약처, 성형용 필러 등 정형용 의료기기 제품화 지원>*  @한국경제  16시간 전
+🔸 *<https://www.medipana.com/article/view.php?page=1&sch_menu=1&sch_cate=F&news_idx=334832|정형재활 의료기기 분야 허가·심사 민원설명회 개최>*  @메디파나 뉴스  23시간 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2237084|“국내 의료기기社, 개발 완료 전 사용적합성 평가 시행해야”>*  @의학신문  20시간 전
+🔸 *<https://pharm.edaily.co.kr/news/read?newsId=02486246639115240|프리시젼바이오, ‘연 매출 5조’ 니프로에 임상화학 제품 공급계약…日 본격 진출>*  @팜이데일리  23시간 전
+🔸 *<https://www.koreahealthlog.com/news/articleView.html?idxno=49446|압타머 기반 간암 신약임상, 암센터·분당차·삼성서울·세브란스서 시작>*  @코리아헬스로그  21시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.economidaily.com/view/20241203192829528|동화약품, 미용기기사업 인수 중단…사업 다각화 방안 모색>*  @이코노믹데일리  2시간 전
+🔸 *<https://m.health.chosun.com/svc/news_view.html?contid=2024120401812|실제 수술장 모습 그대로… 메드트로닉, 오송 ‘로봇 수술 연구·교육 센터’ 열어>*  @헬스조선  17시간 전
+🔸 *<https://www.medworld.co.kr/news/articleView.html?idxno=240365|젬스헬스케어, RSNA 2024에서 첨단 엑스레이 솔루션 공개>*  @메드월드뉴스  10시간 전
+🔸 *<https://www.ntoday.co.kr/news/articleView.html?idxno=111460|“못 돌려준다”…인수 철회한 동화약품, 계약금에 ‘발목’>*  @투데이신문  19시간 전
+🔸 *<https://www.newsis.com/view/NISX20241204_0002983767|"기술혁신 기업 투자 유치 지원"…이노비즈협회, IR행사>*  @뉴시스  18시간 전

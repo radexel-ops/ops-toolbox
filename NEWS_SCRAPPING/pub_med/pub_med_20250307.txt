@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2025.3.6. ~ 2025.3.6)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/40047977/|Implementation of a *_robotic_* hepato-pancreato-biliary *_surgery_* program: a swedish referral center's experience.>
+      번 : 로봇 헤파토 팬크리에토 베이비 수술 프로그램의 구현 : 스웨덴어 추천 센터의 경험.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2025 Mar 6

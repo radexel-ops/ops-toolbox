@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.12.4. ~ 2024.12.4)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39630266/|A pan-European survey of *_robotic_* training for gastrointestinal *_surgery_*: European *_Robotic_* *_Surgery_* Consensus (ERSC) initiative.>
+      번 : 위장 수술을위한 로봇 훈련에 대한 범 유럽 조사 : ERSC (European Robotic Surgery Consensus) 이니셔티브.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 정보 없음

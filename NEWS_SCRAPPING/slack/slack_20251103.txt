@@ -1,0 +1,35 @@
+:large_blue_circle:*2025. 11.3.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://m.health.chosun.com/svc/news_view.html?contid=2025102902833|강동경희대학교병원, 차세대 방사선치료 시스템 도입>*  @헬스조선  4일 전
+🔸 *<https://www.medigatenews.com/news/2875044038|서울아산병원, 일본 QST 병원과 '중입자 치료' 업무협약>*  @MEDI:GATE NEWS  3일 전
+🔸 *<https://www.monews.co.kr/news/articleView.html?idxno=407101|세계 최초 Flash 전자선 방사선 치료기 국내 도입되나>*  @메디칼업저버  6일 전
+🔸 *<https://biz.chosun.com/en/en-science/2025/10/29/BCN3W2TELRF5VHZX5LF3L5DJRE/|Asan Medical Center partners with Japan QST to launch carbon ion therapy by 2031 - CHOSUNBIZ>*  @Chosun Biz  4 days ago
+🔸 *<https://www.hopkinsmedicine.org/news/newsroom/news-releases/2025/10/targeted-radiation-during-surgery-reduces-pancreatic-cancer-recurrence|Targeted Radiation During Surgery Reduces Pancreatic Cancer Recurrence>*  @Johns Hopkins Medicine  5 days ago
+🔸 *<https://news.cuanschutz.edu/medicine/seawalt-student-csu-flint|‘We’ve Never Had a Human Medical Student Before’: A CU Trainee Rotates Through an Animal Cancer Clinic>*  @CU Anschutz newsroom  5 days ago
+🔸 *<https://www.miragenews.com/baylor-neurosurgery-earns-gammatile-excellence-1561121/|Baylor Neurosurgery Earns GammaTile Excellence Status>*  @Mirage News  3 days ago
+🔸 *<https://hartfordbusiness.com/article/55-metric-ton-cyclotron-installed-at-cts-first-proton-therapy-facility-in-wallingford/|55-metric ton Cyclotron installed at CT’s first proton therapy facility in Wallingford>*  @Hartford Business Journal  2 days ago
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.irobotnews.com/news/articleView.html?idxno=43142|[Special Report] 일본 제조업 및 의료 로봇 시장>*  @로봇신문  11시간 전
+🔸 *<https://elec4.co.kr/article/articleView.asp?idx=34534|레인보우로보틱스, 의료용 로봇 개발 본격화한다>*  @elec4  6일 전
+🔸 *<https://biz.chosun.com/science-chosun/bio/2025/11/03/LXBBTUVZDNGJ5LJUBZVEE2ID2I/|[HIF 2025] AI가 진찰하고 검사, 수술까지…우주까지 가는 의료 AI - 조선비즈>*  @Chosun Biz  2시간 전
+🔸 *<https://khanews.com/news/articleView.html?idxno=238430|전북대병원-전주예수병원, 차세대 재활의료 로봇 개발 협력>*  @병원신문  4일 전
+🔸 *<https://biz.chosun.com/en/en-science/2025/11/03/RLIDS7UOABGTJNIT66VULAOMG4/|AI transforms Korean healthcare with faster, cheaper, and more accurate diagnosis - CHOSUNBIZ>*  @Chosun Biz  2 hours ago
+🔸 *<https://www.fortunebusinessinsights.com/ai-in-robot-assisted-surgery-market-114135|AI in Robot-Assisted Surgery Market Size, Share | Growth [2032]>*  @Fortune Business Insights  2 days ago
+🔸 *<https://www.news-medical.net/news/20251029/3D-printing-soft-robot-delivers-hydrogels-to-the-vocal-cord-surgical-site-to-reconstruct-tissues.aspx|3D-printing soft robot delivers hydrogels to the vocal cord surgical site to reconstruct tissues>*  @News-Medical  4 days ago
+🔸 *<https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2025.1672583/full|Health technology assessment of surgical robots: a mini-review of a rapidly evolving field>*  @Frontiers  3 days ago
+🔸 *<https://healthcareasiamagazine.com/videos/hmi-leverages-robotic-surgery-boost-regional-healthcare-access|HMI leverages robotic surgery to boost regional healthcare access>*  @Healthcare Asia Magazine  6 days ago
+
+*<의료기기 인허가>*
+🔸 *<https://www.news1.kr/bio/general/5960445|'치매·유방암' 등 디지털의료기기 임상시험 가이드라인 9종 개정>*  @뉴스1  2일 전
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=70403|시지바이오, 안면조직고정용실 '두스' 확증 임상시험 승인>*  @히트뉴스  2일 전
+🔸 *<https://v.daum.net/v/20251029154722479|"신속허가 지원"…혁신융합 심혈관의료기기 민원인 안내서 발간>*  @Daum  4일 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2261273|‘MDR 규제 대응 전략 세미나’ 성황리에>*  @의학신문  3일 전
+🔸 *<https://www.pharmnews.com/news/articleViewAmp.html?idxno=264138|안암의료법학회, 연명치료 중단 기준ㆍ임상제도 개선 논의>*  @팜뉴스  2시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.ynenews.kr/news/articleView.html?idxno=70596|[사설]지멘스 그룹, 포항을 세계 초음파 의료기기 허브로 육성한다>*  @영남경제  13시간 전
+🔸 *<https://www.news1.kr/local/gwangju-jeonnam/5960754|광양경자청, 의료기기산업 전문가 간담회…투자 활성화 방안 논의>*  @뉴스1  2일 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2261229|지멘스 헬시니어스 "향후 5년간 포항에 5000만 달러 투자">*  @의학신문  3일 전
+🔸 *<https://www.newstopkorea.com/news/articleView.html?idxno=40595|인공피부 만드는 플코스킨, 100억 투자 유치>*  @뉴스톱  6일 전

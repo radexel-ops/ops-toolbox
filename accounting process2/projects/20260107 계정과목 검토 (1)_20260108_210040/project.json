@@ -1,0 +1,29 @@
+{
+  "project_name": "20260107 계정과목 검토 (1)_20260108_210040",
+  "source_file": "20260107 계정과목 검토 (1).xlsx",
+  "source_path": "C:\\Users\\pop84\\OneDrive\\PycharmProjects\\NEW PB CODE\\RDXL_RPA\\accounting process\\projects\\20260107 계정과목 검토 (1)_20260108_210040\\source.xlsx",
+  "original_path": "C:/Users/pop84/Downloads/20260107 계정과목 검토 (1).xlsx",
+  "created_at": "2026-01-08T21:00:40.261010",
+  "last_modified": "2026-01-09T00:39:23.439398",
+  "attachments": {
+    "계정별원장_12": [
+      {
+        "original_name": "202509031025090359782735.xml",
+        "saved_name": "row_013_004_202509031025090359782735.xml",
+        "saved_path": "C:\\Users\\pop84\\OneDrive\\PycharmProjects\\NEW PB CODE\\RDXL_RPA\\accounting process\\projects\\20260107 계정과목 검토 (1)_20260108_210040\\attachments\\row_013_004_202509031025090359782735.xml",
+        "attached_at": "2026-01-08T22:38:45.565226",
+        "file_type": "xml"
+      },
+      {
+        "original_name": "견적서_MagSaber 카트 고정용 커버_250828.xls",
+        "saved_name": "row_013_005_견적서_MagSaber_카트_고정용_커버_250828.xls",
+        "saved_path": "C:\\Users\\pop84\\OneDrive\\PycharmProjects\\NEW PB CODE\\RDXL_RPA\\accounting process\\projects\\20260107 계정과목 검토 (1)_20260108_210040\\attachments\\row_013_005_견적서_MagSaber_카트_고정용_커버_250828.xls",
+        "attached_at": "2026-01-08T22:38:45.567834",
+        "file_type": "xls"
+      }
+    ],
+    "계정별원장_8": []
+  },
+  "notes": "",
+  "version": "2.0"
+}

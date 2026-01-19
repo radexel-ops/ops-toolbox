@@ -1,0 +1,36 @@
+:large_blue_circle:*2025. 9.22.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.dailymedi.com/news/news_view.php?wr_id=929152|시화병원, 5000억 투자 유치…'중입자치료기' 추진>*  @데일리메디  3일 전
+🔸 *<https://www.hankyung.com/article/202509153888i|국내 최초 중성자치료기 개발한 다원메딕스...내년 코스닥 상장 도전>*  @한국경제  6일 전
+🔸 *<https://www.news-medical.net/news/20250916/Leading-cancer-organizations-release-updated-guideline-on-post-mastectomy-radiation-therapy.aspx|Leading cancer organizations release updated guideline on post-mastectomy radiation therapy>*  @News-Medical  5일 전
+🔸 *<https://newsnetwork.mayoclinic.org/discussion/10-years-10000-lives-mayo-experts-highlight-the-journey-and-future-of-proton-beam-and-particle-therapy-at-mayo-clinic/|10 years, 10,000 lives: Mayo experts highlight the journey and future of proton beam and particle therapy at Mayo Clinic>*  @Mayo Clinic News Network  6일 전
+🔸 *<https://www.uclahealth.org/news/release/ucla-researchers-awarded-2-million-advance-mri-guided|UCLA researchers awarded $2 million to advance MRI-guided radiotherapy for patients with cancer>*  @UCLA Health  4일 전
+🔸 *<https://www.cityofhope.org/orange-county/talking-hope/innovations-in-radiation-oncology|Talking Hope: Innovations in radiation oncology are transforming cancer care>*  @City of Hope  5일 전
+🔸 *<https://healthimaging.com/topics/clinical/radiation-oncology/hundreds-radiation-therapy-systems-subject-fda-recall|Hundreds of radiation therapy systems subject to FDA recall>*  @Health Imaging  2일 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://kormedi.com/2749460/|"AI 의료 로봇이 정맥 채혈...미래 의료기술, 한자리에">*  @코메디닷컴  4일 전
+🔸 *<https://www.medipana.com/article/view.php?news_idx=346703|"스마트병원, 환자 중심 의료혁신 위해 제도·재정 지원 필요">*  @메디파나뉴스  6일 전
+🔸 *<https://www.irobotnews.com/news/articleView.html?idxno=42480|[커버스토리] K-의료 로봇의 총아, 수술 로봇 대해부>*  @로봇신문  7시간 전
+🔸 *<https://www.hankyung.com/article/2025091833361|AI 스타기업 '기술상장' 러시…"반도체·로봇·의료기기 兆단위 몸값">*  @한국경제  3일 전
+🔸 *<https://www.nongmin.com/article/20250918500125|AI·로봇이 고령자 돌보는 시대 오나…‘에이지 테크’ 뭐길래>*  @농민신문  3일 전
+🔸 *<https://biz.chosun.com/en/en-science/2025/09/17/AK7GKZ6QMJF6PDFOONTTVWFDJI/|Robots aid eldercare as Korea prepares for aging surge - CHOSUNBIZ>*  @Chosun Biz  4일 전
+🔸 *<https://www.koreabiomed.com/news/articleView.html?idxno=28986|Forum stresses institutional and financial support to ‘spread AI and medical robots in the field’>*  @KBR  5일 전
+🔸 *<https://www.businesskorea.co.kr/news/articleView.html?idxno=252234|Roen Surgical Partners with UC San Diego on AI Surgical Robot>*  @Businesskorea  4일 전
+🔸 *<https://www.siemens-healthineers.com/press/releases/stryker-partnership|Siemens Healthineers and Stryker announce partnership to advance robotic neurovascular interventions>*  @Siemens Healthineers  4일 전
+🔸 *<https://biz.chosun.com/en/en-society/2025/09/17/FJL4WJQIP5BPDNPAZK4WL3552A/|Seoul invests 29.4 billion won to nurture 153 AI, bio, robotics startups - CHOSUNBIZ>*  @Chosun Biz  4일 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.k-health.com/news/articleView.html?idxno=85220|[포토뉴스] 지뉴소프트, LLM·RAG 기반 의료기기 인허가 자동화 솔루션 공개>*  @헬스경향  3일 전
+🔸 *<https://www.electimes.com/news/articleView.html?idxno=359926|KTC, 강원의료기기전시회 참가…의료기기 인허가·해외인증·임상 서비스 역량 소개>*  @전기신문  4일 전
+🔸 *<https://www.news1.kr/bio/general/5917164|식약처, 대구경북 의료기기 산업현장 반영 정책설계 추진>*  @뉴스1  3일 전
+🔸 *<https://www.pharmnews.com/news/articleView.html?idxno=263143|케어젠, 인도 CDSCO 필러 의료기기 등록 완료>*  @팜뉴스  6일 전
+🔸 *<https://www.wonjutoday.co.kr/news/articleView.html?idxno=206678|GMES 2025 연계 글로벌 의료기기 인허가 세미나 성료>*  @원주투데이  2일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.g1tv.co.kr/news/?mid=1_207_6&newsid=333600|(이동2) 의료기기산업 생태계 구축 '사활'>*  @G1방송  3일 전
+🔸 *<https://pharm.edaily.co.kr/News/Read?newsId=02994646642301432&mediaCodeNo=257|K바이오 숨통 끊는 사모펀드[류성의 제약국부론]>*  @팜이데일리  3일 전
+🔸 *<https://www.hellodd.com/news/articleView.html?idxno=109255|'휴보' 잇는 K-로봇 산실 'KAIST' 상장·투자 유치로 경쟁력도 '으뜸'>*  @헬로디디  5일 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2258022|의료기기 산업 중심 원주서 GMES 2025 성대한 막 올라>*  @의학신문  3일 전
+🔸 *<https://www.thebionews.net/news/articleView.html?idxno=18221|아리바이오, 글로벌 기업 2곳과 ‘필러’ 수출 계약…총 340억원 규모>*  @더바이오  2일 전

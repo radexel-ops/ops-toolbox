@@ -1,0 +1,70 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.10.1. ~ 2024.10.1)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39029590/|Reporting breast cancer *_radiation_* therapy details in studies and daily practice: Nice-to-have or a must-have?>
+      번 : 유방암 방사선 치료 연구 및 일상 실습의 세부 사항보고 : 좋은 행동 또는 필수 아이템?
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39002569/|Perceived barriers and facilitators affecting utilisation of *_radiation_* therapy services: Scoping review findings - Health professional influences.>
+      번 : 방사선 치료 서비스의 활용에 영향을 미치는 인식 장벽과 촉진자 : 범위 검토 결과 - 건강 전문가 영향.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38997093/|Secondary cancer risk in six anatomical sites when using PAT, IMPT, and VMAT/*_*_IMRT_*_* *_radiotherapy_*.>
+      번 : PAT, IMPT 및 VMAT/IMRT 방사선 요법을 사용할 때 6 개의 해부학 적 부위에서 이차 암 위험.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38997092/|Mechanism of immune activation mediated by genomic instability and its implication in *_radiotherapy_* combined with immune checkpoint inhibitors.>
+      번 : 게놈 불안정성에 의해 매개되는 면역 활성화의 메커니즘 및 면역 체크 포인트 억제제와 결합 된 방사선 요법에서의 영향.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39029592/|Reduced frequency and severity of *_radiation_* esophagitis without marginal failure risk by contralateral esophagus sparing *_*_IMRT_*_* in stage III non-small cell lung cancer patients undergoing definitive concurrent chemo*_radiotherapy_*.>
+      번 : III 단계에서 IMRT를 아끼지 않는 반대쪽 식도에 의한 한계 부전 위험이없는 방사선 식도염의 빈도 및 심각성 감소 결정적인 동시 화학 방사선 요법을받는 비소 세포 폐암 환자.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39094630/|Acute toxicity in patients with oligometastatic cancer following metastasis-directed stereotactic body *_radiotherapy_*: An interim analysis of the E(2)-RADIatE OligoCare cohort.>
+      번 : 전이 방향 정위 신체 방사선 치료 후 oligometastatic 암 환자의 급성 독성 : E (2)-방사성 올리고 케어 코호트의 중간 분석.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39069083/|Incidence of alopecia in brain tumour patients treated with pencil scanning *_proton_* therapy and validation of existing NTCP models.>
+      번 : 연필 스캐닝 양성자 요법으로 치료받은 뇌종양 환자에서 탈모증의 발병률 및 기존 NTCP 모델의 검증.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39013503/|Combined deep learning and radiomics in pretreatment *_radiation_* esophagitis prediction for patients with esophageal cancer underwent volumetric modulated arc therapy.>
+      번 : 식도암 환자의 전처리 방사선 식 식도염 예측의 딥 러닝과 방사선 체는 부피가 변조 된 아크 요법을 받았습니다.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39002572/|Effectiveness of postoperative superficial *_radiotherapy_* following the keloid-cross-flap *_surgery_* for auricular keloid: A prospective cohort study.>
+      번 : 귀의 켈로이드에 대한 켈로이드-크로스 플랩 수술 후 수술 후 표면 방사선 요법의 효과 : 전향 적 코호트 연구.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39069085/|Impact of on-trial IGRT quality assurance in an international adaptive *_radiotherapy_* trial for participants with bladder cancer.>
+      번 : 방광암 참가자들을위한 국제 적응 방사선 치료 시험에서 열차 IGRT 품질 보증의 영향.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39002571/|Feasibility of weekly cisplatin and *_radiotherapy_* for localized anal cancer - A Danish anal cancer group report.>
+      번 : 국소 항문 암에 대한 주간 시스플라틴 및 방사선 요법의 타당성 - 덴마크 항문 암 그룹 보고서.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38744634/|Re: Incidence and Survival of Secondary Malignancies after *_External Beam_* *_Radiotherapy_* for Prostate Cancer in the SEER Database.>
+      번 : Re : SEER 데이터베이스에서 전립선 암에 대한 외부 빔 방사선 요법 후 2 차 악성 종양의 발생률 및 생존.
+      저널 : Eur Urol (IF 20.1)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38944554/|Evaluating Danish Breast Cancer Group locoregional *_radiotherapy_* guideline adherence in clinical treatment data 2008-2016: The DBCG RT Nation study.>
+      번 : 임상 치료 데이터 2008-2016에서 덴마크 유방암 그룹 Locoregional Radiotherapy 지침 준수 평가 : DBCG RT Nation Study.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39029591/|Non-complete recovery of temporal lobe white matter diffusion metrics at one year Post-*_Radiotherapy_*: Implications for *_Radiation_*-Induced necrosis risk.>
+      번 : 방사선 요법 1 년 동안 시간 엽 백색 물질 확산 메트릭의 불완전 회복 : 방사선-유도 된 괴사 위험에 대한 영향.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38897316/|Prognostic value of lymphocytes in patients with breast cancer receiving *_radiotherapy_* after breast-conserving *_surgery_*: A post hoc analysis of a phase III randomized trial.>
+      번 : 유방 보존 수술 후 방사선 치료를받는 유방암 환자에서 림프구의 예후 값 : III 상 무작위 시험의 사후 분석.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38908560/|Letter to the Editor on "Major Complications and Adverse Events Related to Use of SpaceOAR Hydrogel for Prostate Cancer *_Radiotherapy_*".>
+      번 : "전립선 암 방사선 요법을위한 우주 하이드로 겔 사용과 관련된 주요 합병증 및 부작용"에 대한 편집자에게 보내는 편지.
+      저널 : Urology (IF 2.65)    E-PUB : 2024 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39351678/|Real-world Decision-making Process for Stereotactic Body *_Radiotherapy_* Versus Minimally Invasive *_Surgery_* in Early-stage Lung Cancer Patients.>
+      번 : 초기 단계 폐암 환자에서 틀에 틀린 신체 방사선 요법 대 최소 침습 수술에 대한 실제 의사 결정 과정.
+      저널 : Ann Surg (IF 12.97)    E-PUB : 정보 없음

@@ -1,0 +1,35 @@
+:large_blue_circle:*2025. 7.22.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.idaegu.co.kr/news/articleView.html?idxno=517303|계명대학교 동산의료원, 양성자치료기 들인다>*  @대구신문  10시간 전
+🔸 *<https://news.nate.com/view/20250721n31978|창원한마음병원, IBA 양성자 치료기 도입 우선 협상자 선정>*  @네이트 뉴스  15시간 전
+🔸 *<https://www.khanews.com/news/articleView.html?idxno=234851|조선대병원, 지역 암 치료 중심병원으로 도약>*  @병원신문  23시간 전
+🔸 *<https://oncodaily.com/blog/kefah-mokbel-333468|Kefah Mokbel: Can We Predict Who Needs Radiation Therapy after Lumpectomy for DCIS?>*  @Oncodaily  4시간 전
+🔸 *<https://www.auntminnie.com/clinical-news/radiation-oncology-therapy/news/15751138/raysearch-laboratories-inks-cancer-center-deal-with-aksmoncology|RaySearch Laboratories inks cancer center deal with AKSM/Oncology>*  @AuntMinnie  5시간 전
+🔸 *<https://cbs4indy.com/business/press-releases/cision/20250721IO33827/aksm-oncology-selects-raycare-and-raystation-for-a-new-cancer-center|AKSM/Oncology selects RayCare and RayStation for a new cancer center>*  @cbs4indy.com  16시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<http://medworld.co.kr/news/articleView.html?idxno=248680|“다빈치 로봇 수술 발전에 한국 의료진 큰 기여”>*  @메드월드뉴스  16시간 전
+🔸 *<https://www.yna.co.kr/view/AKR20250721062400504|북 "러시아에 AI 연구진 파견"…조선신보 "평양 약국에 AI 로봇">*  @연합뉴스  21시간 전
+🔸 *<https://www.vietnam.vn/ko/robot-dau-tien-phau-thuat-tu-dong-khong-can-con-nguoi-do-chinh-xac-100|인간 없이 자동 수술을 수행하는 최초의 로봇, 정확도 100%>*  @Vietnam.vn  21시간 전
+🔸 *<https://www.irobotnews.com/news/articleView.html?idxno=41335|큐렉소, 고관절 수술로봇 ‘큐비스-조인트 THA’ 국내 품목 허가 신청>*  @로봇신문  22시간 전
+🔸 *<http://www.whosaeng.com/162683|인튜이티브서지컬, 헬스케어 분야 트랜스포메이션 선도 자신>*  @후생신보  20시간 전
+🔸 *<https://www.heraldtribune.com/story/news/local/sarasota/2025/07/20/smh-orthopedic-surgeons-use-hand-held-robots-for-knee-replacement/84545407007/|SMH physicians use hand-held robots for knee replacement surgeries>*  @Sarasota Herald-Tribune  3시간 전
+🔸 *<https://electronics360.globalspec.com/article/22598/world-s-first-self-powering-humanoid-robot-works-nonstop|World’s first self-powering humanoid robot works nonstop>*  @Electronics360  11시간 전
+🔸 *<https://hackernoon.com/i-believed-in-the-team-before-the-product-ruslan-madinov-on-investing-in-underwater-robotics|“I Believed in the Team Before the Product”: Ruslan Madinov on Investing in Underwater Robotics>*  @HackerNoon  19시간 전
+🔸 *<http://en.people.cn/n3/2025/0721/c90000-20342749.html|Robotic surgery performed remotely>*  @People's Daily Online  22시간 전
+🔸 *<https://www.ainvest.com/news/neuralink-accelerated-clinical-progress-implications-brain-computer-interface-market-2507/|Neuralink's Accelerated Clinical Progress and Its Implications for the Brain-Computer Interface Market>*  @AInvest  5시간 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.etnews.com/20250721000283|디지털의료제품법 시행 6개월, 혁신기기 시장 진입 가속화...세부 가이드 과제>*  @전자신문  16시간 전
+🔸 *<https://m.news.nate.com/view/20250721n24901?mid=m03&list=recent&cpcd=|올리브헬스케어, '세노뷰' 식약처 의료기기 품목허가 획득>*  @네이트 뉴스  17시간 전
+🔸 *<https://news.mtn.co.kr/news-detail/2025072116031715969|원주의료기기산업진흥원, 임상검사·진단 분야 3자 업무협약 체결>*  @MTN 머니투데이방송  15시간 전
+🔸 *<https://medifonews.com/news/article.html?no=205111|정보원, 소프트웨어 의료기기 기업교육 개최>*  @메디포뉴스  23시간 전
+🔸 *<https://www.k-health.com/news/articleView.html?idxno=83203|각양각색 ‘붉은 얼굴(RED FACE)’…효과적인 치료전략 한자리에>*  @헬스경향  17시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<http://m.dailypharm.com/newsView.html?ID=325100|'기술 초격차' 시동 거는 삼성메디슨…미래성장 전방위 투자>*  @데일리팜  21시간 전
+🔸 *<https://www.unicornfactory.co.kr/article/2025071008524265765|K-바이오의 든든한 동반자…투자한파 뚫고 글로벌 돌파구 만든다>*  @유니콘팩토리  17시간 전
+🔸 *<https://www.etoday.co.kr/news/view/2489639|창립 40주년 삼성메디슨, 초음파 진단기기 '글로벌 리더' 도약 박차>*  @이투데이  17시간 전
+🔸 *<http://www.newstong.co.kr/view3.aspx?seq=13798192|탄광기업의 반전…HLB글로벌, 실버산업 정조준>*  @뉴스통  15시간 전
+🔸 *<https://www.hansbiz.co.kr/news/articleView.html?idxno=762894|“차세대 진단기기 선도한다”…삼성메디슨, AI·글로벌 투자 확대>*  @한스경제  22시간 전

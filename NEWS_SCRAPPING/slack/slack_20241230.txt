@@ -1,0 +1,31 @@
+:large_blue_circle:*2024. 12.30.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.koreabiomed.com/news/articleView.html?idxno=26130|NeoImmuneTech begins trial of primates for acute radiation syndrome>*  @KBR  5일 전
+🔸 *<https://physicsworld.com/a/medical-physics-and-biotechnology-highlights-of-2024/|Medical physics and biotechnology: highlights of 2024>*  @Physics World  2일 전
+🔸 *<https://nikvesti.com/en/news/public/299250-new-device-installed-odesa-cancer-center|A new device for cancer treatment was installed at the Odesa Cancer Center>*  @НикВести  4일 전
+🔸 *<https://www.manilatimes.net/2024/12/23/tmt-newswire/globenewswire/vivos-inc-announces-launch-of-groundbreaking-radiogel-precision-radionuclide-therapy-human-clinical-trial/2026783|Vivos Inc. Announces Launch of Groundbreaking RadioGel® Precision Radionuclide Therapy™ Human Clinical Trial>*  @The Manila Times  6일 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.whosaeng.com/157599|“레보아이로 수술하면서 마음이 편안해졌습니다”>*  @후생신보  3일 전
+🔸 *<http://www.doctorstimes.com/news/articleView.html?idxno=230616|[의료기기업계 소식] 12월 26일>*  @의사신문  3일 전
+🔸 *<https://zdnet.co.kr/view/?no=20241223084441|레인보우로보틱스, 차세대 의료용 로봇 개발 나서>*  @지디넷코리아  6일 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2238931|큐라코, 배설케어로봇 서울시 시립 요양원 11곳에 확대 보급>*  @의학신문  3일 전
+🔸 *<https://www.dailymedi.com/news/news_view.php?wr_id=920051|다빈치 정조준…수술로봇 국산화 봇물>*  @데일리메디  2일 전
+🔸 *<https://www.mk.co.kr/en/it/11201542|Hallim University Seongsim Hospital in Gyeonggi-do on the 20th. Unlike ordinary hospitals, the eye-c..>*  @매일경제  6일 전
+🔸 *<https://en.prnasia.com/story/474087-0.shtml|One More Certificate: Syrebo Hand Rehabilitation Robot Achieves TGA Certification in Australia>*  @PR Newswire Asia  5일 전
+🔸 *<https://scitechdaily.com/watch-ant-like-robot-swarms-lift-heavy-objects-with-herculean-strength/|Watch: “Ant-Like” Robot Swarms Lift Heavy Objects With Herculean Strength>*  @SciTechDaily  4일 전
+🔸 *<https://www.oaoa.com/local-news/cates-robots-that-target-drug-delivery/|CATES: Robots that target drug delivery>*  @Odessa American  6일 전
+🔸 *<https://pib.gov.in/PressReleasePage.aspx?PRID=2087385|PRESIDENT OF INDIA GRACES CONVOCATION CEREMONY OF VARDHMAN MAHAVIR MEDICAL COLLEGE AND SAFDARJUNG HOSPITAL>*  @PIB  6일 전
+
+*<의료기기 인허가>*
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=60312|"인공지능 내장 기존 의료기기, 디지털의료기기로 허가받아야">*  @히트뉴스  6일 전
+🔸 *<https://www.news1.kr/bio/healthcare/5639934|식약처, 우울증 진단 보조 AI 의료기기 국내 첫 허가>*  @뉴스1  6일 전
+🔸 *<https://www.docdocdoc.co.kr/news/articleView.html?idxno=3024396|식약처, 무허가 체온계 제조·판매업체 적발…“사용 말아야”>*  @청년의사  6일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://news.mt.co.kr/mtview.php?no=2024122309364239023|외과 수술 의료기기 '메디튤립', 젠엑시스서 투자 유치>*  @머니투데이  6일 전
+🔸 *<https://www.rapportian.com/news/articleView.html?idxno=215836|도터, 144억 투자 유치…“생분해성 스텐트 상용화 박차”>*  @라포르시안  2일 전
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=60353|'경도인지장애 DTx 개발' 이모코그, 220억 시리즈B 투자 유치>*  @히트뉴스  3일 전
+🔸 *<https://news.nate.com/view/20241227n15227|광양경자청, 신성장 동력산업으로 의료기기 산업 육성…투자 유치 '온 힘'>*  @NATE  2일 전
+🔸 *<https://www.etnews.com/20241225000037|대구TP 지원 파인메딕스, 26일 코스닥 상장…의료기기 국산화 선도>*  @전자신문  4일 전

@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.10.24. ~ 2024.10.24)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39443387/|Experiences in *_robotic_* colorectal *_surgery_*: comprehensive insights from a multi-center analysis using the Senhance *_Robotic_* System.>
+      번 : 로봇 결장 직장 수술 경험 : Senhance 로봇 시스템을 사용한 다중 센터 분석의 포괄적 인 통찰력.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2024 Oct 24

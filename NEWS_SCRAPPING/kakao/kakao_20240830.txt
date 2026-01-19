@@ -1,0 +1,32 @@
+★2024. 8.30.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <https://sports.chosun.com/life/2024-08-29/202408290100223010030258|가천대 길병원, 인천 최초 '마커리스' 방사선 치료 기술 도입>  @스포츠조선  11시간 전
+🔸 <https://www.cbsnews.com/detroit/news/device-helps-children-undergo-cancer-treatment-at-university-of-michigan-hospital/|Device helps children undergo cancer treatment at University of Michigan Hospital>  @CBS News  2시간 전
+🔸 <https://www.researchgate.net/publication/383463023_The_Role_of_Artificial_Intelligence_on_Tumor_Boards_Perspectives_from_Surgeons_Medical_Oncologists_and_Radiation_Oncologists|from Surgeons, Medical Oncologists and Radiation Oncologists>  @ResearchGate  8시간 전
+
+<로봇수술 관련 뉴스>
+🔸 <https://www.pressian.com/pages/articles/2024082909301562399|10억 짜리 의료장비 설치 비용, 2~3년이면 뽑는다?>  @프레시안  23시간 전
+🔸 <https://www.k-health.com/news/articleView.html?idxno=74307|‘최소침습수술’로 고령층 관절수술도 안전하게>  @헬스경향  22시간 전
+🔸 <https://m.news.nate.com/view/20240829n27658|"산부인과, 대한민국서 로봇 수술 가장 많이 한 분야…환자 치료에 도움">  @NATE  16시간 전
+🔸 <https://it.chosun.com/news/articleView.html?idxno=2023092122377|김태중 교수 “최소 부위 절개 로봇수술, 여성 질환 환자 만족도↑”>  @IT조선  17시간 전
+🔸 <https://www.gnnews24.kr/news/articleView.html?idxno=25128|미래 농업의 주인공은?>  @경남뉴스  23시간 전
+🔸 <https://www.all-about-industries.com/deep-learning-based-part-detection-for-machine-tending-cobots-a-05fcbd89973112a1e584fc40a0f06d97/|Deep Learning-Based Part Detection for Machine Tending Cobots>  @All-About-Industries  9시간 전
+🔸 <https://health.wusf.usf.edu/health-news-florida/2024-08-29/why-hospitals-are-investing-in-robotics-for-surgeries|Hospitals are investing in robotics, but it's the surgeons still doing the work>  @Health News Florida  10시간 전
+🔸 <https://www.mpo-mag.com/contents/view_breaking-news/2024-08-29/microbot-medical-emory-university-to-consider-liberty-robotic-system-partnership/|Microbot Medical, Emory University To Consider LIBERTY Robotic System Partnership>  @Medical Product Outsourcing  5시간 전
+🔸 <https://orthospinenews.com/2024/08/29/think-surgical-receives-fda-510k-clearance-for-medacta-gmk-sphere-and-spherika-implants-on-tmini-miniature-robotic-system/|THINK Surgical Receives FDA 510(k) Clearance for Medacta GMK Sphere® and SpheriKA® implants on TMINI® Miniature Robotic System>  @Ortho Spine News  4시간 전
+🔸 <https://www.whatech.com/og/markets-research/medical/873304-rehabilitation-robotics-market-report-explores-size-insights-outlook-overview-by-2024-2033.html|Rehabilitation Robotics Market Report Explores Size, Insights, Outlook, Overview By 2024-2033>  @WhaTech  2시간 전
+
+<의료기기 인허가>
+🔸 <https://www.pharmnews.com/news/articleView.html?idxno=249518|휴메딕스, 지속형 골관절염 주사제 ‘휴미아’ 대만 허가 획득>  @팜뉴스  15시간 전
+🔸 <http://www.kfdn.co.kr/66889|의료기기 공통데이터모델 활성화 기술 세미나 개최>  @식약일보  15시간 전
+🔸 <https://m.dailypharm.com/News/314901|유비플러스, 디지털치료기기 'A-STOP' 확증임상시험 승인>  @데일리팜  21시간 전
+🔸 <http://www.docdocdoc.co.kr/news/articleView.html?idxno=3020491|식약처, 만성 이식편대숙주질환 치료 ‘레주록정’ 허가>  @청년의사  20시간 전
+🔸 <https://www.hankyung.com/article/2024082944496|피플바이오 "말레이시아서 알츠하이머병 혈액검사 서비스 품목허가 받아">  @한국경제  17시간 전
+
+<의료로봇/기기 업계 동향>
+🔸 <https://www.chosun.com/economy/money/2024/08/30/SFOGG7Z6IUQQBKUNXPKEDURMZA/|한때 유니콘이었던 젠바디, 6년만에 상장 재도전... 믿을 건 기술특례뿐>  @조선일보  2시간 전
+🔸 <http://medworld.co.kr/news/articleView.html?idxno=236520|윤 대통령, 의료개혁 흔들림없이 추진…향후 5년간 최소 10조 투자>  @메드월드뉴스  14시간 전
+🔸 <http://www.doctorstimes.com/news/articleView.html?idxno=228710|[의료기기업계 소식] 8월 29일>  @의사신문  15시간 전
+🔸 <https://www.newscj.com/news/articleView.html?idxno=3174160|제20회 강원의료기기전시회 GMES 2024 ‘개최’>  @천지일보  17시간 전
+🔸 <https://m.news.nate.com/view/20240829n42537?mid=m03&list=recent&cpcd=|의정갈등 속 과감한 투자·헌신, 'K헬스케어' 빛났다>  @네이트 뉴스  8시간 전

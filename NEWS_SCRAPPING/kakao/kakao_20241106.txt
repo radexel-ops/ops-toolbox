@@ -1,0 +1,30 @@
+★2024. 11.6.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <https://www.news1.kr/local/gwangju-jeonnam/5590346|성가롤로병원 최첨단 방사선 암 치료기 '헬시온 4.0' 도입>  @뉴스1  19시간 전
+🔸 <https://www.2minutemedicine.com/machine-learning-algorithm-shows-limited-capacity-for-reducing-health-spending-for-radiation-therapy-outpatients/|Machine learning algorithm shows limited capacity for reducing health spending for radiation therapy outpatients.>  @2 Minute Medicine  8시간 전
+
+<로봇수술 관련 뉴스>
+🔸 <https://www.k-health.com/news/articleView.html?idxno=75875|힘찬병원, 자체 개발 로봇인공관절 수술기구 유용성 입증…국제학술지 게재>  @헬스경향  11시간 전
+🔸 <https://www.medipana.com/article/view.php?news_idx=333439|'다빈치 5', 한국서 전 세계 두 번째 출시…이유 있는 선택>  @메디파나 뉴스  2시간 전
+🔸 <https://www.digitaltoday.co.kr/news/articleView.html?idxno=539964|AI 의료 야망 드러낸 엔비디아…"병원 전체가 AI로 변할 것">  @디지털투데이  23시간 전
+🔸 <https://www.sisamagazine.co.kr/news/articleView.html?idxno=508335|[인터뷰] 스포츠의학과 최신 로봇 수술로 환자 만족도를 높여>  @시사매거진  16시간 전
+🔸 <https://www.incheonin.com/news/articleView.html?idxno=105131|신승준 인천곧바로병원 병원장 “'GODBARO-K’로 척추수술 업그레이드”>  @인천in 시민의 손으로 만드는 인터넷신문  22시간 전
+🔸 <https://cardiovascularbusiness.com/topics/clinical/cardiac-surgery/robotic-aortic-valve-replacement-savr-tavr|Robotic aortic valve replacement may offer certain benefits over TAVR>  @Cardiovascular Business  5시간 전
+🔸 <https://telegrafi.com/en/the-first-humanoid-robot-factory-in-the-USA-is-expected-to-produce-10000-robots-a-year/|Fabrika e parë e “robotëve humanoidë” në SHBA pritet të prodhojë 10,000 njësi në vit>  @Telegrafi  20시간 전
+🔸 <https://www.vietnam.vn/en/nhom-sinh-vien-sang-che-robot-y-ta-thong-minh/|Student group invents smart nurse robot>  @Vietnam.vn  11시간 전
+🔸 <https://www.moviemaker.com/filmquest-2024-winners-the-island-between-tides/|FilmQuest 2024 Winners Include Exciting Films The Island Between Tides and 'I'm Not a Robot'>  @MovieMaker Magazine  4시간 전
+
+<의료기기 인허가>
+🔸 <https://www.newsis.com/view/NISX20241105_0002947614|일본, 바이오산업에 진심…태국이어 미국 사무소도 설립>  @뉴시스  1시간 전
+🔸 <https://www.dailymedi.com/news/news_view.php?wr_id=918177|신약 품목허가·심사 절차 개편···'품목별 전담팀' 구성>  @데일리메디  2시간 전
+🔸 <https://www.kfmn.co.kr/news/articleView.html?idxno=35263|'의료개혁·의료기기산업 역할' 논의의 장 열린다>  @한국식품의약신문  14시간 전
+🔸 <https://www.pharmnews.com/news/articleView.html?idxno=253213|KTR, 시흥 바이오 특화단지에 시험인프라 구축>  @팜뉴스  17시간 전
+🔸 <https://www.medigatenews.com/news/2582955518|일본 PMDA, 미국에 첫 사무소 설립…혁신 신약이 일본에 조기에 도입되도록 가교 역할>  @메디게이트 뉴스  16시간 전
+
+<의료로봇/기기 업계 동향>
+🔸 <https://www.thebionews.net/news/articleView.html?idxno=10182|미용의료기기 업체 아스테라시스, 코스닥 상장예비심사 통과>  @더바이오  21시간 전
+🔸 <https://www.news1.kr/bio/pharmaceutical-bio/5590552|의료 인공지능 '숨빗AI', 알토스벤처스서 50억 시드 투자 유치>  @뉴스1  16시간 전
+🔸 <http://www.hitnews.co.kr/news/articleView.html?idxno=58807|오상헬스케어, 美 CGM 개발사 알레헬스에 1000만달러 후속 투자>  @히트뉴스  21시간 전
+🔸 <https://www.koreahealthlog.com/news/articleView.html?idxno=48955|PARP 저해 표적항암제 등 기술 수출 타진 나서는 일동제약그룹>  @코리아헬스로그  14시간 전
+🔸 <https://www.newsis.com/view/NISX20241105_0002947192|DB하이텍, 3분기 영업이익 492억…전년비 2%↓>  @뉴시스  18시간 전

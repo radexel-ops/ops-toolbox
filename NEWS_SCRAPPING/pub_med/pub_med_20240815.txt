@@ -1,0 +1,8 @@
+
+
+:large_orange_diamond:*PUB MED 신규 논문 (2024.8.14. IF 12 이상)*
+
+<Radiotherapy-Driven Nanoprobes Targeting for Visualizing Tumor Infiltration Dynamics and Inducing Ferroptosis in Myeloid-Derived Suppressor Cells.>
+번 : 방사선 요법-중심 나노 프로브는 종양 침윤 역학을 시각화하고 골수성 유래 억제제 세포에서 철근증을 유도하기위한 표적화.
+IF : 15.42    E-PUB : 2024 Aug 14
+https://pubmed.ncbi.nlm.nih.gov/39094119/

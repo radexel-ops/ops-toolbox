@@ -1,0 +1,10 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2025.2.10. ~ 2025.2.10)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39928116/|Correction: How effective and sustainable is proctoring in *_robotic_* *_surgery_*? A retrospective analysis based on interviews with surgeons.>
+      번 : 교정 : 로봇 수술에서 얼마나 효과적이고 지속 가능한가?외과 의사와의 인터뷰를 기반으로 한 후 향적 분석.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 정보 없음
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39693582/|Erratum: Pembrolizumab or Placebo Plus Adjuvant Chemotherapy With or Without *_Radiotherapy_* for Newly Diagnosed, High-Risk Endometrial Cancer: Results in Mismatch Repair-Deficient Tumors.>
+      번 : Erratum : 새로 진단 된 고위험 자궁 내막 암에 대한 방사선 요법의 유무에 관계없이 Pembrolizumab 또는 위약 + 보조 화학 요법 : 불일치 복구 불충분 한 종양을 초래합니다.
+      저널 : J Clin Oncol (IF 44.54)    E-PUB : 2025 Feb 10

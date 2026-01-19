@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.10.2. ~ 2024.10.2)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39356975/|Survival Outcomes Associated With First-Line Procarbazine, CCNU, and Vincristine or Temozolomide in Combination With *_Radiotherapy_* in IDH-Mutant 1p/19q-Codeleted Grade 3 Oligodendroglioma.>
+      번 : IDH- 돌연변이 체 1p/19q- 공정 등급 3 oligodendroglioma에서 방사선 요법과 조합하여 1 차 Procarbazine, CCNU 및 Vincristine 또는 Temozolomide와 관련된 생존 결과.
+      저널 : J Clin Oncol (IF 44.54)    E-PUB : 정보 없음

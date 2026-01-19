@@ -1,0 +1,32 @@
+:large_blue_circle:*2025. 1.17.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.lanl.gov/media/news/0116-ai-algorithms|Artificial intelligence algorithms used to tune particle accelerators>*  @Los Alamos National Laboratory (.gov)  6시간 전
+🔸 *<https://www.massdevice.com/gt-medical-raises-37m-bioresorbable-tile/|GT Medical raises $37M to advance bioresorbable radiation tile>*  @MassDevice  7시간 전
+🔸 *<https://www.cbc.ca/amp/1.7431088|Ontario teen with brain cancer heading to Florida to access treatment unavailable in Canada>*  @CBC  13시간 전
+🔸 *<https://www.prnewswire.com/news-releases/preludedx-receives-fda-breakthrough-device-designation-for-dcisionrt-test-for-dcis-breast-cancer-patients-302352582.html|PreludeDx Receives FDA Breakthrough Device Designation for DCISionRT® Test for DCIS Breast Cancer Patients>*  @PR Newswire  11시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.chosun.com/economy/science/2025/01/17/46LTYGMPFZBVDH33SPFVQRPUDM/|혈액·유전자 정보로 암·치매 등 1000가지 ‘AI 닥터’가 발병 예측>*  @조선일보  7시간 전
+🔸 *<https://www.monews.co.kr/news/articleView.html?idxno=401903|안암병원, 로봇수술 1만례 기념 심포지엄 개최>*  @메디칼업저버  16시간 전
+🔸 *<https://www.hellodd.com/news/articleView.html?idxno=106698|5만배 하중 견디고 98% 복원···新 인공근육섬유 개발>*  @헬로디디  16시간 전
+🔸 *<https://www.dt.co.kr/contents.html?article_no=2025011702101231027001|바이오도 `AI격변`...`AI데믹` 안 몰리려면>*  @디지털타임스  15시간 전
+🔸 *<https://www.etnews.com/20250116000288|효돌-국민대 공동연구, AI 돌봄 기술의 미래를 열다>*  @전자신문  16시간 전
+🔸 *<https://www.globenewswire.com/news-release/2025/01/16/3010649/28124/en/Surgical-Robot-Systems-Market-and-Competition-Analysis-2025-2030-Featuring-Intuitive-Surgical-THINK-Surgical-Smith-Nephew-Medtronic-Stryker-Corporation-More.html|Surgical Robot Systems Market and Competition Analysis,>*  @GlobeNewswire  11시간 전
+🔸 *<https://www.massdevice.com/hospital-saudi-arabia-first-robotic-abbott-heartmate-implant/|Hospital in Saudi Arabia completes first robotic-assisted Abbott HeartMate 3 implant>*  @MassDevice  7시간 전
+🔸 *<https://news3lv.com/news/arc/southern-hills-hospital-using-new-spine-robot-to-help-with-surgery|Southern Hills Hospital Using New Spine Robot to help with Surgery>*  @KSNV  5시간 전
+🔸 *<https://www.msn.com/en-us/technology/robotics/operating-in-jaipur-while-sitting-in-gurugram-how-surgery-is-evolving-in-india/ar-BB1rlTGN?ocid=BingNewsVerp|Operating in Jaipur while sitting in Gurugram: How surgery is evolving in India>*  @MSN  3시간 전
+
+*<의료기기 인허가>*
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2240418|AI 임상 플랫폼 혁신 바탕…제이앤피메디, 의료기기 사업화 선도>*  @의학신문  2시간 전
+🔸 *<https://zdnet.co.kr/view/?no=20250116171327|‘혁신의료기기’ 제도…2020년 시행 이후 총 88개 제품 지정>*  @지디넷코리아  15시간 전
+🔸 *<https://news.nate.com/view/20250116n34172|"과학적 근거로 무장한 임상, 미용 의료기기 시장 흥행 비결">*  @Nate  13시간 전
+🔸 *<https://www.medipana.com/article/view.php?news_idx=336532|"독감 진단키트, 전문가 거쳐야"…정부·의대 교수, 한 목소리>*  @메디파나 뉴스  22시간 전
+🔸 *<https://www.rapportian.com/news/articleView.html?idxno=216581|케이메디허브, 작년 기술 서비스 실적 126억 달성>*  @라포르시안  17시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.medipana.com/article/pop_print.php?news_idx=336620|메디파나 뉴스>*  @메디파나 뉴스  16시간 전
+🔸 *<https://www.the-stock.kr/news/articleView.html?idxno=30030|푸른 뱀의 해 2025년 ... AI·성인교육·미용의료기기 등 IPO 공모주 청약 흥행 잇따라>*  @더스탁(The Stock)  14시간 전
+🔸 *<https://m.ekn.kr/view.php?key=20250116023275023|바이오신약 개발 ‘대기업 파워’ 세진다>*  @에너지경제신문  23시간 전
+🔸 *<https://www.electimes.com/news/articleView.html?idxno=349255|전북 전주 탄소소재 산단, 지역경제 견인차 기대>*  @전기신문  23시간 전
+🔸 *<https://news.nate.com/view/20250116n10267|딥바이오 "혁신의료기기 재인증…성장잠재력 인정">*  @네이트  22시간 전

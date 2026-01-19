@@ -1,0 +1,32 @@
+:large_blue_circle:*2025. 8.25.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.khanews.com/news/articleView.html?idxno=235718|[건국대병원] 방사선 치료기 인프라 투자에 ‘진심’>*  @병원신문  6일 전
+🔸 *<https://www.koreabiomed.com/news/articleView.html?idxno=28641|Konkuk University Medical Center launches 2 customized radiation therapy machines for cancer care>*  @KBR  5일 전
+🔸 *<https://spectrum.ieee.org/proton-therapy|Wonky Graphene Could Sharpen Proton Therapy>*  @IEEE Spectrum  6일 전
+🔸 *<https://www.nist.gov/news-events/news/2025/08/new-technique-measuring-dna-damage-could-improve-cancer-therapy-and|New Technique for Measuring DNA Damage Could Improve Cancer Therapy and Radiological Emergency Response>*  @National Institute of Standards and Technology (.gov)  3일 전
+🔸 *<https://www.nature.com/articles/s41598-025-16960-z|Prospectively assessed hypothalamic-pituitary dysfunction after proton therapy in adults with head and neck, skull base and brain tumors>*  @Nature  19시간 전
+🔸 *<https://www.digitimes.com/news/a20250821PD224/hermes-epitek-subsidiary-medical-equipment-taiwan.html|Heron to list in Taiwan with boron neutron cancer therapy device>*  @DIGITIMES Asia  15시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.dailypharm.com/Users/News/NewsView.html?ID=325726|[칼럼] 의료기기 '선진입-후평가' 실효성 제고 개선 방향>*  @데일리팜  6일 전
+🔸 *<https://www.irobotnews.com/news/articleView.html?idxno=41987|인공 지능 3대 강국 도약을 위한 신속한 연구개발 추진 결정>*  @로봇신문  2일 전
+🔸 *<https://www.news1.kr/bio/welfare-medical/5888595|국립대병원 시설·장비 759억 지원…강원, 첨단로봇 수술 도입>*  @뉴스1  20시간 전
+🔸 *<https://www.doctorsnews.co.kr/news/articleView.html?idxno=160768|젊은 여성에서 흔한 갑상선암, SP 로봇수술 택하는 이유>*  @의협신문  5일 전
+🔸 *<https://www.koreahealthlog.com/news/articleView.html?idxno=53274|이재명 정부 핵심 보건의료국정과제에 '전립선암 로봇수술 급여' 담겨>*  @코리아헬스로그  1일 전
+🔸 *<https://laotiantimes.com/2025/08/20/foxconn-technology-invests-us30-million-in-robocore-to-expand-into-medical-and-elderly-care-robotics-market-2/|Foxconn Technology Invests US$30 Million in Robocore to Expand into Medical and Elderly Care Robotics Market>*  @Laotian Times  4일 전
+🔸 *<https://www.medicaldevice-network.com/news/method-ai-raises-20m-to-advance-robotic-surgery-assistance-technology/|Method AI raises $20m to advance robotic surgery assistance technology>*  @Medical Device Network  2일 전
+🔸 *<https://news.cgtn.com/news/2025-08-19/How-China-s-medical-tech-innovations-unlock-new-possibilities-for-life-1FXBbMBGxag/p.html|How China's medical tech innovations unlock new possibilities for life>*  @CGTN  5일 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.dailypharm.com/Users/News/NewsView.html?ID=326004|디지털의료기 허가 7년만에 1→388건...AI·DTx 임상 급증>*  @데일리팜  5일 전
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=68016|디지털의료제품법 계기로 '인공지능 의료기기' 증가>*  @히트뉴스  6일 전
+🔸 *<https://www.yna.co.kr/view/AKR20250819033800017|[AI픽] AI가 판독소견서까지…딥노이드 임상 승인>*  @연합뉴스  5일 전
+🔸 *<https://www.newstheai.com/news/articleView.html?idxno=8713|딥노이드, 생성형 AI 의료기기 ‘M4CXR’ 식약처 임상시험 승인>*  @THE AI  5일 전
+🔸 *<http://www.doctorstimes.com/news/articleView.html?idxno=233949|의료기기 인허가 기관 지정 ‘유효기간’ 도입 추진>*  @의사신문  6일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://marketin.edaily.co.kr/News/Read?newsId=04155766642269616|"K뷰티 넘어 의료기기까지"…몸값 8배 뛴 바임, PEF 러브콜>*  @마켓인  3일 전
+🔸 *<https://news.bbsi.co.kr/news/articleView.html?idxno=4043987|지멘스헬시니어스, 포항에 초음파 의료기기 생산 증액 투자>*  @BBS불교방송  2일 전
+🔸 *<https://www.idaegu.com/news/articleView.html?idxno=645724|구미시, 다산정공과 투자협약 체결…미용의료기기 향토기업으로 세계시장 겨냥>*  @대구일보  6일 전
+🔸 *<https://www.newsis.com/view/NISX20250820_0003296877|롯데홀딩스 CVC, 의료기기 투자나서…韓·日 바이오 접점 확대>*  @뉴시스  4일 전

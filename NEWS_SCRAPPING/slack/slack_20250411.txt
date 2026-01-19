@@ -1,0 +1,30 @@
+:large_blue_circle:*2025. 4.11.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.canceranswer.co.kr/news/articleView.html?idxno=6384|서울아산병원, 미래형 중입자 치료기 도입...2031년 치료 시작할 듯>*  @캔서앤서  24시간 전
+🔸 *<https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2025.1486654/full|Harnessing Unsupervised Machine Learning with [ 18 F]FDG PET/CT to Develop a Composite Model for Predicting Overall Survival in Cervical Cancer Patients Undergoing Concurrent Chemoradiotherapy>*  @Frontiers  11시간 전
+🔸 *<https://www.newstrail.com/proton-room-market-hits-new-high-major-giants-elekta-siemens-healthineers-advanced-oncotherapy/|Proton Room Market Hits New High | Major Giants Elekta, Siemens Healthineers, Advanced Oncotherapy>*  @Newstrail  11시간 전
+🔸 *<https://www.massdevice.com/innoblative-fda-ide-electrosurgical-device-breast-cancer/|Innoblative wins FDA IDE for electrosurgical device for breast cancer treatment>*  @MassDevice  9시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.segyebiz.com/newsView/20250411500589|청주프라임병원, FDA 승인 ROSA 인공관절수술로봇 도입>*  @세계비즈  2시간 전
+🔸 *<https://www.bizhankook.com/bk/article/29394|병원에 늘어나는 '로봇', 의사·간호사도 편해졌을까>*  @비즈한국  18시간 전
+🔸 *<https://www.healthfocus.co.kr/news/articleView.html?idxno=205400|힘찬병원, 마코로봇에 이어 로사로봇도 ‘국내 최다’>*  @헬스포커스뉴스  21시간 전
+🔸 *<https://www.mk.co.kr/en/economy/11288218|In the third week of April, technology companies ranging from industrial X-rays to bio and robotics>*  @매일경제  19시간 전
+🔸 *<https://www.urologytimes.com/view/fda-clears-stapler-for-use-with-da-vinci-sp-surgical-system|FDA clears stapler for use with da Vinci SP surgical system>*  @Urology Times  8시간 전
+🔸 *<https://www.insightaceanalytic.com/report/ai-enhanced-minimally-invasive-devices-market/2962|AI-Enhanced Minimally Invasive Devices Market 2025-2034 Report>*  @InsightAce Analytic  14시간 전
+🔸 *<https://www.azorobotics.com/News.aspx?newsID=15863|Engineers Develop Robotic Gripper Inspired by Measuring Tape>*  @AZoRobotics  13시간 전
+🔸 *<https://www.waff.com/2025/04/10/crestwood-medical-center-unveils-state-of-the-art-surgical-robot/|Crestwood Medical Center unveils state-of-the-art surgical robot>*  @WAFF  3시간 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.donga.com/news/Economy/article/all/20250410/131391764/2|생성형 AI 의료기기… 임상시험 국내 첫 승인>*  @동아일보  8시간 전
+🔸 *<https://www.hkn24.com/news/articleView.html?idxno=344073|홈즈에이아이, ‘CLtime’ 식약처 의료기기 허가 획득>*  @헬스코리아뉴스  41분 전
+🔸 *<https://www.koreahealthlog.com/news/articleView.html?idxno=51349|화이자 ‘너텍’ 허가…불붙는 CGRP 편두통 치료제 경쟁>*  @코리아헬스로그  2시간 전
+🔸 *<https://m.hankookilbo.com/News/Read/A2025041015330001181?did=tw|흉부 X선 판독하는 인공지능 임상시험 한다... 생성형 AI 의료기 상용화 기대>*  @한국일보  18시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.medifonews.com/news/article.html?no=201653|“차기 정부, 의료기기 업계위축 인식∙전략적 제도 필요”>*  @메디포뉴스  5시간 전
+🔸 *<https://mdtoday.co.kr/news/view/1065592366169891|의정 갈등 장기화에 관세폭탄까지…의료기기협회 “정부 지원 절실”>*  @메디컬투데이  2시간 전
+🔸 *<https://www.imaeil.com/page/view/2025041108150743382|세라젬, 지난해 매출 5460억…해외 실적 견인에 R&D 투자 확대>*  @매일신문  3시간 전
+🔸 *<https://news.nate.com/view/20250411n04449?mid=n1101|[오늘의 증시 리포트] "삼성전자, 관세 우려 선반영…2분기 추정 영업익 7조">*  @네이트 뉴스  3시간 전
+🔸 *<https://www.hnews.kr/news/view.php?no=65733|김영민 의료기기산업협회장 “치료재료 상한급액 가격 현실화해야”>*  @현대건강신문  18시간 전

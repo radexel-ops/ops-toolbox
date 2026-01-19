@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2025.2.13. ~ 2025.2.13)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39945921/|Dual *_robotic_* *_surgery_*: *_Da Vinci_* SP() and Levita() MARS (*_magnetic_*-assisted *_robotic_* *_surgery_*) platforms.>
+      번 : 이중 로봇 수술 : Da Vinci SP () 및 Levita () 화성 (자기 지원 로봇 수술) 플랫폼.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2025 Feb 13

@@ -1,0 +1,28 @@
+:large_blue_circle:*2025. 5.21.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.kbsm.net/news/view.php?idx=475679|영남대병원, 방사선 치료 신환 '3만례' 달성>*  @경북신문  17시간 전
+🔸 *<https://www.uc.edu:8443/content/uc/news/articles/2025/05/the-next-frontier-to-treat-cancer--electricity.html|The next frontier to treat cancer: electricity>*  @University of Cincinnati  3시간 전
+🔸 *<https://www.greaterkashmir.com/kashmir/radiation-oncology-at-gmc-anantnag-crippled-by-lack-of-infrastructure/|Radiation Oncology at GMC Anantnag crippled by lack of infrastructure>*  @Greater Kashmir  5시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=64789|"의료기기산업, 규제와 보상이 함께 가야 혁신 완성">*  @히트뉴스  2시간 전
+🔸 *<https://www.chosun.com/special/special_section/2025/05/21/F7RANZS2GFBEXKTGCTATAZ3QZM/|차병원, 부인과 질환 로봇수술 1만5000례… “국내 여성 암 치료 선도”>*  @조선일보  8시간 전
+🔸 *<https://www.newstheai.com/news/articleView.html?idxno=7910|엔비디아-폭스콘, 물리 AI 통해 의료 로보틱스 구현>*  @THE AI  15시간 전
+🔸 *<https://www.irobotnews.com/news/articleView.html?idxno=40047|중국 외골격 로봇 전문기업들, 투자 유치 활발>*  @로봇신문  21시간 전
+🔸 *<https://zdnet.co.kr/view/?no=20250520133419|로봇 간호사 등장…"간호사 업무량 30% 줄일 수 있다">*  @지디넷코리아  17시간 전
+🔸 *<https://www.thefastmode.com/technology-solutions/41841-foxconn-nvidia-drive-smart-hospital-robotics-for-healthcare-innovation|Foxconn, NVIDIA Drive Smart Hospital Robotics for Healthcare Innovation>*  @The Fast Mode  21시간 전
+🔸 *<https://roboticsandautomationnews.com/2025/05/20/foxconn-and-nvidia-partner-to-develop-ai-powered-nursing-robot/91022/|Foxconn, Nvidia and Kawasaki partner to develop AI-powered nursing robot>*  @Robotics & Automation News  16시간 전
+🔸 *<https://us.acrofan.com/detail.php?number=987919|KONE recognized among Vietnam's best at Sao Khue Award 2025 for pioneering service robot API>*  @us.acrofan.com  21시간 전
+🔸 *<https://www.pravda.com.ua/eng/news/2025/05/20/7513132/|Khartiia Brigade successfully evacuates wounded soldier thanks to ground robot that travelled 12 km>*  @Українська правда  12시간 전
+
+*<의료기기 인허가>*
+🔸 *<http://www.kfdn.co.kr/69552|2025년 체외진단의료기기 임상적 성능시험기관 점검 실시>*  @식약일보  10시간 전
+🔸 *<https://dt.co.kr/contents.html?article_no=2025052002109923613001|NKH, 연구개발기업 인더스마트 인수… ‘개발·임상·인허가·커머셜·특허`가 하나로>*  @디지털타임스  20시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=64789|"의료기기산업, 규제와 보상이 함께 가야 혁신 완성">*  @히트뉴스  2시간 전
+🔸 *<https://www.etnews.com/20250520000218|의료기기 판로 확대 나서는 정부…보상 제도 개선은 숙제>*  @전자신문  16시간 전
+🔸 *<https://www.irobotnews.com/news/articleView.html?idxno=40047|중국 외골격 로봇 전문기업들, 투자 유치 활발>*  @로봇신문  21시간 전
+🔸 *<https://www.dailypharm.com/Users/News/NewsView.html?ID=322907|일반약 주력 소형제약사들, M&A 시장에 매물로>*  @데일리팜  18시간 전
+🔸 *<https://m.news.nate.com/view/20250520n17749?mid=m02&list=recent&cpcd=|헬스케어 컴퍼니 빌더 NKH, 의료기기 연구개발 스타트업 인더스마트 인수>*  @네이트 뉴스  19시간 전

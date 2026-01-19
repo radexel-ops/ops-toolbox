@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2025.3.3. ~ 2025.3.3)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/40029509/|The impact of DaVinci simulator competitions on medical student interest in *_robotic_* *_surgery_*.>
+      번 : 로봇 수술에 대한 의대생 관심에 대한 Davinci Simulator 경쟁의 영향.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2025 Mar 3

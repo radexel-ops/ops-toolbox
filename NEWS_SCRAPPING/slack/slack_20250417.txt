@@ -1,0 +1,31 @@
+:large_blue_circle:*2025. 4.17.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.healthinnews.co.kr/view.php?ud=2025041613313944406aa9cc43d0_48|대구파티마병원, ‘트루빔 4.1’ 도입... 방사선 암 치료 혁신>*  @헬스인뉴스  18시간 전
+🔸 *<https://www.nature.com/articles/s41598-025-98110-z|Enhancing security in electromagnetic radiation therapy using fuzzy graph theory>*  @Nature  7시간 전
+🔸 *<https://www.frontiersin.org/articles/10.3389/fonc.2025.1585125/full|Machine learning for prognostic impact in elderly unresectable hepatocellular carcinoma undergoing radiotherapy>*  @Frontiers  14시간 전
+🔸 *<https://www.chinadaily.com.cn/a/202504/16/WS67ff4a9ea3104d9fd381fa98.html|Ruijin Hospital's proton therapy system treats 600 cancer patients>*  @China Daily  17시간 전
+🔸 *<https://www.biospace.com/press-releases/podo-therapeutics-unveils-predictive-platform-for-immuno-oncology-and-radiation-sensitivity-at-aacr-2025|PODO Therapeutics Unveils Predictive Platform for Immuno-Oncology and Radiation Sensitivity at AACR 2025>*  @BioSpace  9시간 전
+🔸 *<https://www.blackbeltnewsnetwork.com/lifestyle/health/gene-test-predicts-urinary-problems-from-prostate-cancer-radiation-therapy/article_9f557479-ee54-5078-bdc5-53c6d3efc8db.html|Gene Test Predicts Urinary Problems From Prostate Cancer Radiation Therapy>*  @Black Belt News Network  13시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.donga.com/news/Society/article/all/20250416/131431639/2|서울시, 로봇수술 분야에 150억 투자 유치>*  @동아일보  5시간 전
+🔸 *<https://www.thebionews.net/news/articleView.html?idxno=14357|'로봇 수술 시스템' 인튜이티브, 서울시와 150억원 규모 MOU 체결>*  @더바이오  16시간 전
+🔸 *<https://www.koreabiomed.com/news/articleView.html?idxno=27304|Intuitive Surgical to invest another $10 mil. in Seoul robotics hub, add 100 jobs over 5 years>*  @KBR  14시간 전
+🔸 *<https://www.similkameenspotlight.com/news/kelowna-hospital-to-introduce-robotic-assisted-surgery-technology-interior-health-7946518|Kelowna hospital to introduce Robotic-Assisted Surgery technology: Interior Health>*  @The Similkameen Spotlight  22시간 전
+🔸 *<https://www.swindonadvertiser.co.uk/news/25090295.ridgeway-hospital-swindon-introduces-new-surgical-robot/|Swindon hospital welcomes new surgical robot>*  @Swindon Advertiser  19시간 전
+🔸 *<https://www.vernonnow.com/watercooler/news/news/Kelowna/Exciting_new_chapter_Robotic_surgeries_coming_to_Kelowna_General_Hospital/|‘Exciting new chapter’: Robotic surgeries coming to Kelowna General Hospital>*  @VernonNow  24시간 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.newsthevoice.com/news/articleView.html?idxno=41908|디지털의료제품, 허가부터 심사, 평가, 우대사항까지 '구체화'>*  @뉴스더보이스헬스케어  2시간 전
+🔸 *<https://www.healthinnews.co.kr/view.php?ud=2025041613345636606aa9cc43d0_48|한선숙 교수 연구팀, AI기반 약물농도 예측 의료기기 임상시험 승인>*  @헬스인뉴스  18시간 전
+🔸 *<https://m.healthcaren.com/news/news_article_yong.jsp?mn_idx=549919|[의료기기업계 소식] 4월 16일>*  @헬스케어N  14시간 전
+🔸 *<http://www.tapain.com/news/article.html?no=14319|전북대병원, 비수도권 최초 소프트웨어 의료기기 GMP 인증 획득>*  @공정한언론타파인  13시간 전
+🔸 *<https://www.dailydental.co.kr/news/article.html?no=133402|덴티움, 차세대 임플란트 ‘bright implant 시스템’ 조명>*  @치의신보  11시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2246653|인튜이티브서지컬, 서울시와 1000만불 규모 투자유치 MOU 체결>*  @의학신문  14시간 전
+🔸 *<https://www.newsro.kr/article243/877660/|홍성군, 바이오 의료기기 수출 거점도시 ‘도약’>*  @뉴스로  2시간 전
+🔸 *<https://kr.cointelegraph.com/news/semler-scientific-reports-paper-loss-bitcoin-floats-securities-sale|Semler Scientific은 비트코인에서 4,200만 달러의 종이 손실을 보고하며, 5억 달러 규모의 주식 매각을 추진한다고 발표했다.>*  @Cointelegraph  14시간 전
+🔸 *<https://www.pinpointnews.co.kr/news/articleView.html?idxno=337033|휴온스글로벌 주가 훨훨...제약 넘어 의료기기·바이오까지, 미래 헬스케어 시장 공략 박차>*  @핀포인트뉴스  17시간 전
+🔸 *<https://news.nate.com/view/20250416n14416|세계 로봇수술 1위 기업, 왜 서울에 150억 투자했나>*  @네이트 뉴스  21시간 전

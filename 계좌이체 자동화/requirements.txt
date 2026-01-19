@@ -1,0 +1,17 @@
+# 계좌이체 자동화 의존성 패키지
+
+# 웹 스크래핑
+selenium
+beautifulsoup4
+lxml
+
+# 엑셀 처리
+pandas
+openpyxl
+
+# AI API
+openai
+google-generativeai
+
+# 환경변수
+python-dotenv

@@ -1,0 +1,38 @@
+:large_blue_circle:*2025. 11.24.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://m.health.chosun.com/svc/news_view.html?contid=2025111702170|고려대의료원, "입자치료 거점 구축 본격화"… 양성자 치료기 본격 활용 예정>*  @헬스조선  6일 전
+🔸 *<https://www.news1.kr/bio/welfare-medical/5984220|'꿈의 암치료' 양성자·중입자 눈독 들이는 병원들…장단점 달라>*  @뉴스1  1일 전
+🔸 *<https://www.yna.co.kr/view/AKR20251117096600053|안동병원 암센터, 방사선 치료 10만 건 달성…경북지역 최초>*  @연합뉴스  6일 전
+🔸 *<https://shindonga.donga.com/List/article/all/13/5971441/1|고려대의료원, 양성자치료기 통해 ‘입자치료 시대’ 연다>*  @신동아  3일 전
+🔸 *<https://oncodaily.com/voices/yolande-lievens-411780|Prof. Yolande Lievens on Value Based Radiation Oncology – ESTRO>*  @Oncodaily  5 days ago
+🔸 *<https://www.metrosouth.health.qld.gov.au/about-us/news/pa-hospital/gamma-knife-centre-of-queensland-celebrates-10-years|Gamma Knife® Centre of Queensland celebrates 10 years>*  @Metro South Health  3 days ago
+🔸 *<https://www.ctvnews.ca/london/article/its-been-a-gamechanger-ai-powered-radiation-system-boosts-cancer-care-in-london-ont/|‘It’s been a gamechanger’: AI-powered radiation system boosts cancer care in London, Ont.>*  @CTV News  6 days ago
+🔸 *<https://barbadostoday.bb/2025/11/22/radiation-therapy-to-resume-soon-in-barbados/|Radiation therapy to resume soon in Barbados>*  @Barbados Today  1 day ago
+🔸 *<https://oncodaily.com/voices/nikhil-thaker-412297|Nikhil Thaker: New RadOncRAG Publication, Advancing LLM Benchmark Performance in Radiation Oncology>*  @Oncodaily  4 days ago
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.hankyung.com/article/2025112063341|세계 최초로 기술 개발하면 뭐하나…'심사 기간만 10년' 분통>*  @한국경제  3일 전
+🔸 *<https://www.chosun.com/international/international_general/2025/11/17/U2AJAGC25NBYNGZONYPBJIIQ3A/|튀니지서 한국산 로봇으로 수술 성공… 아프리카 첫 사례>*  @조선일보  6일 전
+🔸 *<http://www.mediwelfare.com/news/articleView.html?idxno=4462|'한·일 돌봄 로봇 개발·실증 세미나' 성황리 개최>*  @의료&복지뉴스  3일 전
+🔸 *<https://www.irobotnews.com/news/articleView.html?idxno=43536|[스페셜 리포트] “의료 로봇, 10년 후 50조 시장”…수술실 풍경을 바꾼다>*  @로봇신문  11시간 전
+🔸 *<https://www.dailypharm.com/Users/News/NewsView.html?ID=328892|미래컴퍼니 수술로봇 '레보아이', 차세대 세계일류상품 선정>*  @데일리팜  4일 전
+🔸 *<https://www.chosun.com/english/world-en/2025/11/17/KYBGET6OINBPTEJQ6K23HALCAY/|South Korean Robot Performs First African Surgery>*  @조선일보  6 days ago
+🔸 *<http://qazinform.com/news/musk-says-ai-and-humanoid-robots-will-eliminate-poverty-make-work-optional-45bbb1|Musk says AI and humanoid robots will eliminate poverty, make work ‘optional’>*  @qazinform.com  3 days ago
+🔸 *<https://meyka.com/blog/biorob-2026-ieee-leading-the-future-of-biomedical-robotics-and-biomechatronics/|BioRob 2026 – IEEE: Leading the Future of Biomedical Robotics and Biomechatronics>*  @Meyka  3 days ago
+🔸 *<https://healthcare-in-europe.com/en/news/brain-navi-naotrac.html|Brain Navi • NaoTrac>*  @healthcare-in-europe.com  3 days ago
+🔸 *<https://www.therobotreport.com/distalmotion-raises-150m-accelerate-u-s-dexter-surgical-robot-adoption/|Distalmotion raises $150M to accelerate U.S. adoption of DEXTER surgical robot>*  @The Robot Report  5 days ago
+
+*<의료기기 인허가>*
+🔸 *<https://www.womancs.co.kr/news/articleView.html?idxno=98552|[컨슈머 Q&A] 의료기기 허가 갱신하지 않은면 사용 불가?>*  @우먼컨슈머  6일 전
+🔸 *<https://www.newsis.com/view/NISX20251119_0003408475|"의료기기 사이버보안 심사 이렇게 준비"…설명회 개최>*  @뉴시스  4일 전
+🔸 *<https://www.yna.co.kr/amp/view/AKR20251120064400051|중국서 레이저 기기 밀반입한 7명 검거…"화상 등 부작용 우려">*  @연합뉴스  3일 전
+🔸 *<https://www.mdtoday.co.kr/news/view/1065596343329527|원텍, 아랍에미레이트서 8건 의료기기 허가 확보>*  @메디컬투데이  4일 전
+🔸 *<https://www.ezyeconomy.com/news/articleView.html?idxno=226300|식약처, 10월 의료제품 113개 허가…의약품 22개·의료기기 82개 승인>*  @이지경제  2일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.yna.co.kr/view/AKR20251117040900060|남양주시, 왕숙 산단에 의료기기 산업 유치 추진>*  @연합뉴스  6일 전
+🔸 *<http://www.medworld.co.kr/news/articleView.html?idxno=252968|카카오헬스케어, 1천억 원 규모 투자 유치>*  @메드월드뉴스  3일 전
+🔸 *<https://www.hitnews.co.kr/news/articleView.html?idxno=71119|오상헬스케어, 독일 의료기기 전시회 '메디카 2025' 참가>*  @히트뉴스  6일 전
+🔸 *<https://www.dailymedi.com/news/news_view.php?ca_id=22&wr_id=931024|의료기기산업협회-남양주시 "산업 활성화 협력">*  @데일리메디  4일 전
+🔸 *<https://www.dailypharm.com/News/328837|안국약품, 헬스케어기업 디메디코리아 인수...사업 다각화>*  @데일리팜  5일 전

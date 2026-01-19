@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.9.23. ~ 2024.9.23)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39312020/|Correction to: Comparison of the safety and efficacy of *_robotic_* natural orifice specimen extraction *_surgery_* and conventional *_robotic_* colorectal cancer resection: a propensity score matching study.>
+      번 : 교정 : 로봇 천연 오리피스 시편 추출 수술의 안전성과 효능 비교 및 ​​기존 로봇 결장 직장암 절제술 : 성향 점수 일치 연구.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2024 Sep 23

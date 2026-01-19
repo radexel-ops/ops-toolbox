@@ -1,0 +1,33 @@
+:large_blue_circle:*2025. 8.12.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.ksilbo.co.kr/news/articleView.html?idxno=1034117|[기고]양성자 치료센터는 왜 필요한가>*  @경상일보  8시간 전
+🔸 *<https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2025.1644141/full|Application of Machine Learning for Prognostic Modeling in Unresectable Pancreatic Cancer Treated with Chemoradiotherapy>*  @Frontiers  1시간 전
+🔸 *<https://news.vcu.edu/article/2025/08/a-portable-water-tank-is-designed-to-transform-cancer-radiation-therapy|A portable water tank from a VCU public-private partnership is designed to transform cancer radiation therapy>*  @VCU News  8시간 전
+🔸 *<https://www.dvm360.com/view/new-technology-is-advancing-patient-care-at-cornell-university|New technology is advancing patient care at Cornell University>*  @DVM360  7시간 전
+🔸 *<https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2025.1591742/full|Machine Learning-Based Radiomics for Bladder Cancer Staging: Evaluating the Role of Imaging Timing in Differentiating T2 from T3 Disease>*  @Frontiers  8시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.jayupress.com/news/articleView.html?idxno=42930|미래 의사는 AI가 대체할 수 없는 '환자와의 교감'에 집중해야>*  @자유일보  18시간 전
+🔸 *<https://www.kfmn.co.kr/news/articleView.html?idxno=38442|케이메디허브, K-의료기기 국제표준化 앞장>*  @한국식품의약신문  23시간 전
+🔸 *<https://news.nate.com/view/20250811n07129?mid=n1101|큐렉소, 척추수술로봇 '큐비스-스파인' 임상수술 성공적 진행>*  @네이트  23시간 전
+🔸 *<https://www.asiae.co.kr/article/2025081108571637697|삼육부산병원, 국내 2차 종합병원 첫 AI 신장결석 수술로봇 도입>*  @아시아경제  23시간 전
+🔸 *<https://english.news.cn/20250811/41ea4de256c34676a1654f1b1addb710/c.html|Xinhua Headlines: China poised for further humanoid robot innovation, commercialization>*  @Xinhua  7시간 전
+🔸 *<https://monch.com/robots-and-drones-put-to-the-test-at-the-european-robotics-hackathon-2025/|Robots and drones put to the test at the European Robotics Hackathon 2025>*  @mönch publishing group  12시간 전
+🔸 *<https://eu.36kr.com/en/p/3416268198251904|With a $2.2 billion investment, Johnson & Johnson doubles down on the tumor surgical robot again.>*  @36Kr  20시간 전
+🔸 *<https://www.therobotreport.com/learn-about-the-state-of-the-robotics-industry-at-robobusiness/|Learn about the state of the robotics industry at RoboBusiness>*  @The Robot Report  7시간 전
+🔸 *<https://3dvf.com/en/this-new-technology-makes-robots-more-human-than-ever-an-advancement-worthy-of-the-best-sci-fi-movies/|This new technology makes robots more human than ever, an advancement worthy of the best sci-fi movies>*  @3DVF  16시간 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.etnews.com/20250811000379|지오비전, AI 기반 'DeepTDM' 혁신의료기기 지정…임상시험 돌입·글로벌 사업화 속도>*  @전자신문  13시간 전
+🔸 *<http://www.msn.com/ko-kr/news/other/%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90%EB%B3%91%EC%9B%90-3d-%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5-%EA%B8%B0%EB%8A%A5-%ED%83%91%EC%9E%AC%ED%95%9C-mri-%EC%8B%A0%EA%B7%9C%EC%9E%A5%EB%B9%84-%EB%8F%84%EC%9E%85/ar-AA1JU4V6?apiversion=v2&noservercache=1&domshim=1&renderwebcomponents=1&wcseo=1&batchservertelemetry=1&noservertelemetry=1|경희대학교병원, 3D 인공지능 기능 탑재한 MRI 신규장비 도입>*  @MSN  5시간 전
+🔸 *<https://www.biotimes.co.kr/news/articleView.html?idxno=23251|원텍, 사우디서 ‘파스텔’ ‘파스텔 프로’ 동시 허가∙∙∙중동 미용 의료기기 시장 공략 속도↑>*  @바이오타임즈  21시간 전
+🔸 *<https://www.medworld.co.kr/news/articleView.html?idxno=249313|올림푸스한국, '아이틴드' 임상적 유용성 공유 심포지엄 열어>*  @메드월드뉴스  21시간 전
+🔸 *<https://www.kukinews.com/article/view/kuk202508110047|GE헬스케어, AI 기반 의료기기 FDA 인허가 100건 등재>*  @쿠키뉴스  20시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.wonjutoday.co.kr/news/articleView.html?idxno=206087|원주 의료기기.디지털헬스 민간 투자 촉진 협약>*  @원주투데이  17시간 전
+🔸 *<https://www.healthmedia.co.kr/news/articleView.html?idxno=102949|GE헬스케어, AI 의료기기 FDA 승인 100건…4년 연속 1위>*  @헬스미디어뉴스  10시간 전
+🔸 *<https://www.gimhaeilbo.com/news/articleView.html?idxno=31830|김해의생명·산업진흥원, 비대면 의생명 의료기기 산업육성 워크숍>*  @김해일보  10시간 전
+🔸 *<http://www.bokuennews.com/news/article.html?no=264065|원주의료산업진흥원, TWGF파트너스와 업무협약 체결>*  @보건신문  22시간 전
+🔸 *<https://news.nate.com/view/20250811n26464|티큐어, 차세대 레이저 치료기기 '엔도큐어'…美 FDA 혁신의료기기 지정>*  @네이트  16시간 전

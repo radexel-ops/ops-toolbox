@@ -1,0 +1,90 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2023.8.20. ~ 2024.8.17  IF 40 이상)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38242980/|The next generation of *_robotic_* *_surgery_* is emerging: but is it better than a human?>
+      번 : 차세대 로봇 수술이 떠오르고 있습니다. 그러나 인간보다 낫습니까?
+      IF : 53.44    E-PUB : 2024 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38866995/|Precision *_radiation_* opens a new window on cancer therapy.>
+      번 : 정밀 방사선은 암 치료에 새로운 창을 엽니 다.
+      IF : 54.91    E-PUB : 2024 Jul
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38065195/|Optimising adjuvant breast *_radiotherapy_* via preoperative imaging.>
+      번 : 수술 전 영상화를 통해 보조 유방 방사선 요법 최적화.
+      IF : 79.32    E-PUB : 2024 Jan 20
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/37913518/|Omitting *_Radiotherapy_* in Luminal A Breast Cancer.>
+      번 : 내강 유방암에서 방사선 요법을 생략합니다.
+      IF : 91.25    E-PUB : 2023 Nov 2
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38704170/|Challenges for breast *_radiotherapy_* with SIB: the IMPORT HIGH trial.>
+      번 : SIB를 통한 유방 방사선 요법에 대한 도전 : 수입 높은 시험.
+      IF : 79.32    E-PUB : 2024 May 4
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39127478/|Adjuvant *_radiotherapy_* omission in early breast cancer: the PROSPECT trial.>
+      번 : 초기 유방암에서의 보조 방사선 요법 누락 : 전망 시험.
+      IF : 79.32    E-PUB : 2024 Aug 10
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/37944590/|Targeted gene expression profiling predicts meningioma outcomes and *_radiotherapy_* responses.>
+      번 : 표적화 된 유전자 발현 프로파일 링은 수막종 결과 및 방사선 요법 반응을 예측합니다.
+      IF : 53.44    E-PUB : 2023 Dec
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39033004/|Stereotactic ablative *_radiotherapy_* and immunotherapy for early-stage lung cancer.>
+      번 : 초기 단계 폐암에 대한 틀에 박힌 절제 방사선 요법 및 면역 요법.
+      IF : 79.32    E-PUB : 2024 Jul 20
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38763152/|Androgen deprivation therapy combined with postoperative *_radiotherapy_* for prostate cancer management.>
+      번 : 안드로겐 박탈 요법은 전립선 암 관리를위한 수술 후 방사선 요법과 결합되었습니다.
+      IF : 79.32    E-PUB : 2024 Jun 1
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38816606/|RADICALS-HD sheds light on the role of ADT addition to post-operative *_radiotherapy_*.>
+      번 : Radicals-HD는 수술 후 방사선 요법에 ADT 첨가의 역할을 밝히고 있습니다.
+      IF : 66.67    E-PUB : 2024 Aug
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/37696281/|Conventional versus hypofractionated postmastectomy *_proton_* *_radiotherapy_* in the USA (MC1631): a randomised phase 2 trial.>
+      번 : 미국에서의 기존 대 저분 분화 후 양성 절제술 후 양성자 방사선 요법 (MC1631) : 무작위 2 상 시험.
+      IF : 41.32    E-PUB : 2023 Oct
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38235183/|The dataset of duplex ultrasound assessment of the internal mammary artery in women with unilateral mastectomy followed by *_radiotherapy_* for breast cancer.>
+      번 : 일방적 유방 절제술을받은 여성의 내부 유선 동맥의 이중 초음파 평가 데이터 세트와 유방암에 대한 방사선 요법.
+      IF : 587    E-PUB : 2023 Dec 22
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38104577/|Standard-of-care systemic therapy with or without stereotactic body *_radiotherapy_* in patients with oligoprogressive breast cancer or non-small-cell lung cancer (Consolidative Use of *_Radiotherapy_* to Block [CURB] oligoprogression): an open-label, randomised, controlled, phase 2 study.>
+      번 : oligoprogrogress 유방암 또는 비소 세포 폐암 환자의 전형적인 신체 방사선 요법이 있거나없는 표준 관리 전신 요법 (스콜 세포 폐암 ([Curb] 올리고 프로모로를 차단하기위한 방사선 요법의 통합 사용) : 개방형, 무작위, 제어, 위상을 차단합니다.2 연구.
+      IF : 79.32    E-PUB : 2024 Jan 13
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38876132/|Stereotactic *_radiotherapy_* for neovascular age-related macular degeneration (STAR): a pivotal, randomised, double-masked, sham-controlled device trial.>
+      번 : 신생 혈관 연령 관련 황반 변성 (StAR)에 대한 정위 방사선 요법 : 중추적, 무작위 배정, 이중 마스크, 가짜 제어 장치 시험.
+      IF : 79.32    E-PUB : 2024 Jul 6
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38876134/|*_Radiotherapy_* for anti-vascular endothelial growth factor injections for neovascular age-related macular degeneration.>
+      번 : 신 혈관 연령 관련 황반 변성에 대한 항 혈관 내피 성장 인자 주사에 대한 방사선 요법.
+      IF : 79.32    E-PUB : 2024 Jul 6
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/37931633/|*_Radiotherapy_* to regional nodes in early breast cancer: an individual patient data meta-analysis of 14 324 women in 16 trials.>
+      번 : 초기 유방암의 지역 노드에 대한 방사선 요법 : 16 번의 시험에서 14 명의 324 명의 여성의 개별 환자 데이터 메타 분석.
+      IF : 79.32    E-PUB : 2023 Nov 25
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38181809/|Stereotactic body *_radiotherapy_* for primary renal cell carcinoma: a systematic review and practice guideline from the International Society of Stereotactic Radio*_surgery_* (ISRS).>
+      번 : 1 차 신장 세포 암종에 대한 정위 신체 방사선 요법 : 국제 고정 관념 방사선 수술 (ISR)의 체계적인 검토 및 실습 지침.
+      IF : 41.32    E-PUB : 2024 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38065194/|Postoperative *_radiotherapy_* omission in selected patients with early breast cancer following preoperative breast MRI (PROSPECT): primary results of a prospective two-arm study.>
+      번 : 수술 전 유방 MRI 후 초기 유방암 환자의 수술 후 방사선 요법 누락 : 전망 2-ARM 연구의 주요 결과.
+      IF : 79.32    E-PUB : 2024 Jan 20
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38763153/|Duration of androgen deprivation therapy with postoperative *_radiotherapy_* for prostate cancer: a comparison of long-course versus short-course androgen deprivation therapy in the RADICALS-HD randomised trial.>
+      번 : 전립선 암에 대한 수술 후 방사선 요법을 통한 안드로겐 박탈 요법의 지속 시간 : 라디칼 -HD 무작위 시험에서 장거리와 단락 안드로겐 박탈 요법의 비교.
+      IF : 79.32    E-PUB : 2024 Jun 1
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38876133/|Doublet chemotherapy, triplet chemotherapy, or doublet chemotherapy combined with *_radiotherapy_* as neoadjuvant treatment for locally advanced oesophageal cancer (JCOG1109 NExT): a randomised, controlled, open-label, phase 3 trial.>
+      번 : 이중 화학 요법, 삼중 항 화학 요법 또는 이중 화학 요법은 국부적으로 진행된 식도암에 대한 신 보조 치료로 방사선 요법과 결합 된 2 번의 화학 요법 (JCOG1109 NEXT) : 무작위, 제어, 개방형, 3 상 시험.
+      IF : 79.32    E-PUB : 2024 Jul 6
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38763154/|Adding 6 months of androgen deprivation therapy to postoperative *_radiotherapy_* for prostate cancer: a comparison of short-course versus no androgen deprivation therapy in the RADICALS-HD randomised controlled trial.>
+      번 : 전립선 암에 대한 수술 후 방사선 요법에 6 개월의 안드로겐 박탈 요법을 추가하는 것 : 라디칼 -HD 무작위 대조 시험에서 단락과 안드로겐 박탈 요법의 비교.
+      IF : 79.32    E-PUB : 2024 Jun 1
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/37478883/|Stereotactic ablative *_radiotherapy_* with or without immunotherapy for early-stage or isolated lung parenchymal recurrent node-negative non-small-cell lung cancer: an open-label, randomised, phase 2 trial.>
+      번 : 초기 단계 또는 분리 된 폐 실질 재발 성 노드-음성 비소 세포 폐암에 대한 면역 요법의 유무에 관계없이 틀에 박힌 절제 방사선 요법 : 개방형, 무작위 화, 2 상 시험.
+      IF : 79.32    E-PUB : 2023 Sep 9

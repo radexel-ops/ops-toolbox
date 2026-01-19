@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2025.3.5. ~ 2025.3.5)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/40042780/|Does *_robotic_* assisted *_surgery_* mitigate obesity related systemic inflammatory response and clinical outcomes in left sided colorectal cancer resections?>
+      번 : 로봇 보조 수술은 왼쪽 결장 직장암 절제술에서 비만 관련 전신 염증 반응 및 임상 결과를 완화합니까?
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2025 Mar 5

@@ -1,0 +1,10 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.8.19. ~ 2024.8.19  IF 10 이상)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39159403/|Omission of *_Radiotherapy_* in Primary Mediastinal B-Cell Lymphoma: IELSG37 Trial Results.>
+      번 : 1 차 종격동 B- 세포 림프종에서 방사선 요법의 생략 : IELSG37 시험 결과.
+      IF : 44.54    E-PUB : 정보 없음
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39158207/|Mechanoimmune-Driven Backpack Sustains Dendritic Cell Maturation for Synergistic Tumor *_Radiotherapy_*.>
+      번 : Mechanoimmune- 구동 배낭은 상승성 종양 방사선 요법을위한 수지상 세포 성숙을 유지합니다.
+      IF : 15.88    E-PUB : 정보 없음

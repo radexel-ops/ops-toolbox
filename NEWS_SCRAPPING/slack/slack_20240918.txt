@@ -1,0 +1,27 @@
+:large_blue_circle:*2024. 9.18.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.nature.com/articles/s44303-024-00039-x|Real-time tracking of the Bragg peak during proton therapy via 3D protoacoustic Imaging in a clinical scenario>*  @Nature  9시간 전
+🔸 *<https://thirdeyenews.in/news/magnetic-hyperthermia-and-radiation-therapy-devices-market-application-size-share-analysis-2024-2031/415632/|Magnetic Hyperthermia and Radiation Therapy Devices Market | Application, Size , Share Analysis 2024-2031>*  @thirdeyenews.in  17시간 전
+🔸 *<https://www.whatech.com/og/markets-research/medical/882274-global-particle-therapy-market-projected-to-grow-to-1-396-97-million-by-2031.html|Global Particle Therapy Market Projected to Grow to $1,396.97 Million by 2031 As Revealed In New Report>*  @WhaTech  15시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<http://www.msn.com/ko-kr/news/other/%EB%89%B4%EB%A1%9C%EB%A9%94%EC%B9%B4-%E7%BE%8E-%EC%A1%B0%EC%A7%80%EC%95%84%ED%85%8D%EA%B3%BC-%EC%9D%98%EB%A3%8C%EC%9A%A9-ai-%EB%A1%9C%EB%B4%87-%ED%98%91%EC%97%85/ar-AA1qqYsC?apiversion=v2&noservercache=1&domshim=1&renderwebcomponents=1&wcseo=1&batchservertelemetry=1&noservertelemetry=1|뉴로메카, 美 조지아텍과 ‘의료용 AI 로봇’ 협업>*  @MSN  15시간 전
+🔸 *<https://www.inven.co.kr/webzine/news/?news=227047&iskin=hos&sclass=19&premonth=11|[Tech] MIT, 혈관을 통해 움직이는 의료용 로봇 개발>*  @인벤  18시간 전
+🔸 *<https://siliconcanals.com/healthcare-startup-reactive-robotics-secures-e5m/|Germany-based Reactive Robotics secures €5M to expand its AI and robot-assisted mobilisation in healthcare>*  @Silicon Canals  15시간 전
+🔸 *<https://www.prnewswire.com/news-releases/hackensack-meridian-hackensack-university-medical-center-is-the-first-hospital-in-the-world-to-use-the-artificial-intelligence-powered-hydros-robotic-system-to-perform-aquablation-therapy-to-treat-prostate-enlargement-302250473.html|Hackensack Meridian Hackensack University Medical Center is the First Hospital in the World to Use the Artificial Intelligence-Powered HYDROS™ Robotic System to perform Aquablation® Therapy to Treat Prostate Enlargement>*  @PR Newswire  8시간 전
+🔸 *<https://www.stocktitan.net/news/MBOT/microbot-medical-announces-the-successful-enrollment-of-50-of-the-cpi4w3pjlqca.html|Microbot Medical Announces the Successful Enrollment of 50% of the Patients in its Pivotal Human Clinical Trial for the LIBERTY Endovascular Robotic Surgical System>*  @Stock Titan  11시간 전
+🔸 *<https://www.mddionline.com/radiological/a-groundbreaking-technology-celebrates-30-years|A Groundbreaking Technology Celebrates 30 Years>*  @Medical Device and Diagnostic industry  10시간 전
+🔸 *<https://www.longislandpress.com/2024/09/17/robotic-surgery-stony-brook/|Robotic Surgery Is Revolutionizing Stony Brook University Hospital>*  @LI Press  10시간 전
+
+*<의료기기 인허가>*
+🔸 *<http://m.thesegye.com/news/view/1065608508993193|성남산업진흥원,해외 의료인 연수생과 ′K의료기기 전시체험′ 행사 성황리 개최>*  @세계타임즈  13시간 전
+🔸 *<https://www.newsis.com/view/NISX20240913_0002887902|클래시스 "홈 뷰티 디바이스 '볼리움' 서포터즈 발대식">*  @뉴시스  19시간 전
+🔸 *<https://www.msn.com/ko-kr/news/world/%EC%9D%B8%ED%85%94%EC%97%90-%EC%8A%B9%EB%A6%AC-tsmc-asml-%EC%B0%A8%EC%84%B8%EB%8C%80-%EB%85%B8%EA%B4%91%EC%9E%A5%EB%B9%84-%ED%8A%B9%EB%B3%84%EA%B0%80%EB%A1%9C-%EA%B3%A7-%EB%8F%84%EC%9E%85/ar-AA1qGVjQ|인텔에 승리?…"TSMC, ASML 차세대 노광장비 특별가로 곧 도입">*  @MSN  16시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<http://m.thesegye.com/news/view/1065608508993193|성남산업진흥원,해외 의료인 연수생과 ′K의료기기 전시체험′ 행사 성황리 개최>*  @세계타임즈  13시간 전
+🔸 *<https://www.mk.co.kr/news/economy/11117379|“돈이 몰린다” 주목받는 반려동물 스타트업은 ‘이 곳’>*  @매일경제  19시간 전
+🔸 *<http://www.msn.com/ko-kr/news/other/%ED%95%9C%EB%8F%85-%EC%9E%90%ED%9A%8C%EC%82%AC-%EC%9D%B4%EB%85%B8%ED%81%90%EB%B8%8C-%EC%95%84%EC%9E%84%EC%B1%8C%EB%A6%B0%EC%A7%80%EB%A1%9C-%EB%B0%9C%EA%B5%B4%ED%95%9C-%EB%94%A5%ED%81%B4%EB%A3%A8-%EC%97%90-%ED%88%AC%EC%9E%90-%EB%B0%8F-%EC%A7%80%EC%9B%90/ar-AA1qmU5D?apiversion=v2&noservercache=1&domshim=1&renderwebcomponents=1&wcseo=1&batchservertelemetry=1&noservertelemetry=1|한독 자회사 ‘이노큐브’, 아임챌린지로 발굴한 ‘딥클루’에 투자 및 지원>*  @MSN  20시간 전
+🔸 *<https://m.ddaily.co.kr/page/view/2024091316571425464|잘나가는 AI 기업 만든 ‘투자 큰손’ 빅테크 빅6 어디?>*  @디지털데일리  23시간 전
+🔸 *<https://www.pinpointnews.co.kr/news/articleView.html?idxno=288275|휴메딕스, HA 필러 시장에서 성장세 뚜렷...투자의견은?>*  @핀포인트뉴스  22시간 전

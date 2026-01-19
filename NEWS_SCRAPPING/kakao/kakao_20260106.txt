@@ -1,0 +1,32 @@
+★2026. 1.6.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <https://www.dailymedi.com/news/news_view.php?ca_id=22&wr_id=932672|중입자 선두주자 연세의료원, 고정형 이어 회전형 가동>  @데일리메디  20시간 전
+🔸 <https://alphabiz.co.kr/news/view/1065569894617932|스미토모 중공업(6302 JP), 차세대 방사선 치료기 도입>  @알파경제  22시간 전
+🔸 <https://www.digitalhealthnews.com/assam-government-approves-inr-500-cr-proton-therapy-unit-at-gmch|Assam Government Approves INR 500 Cr Proton Therapy Unit at GMCH>  @Digital Health News  12 hours ago
+🔸 <https://www.clinicaloncology.com/Solid-Tumors/Article/01-26/Breast-Surgery-Device-Scans-Lumpectomy-Specimens-OR/79294|Breast Surgery Device Scans Lumpectomy Specimens OR>  @Clinical Oncology News  14 hours ago
+🔸 <https://medicaldialogues.in/news/industry/medical-devices/cancer-medtech-gets-clarity-cdsco-releases-final-oncology-device-risk-classification-list-162035|Cancer MedTech Gets Clarity: CDSCO Releases Final Oncology Device Risk Classification List>  @Medical Dialogues  10 hours ago
+
+<로봇수술 관련 뉴스>
+🔸 <http://www.newsmp.com/news/articleView.html?idxno=250968|인하대병원 로봇수술센터, 단일공 로봇수술기 다빈치SP 추가 도입 外>  @의약뉴스  14시간 전
+🔸 <https://www.biotimes.co.kr/news/articleView.html?idxno=26283|CES 2026 K-바이오·헬스테크의 키워드는? '피지컬 AI'>  @바이오타임즈  18시간 전
+🔸 <https://m.newsprime.co.kr/section_view.html?no=718667&menu=1|고영, 빅테크 AI 투자 확대 '수혜' 속 수술로봇 본격 수출까지…"올해 로보틱스·AI 최선호주">  @프라임경제  23시간 전
+🔸 <http://www.ainet.link/24192|[싱귤래리티넷, 마인드칠드런의 휴머노이드 로봇 코데이는?] 교육, 의료, 돌봄 서비스 분야에서 교사나 간호사를 보조하고 사람들에게 정서적인 지지를 제공하기 위해 설계되었다.>  @AI넷  10시간 전
+🔸 <https://news.nate.com/view/20260106n02823|[여의도 클라쓰]'현대모비스, 노타, 리브스메드' 클라쓰 올릴 종목은?>  @네이트  1시간 전
+🔸 <https://www.massdevice.com/surgerii-robotics-raises-100m-to-take-single-port-surgical-robotics-system-global/|Surgerii Robotics raises $100M to take single-port surgical robotics system global>  @MassDevice  5 hours ago
+🔸 <https://www.medicaldesignandoutsourcing.com/gregg-tobin-aptyx-interview-argos-minimally-invasive-cdmo/|Gregg Tobin on Aptyx’s latest deal, medtech trends and the year ahead>  @Medical Design & Outsourcing  3 hours ago
+🔸 <https://eu.36kr.com/en/p/3618139468923911|Exclusive Report from Yingke: Ecovacs' Participating Fund Invests in Flexible Tactile Sensing Company, Products Installed in Leading New - energy Vehicle Startups>  @36Kr  21 hours ago
+
+<의료기기 인허가>
+🔸 <https://www.thedailypost.kr/news/articleView.html?idxno=112656|씨엔알리서치, 노바바이오 ‘잇몸 생체적합성 필러 임상시험 계약>  @데일리포스트  8시간 전
+🔸 <https://dealsite.co.kr/articles/154352|인크레더블버즈, 의료기기 전환 가속…'아미노검겔' 인허가 막바지>  @딜사이트  23시간 전
+🔸 <http://www.bokuennews.com/news/article.html?no=271812|의료기기산업협회, '2025 한권으로 읽는 의료기기 시장 정보' 발간>  @보건신문  23시간 전
+🔸 <https://www.hitnews.co.kr/news/articleView.html?idxno=72563|젠큐릭스, 간이식 환자서 메틸화 바이오마커 임상 성과 공개>  @히트뉴스  23시간 전
+🔸 <https://www.akomnews.com/bbs/board.php?bo_table=news&wr_id=65828|이승훈 경희대한방병원 교수, ‘보건복지부 장관 표창’ 수상 > 뉴스>  @한의신문  23시간 전
+
+<의료로봇/기기 업계 동향>
+🔸 <https://news.nate.com/view/20260106n01766?mid=n1101|'정밀 냉각' 리센스메디컬 IPO 본궤도…상업화·수익성 '2라운드'>  @네이트  3시간 전
+🔸 <http://www.biotimes.co.kr/news/articleView.html?idxno=26285|엘피지오웰니스, 스타에셋파트너스·와이앤아처로부터 1억 원 투자 유치>  @바이오타임즈  17시간 전
+🔸 <https://www.newstopkorea.com/news/articleView.html?idxno=42259|상장 본궤도 오른 리센스메디컬, FI 엑시트 한걸음 앞으로>  @뉴스톱  18시간 전
+🔸 <https://m.newsprime.co.kr/section_view.html?no=718667&menu=1|고영, 빅테크 AI 투자 확대 '수혜' 속 수술로봇 본격 수출까지…"올해 로보틱스·AI 최선호주">  @프라임경제  23시간 전
+🔸 <http://www.bokuennews.com/news/article.html?no=271837|"의료기기산업, 제도 정착·시장 확장 본격화">  @보건신문  22시간 전

@@ -1,0 +1,32 @@
+:large_blue_circle:*2025. 6.11.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.newsis.com/view/NISX20250610_0003207442|대전성모병원, 암 '바이탈빔' 방사선 치료 3만건 돌파>*  @뉴시스  17시간 전
+🔸 *<https://www.lvhn.org/news/ai-powered-linac-advances-radiation-oncology-lvh-muhlenberg|AI-Powered LINAC Advances Radiation Oncology at LVH–Muhlenberg>*  @Lehigh Valley Health Network  2시간 전
+🔸 *<https://www.medtechdive.com/news/elekta-jakob-just-bomholt-ceo/750255/|Elekta appoints Jakob Just-Bomholt as CEO>*  @MedTech Dive  9시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=65433|국내 의료기기 11종, '그 어렵다'는 'CE MDR' 인증 획득>*  @히트뉴스  2시간 전
+🔸 *<https://www.dongascience.com/news.php?idx=72136|"허가 후에도 진화하는 의료AI, 낡은 규제 틀 적합치 않아">*  @동아사이언스  17시간 전
+🔸 *<https://www.nongmin.com/article/20250610500494|위암 수술 후 통증 줄고 회복 빨라져…서울대병원 ‘새 관리 전략’ 효과 입증>*  @농민신문  1시간 전
+🔸 *<https://www.k-health.com/news/articleView.html?idxno=81907|위암 최소침습수술 후 관리 ‘이렇게’ 하면 회복의 질 쑥↑>*  @헬스경향  16시간 전
+🔸 *<https://www.khan.co.kr/article/202506101740001|양산부산대병원, 부산·경남 최초 로봇수술 5천례 달성>*  @경향신문  14시간 전
+🔸 *<https://www.eurekalert.org/news-releases/1086658?|Magnetic microrobot mechanically mixes microscopic materials>*  @EurekAlert!  8시간 전
+🔸 *<https://news.metal.com/newscontent/103368966/[Analysis-of-the-Development-of-Coreless-DC-Motor-Industry-for-Humanoid-Robot-Parts]-%7C-MIR-DATABANK|[Analysis of the Development of Coreless DC Motor Industry for {{Humanoid Robot}} Parts] | MIR DATABANK>*  @Shanghai Metals Market  15시간 전
+🔸 *<https://www.medicaldesignandoutsourcing.com/capstan-medical-rd-head-greg-dachs-interview/|Capstan Medical's R&D head discusses the heart valve and robotics startup's tech, engineering challenges and solutions, advice for others in medtech and how to join his team>*  @Medical Design & Outsourcing  2시간 전
+🔸 *<https://www.automation.com/en-us/articles/june-2025/technologies-driving-robotics-motion-control?listname=Automation%20&%20Control%20News%20&%20Articles|Technologies Driving Robotics and Motion Control Advances>*  @Automation.com  7시간 전
+🔸 *<https://www.mpo-mag.com/breaking-news/jj-medtech-launches-ethicon-4000-stapler-for-ottava-surgical-robot/|J&J MedTech Launches Ethicon 4000 Stapler for Future Use With Ottava Surgical Robot>*  @Medical Product Outsourcing  9시간 전
+
+*<의료기기 인허가>*
+🔸 *<https://cosinkorea.com/mobile/article.html?no=55390|유로핀즈 C&PC, '미용기기 임상시험 전략, 의료기기 글로벌 진출 방안' 웨비나 실시>*  @코스인코리아닷컴  10시간 전
+🔸 *<https://www.medipana.com/article/view.php?news_idx=342520|"신의료기술 한눈에" 케이메디허브, 디지털헬스케어관·세미나 선봬>*  @메디파나뉴스  14시간 전
+🔸 *<https://www.dongascience.com/news.php?idx=72136|"허가 후에도 진화하는 의료AI, 낡은 규제 틀 적합치 않아">*  @동아사이언스  17시간 전
+🔸 *<http://www.rapportian.com/news/articleView.html?idxno=222330|사이넥스, ‘파라과이 법인’ 개소…“K-의료기기 진출 속도”>*  @라포르시안  20분 전
+🔸 *<https://www.newsis.com/view/NISX20250610_0003207488|원주의료산업진흥원, 국제 의료기기 인증 지원 확대한다>*  @뉴시스  17시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<http://www.rapportian.com/news/articleView.html?idxno=222330|사이넥스, ‘파라과이 법인’ 개소…“K-의료기기 진출 속도”>*  @라포르시안  20분 전
+🔸 *<https://www.busan.com/view/busan/view.php?code=2025061010221301910|창원시, 부산서 AI 기반 의료기기 선뵌다>*  @부산일보  21시간 전
+🔸 *<https://news.nate.com/view/20250610n27800|아이메디텍, 한국투자파트너스 등으로부터 시리즈A 투자 유치>*  @네이트 뉴스  16시간 전
+🔸 *<http://www.msn.com/ko-kr/news/other/%EB%B8%94%EB%A3%B8%EB%B2%84%EA%B7%B8-%EC%82%BC%EC%84%B1-%EB%AF%B8%EA%B5%AD-%EC%9D%98%EB%A3%8C%EA%B8%B0%EA%B8%B0-%EC%97%85%EC%B2%B4-%ED%88%AC%EC%9E%90-%EA%B0%80%EB%8A%A5%EC%84%B1/ar-AA1FxRyF?apiversion=v2&noservercache=1&domshim=1&renderwebcomponents=1&wcseo=1&batchservertelemetry=1&noservertelemetry=1|블룸버그 "삼성, 미국 의료기기 업체 투자 가능성">*  @MSN  16시간 전
+🔸 *<https://www.gukjenews.com/news/articleView.html?idxno=3294647|창원시 '2025 KIMES 부산' 준비 만전>*  @국제뉴스  19시간 전

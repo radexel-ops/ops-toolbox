@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2025.3.12. ~ 2025.3.12)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/40072548/|Correction: Clinical implementation of the Versius *_robotic_* surgical system in visceral *_surgery_*-A single centre experience and review of the first 175 patients.>
+      번 : 교정 : 내장 수술에서 Bersius 로봇 수술 시스템의 임상 적 구현-단일 중심 경험 및 첫 175 명의 환자의 검토.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 정보 없음

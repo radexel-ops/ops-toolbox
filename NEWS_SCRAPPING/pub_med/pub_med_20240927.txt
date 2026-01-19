@@ -1,0 +1,10 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2024.9.26. ~ 2024.9.26)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39325249/|Learning curves for adoption of *_robotic_* bariatric *_surgery_*: a systematic review of safety, efficiency and clinical outcomes.>
+      번 : 로봇 비만 수술 채택을위한 학습 곡선 : 안전, 효율성 및 임상 결과에 대한 체계적인 검토.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2024 Sep 26
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39325298/|Pain outcomes of outside-the-cage *_robotic_* thoracic *_surgery_*: a prospective matched-cohort study.>
+      번 : 케이지 외부 로봇 흉부 수술의 통증 결과 : 전향 적 일치하는 코호트 연구.
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2024 Sep 26

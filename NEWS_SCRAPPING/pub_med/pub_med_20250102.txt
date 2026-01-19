@@ -1,0 +1,182 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2025.1.1. ~ 2025.1.1)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39427931/|Dose constraints in breast cancer *_radiotherapy_*. A critical review.>
+      번 : 유방암 방사선 요법의 용량 제약.비판적 검토.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38787528/|Recommendations on *_Robotic_* Hepato-Pancreato-Biliary *_Surgery_*. The Paris Jury-Based Consensus Conference.>
+      번 : 로봇 헵토 팩트레에토-빌리 수술에 대한 권장 사항.파리 배심원 기반 합의 회의.
+      저널 : Ann Surg (IF 12.97)    E-PUB : 2025 Jan 1
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39414669/|*_Robotic_* cytoreductive *_surgery_* and hyperthermic intraperitoneal chemotherapy: is there a benefit?>
+      번 : 로봇 세포질 수술 및 고열 복강 내 화학 요법 : 이점이 있습니까?
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/38490854/|Long-term Outcomes and Patterns of Relapse Following High-dose Elective Salvage *_Radiotherapy_* and Hormone Therapy in Oligorecurrent Pelvic Nodes in Prostate Cancer: OLIGOPELVIS (GETUG-P07).>
+      번 : 전립선 암의 oligorecurrent 골반 노드에서 고용량 선택적 구제 방사선 요법 및 호르몬 요법에 따른 장기 결과 및 재발 패턴 : 올리고 펠러스 (GETUG-P07).
+      저널 : Eur Urol (IF 20.1)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39658673/|*_Robotic_* and laparoscopic minimally invasive *_surgery_* for colorectal cancer in Africa: an outcome comparison endorsed by the Nigerian society for colorectal disorders.>
+      번 : 아프리카의 결장 직장암에 대한 로봇 및 복강경 최소 침습 수술 : 나이지리아 결장 직장 장애 협회가 승인 한 결과 비교.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39603511/|Evaluating and reporting LET and RBE-weighted dose in *_proton_* therapy for glioma - The Dutch approach.>
+      번 : 신경 교종에 대한 양성자 요법에서 LET 및 RBE 가중 복용량 평가 및보고 - 네덜란드 접근법.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39402228/|Rise of the robots: implementing *_robotic_* *_surgery_* into the acute care *_surgery_* practice.>
+      번 : 로봇의 상승 : 급성 치료 수술 실습에 로봇 수술을 구현합니다.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39485536/|Short- and long-term outcomes of *_robotic_* and laparoscopic *_surgery_* in rectal cancer: a propensity score-matched analysis.>
+      번 : 직장암에서 로봇 및 복강경 수술의 단기 및 장기 결과 : 성향 점수 일치 분석.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39304428/|Testosterone Recovery Following Androgen Suppression and Prostate *_Radiotherapy_* (TRANSPORT): A Pooled Analysis of Five Randomized Trials from the Meta-Analysis of Randomized Trials in Cancer of the Prostate (MARCAP) Consortium.>
+      번 : 안드로겐 억제 및 전립선 방사선 요법 (Transport) 후 테스토스테론 회복 : 전립선 암 (MARCAP) 컨소시엄에서 무작위 시험의 메타 분석으로부터 5 개의 무작위 시험의 풀링 된 분석.
+      저널 : Eur Urol (IF 20.1)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39489425/|Patterns of loco-regional progression and patient outcomes after definitive-dose *_radiation_* therapy for anaplastic thyroid cancer.>
+      번 : 동맥류 갑상선 암에 대한 결정적인 용량 방사선 요법 후 기관-영역 진행 및 환자 결과의 패턴.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39466427/|Cholecystectomy with the Hugo *_robotic_*-assisted *_surgery_* system: the first general *_surgery_* clinical study in Korea.>
+      번 : Hugo Robotic 지원 수술 시스템과의 담낭 절제술 : 한국 최초의 일반 수술 임상 연구.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39586359/|Intensity-modulated *_proton_* therapy versus volumetric-modulated ARC therapy in patients with nasopharyngeal carcinoma: A long-term, multicenter cohort study.>
+      번 : 비 인두 암종 환자에서 강도 조절 된 양성자 요법 대 부피 변조 된 아크 요법 : 장기, 다기관 코호트 연구.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39454886/|ESTRO-EANO guideline on target delineation and *_radiotherapy_* for IDH-mutant WHO CNS grade 2 and 3 diffuse glioma.>
+      번 : CNS 등급 2 및 3 확산 신경 교종에 대한 대상 묘사 및 방사선 요법에 대한 Estro-Eano 지침.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39515381/|Comparison of stereotactic body *_radiotherapy_* and transcatheter arterial chemoembolization for hepatocellular carcinoma: Systematic review and meta-analysis.>
+      번 : 간세포 암종에 대한 정위 신체 방사선 요법 및 트랜스 카테터 동맥 화학 조절의 비교 : 체계적인 검토 및 메타 분석.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39427932/|Patient reported fatigue after *_proton_* therapy for malignant brain tumours - Is there a relation between *_radiation_* dose and brain structures?>
+      번 : 악성 뇌종양에 대한 양성자 요법 후 환자는 피로를보고했습니다. 방사선 용량과 뇌 구조 사이에 관계가 있습니까?
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39426526/|Effects of photobiomodulation therapy for acute *_radiation_* dermatitis in patients with cancer: A systematic review and meta-analysis of real-world evidence.>
+      번 : 암 환자에서 급성 방사선 피부염에 대한 광 바이오 조절 요법의 효과 : 실제 증거의 체계적인 검토 및 메타 분석.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39481607/|Climate impact of early-stage NSCLC treatment: A comparison between *_radiotherapy_* and *_surgery_* using Life Cycle Assessment.>
+      번 : 초기 단계 NSCLC 치료의 기후 영향 : 수명주기 평가를 사용한 방사선 요법과 수술의 비교.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39528113/|*_Proton_* FLASH-arc therapy (PFAT): A feasibility study for meeting FLASH dose-rate requirements in the clinic.>
+      번 : PFAT (Proton Flash-Arc Therapy) : 클리닉의 플래시 용량 요건을 충족하기위한 타당성 조사.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39433584/|Ventral hernia repair with permanent mesh for non-Hispanic black versus white patients: access and post-operative outcomes in the era of *_robotic_* *_surgery_*.>
+      번 : 비 히스패닉 흑인 대 백인 환자에 대한 영구적 인 메쉬가있는 복부 탈장 수리 : 로봇 수술 시대의 접근 및 수술 후 결과.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39379236/|Dose-escalated Adaptive *_Radiotherapy_* for Bladder Cancer: Results of the Phase 2 RAIDER Randomised Controlled Trial.>
+      번 : 방광암에 대한 용량-에스컬 화 된 적응 방사선 요법 : 2 단계 침입자 무작위 대조 시험 결과.
+      저널 : Eur Urol (IF 20.1)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39522824/|Protocol compliance in a multicentric phase III trial investigating scheduled adaptive *_radiotherapy_* and dose painting in head and neck cancer.>
+      번 : 두경부 암에서 예정된 적응 방사선 요법 및 선량 페인팅을 조사하는 다 중심적 상 III 시험에서 프로토콜 준수.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39489430/|Automated segmentation in planning-CT for breast cancer *_radiotherapy_*: A review of recent advances.>
+      번 : 유방암 방사선 요법을위한 Planning-CT의 자동 세분화 : 최근 발전에 대한 검토.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39557124/|Prostate-specific antigen kinetics after stereotactic body *_radiotherapy_* for localized prostate cancer: A scoping review and meta-analysis.>
+      번 : 국소화 된 전립선 암에 대한 정위 신체 방사선 요법 후 전립선-특이 적 항원 동역학 : 범위 검토 및 메타 분석.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39557127/|*_Radiation_* therapy for stage IIA/IIB seminomas: Back to the future?>
+      번 : 단계 IIA/IIB Seminomas의 방사선 요법 : 미래로 돌아 가기?
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39427934/|Variable-RBE-induced NTCP predictions for various side-effects following *_proton_* therapy for brain tumors - Identification of high-risk patients and risk mitigation.>
+      번 : 뇌종양에 대한 양성자 치료 후 다양한 부작용에 대한 가변 RBE- 유도 NTCP 예측-고위험 환자의 식별 및 위험 완화.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39496947/|Impact of the new *_robotic_* platform hinotori in preventing subcutaneous emphysema after colorectal cancer *_surgery_*.>
+      번 : 결장 직장암 수술 후 피하 폐기종 예방에 새로운 로봇 플랫폼 히노토리의 영향.
+      저널 : Surg Endosc (IF 4.58)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39481608/|Correlation of dynamic blood dose with clinical outcomes in *_radiotherapy_* for head-and-neck cancer.>
+      번 : 두부 및 넥 암에 대한 방사선 요법에서 임상 결과와 동적 혈액 용량의 상관 관계.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39586358/|Prevalence of depressive and anxiety symptoms in patients with head and neck cancer undergoing *_radiotherapy_*: A systematic review and meta-analysis of longitudinal studies.>
+      번 : 방사선 요법을받는 두부암 및 목 암 환자의 우울 및 불안 증상의 유병률 : 종단 연구의 체계적인 검토 및 메타 분석.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39486482/|Knowledge-based planning for fully automated *_radiation_* therapy treatment planning of 10 different cancer sites.>
+      번 : 10 개의 다른 암 사이트의 완전 자동 방사선 요법 치료 계획에 대한 지식 기반 계획.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39089923/|Re: Long-term Prostate Cancer-specific Mortality After Prostatectomy, *_Brachytherapy_*, *_External Beam_* *_Radiation_* Therapy, Hormonal Therapy, or Monitoring for Localized Prostate Cancer.>
+      번 : Re : 전립선 절제술, 근접 치료, 외부 빔 방사선 요법, 호르몬 요법 또는 국소 전립선 암 모니터링 후 장기 전립선 암 특이 적 사망률.
+      저널 : Eur Urol (IF 20.1)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39490418/|Identifying paediatric patients at risk of severe hearing impairment after treatment for malignancies of the H&N/CNS with *_proton_* therapy.>
+      번 : 양성자 요법으로 H & N/CNS의 악성 종양 치료 후 심각한 청각 장애의 위험에 처한 소아 환자를 식별합니다.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39414083/|"Cardiovascular toxicities of *_radiotherapy_*: From practical issues to new perspectives *_radiotherapy_* and Oncology" Marianne C. Aznar, Jutta Bergler-Klein, Giuseppe Boriani, David, J. Cutter, Coen Hurkmans, Mario Levis, Teresa Lopez-Fernandez, Alexander R. Lyon, Maja V. Maraldo. Radiother Oncol. 2024 Aug:197:110336. https://doi.org/10.1016/j.radonc.2024.110336.Epub 2024 may 24.>
+      번 : "방사선 요법의 심혈관 독성 : 실제 문제에서 새로운 관점에서 방사선 치료 및 종양학에 이르기까지"Marianne C. Aznar, Jutta Bergler-Klein, Giuseppe Boriani, David, J. Cutter, Coen Hurkmans, Mario Levis, Teresa Lopez-Fernandez, Alexander R. Lyon, Maja V. Maraldo.방사기 온콜.2024 년 8 월 : 197 : 110336.https://doi.org/10.1016/j.radonc.2024.110336.epub 2024 년 5 월 24 일.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39581351/|Deep learning-based multiple-CT optimization: An adaptive treatment planning approach to account for anatomical changes in intensity-modulated *_proton_* therapy for head and neck cancers.>
+      번 : 딥 러닝 기반 다중 CT 최적화 : 머리 및 목 암에 대한 강도 조절 된 양성자 요법의 해부학 적 변화를 설명하기위한 적응 형 치료 계획 접근법.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39481606/|Toxicity in patients receiving *_radiotherapy_* for ultracentral stage I non-small cell lung cancer: A secondary analysis of the LUSTRE randomized trial.>
+      번 : 초 센트르 단계 I 비소 세포 폐암에 대한 방사선 요법을받는 환자의 독성 : 광택 무작위 시험의 2 차 분석.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39481605/|Locoregional control in high-risk neuroblastoma using highly-conformal image-guided *_radiotherapy_*, with reduced margins and a boost dose for residual lesions.>
+      번 : 고도로 형식의 이미지 유도 방사선 요법을 사용하여 고위험 신경 모세포종에서의 locoregional Control, 여백이 감소하고 잔류 병변에 대한 부스트 용량.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39489427/|A feasibility study of dose-band prediction in *_radiation_* therapy: Predicting a spectrum of plan dose.>
+      번 : 방사선 요법에서 용량 대역 예측에 대한 타당성 연구 : 계획 용량의 스펙트럼 예측.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39586357/|A critical reflection of *_radiotherapy_* on osseous free flaps in mandibular segmental resection and immediate reconstruction in locally advanced oral squamous cell carcinoma: A cohort study.>
+      번 : 하악 세그먼트 절제술에서 osseous free 플랩에 대한 방사선 요법의 비판적 반사 및 국소 진보 된 구강 편평 세포 암종에서 즉각적인 재구성 : 코호트 연구.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39566581/|Efficacy of *_radiotherapy_* for bone metastasis in breast cancer patients treated with cyclin-dependent kinase 4/6 inhibitors.>
+      번 : 사이클린 의존성 키나제 4/6 억제제로 치료 된 유방암 환자에서 뼈 전이에 대한 방사선 요법의 효능.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39521276/|Risk and survival outcomes of secondary pelvic neoplasm after *_radiotherapy_* in female patients with genital neoplasms: A large Population-Based cohort study.>
+      번 : 생식기 신 생물을 가진 여성 환자에서 방사선 요법 후 2 차 골반 신 생물의 위험 및 생존 결과 : 대규모 인구 기반 코호트 연구.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39427933/|A novel lineage-tracing tool reveals that hypoxic tumor cells drive tumor relapse after *_radiotherapy_*.>
+      번 : 새로운 계통 추적 도구는 저산소 종양 세포가 방사선 치료 후 종양 재발을 유도한다는 것을 보여준다.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39608678/|Dosimetric impact of sparing base of heart on organ at risk doses during lung *_radiotherapy_*.>
+      번 : 폐 방사선 요법 동안 위험 용량에 대한 장기에 심장을 절약하는 선량의 영향.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39306243/|Commentary on Bentsen et al.'s study of rib fracture risk after stereotactic body *_radiotherapy_*.>
+      번 : Bentsen et al.의 고전자 신체 방사선 요법 후 늑골 골절 위험에 대한 논평.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39510140/|Comment on FET PET-based target volume delineation for the *_radiotherapy_* of glioblastoma: A pictorial guide to help overcome methodological pitfalls.>
+      번 : Glioblastoma의 방사선 요법을위한 FET PET 기반 표적 부피 묘사에 대한 의견 : 방법 론적 함정을 극복하는 데 도움이되는 그림 안내서.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39357675/|Response to commentary on "Cumulative rib fracture risk after stereotactic body *_radiotherapy_* in patients with localized non-small cell lung cancer" by Tugcu et al.>
+      번 : Tugcu et al.에 의한 국소 비소 세포 폐암 환자에서 "정위 신체 방사선 치료 후 누적 갈비 골절 위험"에 대한 논평에 대한 반응.
+      저널 : Radiother Oncol (IF 6.28)    E-PUB : 2025 Jan
+
+🔸 <https://pubmed.ncbi.nlm.nih.gov/39521695/|Corrigendum to "Impact of Prostate-specific Membrane Antigen Positron Emission Tomography/Computed Tomography on Prostate Cancer Salvage *_Radiotherapy_* Management: Results from a Prospective Multicenter Randomized Phase 3 Trial (PSMA-SRT NCT03582774)" [Eur Urol. 86(1) (2024) 52-60].>
+      번 : 전립선 암 구제 방사선 요법 관리에 대한 전립선-특이 적 막 양전자 단층 촬영/컴퓨터 단층 촬영의 영향 : 예비 다기관 무작위 3 상 시험 (PSMA-SRT NCT03582774)에 대한 상관 관계. [EUR UROL.86 (1) (2024) 52-60].
+      저널 : Eur Urol (IF 20.1)    E-PUB : 2025 Jan

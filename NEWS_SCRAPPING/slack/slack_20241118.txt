@@ -1,0 +1,34 @@
+:large_blue_circle:*2024. 11.18.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<http://m.yakup.com/news/index.html?mode=view&nid=301998|엘렉타, 방사선 암 치료 선형가속기 서울대병원 설치>*  @약업신문  5일 전
+🔸 *<https://www.mk.co.kr/news/it/11166227|'꿈의 암 정복' 중입자치료 日 명의 초청 26일 세미나>*  @매일경제  5일 전
+🔸 *<https://www.nature.com/articles/s41598-024-79187-4|Optimizing focused very-high-energy electron beams for radiation therapy based on Monte Carlo simulation>*  @Nature  6일 전
+🔸 *<https://www.chinadaily.com.cn/a/202411/14/WS6735b836a310f1265a1cd645.html|Chinese energy company advances cancer treatment with proton therapy>*  @China Daily  3일 전
+🔸 *<https://www.globenewswire.com/news-release/2024/11/11/2978420/0/en/Radiation-Oncology-Market-Size-to-Hit-USD-28-07-Billion-by-2033-Straits-Research.html|Radiation Oncology Market Size to Hit USD 28.07 Billion by 2033 | Straits Research>*  @GlobeNewswire  6일 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.medifonews.com/news/article.html?no=197147|고대의료원, 파마라로보틱스와 ‘주사제 자동조제로봇 상용화’ MOU 체결>*  @메디포뉴스  2일 전
+🔸 *<https://www.joongang.co.kr/article/25291308|[2024 대한민국 하이스트 브랜드] 고난도 이식·로봇수술 등 세계 최고의 의료기술 보유>*  @중앙일보  6일 전
+🔸 *<https://www.medipana.com/article/view.php?news_idx=333732|서울성모병원, 외과 로봇수술 4000례 달성>*  @메디파나 뉴스  5일 전
+🔸 *<https://www.pharmnews.com/news/articleView.html?idxno=254106|힘찬병원, 자체 개발 로봇인공관절 수술기구 효용성 담은 논문 발표>*  @팜뉴스  1일 전
+🔸 *<http://www.irobotnews.com/news/articleView.html?idxno=36697|ZAP 서지컬 시스템즈, 7800만달러 투자 유치>*  @로봇신문사  2일 전
+🔸 *<https://hub.jhu.edu/2024/11/11/surgery-robots-trained-with-videos/|Robot that watched surgery videos performs with skill of human doctor>*  @Johns Hopkins University  6일 전
+🔸 *<https://healthcare-in-europe.com/en/news/3d-robot-navigation-multi-site-medical-procedures.html|3D robot navigation could enable multi-site medical procedures>*  @healthcare-in-europe.com  6일 전
+🔸 *<https://blogs.nvidia.com/blog/japan-sovereign-ai-healthcare/|Japan Develops Next-Generation Drug Design, Healthcare Robotics and Digital Health Platforms>*  @NVIDIA Blog  4일 전
+🔸 *<https://www.lavanguardia.com/mediterranean/20241112/10100200/first-emergency-robot-operating-badalona-barcelona-spain-health-germans-trias-pujol-hospital-surgery.html|The first emergency robot is operating in Badalona>*  @La Vanguardia  5일 전
+🔸 *<https://newsroom.clevelandclinic.org/2024/11/13/cleveland-clinic-abu-dhabi-performs-uaes-first-robotic-mastectomy-in-an-effort-to-reduce-the-burden-of-breast-cancer-on-patients|Cleveland Clinic Abu Dhabi Performs UAE’s First Robotic Mastectomy>*  @Cleveland Clinic Newsroom  4일 전
+
+*<의료기기 인허가>*
+🔸 *<http://www.docdocdoc.co.kr/news/articleView.html?idxno=3022592|식약처 임상 통계 전문가가 에버트라이에 둥지를 튼 까닭>*  @청년의사  5일 전
+🔸 *<https://www.k-health.com/news/articleView.html?idxno=76023|고려대구로병원-헬프트라이알, 원활한 의료기기 임상 위한 MOU 체결>*  @헬스경향  4일 전
+🔸 *<https://www.yakup.com/news/?mode=view&cat=12&cat2=124&cat3=0&nid=302297|GN바디닥터, '심부열 발생 고주파 의료기' 3등급 의료기기 허가 획득>*  @약업신문  1일 전
+🔸 *<https://www.dementianews.co.kr/news/articleView.html?idxno=7592|FDA 인증 오해 말아야...‘허가’, ‘승인’, ‘등록’의 차이점>*  @디멘시아뉴스  2일 전
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=59101|아폴론, CES 2025 '디지털 헬스' 부문 혁신상 받아>*  @히트뉴스  4일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.businesspost.co.kr/BP?command=article_view&num=372795|한국투자 "파마리서치 의료기기 '리쥬란' 고성장 지속, 외형 성장에 보탬">*  @비즈니스포스트  3일 전
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=58951|'소형 혈액 진단 플랫폼' 컴파스, 22억 시드 투자 유치>*  @히트뉴스  6일 전
+🔸 *<https://www.medifonews.com/news/article.html?no=197030|블루엠텍, 디지털헬스케어 시너지 위해 엠디스퀘어에 투자>*  @메디포뉴스  4일 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2235269|일본 진단키트 시장, 경쟁 속 한국 기업 입지 주목>*  @의학신문  6일 전
+🔸 *<https://www.hankyung.com/article/2024111147805|반려동물 헬스케어 기업 바로펫(주), 블루포인트파트너스로부터 시드투자>*  @한국경제  6일 전

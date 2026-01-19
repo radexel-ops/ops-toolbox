@@ -1,0 +1,29 @@
+★2025. 3.19.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <http://www.docdocdoc.co.kr/news/articleView.html?idxno=3026717|단국대병원, 방사선 장비 'ZAP-X' 뇌수술 100례 달성>  @청년의사  18시간 전
+🔸 <https://tbrnewsmedia.com/tag/northwell-cancer-institute/|Northwell Cancer Institute>  @TBR News Media  14시간 전
+
+<로봇수술 관련 뉴스>
+🔸 <https://zdnet.co.kr/view/?no=20250319001453|"손·발 달린 AI"…엔비디아, 로봇·자율주행 위한 '물리 AI' 본격화>  @지디넷코리아  3시간 전
+🔸 <http://www.hitnews.co.kr/news/articleView.html?idxno=62608|SG헬스케어, 청담해리슨병원과 AI 재활로봇 MOU 체결>  @히트뉴스  11시간 전
+🔸 <http://www.bosa.co.kr/news/articleView.html?idxno=2244265|고대안암병원, AI기반 신장결석 수술로봇 ‘자메닉스’ 도입>  @의학신문  16시간 전
+🔸 <https://www.healthinnews.co.kr/view.php?ud=202503181412533296aa9cc43d0_48|고려대학교 안산병원, 단일공 GOSTA 로봇수술 에피센터로 지정>  @헬스인뉴스  18시간 전
+🔸 <https://www.ccdailynews.com/news/articleView.html?idxno=2331290|건양대병원 비뇨의학과, 로봇수술 500례 돌파… 중부권 최다 실적 달성>  @충청일보  14시간 전
+🔸 <https://www.koreabiomed.com/news/articleView.html?idxno=26952|Korea University Anam Hospital adopts Roen Surgical’s AI-powered kidney stone surgery robot>  @KBR  17시간 전
+🔸 <https://www.witn.com/2025/03/18/ecu-health-performs-first-pediatric-robotic-surgery/|ECU Health performs first pediatric robotic surgery>  @WITN  18분 전
+🔸 <https://www.businesswire.com/news/home/20250318530069/en/Neptune-Medical-to-Advance-GI-Robotics-with-NVIDIA-Isaac-for-Healthcare|Neptune Medical to Advance GI Robotics with NVIDIA Isaac for Healthcare>  @Business Wire  3시간 전
+🔸 <http://www.msn.com/en-za/news/other/can-we-sue-robots-for-mistakes-free-state-hospital-to-introduce-robotics-technology-sa-divided/ar-AA1B9j6Q?apiversion=v2&noservercache=1&domshim=1&renderwebcomponents=1&wcseo=1&batchservertelemetry=1&noservertelemetry=1|"Can we sue robots for mistakes?": Free State Hospital to introduce Robotics Technology, SA divided>  @MSN  9시간 전
+
+<의료기기 인허가>
+🔸 <https://www.etnews.com/20250318000449|제이앤피메디, KIMES 2025서 의료기기 임상 컨설팅 부스 운영>  @전자신문  15시간 전
+🔸 <http://www.surprisenews.kr/news/articleView.html?idxno=540223|경기도, 기업-병원 손잡고 의료기기 개발부터 수출까지 ‘이어달리기’ 지원>  @서프라이즈뉴스  36분 전
+🔸 <https://www.docdocdoc.co.kr/news/articleView.html?idxno=3026742|생성형 AI가 영상 판독 소견서까지 써주는 시대 열리나>  @청년의사  14시간 전
+🔸 <https://www.msn.com/ko-kr/health/other/%EB%8F%85%EA%B0%90%EC%B2%A0-%ED%95%9C%ED%83%95%EB%85%B8%EB%A0%B8%EB%82%98-%EB%AF%B8%ED%97%88%EA%B0%80-%EC%B2%B4%EC%98%A8%EA%B3%84-%EC%A0%9C%EC%A1%B0-%ED%8C%90%EB%A7%A4%EC%97%85%EC%B2%B4-%EC%A0%81%EB%B0%9C/ar-AA1wkSbL?apiversion=v2&noservercache=1&domshim=1&renderwebcomponents=1&wcseo=1&batchservertelemetry=1&noservertelemetry=1|독감철 한탕노렸나…'미허가 체온계' 제조·판매업체 적발>  @MSN  9시간 전
+
+<의료로봇/기기 업계 동향>
+🔸 <https://news.nate.com/view/20250319n04328?mid=n1101|700억 밸류 아이벡스, '고압산소' 안티에이징 시술 체험기>  @네이트 뉴스  6분 전
+🔸 <https://www.medipana.com/article/view.php?sch_menu=1&news_idx=338873|산업약사회, '선배들이 들려주는 약사 이야기 시즌3' 개최>  @메디파나 뉴스  11시간 전
+🔸 <https://www.kado.net/news/articleView.html?idxno=1299489|[인터뷰] “기업 맞춤형 다각적 지원책 추진…글로벌 경쟁력 강화”>  @강원도민일보  8시간 전
+🔸 <https://www.etnews.com/20250314000245|[지역경제 활력, 강소기업] 차경래 심비스타 대표 “의료시뮬레이터·의료로봇 개발 전문기업 발돋움”>  @전자신문  16시간 전
+🔸 <https://www.monews.co.kr/news/articleView.html?idxno=402948|GC녹십자 美관계사 큐레보, 시리즈B 투자 유치 성공>  @메디칼업저버  16시간 전

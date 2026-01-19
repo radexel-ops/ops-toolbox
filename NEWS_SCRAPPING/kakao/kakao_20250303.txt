@@ -1,0 +1,32 @@
+★2025. 3.3.
+
+<광자빔/양성자/중입자 치료기 관련 뉴스>
+🔸 <https://www.siemens-healthineers.com/en-my/radiotherapy/mri-for-rt/mrinsights-rt/blog/dedicated-mri-for-radiation-therapy|How a dedicated MRI resource can impact radiation therapy>  @Siemens Healthineers  3일 전
+🔸 <https://www.medtechdive.com/news/electa-ceo-gustaf-salford-stepping-down/741086/|Elekta CEO Gustaf Salford to leave after board sees need for new leader>  @MedTech Dive  3일 전
+🔸 <https://wvumedicine.org/news-feed/news-article/WVU-Medicine/Princeton-Community-Hospital/pch-unveils-state-of-the-art-radiation-therapy-technology-with-new-halcyon-linear-accelerator|PCH Unveils State-of-the-Art Radiation Therapy Technology with New Halcyon Linear Accelerator>  @WVU Medicine  4일 전
+
+<로봇수술 관련 뉴스>
+🔸 <https://biotimes.co.kr/news/articleView.html?idxno=19947|[인터뷰] 코넥티브, AI 기반 근골격계 의료 소프트웨어 및 수술 로봇기기 개발>  @바이오타임즈  2일 전
+🔸 <https://pharm.edaily.co.kr/News/Read?newsId=03293126642074456&mediaCodeNo=257|반도체 검사장비 회사가 만든 뇌수술로봇…고영 “연내 美서 직판 시작”>  @팜이데일리  4일 전
+🔸 <https://www.k-health.com/news/articleView.html?idxno=78693|“전이 갑상선암환자도 단일공 로봇수술로 흉터 걱정 無”>  @헬스경향  4일 전
+🔸 <https://www.docdocdoc.co.kr/news/articleView.html?idxno=3026128|광명21세기 병원, 높이확장형 케이지 활용 척추 로봇수술 성공>  @청년의사  6일 전
+🔸 <http://www.whosaeng.com/158933|의정부성모병원 이민호 교수, 두개저 수술에 로봇 적용 논문 출판>  @후생신보  5일 전
+🔸 <https://www.getnews.co.kr/news/articleView.html?idxno=809374|케이바이오솔루션, 수술용 로봇 의료기기 MDR 보완 제출 완료>  @글로벌경제신문사  2일 전
+🔸 <https://www.nature.com/articles/d42473-024-00347-1|Leading the way in medical technology>  @Nature  4일 전
+🔸 <https://www.fairfield.edu/news/2025/february/intuitive-surgical-industry-day.html|Biomedical Engineering Students Test-Drive Surgical Robot>  @Fairfield University  5일 전
+🔸 <https://www.reuters.com/technology/artificial-intelligence/ai-robots-may-hold-key-nursing-japans-ageing-population-2025-02-28/|AI robots may hold key to nursing Japan's ageing population>  @Reuters  2일 전
+🔸 <https://www.dlr.de/en/rm/transfer/success-stories/miro-innovation-lab|MIRO Innovation Lab>  @Deutsches Zentrum für Luft- und Raumfahrt (DLR)  4일 전
+
+<의료기기 인허가>
+🔸 <https://www.lexology.com/library/detail.aspx?g=9276b0d9-31a0-418c-a8fc-158de4761ab0|식약처, 세계 최초 생성형 인공지능 의료기기 허가·심사 가이드라인 발표>  @Lexology  3일 전
+🔸 <https://www.medifonews.com/news/article.html?no=200040|진단용 X-Ray장비, 방사선 영상장비 등 러시아 수출 상황허가 면제>  @메디포뉴스  5일 전
+🔸 <https://mpharm.edaily.co.kr/News/Read?newsId=02653526642074784&mediaCodeNo=257|동운아나텍, 침 이용 혈당측정기 디썰라이프 대규모 임상 돌입>  @팜이데일리  3일 전
+🔸 <https://www.hankyung.com/article/202502284979P|엔젠바이오, 대용량 암 정밀진단 NGS 패널 수출용 의료기기 허가 획득>  @한국경제  2일 전
+🔸 <http://www.docdocdoc.co.kr/news/articleView.html?idxno=3026093|제이앤피메디, 의료기기 사업 전담조직 구축>  @청년의사  5일 전
+
+<의료로봇/기기 업계 동향>
+🔸 <https://www.hkn24.com/news/articleView.html?idxno=343200|"사모펀드에 인수된 국내 의료기기 회사 잘 나가">  @헬스코리아뉴스  3일 전
+🔸 <https://pharm.edaily.co.kr/News/Read?newsId=03309526642074784&mediaCodeNo=257|레이와트, 85억원 시리즈A 투자 유치… "심혈관 OCT 글로벌시장 정조준">  @팜이데일리  3일 전
+🔸 <https://news.einfomax.co.kr/news/articleView.html?idxno=4344323|다올투자증권 "의료기기株 추천…올해 의료관광 레벨업">  @연합인포맥스  6일 전
+🔸 <https://www.medipana.com/article/view.php?news_idx=338075|의료기기조합 "K-의료기기 경쟁력 위한 전문가 양성·네트워크 강화">  @메디파나 뉴스  4일 전
+🔸 <https://www.chosun.com/economy/tech_it/2025/02/27/OZX7SEK7IJHNDBD5QWVNFMXFQI/|심혈관 영상진단 기술 스타트업 ‘레이와트’, 85억 투자 유치>  @조선일보  2일 전

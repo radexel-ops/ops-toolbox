@@ -1,0 +1,36 @@
+:large_blue_circle:*2024. 11.11.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<http://www.whosaeng.com/156248|삼성서울병원, 유럽 최정상 샤리테병원과 공동 심포지엄>*  @후생신보  6일 전
+🔸 *<https://www.news1.kr/local/gwangju-jeonnam/5590346|성가롤로병원 최첨단 방사선 암 치료기 '헬시온 4.0' 도입>*  @뉴스1  5일 전
+🔸 *<https://www.medipana.com/article/pop_print.php?news_idx=333344|메디파나 뉴스>*  @메디파나 뉴스  6일 전
+🔸 *<https://biz.chosun.com/science-chosun/technology/2024/11/08/3GNI5U5RIJASNIZZJBKC3ZS7OM/|암세포 저격수 돕는 스위스 ‘눈’…세계 두 번째로 한국에 설치 - 조선비즈>*  @Chosunbiz  2일 전
+🔸 *<https://www.chosun.com/english/industry-en/2024/11/08/EZPKX4UTCVG33J657ORXFKTMOM/|Swiss precision imaging device for cancer treatment ready for S. Korea trials>*  @조선일보  2일 전
+🔸 *<https://www.2minutemedicine.com/machine-learning-algorithm-shows-limited-capacity-for-reducing-health-spending-for-radiation-therapy-outpatients/|Machine learning algorithm shows limited capacity for reducing health spending for radiation therapy outpatients.>*  @2 Minute Medicine  5일 전
+🔸 *<https://www.chinadaily.com.cn/a/202411/07/WS672c5f2da310f1265a1cc0e7_2.html|Next-gen AI innovations highlighted at CIIE>*  @China Daily  3일 전
+🔸 *<https://www.jsonline.com/story/news/health/2024/11/10/froedtert-bringing-proton-therapy-to-cancer-patients-as-soon-as-august/76133667007/|Froedtert, Medical College on pace to be first to offer proton therapy in Wisconsin>*  @Milwaukee Journal Sentinel  2시간 전
+🔸 *<https://www.metrosouth.health.qld.gov.au/about-us/news/pa-hospital/gordons-generosity-leads-to-linear-innovation|Gordon’s generosity leads to linear innovation>*  @Metro South Health  3일 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.medifonews.com/news/article.html?no=196757|전북대병원, 재활의료 로봇 R&D·기술교류 협력 MOU 체결>*  @메디포뉴스  4일 전
+🔸 *<https://pharm.edaily.co.kr/News/Read?newsId=02788006639083096|로엔서지컬, 삼성서울병원에 AI 신장결석 수술로봇 자메닉스 공급>*  @팜이데일리  4일 전
+🔸 *<https://www.medipana.com/article/view.php?news_idx=333439|'다빈치 5', 한국서 전 세계 두 번째 출시…이유 있는 선택>*  @메디파나 뉴스  5일 전
+🔸 *<https://www.docdocdoc.co.kr/news/articleView.html?idxno=3022780|길병원, 로봇수술 2천례…"첨단 의료기기 적극 활용할 것">*  @청년의사  3일 전
+🔸 *<https://www.businesskorea.co.kr/news/articleView.html?idxno=228724|Roen Surgical Supplies AI Kidney Stone Surgery Robot to Samsung Medical Center>*  @Businesskorea  4일 전
+🔸 *<https://www.nature.com/articles/s41599-024-04028-8|Patient acceptance of medical service robots in the medical intelligence era: an empirical study based on an extended AI device use acceptance model>*  @Nature  3일 전
+🔸 *<https://hub.jhu.edu/2024/11/07/autonomous-robotic-surgery-briefing/|AI brings autonomous procedures closer, but surgeons still key>*  @Johns Hopkins University  3일 전
+🔸 *<https://www.globenewswire.com/news-release/2024/11/04/2974188/0/en/Global-Medical-Robots-Market-Projected-to-Reach-USD-57-0-Billion-by-2032-with-a-CAGR-of-16-06-SNS-Insider.html|Global Medical Robots Market Projected to Reach USD 57.0 Billion by 2032, with a CAGR of 16.06% - SNS Insider>*  @GlobeNewswire  6일 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.yakup.com/news/index.html?mode=view&pmode=&cat=12&cat2=&nid=301814&num_start=|디티앤씨알오, 코어라인소프트 AI 의료기기 'CE MDR Class llb' 인증 성공>*  @약업신문  3일 전
+🔸 *<https://www.monews.co.kr/news/articleView.html?idxno=400658|아비고 플러스 멀티 모달리티 가이던스 시스템 허가 획득>*  @메디칼업저버  2일 전
+🔸 *<http://www.doctorstimes.com/news/articleView.html?idxno=229797|AI 의료기기 허가···소아 폐렴 위험도 분석 소프트웨어 첫 승인>*  @의사신문  6일 전
+🔸 *<https://m.dailypharm.com/newsView.html?ID=317083|허가비 46배 올린 식약처, 예산안 '과소추계' 가능성>*  @데일리팜  5일 전
+🔸 *<https://www.hani.co.kr/arti/society/health/1166309.html|‘성장판을 깨우다’ 의료기기처럼 거짓 광고…155건 적발>*  @한겨레  3일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://m.dnews.co.kr/m_home/view.jsp?idxno=202411062137079980121|‘2024 KMDF 매칭데이’…유망 의료기기 기업의 투자 유치 촉진>*  @대한경제  4일 전
+🔸 *<https://m.edaily.co.kr/News/Read?newsId=01082406639083752&mediaCodeNo=257|‘신약 VS 의료기기’ 투자 어디가 유리할까>*  @이데일리  2일 전
+🔸 *<https://www.dailymedi.com/news/news_view.php?wr_id=918247|1조2000억 투입 '의료기기 연구개발' 속도>*  @데일리메디  3일 전
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=58866|아스테라시스, 증권신고서 제출…12월 상장 목표>*  @히트뉴스  3일 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2234764|베트남 의료기기 시장서 한국 수출 1위 달성, 그 배경은?>*  @의학신문  5일 전

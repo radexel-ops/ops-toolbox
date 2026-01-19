@@ -1,0 +1,32 @@
+:large_blue_circle:*2025. 6.3.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.ilyo.co.kr/?ac=article_view&entry_id=493506|부산 온병원, ‘라이낙’ 방사선 암 치료 2만 건 돌파>*  @일요신문  8시간 전
+🔸 *<https://www.msn.com/ko-kr/news/other/%EC%84%B8%EA%B3%84-%EB%AA%87%EA%B3%B3-%EC%97%86%EB%8A%94-%EC%A4%91%EC%9E%85%EC%9E%90-%EC%96%91%EC%84%B1%EC%9E%90%EC%B9%98%EB%A3%8C-5%EB%85%84-%EB%82%B4-%EC%A0%84%EA%B5%AD-8%EA%B3%B3%EC%97%90-%EB%93%A4%EC%96%B4%EC%84%A0%EB%8B%A4/ar-AA1FTgy2|세계 몇곳 없는 중입자·양성자치료…5년 내 전국 8곳에 들어선다>*  @MSN  15시간 전
+🔸 *<https://www.msn.com/ko-kr/news/other/%EC%9D%98%EB%A3%8C-%ED%83%84%EC%86%8C%EC%9E%85%EC%9E%90-%EB%A1%9C-%EC%95%94-%EC%A0%95%EC%A1%B0%EC%A4%80-%EC%A4%91%EC%9E%85%EC%9E%90%EC%B9%98%EB%A3%8C-%EC%95%94-%EC%B9%98%EB%A3%8C-%ED%8C%90-%EB%B0%94%EA%BE%BC%EB%8B%A4/ar-AA1FUm2Z|[의료] ‘탄소입자’로 암 정조준…중입자치료, 암 치료 판 바꾼다>*  @MSN  8시간 전
+🔸 *<https://news.cision.com/raysearch-laboratories/r/raysearch-to-present-advanced-software-innovations-for-particle-therapy-at-ptcog-63,c4157801|RaySearch to present advanced software innovations for particle therapy at PTCOG 63>*  @Cision News  12시간 전
+🔸 *<https://reference.medscape.com/viewarticle/rapid-recommendations-update-therapy-adult-diffuse-2025a1000cm5|Brain Tumors Clinical Practice Guidelines (2025)>*  @Medscape  6시간 전
+🔸 *<https://prioritymarketing.com/southwest-florida-proton-names-mark-artz-as-senior-director-of-proton-medical-physics/|Southwest Florida Proton names Mark Artz as senior director of proton medical physics>*  @Priority Marketing  8시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.medworld.co.kr/news/articleView.html?idxno=246959|부민병원 주관 로봇 인공관절수술 심포지엄 개최>*  @메드월드뉴스  9시간 전
+🔸 *<https://biz.chosun.com/stock/c-biz_bot/2025/06/02/ZQIOW7V54VF2VYH223IHBYDOMQ/|[강세 토픽] 수술용 로봇 테마, 고영 +3.92%, 큐렉소 +2.03%>*  @Chosunbiz  21시간 전
+🔸 *<https://www.globenewswire.com/news-release/2025/06/02/3092049/0/en/Patient-Transfer-Robot-Market-to-Reach-2-9-Billion-by-2034-Driven-by-9-2-CAGR-Exactitude-Consultancy.html|Patient Transfer Robot Market to Reach $2.9 Billion by 2034, Driven by 9.2% CAGR | Exactitude Consultancy>*  @GlobeNewswire  9시간 전
+🔸 *<https://www.therobotreport.com/jj-reports-positive-monarch-robotic-bronchoscopy-data/|J&J reports positive Monarch robotic bronchoscopy data>*  @The Robot Report  4시간 전
+🔸 *<https://www.eletimes.com/foxconn-taps-nvidia-to-accelerate-physical-and-digital-robotics-for-global-healthcare-industry|Foxconn Taps NVIDIA to Accelerate Physical and Digital Robotics for Global Healthcare Industry>*  @ELE Times  17시간 전
+🔸 *<https://www.fiercebiotech.com/special-reports/introducing-fierce-medtechs-fierce-15|Introducing Fierce Medtech's Fierce 15>*  @Fierce Biotech  16시간 전
+🔸 *<https://www.modernhealthcare.com/providers/advocate-health-innovation-district-the-pearl|Advocate Health CEO: New innovation district grows system's reach>*  @Modern Healthcare  6시간 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.businesspost.co.kr/BP?command=article_view&num=397707|'디지털 치료제' 제도는 갖췄지만, 최대 20배 차이나는 비급여 장벽은?>*  @비즈니스포스트  2시간 전
+🔸 *<https://www.k-health.com/news/articleView.html?idxno=81701|공산품인 ‘바늘 없는 주사기’로 의료행위…피해는 오롯이 환자 몫>*  @헬스경향  18시간 전
+🔸 *<https://www.biotimes.co.kr/news/articleView.html?idxno=21804|아이넥스코퍼레이션, AI 내시경 진단 보조 소프트웨어 싱가포르 의료기기 인허가 획득>*  @바이오타임즈  15시간 전
+🔸 *<https://www.rapportian.com/news/articleView.html?idxno=222060|시안솔루션, ‘구강악안면 고정용 판’ 식약처 허가 획득>*  @라포르시안  21시간 전
+🔸 *<https://www.dttoday.com/news/articleView.html?idxno=95188|치산협 ‘글로벌 시장 인허가 전략’ 민-관 해법 모색>*  @덴탈투데이  22시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://wowtale.net/2025/06/02/241915/|체외진단 기기 개발 ‘스몰머신즈’, 시리즈A 브릿지 투자 유치>*  @와우테일  18시간 전
+🔸 *<https://www.gwnews.org/news/articleView.html?idxno=257354|강원자치도, 글로벌 수출지원단 일본 파견 대성공... 의료기기 상생발전 업무협약 체결로 도내기업 일본 진출 기회 확대>*  @강원신문  18시간 전
+🔸 *<https://www.wonjutoday.co.kr/news/curationView.html?idxno=204898|친환경 디지털헬스케어산업 지원센터, 이달 착공>*  @원주투데이  22시간 전
+🔸 *<https://www.hitnews.co.kr/news/articleView.html?idxno=65213|씨젠, 스페인 카탈루냐주와 사업 협력 강화 논의>*  @히트뉴스  20시간 전
+🔸 *<https://www.press9.kr/news/articleView.html?idxno=64137|[중국 ETF]미래에셋자산운용, 'TIGER 차이나테크TOP10' ETF…본토 상장 기업까지 편입>*  @PRESS9  17시간 전

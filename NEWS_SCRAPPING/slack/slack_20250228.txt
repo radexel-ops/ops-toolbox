@@ -1,0 +1,31 @@
+:large_blue_circle:*2025. 2.28.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.medtechdive.com/news/electa-ceo-gustaf-salford-stepping-down/741086/|Elekta CEO Gustaf Salford to leave after board sees need for new leader>*  @MedTech Dive  2시간 전
+🔸 *<https://www.siemens-healthineers.com/en-my/radiotherapy/mri-for-rt/mrinsights-rt/blog/dedicated-mri-for-radiation-therapy|How a dedicated MRI resource can impact radiation therapy>*  @Siemens Healthineers  20시간 전
+🔸 *<https://www.lootpress.com/pch-unveils-state-of-the-art-radiation-therapy-technology-with-new-halcyon-linear-accelerator/|PCH Unveils State-of-the-Art Radiation Therapy Technology with New Halcyon Linear Accelerator>*  @Lootpress  11시간 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://www.dongascience.com/news.php?idx=70275|XR·로봇 '안성맞춤' 차세대 이미지 센서 개발>*  @동아사이언스  20시간 전
+🔸 *<https://www.edaily.co.kr/News/Read?newsId=01095526642074784&mediaCodeNo=257|반도체 검사장비 회사가 만든 뇌수술로봇…고영 “연내 美서 직판 시작”>*  @이데일리  19시간 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2242877|세계 최대 의료산업 플랫폼 ‘메디카’, KIMES 2025 참가>*  @의학신문  23시간 전
+🔸 *<http://www.weschoolnews.com/news/239235|[장기초] 로봇의 사용 분야가 점점 더 늘고 있다.>*  @우리학교신문  19시간 전
+🔸 *<https://biz.chosun.com/stock/c-biz_bot/2025/02/27/4SSFXEYNI7E3WF7QKCWVFIXF24/|[강세 토픽] 서비스용 로봇 테마, 클로봇 +9.17%, 미래컴퍼니 +7.33% - 조선비즈>*  @Chosunbiz  23시간 전
+🔸 *<https://www.va.gov/columbia-south-carolina-health-care/stories/cvahcs-now-offers-robotic-gynecological-surgery/|CVAHCS now offers robotic gynecological surgery | VA Columbia South Carolina health care | Veterans Affairs>*  @VA.gov Home | Veterans Affairs  57분 전
+🔸 *<https://consultqd.clevelandclinic.org/precision-and-progress-two-first-of-their-kind-robotic-assisted-lymphatic-surgeries|Precision and Progress: Two First-of-Their-Kind Robotic-Assisted Lymphatic Surgeries>*  @Cleveland Clinic  17시간 전
+🔸 *<https://thedefensepost.com/2025/02/27/china-robot-dogs-weapon/|China Mulls Arming Robot Dogs With Controversial Weapon: Report>*  @The Defense Post  10시간 전
+🔸 *<https://www.biospectrumindia.com/news/90/25749/vydehi-institute-of-medical-sciences-and-research-centre-and-intuitive-collaborate-to-expand-access-to-robotic-assisted-surgery.html|Vydehi Institute of Medical Sciences and Research Centre and Intuitive collaborate to expand access to robotic-assisted surgery>*  @BioSpectrum India  13시간 전
+
+*<의료기기 인허가>*
+🔸 *<https://www.lexology.com/library/detail.aspx?g=9276b0d9-31a0-418c-a8fc-158de4761ab0|식약처, 세계 최초 생성형 인공지능 의료기기 허가·심사 가이드라인 발표>*  @Lexology  10시간 전
+🔸 *<https://www.newsthevoice.com/news/articleView.html?idxno=41383|IMDRF 임상평가보고서 도입..."또다른 규제냐 국제조화냐">*  @뉴스더보이스헬스케어  1시간 전
+🔸 *<http://www.dhns.co.kr/news/articleView.html?idxno=349869|현장과 소통하는 2025년 의료기기 허가심사 정책설명회 개최>*  @일간대한뉴스  8시간 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2242967|레이저옵텍, ‘피콜로프리미엄’ 레이저 일본 진출>*  @의학신문  2시간 전
+🔸 *<https://pharm.edaily.co.kr/News/Read?newsId=02653526642074784|동운아나텍, 침 이용 혈당측정기 디썰라이프 대규모 임상 돌입>*  @팜이데일리  23시간 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<https://www.hkn24.com/news/articleView.html?idxno=343200|"사모펀드에 인수된 국내 의료기기 회사 잘 나가">*  @헬스코리아뉴스  15시간 전
+🔸 *<https://www.chosun.com/economy/tech_it/2025/02/27/OZX7SEK7IJHNDBD5QWVNFMXFQI/|심혈관 영상진단 기술 스타트업 ‘레이와트’, 85억 투자 유치>*  @조선일보  14시간 전
+🔸 *<https://pharm.edaily.co.kr/News/Read?newsId=03309526642074784&mediaCodeNo=257|레이와트, 85억원 시리즈A 투자 유치… "심혈관 OCT 글로벌시장 정조준">*  @팜이데일리  22시간 전
+🔸 *<https://zdnet.co.kr/view/?no=20250227111308|"K-의료기기, 핵심 산업으로 성장하자”>*  @지디넷코리아  21시간 전
+🔸 *<https://www.s-journal.co.kr/news/articleView.html?idxno=27250|킨텍스, ‘K-뷰티엑스포·의료기기 전시회’ 참가기업 모집>*  @S-저널  16시간 전

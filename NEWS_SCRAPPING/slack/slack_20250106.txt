@@ -1,0 +1,33 @@
+:large_blue_circle:*2025. 1.6.*
+
+*<광자빔/양성자/중입자 치료기 관련 뉴스>*
+🔸 *<https://www.chosun.com/economy/science/2025/01/03/PV7YOJSYR2X2NG55PL2BOLHXVU/|대형병원서 방사선 피폭 사건 발생…원안위 “사건 조사 착수”>*  @조선일보  2일 전
+🔸 *<https://www.dailymedi.com/news/news_view.php?wr_id=920278|아주대의료원 "양성자 치료기 도입 검토">*  @데일리메디  3일 전
+🔸 *<https://www.koreahealthlog.com/news/articleView.html?idxno=49825|[KLCA의 간암 인사이트] 더욱 정밀화되는 '간암 방사선치료'>*  @코리아헬스로그  5일 전
+🔸 *<https://www.gulfshorebusiness.com/cutting-edge-cancer-treatment-coming-to-swfl/|Cutting-edge cancer treatment coming to SWFL>*  @Gulfshore Business  4일 전
+🔸 *<https://community.triblive.com/news/3702955|AHN Cancer Institute Hempfield moves radiation services to Monroeville>*  @TribLIVE.com  5일 전
+
+*<로봇수술 관련 뉴스>*
+🔸 *<https://zdnet.co.kr/view/?no=20250102100154|"방사선 암치료기·로봇수술기 도입…첨단 의료기술 확대할 것”>*  @지디넷코리아  3일 전
+🔸 *<http://www.irobotnews.com/news/articleView.html?idxno=37158|美 존스홉킨스-스탠포드대, 수술 영상 보고 학습하는 로봇 기술 개발>*  @로봇신문사  5일 전
+🔸 *<https://m.edaily.co.kr/News/Read?newsId=01341526642033456&mediaCodeNo=257|[굿클리닉] 고난도 중증질환도 '로봇수술'로 '척척'>*  @이데일리  5일 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2239218|포항세명기독병원, 고난이도 로봇전립선절제술 성공>*  @의학신문  6일 전
+🔸 *<https://www.hani.co.kr/arti/international/international_general/1176415.html|베이징서 2600㎞ 떨어진 환자 원격 수술 성공>*  @한겨레  15시간 전
+🔸 *<https://www.koreatimes.co.kr/www/tech/2024/12/129_389469.html|Samsung Electronics accelerates robotics business>*  @KoreaTimes  5일 전
+🔸 *<https://www.tech42.co.kr/ai-%EC%9E%90%EC%9C%A8-%EC%88%98%EC%88%A0-%EB%A1%9C%EB%B4%87-%ED%98%84%EC%8B%A4%EB%A1%9C-%EB%8B%A4%EA%B0%80%EC%98%A4%EB%82%98-%EB%8C%80%ED%95%99%EC%97%B0%EA%B5%AC%EC%A7%84-%ED%9B%88%EB%A0%A8/|AI 자율 수술 로봇, 현실로 다가오나...대학연구진, 훈련 모델 개발>*  @테크42  6일 전
+🔸 *<https://etedge-insights.com/technology/artificial-intelligence/artificial-intelligence-and-robotics-redefining-global-eye-care/|Artificial intelligence and robotics redefining global eye-care - ET Edge Insights>*  @ET Edge Insights  4일 전
+🔸 *<https://www.washingtonpost.com/science/2024/12/22/robots-learn-surgical-tasks/|In a first, surgical robots learned tasks by watching videos>*  @Washington Post  6일 전
+
+*<의료기기 인허가>*
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=60458|의료기기 허가 신청 시 생물학적 안전성시험 면제 대상 확대>*  @히트뉴스  6일 전
+🔸 *<https://pharm.edaily.co.kr/News/Read?newsId=02253366642033784|HLB생명과학 일회용주사기, FDA 시판허가>*  @팜이데일리  3일 전
+🔸 *<https://www.sedaily.com/NewsView/2GNJD39CS8|임상서 제조·AS까지…디지털 헬스 시장 2배 키운다>*  @서울경제  3일 전
+🔸 *<https://www.hankyung.com/article/202501022170L|드림씨아이에스 수주공시 - 의료기기 인허가 및 임상시험 위수탁 계약 90.9억원 (매출액대비 19.00 %)>*  @한국경제  3일 전
+🔸 *<https://www.ibabynews.com/news/articleView.html?idxno=125025|엘라스틱랩, 인도네시아 의료기기 및 화장품 인허가 서비스 개시>*  @베이비뉴스  3일 전
+
+*<의료로봇/기기 업계 동향>*
+🔸 *<http://www.hitnews.co.kr/news/articleView.html?idxno=60505|의료기기산업협회, 2024 의료기기 시장 정보 '한 눈에'>*  @히트뉴스  5일 전
+🔸 *<https://www.biztribune.co.kr/news/articleView.html?idxno=327856|의료기기 최선호주는? 클래시스 휴젤 - 다올투자>*  @비즈트리뷴  1일 전
+🔸 *<http://www.doctorstimes.com/news/articleView.html?idxno=230698|[의료기기업계 소식] 12월 30일>*  @의사신문  6일 전
+🔸 *<https://medifonews.com/news/article.html?no=198757|원텍, UAE 의료기기 인증 6종 획득…글로벌 시장 확대 가속화>*  @메디포뉴스  2일 전
+🔸 *<http://www.bosa.co.kr/news/articleView.html?idxno=2239480|DHP 포트폴리오 스타트업 5개사 CES 2025 참여>*  @의학신문  2일 전

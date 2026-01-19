@@ -1,0 +1,6 @@
+
+
+*:large_blue_circle: PUB MED 신규 논문 (2025.4.7. ~ 2025.4.7)*
+🔸 <https://pubmed.ncbi.nlm.nih.gov/40189717/|Comment on: "The environmental impact of multi-specialty *_robotic_*-assisted *_surgery_*: a waste audit analysis".>
+      번 : "다중 전문 로봇 보조 수술의 환경 영향 : 폐기물 감사 분석".
+      저널 : J Robot Surg (IF 1.88)    E-PUB : 2025 Apr 7
