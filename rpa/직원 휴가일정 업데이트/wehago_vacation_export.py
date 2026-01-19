@@ -5,7 +5,9 @@ from pathlib import Path
 import shutil
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).resolve().parent.parent.parent / '.env')
+_root = Path(__file__).resolve().parent.parent.parent
+load_dotenv(_root / '.env.shared')
+load_dotenv(_root / '.env.local', override=True)
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By

@@ -7,7 +7,9 @@ import sys
 import subprocess
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).resolve().parent.parent.parent / '.env')
+_root = Path(__file__).resolve().parent.parent.parent
+load_dotenv(_root / '.env.shared')
+load_dotenv(_root / '.env.local', override=True)
 
 def send_message_to_slack(channel_id, message, token):
     client = WebClient(token=token)

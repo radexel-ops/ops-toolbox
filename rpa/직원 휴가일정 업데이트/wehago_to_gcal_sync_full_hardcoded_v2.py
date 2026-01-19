@@ -18,7 +18,9 @@ from pathlib import Path
 from typing import Dict, List, Tuple, Optional, Iterable
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).resolve().parent.parent.parent / '.env')
+_root = Path(__file__).resolve().parent.parent.parent
+load_dotenv(_root / '.env.shared')
+load_dotenv(_root / '.env.local', override=True)
 
 from zoneinfo import ZoneInfo
 

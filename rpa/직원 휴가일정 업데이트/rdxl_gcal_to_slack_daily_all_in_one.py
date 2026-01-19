@@ -30,7 +30,9 @@ from typing import Dict, List, Tuple
 from zoneinfo import ZoneInfo
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).resolve().parent.parent.parent / '.env')
+_root = Path(__file__).resolve().parent.parent.parent
+load_dotenv(_root / '.env.shared')
+load_dotenv(_root / '.env.local', override=True)
 
 import requests
 from googleapiclient.discovery import build

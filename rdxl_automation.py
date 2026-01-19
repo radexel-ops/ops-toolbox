@@ -7,7 +7,9 @@ import json, urllib.request
 from dotenv import load_dotenv
 
 BASE = Path(__file__).resolve().parent
-load_dotenv(BASE / '.env')
+# 팀 공용 설정 먼저 로드, 개인 설정으로 덮어쓰기
+load_dotenv(BASE / '.env.shared')
+load_dotenv(BASE / '.env.local', override=True)
 
 # ── Slack 설정 (환경변수에서 로드) ──
 SLACK_TOKEN = os.getenv("SLACK_TOKEN", "")
