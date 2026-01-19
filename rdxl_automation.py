@@ -4,8 +4,10 @@ from pathlib import Path
 from datetime import datetime
 import time
 import json, urllib.request
+from dotenv import load_dotenv
 
 BASE = Path(__file__).resolve().parent
+load_dotenv(BASE / '.env')
 
 # ── Slack 설정 (환경변수에서 로드) ──
 SLACK_TOKEN = os.getenv("SLACK_TOKEN", "")
@@ -13,12 +15,12 @@ SLACK_CHANNEL = os.getenv("SLACK_CHANNEL", "C08V9CA0UPM")
 
 def run_vacation_run_all():
     print("휴가 자동 업데이트 시작")
-    script = BASE / '직원 휴가일정 업데이트' / 'vacation_run_all.py'
+    script = BASE / 'rpa' / '직원 휴가일정 업데이트' / 'vacation_run_all.py'
     subprocess.run([sys.executable, str(script)], cwd=str(script.parent))
 
 def run_news_bot():
     print("Running news_bot_suhyun for slack.py")
-    script = BASE / 'NEWS_SCRAPPING' / 'news_bot_suhyun for slack.py'
+    script = BASE / 'rpa' / 'NEWS_SCRAPPING' / 'news_bot_suhyun for slack.py'
     subprocess.run([sys.executable, str(script)], cwd=str(script.parent))
 
 def send_heartbeat():
