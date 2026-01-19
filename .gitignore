@@ -48,6 +48,11 @@ temp/
 temp_workspace/
 tmp/
 
+# Debug files
+**/debug/
+**/debug_files/
+**/debug_files_v2/
+
 # OS files
 .DS_Store
 Thumbs.db
