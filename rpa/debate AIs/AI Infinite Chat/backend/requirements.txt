@@ -1,0 +1,33 @@
+# FastAPI & Server
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+websockets>=12.0
+
+# AI APIs
+openai>=1.0.0
+anthropic>=0.18.0
+google-generativeai>=0.8.0
+
+# Configuration
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# File handling
+python-multipart>=0.0.6
+aiofiles>=23.2.0
+PyPDF2>=3.0.0
+python-docx>=1.1.0  # Word (.docx) 텍스트 추출
+openpyxl>=3.1.0     # Excel (.xlsx) 텍스트 추출
+olefile>=0.46       # HWP 파일 텍스트 추출
+python-pptx>=1.0.0  # PowerPoint (.pptx) 텍스트 추출
+xlrd>=2.0.0         # 구형 Excel (.xls) 텍스트 추출
+odfpy>=1.4.0        # OpenDocument (.odt, .ods, .odp) 텍스트 추출
+striprtf>=0.0.26    # RTF 텍스트 추출
+
+# Utilities
+httpx>=0.26.0
+tiktoken>=0.5.0
+
+# Web Search
+duckduckgo-search>=6.0.0  # 무료 웹 검색 (API 키 불필요)

@@ -1,0 +1,30 @@
+# Environment Variables (API keys - DO NOT UPLOAD)
+.env
+.env.local
+.env.*.local
+
+# Keep example files
+!.env.example
+!.env.*.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node.js
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+
+# Logs & Test
+*.log
+test_results/
+uploads/
+
+# OS
+.DS_Store
+Thumbs.db

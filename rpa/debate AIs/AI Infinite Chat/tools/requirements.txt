@@ -1,0 +1,2 @@
+# AI Infinite Chat - 디버깅 도구 의존성
+playwright>=1.40.0

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>AI Debate Log</title>
+  <style>
+        :root {
+            --user-bg: #e3f2fd;
+            --user-border: #2196f3;
+            --gemini-bg: #fff3e0;
+            --gemini-border: #ff9800;
+            --gpt-bg: #e8f5e9;
+            --gpt-border: #4caf50;
+            --system-bg: #f5f5f5;
+            --system-border: #9e9e9e;
+            --consensus-bg: #fce4ec;
+            --consensus-border: #e91e63;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 1.8em;
+        }
+
+        .header .session-info {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message {
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .message.user {
+            background-color: var(--user-bg);
+            border-left: 5px solid var(--user-border);
+            margin-right: 50px;
+        }
+
+        .message.gemini {
+            background-color: var(--gemini-bg);
+            border-left: 5px solid var(--gemini-border);
+            margin-left: 30px;
+            margin-right: 20px;
+        }
+
+        .message.gpt {
+            background-color: var(--gpt-bg);
+            border-left: 5px solid var(--gpt-border);
+            margin-left: 20px;
+            margin-right: 30px;
+        }
+
+        .message.system {
+            background-color: var(--system-bg);
+            border-left: 5px solid var(--system-border);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .message.consensus {
+            background-color: var(--consensus-bg);
+            border: 3px solid var(--consensus-border);
+            margin: 30px 0;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .message-role {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .message-role.user { color: #1565c0; }
+        .message-role.gemini { color: #e65100; }
+        .message-role.gpt { color: #2e7d32; }
+
+        .message-model {
+            font-size: 0.85em;
+            color: #666;
+            background: rgba(0,0,0,0.05);
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+
+        .message-time {
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        .message-content {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .message-content p {
+            margin: 0.5em 0;
+        }
+
+        .message-content pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+
+        .message-content code {
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        .message-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .files-list {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .files-list::before {
+            content: "📎 첨부파일: ";
+            font-weight: bold;
+        }
+
+        .consensus-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #e91e63, #f06292);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider span {
+            background: #f8f9fa;
+            padding: 0 20px;
+            position: relative;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            color: #888;
+            font-size: 0.85em;
+            border-top: 1px solid #ddd;
+        }
+
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite { background: #272822; color: #F8F8F2 }
+.codehilite .c { color: #959077 } /* Comment */
+.codehilite .err { color: #ED007E; background-color: #1E0010 } /* Error */
+.codehilite .esc { color: #F8F8F2 } /* Escape */
+.codehilite .g { color: #F8F8F2 } /* Generic */
+.codehilite .k { color: #66D9EF } /* Keyword */
+.codehilite .l { color: #AE81FF } /* Literal */
+.codehilite .n { color: #F8F8F2 } /* Name */
+.codehilite .o { color: #FF4689 } /* Operator */
+.codehilite .x { color: #F8F8F2 } /* Other */
+.codehilite .p { color: #F8F8F2 } /* Punctuation */
+.codehilite .ch { color: #959077 } /* Comment.Hashbang */
+.codehilite .cm { color: #959077 } /* Comment.Multiline */
+.codehilite .cp { color: #959077 } /* Comment.Preproc */
+.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #959077 } /* Comment.Single */
+.codehilite .cs { color: #959077 } /* Comment.Special */
+.codehilite .gd { color: #FF4689 } /* Generic.Deleted */
+.codehilite .ge { color: #F8F8F2; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #F8F8F2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.codehilite .gr { color: #F8F8F2 } /* Generic.Error */
+.codehilite .gh { color: #F8F8F2 } /* Generic.Heading */
+.codehilite .gi { color: #A6E22E } /* Generic.Inserted */
+.codehilite .go { color: #66D9EF } /* Generic.Output */
+.codehilite .gp { color: #FF4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #F8F8F2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gt { color: #F8F8F2 } /* Generic.Traceback */
+.codehilite .kc { color: #66D9EF } /* Keyword.Constant */
+.codehilite .kd { color: #66D9EF } /* Keyword.Declaration */
+.codehilite .kn { color: #FF4689 } /* Keyword.Namespace */
+.codehilite .kp { color: #66D9EF } /* Keyword.Pseudo */
+.codehilite .kr { color: #66D9EF } /* Keyword.Reserved */
+.codehilite .kt { color: #66D9EF } /* Keyword.Type */
+.codehilite .ld { color: #E6DB74 } /* Literal.Date */
+.codehilite .m { color: #AE81FF } /* Literal.Number */
+.codehilite .s { color: #E6DB74 } /* Literal.String */
+.codehilite .na { color: #A6E22E } /* Name.Attribute */
+.codehilite .nb { color: #F8F8F2 } /* Name.Builtin */
+.codehilite .nc { color: #A6E22E } /* Name.Class */
+.codehilite .no { color: #66D9EF } /* Name.Constant */
+.codehilite .nd { color: #A6E22E } /* Name.Decorator */
+.codehilite .ni { color: #F8F8F2 } /* Name.Entity */
+.codehilite .ne { color: #A6E22E } /* Name.Exception */
+.codehilite .nf { color: #A6E22E } /* Name.Function */
+.codehilite .nl { color: #F8F8F2 } /* Name.Label */
+.codehilite .nn { color: #F8F8F2 } /* Name.Namespace */
+.codehilite .nx { color: #A6E22E } /* Name.Other */
+.codehilite .py { color: #F8F8F2 } /* Name.Property */
+.codehilite .nt { color: #FF4689 } /* Name.Tag */
+.codehilite .nv { color: #F8F8F2 } /* Name.Variable */
+.codehilite .ow { color: #FF4689 } /* Operator.Word */
+.codehilite .pm { color: #F8F8F2 } /* Punctuation.Marker */
+.codehilite .w { color: #F8F8F2 } /* Text.Whitespace */
+.codehilite .mb { color: #AE81FF } /* Literal.Number.Bin */
+.codehilite .mf { color: #AE81FF } /* Literal.Number.Float */
+.codehilite .mh { color: #AE81FF } /* Literal.Number.Hex */
+.codehilite .mi { color: #AE81FF } /* Literal.Number.Integer */
+.codehilite .mo { color: #AE81FF } /* Literal.Number.Oct */
+.codehilite .sa { color: #E6DB74 } /* Literal.String.Affix */
+.codehilite .sb { color: #E6DB74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #E6DB74 } /* Literal.String.Char */
+.codehilite .dl { color: #E6DB74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #E6DB74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #E6DB74 } /* Literal.String.Double */
+.codehilite .se { color: #AE81FF } /* Literal.String.Escape */
+.codehilite .sh { color: #E6DB74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #E6DB74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #E6DB74 } /* Literal.String.Other */
+.codehilite .sr { color: #E6DB74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #E6DB74 } /* Literal.String.Single */
+.codehilite .ss { color: #E6DB74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #F8F8F2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #A6E22E } /* Name.Function.Magic */
+.codehilite .vc { color: #F8F8F2 } /* Name.Variable.Class */
+.codehilite .vg { color: #F8F8F2 } /* Name.Variable.Global */
+.codehilite .vi { color: #F8F8F2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #F8F8F2 } /* Name.Variable.Magic */
+.codehilite .il { color: #AE81FF } /* Literal.Number.Integer.Long */
+        </style>
+</head>
+<body>
+  <div class='header'>
+    <h1>AI Debate System - 토론 기록</h1>
+    <div class='session-info'>
+      <div>시작 시간: 2026-01-14 03:17:08</div>
+      <div>Gemini: Gemini 2.0 Flash | GPT: GPT-5.2</div>
+      <div>첨부파일: RADEXEL_IR_251222_1 (1).pdf, 라덱셀 정보.txt</div>
+    </div>
+  </div>
+  <div class='chat-container'>
+    <div class='message user'>
+      <div class='message-header'>
+        <span class='message-role user'>USER</span>
+        <span class='message-model'>Human</span>
+        <span class='message-time'>03:19:42</span>
+      </div>
+      <div class='message-content'><p>[2026년 01월 14일] 다음 내용에 대해서 팩트체크 하고, 우리회사가 기술보증기금이나 신용보증기금의 보증을 받고 차입이 가능한지 검토. 정보가 부족한 경우, 요건을 충족한다 치고 가능한방안을 말해주면 되고, 어떤 정보가 더 있으면 확실한지 등도 알려주면 좋겠어. - 자금 차입 가능성 - 개략적 내용. 팔로업 스터디 필요함.</p></div>
+      <div class='files-list'>RADEXEL_IR_251222_1 (1).pdf, 라덱셀 정보.txt</div>
+    </div>
+    <div class='message gemini'>
+      <div class='message-header'>
+        <span class='message-role gemini'>GEMINI</span>
+        <span class='message-model'>Gemini 2.0 Flash</span>
+        <span class='message-time'>03:20:09</span>
+      </div>
+      <div class='message-content'><h3>[팩트체크 및 검증]</h3>
+<ul>
+<li><strong>상대방 주장 요약</strong>: (첫 발언입니다)</li>
+<li><strong>시의성 검증</strong>: (검증 결과 문제없음)</li>
+<li><strong>논리적 검증</strong>: (검증 결과 문제없음)</li>
+<li><strong>사실 검증</strong>: (검증 결과 문제없음)</li>
+</ul>
+<h3>[나의 의견 및 개선안]</h3>
+<p>GPT, 안녕하세요. 사용자의 질문에 답변하기 위해 필요한 정보를 분석하고, 기술보증기금이나 신용보증기금의 보증을 받아 자금을 차입할 수 있는지 검토해 보겠습니다. 첨부된 파일을 분석한 결과를 바탕으로 답변을 구성하겠습니다.</p>
+<p><strong>1. 기술보증기금(기보) 보증을 통한 자금 차입 가능성 검토</strong></p>
+<ul>
+<li><strong>기술력 평가</strong>: 라덱셀의 MPRT 기술은 혁신성이 인정될 가능성이 높습니다. 기보의 기술평가보증은 기술력이 우수한 기업에 보증을 제공하므로, 기술력 입증이 중요합니다. 첨부된 IR 자료와 기술 정보 텍스트 파일을 바탕으로 기술성 평가에 필요한 자료를 준비해야 합니다. 특허, 기술 이전 계약, R&amp;D 성과 등이 중요한 평가 요소가 될 것입니다.</li>
+<li><strong>사업성 평가</strong>: 기보는 기술의 사업화 가능성도 중요하게 평가합니다. 라덱셀의 사업 모델은 기존 장비와의 호환성, 낮은 도입 비용, 높은 투자 수익률 등을 강점으로 내세우고 있습니다. 이러한 사업성이 기보의 평가 기준에 부합하는지 면밀히 검토해야 합니다. 시장 규모, 경쟁 현황, 매출 추정, 수익성 분석 등을 포함한 사업 계획서를 준비하는 것이 좋습니다.</li>
+<li><strong>담보력 및 재무 상태</strong>: 기보 보증은 담보력이 부족한 기업을 지원하는 제도이지만, 최소한의 자기 자본과 신용 상태가 필요합니다. 현재 라덱셀은 매출이 발생하기 전 단계이므로, 투자 유치 이력과 향후 자금 조달 계획을 통해 재무 안정성을 입증해야 합니다. 기보는 기업의 신용 등급, 부채 비율, 현금 흐름 등을 종합적으로 고려하여 보증 여부를 결정합니다.</li>
+</ul>
+<p><strong>2. 신용보증기금(신보) 보증을 통한 자금 차입 가능성 검토</strong></p>
+<ul>
+<li><strong>신용도 평가</strong>: 신보는 기업의 신용도를 중요하게 평가합니다. 라덱셀은 업력이 7년 차이므로, 신용 평가에 필요한 최소한의 실적과 신용 기록이 있어야 합니다. 신보는 기업의 재무 제표, 거래 실적, 경영진의 신용 등을 종합적으로 고려하여 신용 등급을 평가합니다.</li>
+<li><strong>보증 한도</strong>: 신보의 보증 한도는 기업의 신용 등급과 보증 상품에 따라 다릅니다. 라덱셀은 기술력이 우수한 스타트업이므로, 신보의 스타트업 특례 보증이나 기술 혁신 보증 등의 상품을 활용할 수 있습니다. 이러한 상품은 일반 보증보다 높은 보증 비율과 낮은 금리를 제공합니다.</li>
+<li><strong>보증 심사</strong>: 신보는 기업의 사업 계획, 기술력, 경영 능력, 재무 상태 등을 종합적으로 심사하여 보증 여부를 결정합니다. 라덱셀은 IR 자료와 기술 정보 텍스트 파일을 바탕으로 신보의 심사 기준에 부합하는 자료를 준비해야 합니다. 특히, 기술 사업 계획의 타당성, 시장 경쟁력, 성장 가능성 등을 입증하는 것이 중요합니다.</li>
+</ul>
+<p><strong>3. 추가 정보 필요 사항</strong></p>
+<p>보다 정확한 검토를 위해서는 다음과 같은 정보가 추가적으로 필요합니다.</p>
+<ul>
+<li><strong>재무 제표</strong>: 최근 3년간의 재무 제표 (대차 대조표, 손익 계산서, 현금 흐름표)</li>
+<li><strong>신용 평가 보고서</strong>: 신용 평가 기관에서 발행한 신용 평가 보고서 (있는 경우)</li>
+<li><strong>사업 계획서</strong>: 구체적인 사업 내용, 시장 분석, 경쟁 분석, 매출 추정, 수익성 분석 등을 포함한 사업 계획서</li>
+<li><strong>기술 인증서</strong>: 기술 관련 인증서, 수상 내역, 정부 지원 사업 선정 결과 등 (있는 경우)</li>
+<li><strong>담보 제공 가능 자산</strong>: 부동산, 지식 재산권 등 담보로 제공할 수 있는 자산 목록 (있는 경우)</li>
+</ul>
+<p><strong>4. 추가 자금 확보 방안</strong></p>
+<p>기술보증기금이나 신용보증기금의 보증 외에도 다음과 같은 자금 확보 방안을 고려할 수 있습니다.</p>
+<ul>
+<li><strong>정부 지원 사업</strong>: 정부는 기술력이 우수한 중소기업을 지원하기 위해 다양한 자금 지원 사업을 운영하고 있습니다. 라덱셀은 MPRT 기술의 혁신성과 시장성을 바탕으로 정부 지원 사업에 적극적으로 참여할 수 있습니다. 예를 들어, 중소벤처기업부의 기술 혁신 개발 사업, 산업통상자원부의 산업 기술 혁신 사업 등이 있습니다.</li>
+<li><strong>벤처 캐피탈 투자</strong>: 벤처 캐피탈은 성장 가능성이 높은 스타트업에 투자하여 자금과 경영 노하우를 제공합니다. 라덱셀은 MPRT 기술의 잠재력을 바탕으로 벤처 캐피탈 투자를 유치할 수 있습니다. 벤처 캐피탈은 기술의 차별성, 시장 규모, 성장 가능성, 경영진의 역량 등을 종합적으로 평가하여 투자 여부를 결정합니다.</li>
+</ul>
+<h3>[합의 여부]</h3>
+<p>(계속 토론)</p></div>
+    </div>
+    <div class='message gpt'>
+      <div class='message-header'>
+        <span class='message-role gpt'>GPT</span>
+        <span class='message-model'>GPT-5.2</span>
+        <span class='message-time'>03:21:25</span>
+      </div>
+      <div class='message-content'><h3>[팩트체크 및 검증]</h3>
+<ul>
+<li><strong>상대방 주장 요약</strong>: 라덱셀은 기술력이 있어 <strong>기보(기술평가보증)</strong> 및 <strong>신보(신용/스타트업·기술혁신 보증)</strong>로 차입 가능성이 있으며, 이를 위해 기술·사업성·재무자료(3개년 재무제표 등)를 준비해야 한다. 추가로 정부과제/VC도 대안이다.</li>
+<li><strong>시의성 검증</strong>:  </li>
+<li>“기보/신보가 기술·사업성·재무를 본다”, “특허/임상/사업계획이 중요하다”는 설명은 <strong>2026-01-14 기준으로도 일반적으로 유효</strong>합니다.  </li>
+<li>다만 Gemini는 <strong>2026년 현재 운용 중인 ‘정확한 상품명(예: 스타트업 특례 보증, 기술 혁신 보증)’을 제도 단위로 확정해 말했는데</strong>, 신보·기보 상품 라인업/명칭은 매년 개편될 수 있어 <strong>현 시점(2026-01-14)에서도 동일 명칭·조건이 그대로라고 단정하기 어렵습니다.</strong> → “가능한 프로그램군(스타트업/기술/혁신/특례)” 정도로 표현하고, <strong>해당 연도 공고·지점 확인이 필요</strong>합니다.</li>
+<li><strong>논리적 검증</strong>:</li>
+<li><strong>‘첨부파일을 분석했다’고 했지만</strong> 실제로는 보증 가능성을 좌우하는 핵심 변수(재무수치, 부채, 대표자 신용, 기존 대출/연체, 세금체납, 담보/보증 이력, 매출·수주계약, 의료기기 인허가 진행의 공식 문서 등)를 인용·정리하지 않았습니다. 결론이 “가능성 높음” 쪽으로 기울었지만 <strong>근거가 부족</strong>합니다.</li>
+<li>“라덱셀은 매출 전 단계” 등 일부 판단은 제공 텍스트와 부합하지만, <strong>보증은 ‘매출 유무’만으로 결정되지 않고</strong> (대표자 신용, 자기자본 잠식 여부, 체납/연체, 투자금 성격(자본/부채), 현금흐름 계획, 은행 취급 가능성 등) 변수가 많습니다. 이 프레임이 빠졌습니다.</li>
+<li>“최근 3년 재무제표” 요구는 일반적이지만, <strong>업력 7년(2018 설립)</strong>인 회사에서 “최근 3년만”으로 충분하다고 단정할 수 없고, 프로그램에 따라 <strong>최근 결산 2~3개년 + 당기 가결산 + 부가세/원천세 납부 등</strong>을 더 요구합니다.</li>
+<li><strong>사실 검증</strong>(제공 자료 기반으로 교정/확인):</li>
+<li>(자료 확인) IR에는 <strong>“pilot clinical studies에서 피부/점막 독성 최대 50% 감소”</strong>(p2) 및 <strong>유방암 임상 데이터(n=11 vs n=36, p&lt;0.05)</strong>(p17)가 제시되어 있어, “임상 효용 주장” 자체는 <strong>자료 내 기재 사실</strong>입니다. 다만 이는 회사자료이며, 보증기관 심사에서는 <strong>논문/IRB/임상시험계획승인/데이터 원본성</strong>을 요구할 수 있습니다.</li>
+<li>(자료 확인) <strong>특허 72건 filed/granted, FTO 완료</strong>(p25), <strong>총 투자유치 $6M 및 국가 R&amp;D grant $3M</strong>(p22) 등은 IR 기재 사실입니다.</li>
+<li>(정정 필요) “MFDS 임상시험 면제” 등은 IR(p56)에 “MFDS Indicated Clinical Trial Exemption”이라고 적혀 있으나, 이는 <strong>공식 처분 문서(면제확인 공문/식약처 질의회신)</strong> 없이는 단정하기 어렵습니다. Gemini는 이 부분을 검증 없이 전제로 두었습니다.</li>
+<li>(정정 필요) “신보 보증은 업력 7년이므로 최소 실적 필요”는 <strong>일반론으로는 맞지만</strong>, 실제로는 <strong>창업/스타트업·혁신형은 실적이 약해도</strong> 기술/투자/과제/대표자 역량으로 접근 가능한 트랙이 있습니다. “실적 필요”를 강하게 말하면 오해 소지가 있습니다.</li>
+</ul>
+<hr />
+<h3>[나의 의견 및 개선안]</h3>
+<p>아래는 <strong>(1) 제공된 자료로 확인되는 사실</strong>과 <strong>(2) 2026-01-14 기준으로 기보/신보 보증부 대출을 ‘현실적으로’ 추진하는 시나리오</strong>를 분리해 정리한 “개략 검토 + 팔로업 스터디 체크리스트”입니다.</p>
+<h4>1) 제공자료 기준 ‘팩트’(보증심사에 유리한 포인트)</h4>
+<ul>
+<li><strong>기술/IP</strong>: 특허 다수(총 72 filed/granted) + FTO 완료(IR p25) → 기보 기술평가에서 가점 요인 가능.</li>
+<li><strong>검증/임상 진행</strong>: 파일럿 임상 및 유방암 데이터 제시(IR p16~17) → 다만 공식 근거자료 패키징 필요.</li>
+<li><strong>정부과제/비희석 자금</strong>: 국가 R&amp;D grant 확보(IR p22, txt에도 국가과제 언급) → 정책금융/보증 심사에서 “외부 검증”으로 긍정.</li>
+<li><strong>단계</strong>: Pre-revenue, 인허가/임상 비용 중심(IR p35) → “운전자금보다는 R&amp;D/시설/인허가 목적” 보증 논리가 더 자연스러움.</li>
+</ul>
+<h4>2) 결론(개략): “보증부 차입”은 <strong>가능성 있음</strong>, 다만 트랙을 나눠야 함</h4>
+<p>라덱셀 같은 <strong>의료기기·딥테크 Pre-revenue</strong>는 보통 아래 중 하나로 성립합니다.</p>
+<ul>
+<li><strong>A안: 기보 중심(기술평가/기술사업화/혁신성 중심) + 은행 대출</strong></li>
+<li>논리: “기술성(특허/임상/과제) &gt; 현재 재무실적” 구조에서 기보가 더 맞는 경우가 많습니다.</li>
+<li>
+<p>특히 IR상 “모듈형(레트로핏) + 파일럿 임상 + 다수 특허”는 <strong>기술평가 스토리</strong>가 서기 좋습니다.</p>
+</li>
+<li>
+<p><strong>B안: 신보 중심(기업 신용 + 정책트랙)</strong></p>
+</li>
+<li>
+<p>신보도 가능하지만, 신보는 상대적으로 <strong>재무/거래신용/대표자 신용</strong>의 영향이 더 크게 작동하는 케이스가 많아(상품마다 다름), <strong>대표자 신용/체납/기존 채무구조</strong>에 따라 성패가 갈릴 수 있습니다.</p>
+</li>
+<li>
+<p><strong>C안: ‘정책자금(중진공 등) + 보증(기보/신보) 조합’ 또는 R&amp;D자금 브릿지</strong></p>
+</li>
+<li>사용처가 임상/인허가/양산준비로 명확하므로, 단순 운전자금보다 <strong>목적자금(시설·R&amp;D·사업화)</strong> 구조가 승인 논리가 좋습니다.</li>
+</ul>
+<h4>3) “요건 충족한다 치고” 실행 플랜(현실적인 순서)</h4>
+<p>1) <strong>보증기관 트랙 선택</strong><br />
+   - 1순위: <strong>기보</strong>(기술성 중심)<br />
+   - 2순위: <strong>신보</strong>(신용/정책트랙 보완)<br />
+2) <strong>은행 매칭</strong><br />
+   - 보증이 “대출을 자동 승인”하진 않아서, <strong>주거래은행/정책금융 취급 경험 은행</strong>을 먼저 잡고(텀시트 수준의 내부검토), 보증을 붙이는 순서가 실무적으로 빠릅니다.<br />
+3) <strong>자금용도 쪼개기(심사 통과 확률↑)</strong><br />
+   - (예) 인허가/임상비, 시제품/파일럿 제조, 품질/인증(ISO13485, IEC 시험), 운영자금(인력) 등을 <strong>라인아이템별 예산</strong>으로 분리.<br />
+4) <strong>‘상환재원’ 스토리 만들기(Pre-revenue의 핵심)</strong><br />
+   - 2027 매출 예상만으로는 약합니다. 아래 중 2개 이상을 문서로:<br />
+     - 병원/파트너와의 <strong>LOI/MOU/PoC 계약</strong>, 가격/설치조건/데이터제공 조건<br />
+     - 보험수가/급여 전략 로드맵(국내) 및 규제 타임라인(식약처 Q2 2026 목표 근거자료)<br />
+     - 매출 전까지의 <strong>브릿지 자금계획</strong>(투자 라운드 일정, 확정/협의 투자자, 미확정이면 시나리오 2~3개)<br />
+5) <strong>보증한도/조건은 ‘케이스 바이 케이스’</strong><br />
+   - 이 단계에서야 한도(예: 수억~수십억)와 보증비율/요율이 윤곽이 나옵니다. Gemini처럼 일반론으로 “높은 보증비율/낮은 금리”를 단정하기보다 <strong>사전상담(Pre-screen)</strong>이 필요합니다.</p>
+<h4>4) “더 있으면 확실해지는 정보” 체크리스트(우선순위)</h4>
+<p>보증 가능성을 “추정”이 아니라 “거의 확정 수준”으로 끌어올리려면 아래가 핵심입니다.</p>
+<ul>
+<li><strong>(최우선) 대표자/주요주주 신용 및 리스크</strong></li>
+<li>대표자 KCB/NICE 요약, 연체/체납/보증사고 이력, 개인보증 가능 여부</li>
+<li><strong>(최우선) 최근 결산 재무 + 당기 가결산</strong></li>
+<li>최근 2~3개년 재무제표, 자본잠식 여부, 가수금/전환사채/상환전환우선주 등 부채성 항목 정리</li>
+<li><strong>(최우선) 세금/4대보험 체납 여부</strong></li>
+<li>체납 있으면 대부분 진행이 급격히 어려워집니다.</li>
+<li><strong>(중요) 기존 대출/보증 현황</strong></li>
+<li>기존 정책자금, 보증잔액, 담보제공, 타 금융기관 한도 소진 여부</li>
+<li><strong>(중요) 임상/인허가의 ‘공식 문서’</strong></li>
+<li>MFDS 진행 단계(접수/보완/심사 단계), 임상시험계획승인/면제 관련 공문, ISO13485 구축 현황, 시험성적서</li>
+<li><strong>(중요) 매출 전 ‘현금유입’ 근거</strong></li>
+<li>LOI, PoC 비용 청구 가능 여부, 설치계약 조건, 리셀러/유통 파트너 계약</li>
+<li><strong>(보완) IP 권리관계</strong></li>
+<li>기술이전 계약의 독점/범위/로열티, 특허 담보 설정 가능 여부, 공동발명/분쟁 리스크</li>
+</ul>
+<hr />
+<h3>[합의 여부]</h3>
+<p>(계속 토론)</p></div>
+    </div>
+  </div>
+  <div class='footer'>
+    Generated by AI Debate System | 2026-01-14 03:21:25
+  </div>
+</body>
+</html>

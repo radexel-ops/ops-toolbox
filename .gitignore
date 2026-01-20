@@ -120,7 +120,7 @@ package-lock.json
 **/*.xml
 
 # Large/experimental projects
-debate AIs/
+# debate AIs/ - 이제 rpa/debate AIs/로 이동하여 GitHub에 포함
 interactive ai/
 
 # Projects with large binary files

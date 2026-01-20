@@ -1,0 +1,24 @@
+# AI Debate System - Dependencies
+# Install with: pip install -r requirements.txt
+
+# API Clients
+openai>=1.0.0
+google-generativeai>=0.8.0
+
+# Environment & Config
+python-dotenv>=1.0.0
+pyyaml>=6.0
+
+# Terminal UI
+rich>=13.0.0
+
+# File Processing
+pillow>=10.0.0          # Image processing
+openpyxl>=3.1.0         # Excel files (.xlsx)
+python-docx>=1.0.0      # Word documents (.docx)
+pypdf>=4.0.0            # PDF files
+chardet>=5.0.0          # Character encoding detection
+
+# HTML Generation
+markdown>=3.5.0
+pygments>=2.17.0        # Code syntax highlighting

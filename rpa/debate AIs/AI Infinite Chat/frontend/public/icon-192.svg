@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="32" fill="#0066ff"/>
+  <g fill="white">
+    <circle cx="60" cy="80" r="24"/>
+    <circle cx="132" cy="80" r="24"/>
+    <path d="M40 130 Q96 170 152 130" stroke="white" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <circle cx="60" cy="80" r="8" fill="#0066ff"/>
+    <circle cx="132" cy="80" r="8" fill="#0066ff"/>
+  </g>
+  <text x="96" y="55" text-anchor="middle" font-family="system-ui" font-size="20" fill="white" font-weight="bold">AI</text>
+</svg>
