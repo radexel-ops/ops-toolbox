@@ -3,6 +3,11 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional, List
+from app.config import Settings
+from app.services.ai_manager import AIManager
+
+settings = Settings()
+ai_manager = AIManager(settings)
 
 router = APIRouter()
 
@@ -17,7 +22,6 @@ class ChatRequest(BaseModel):
     model: Optional[str] = "gpt-5-mini"
     history: Optional[List[Message]] = []
 
-
 class ChatResponse(BaseModel):
     response: str
     model: str
@@ -25,12 +29,18 @@ class ChatResponse(BaseModel):
 
 @router.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
-    """Non-streaming chat endpoint (for testing)"""
-    # This is a simple endpoint for testing
-    # The main chat uses WebSocket for streaming
+    """Non-streaming chat endpoint"""
+    history = [m.model_dump() for m in (request.history or [])]
+
+    text = await ai_manager.generate(
+        user_message=request.message,
+        model=request.model or "gpt-5-mini",
+        history=history,
+    )
+
     return ChatResponse(
-        response=f"Echo: {request.message}",
-        model=request.model
+        response=text,
+        model=request.model or "gpt-5-mini"
     )
 
 

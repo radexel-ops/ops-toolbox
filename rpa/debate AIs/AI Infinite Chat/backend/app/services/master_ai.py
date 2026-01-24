@@ -91,7 +91,8 @@ class MasterAI:
         topic: str,
         agent_count: int,
         available_models: List[Dict[str, str]],
-        auto_start: bool = True
+        auto_start: bool = True,
+        existing_agents: List[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
         """
         새 대화 초기화
@@ -101,6 +102,7 @@ class MasterAI:
             agent_count: 참여 에이전트 수
             available_models: 사용 가능한 모델 목록
             auto_start: True면 즉시 시작, False면 스타일 제안 후 승인 대기
+            existing_agents: 재사용할 기존 에이전트 정보 (대화 재개 시)
 
         Returns:
             초기화 결과 (에이전트 목록, 제안된 스타일 등)
@@ -109,8 +111,11 @@ class MasterAI:
         self.state.topic = topic
         self.state.is_running = False
 
-        # 에이전트 생성
-        self._create_agents(agent_count, available_models)
+        # 기존 에이전트가 있으면 재사용, 없으면 새로 생성
+        if existing_agents and len(existing_agents) > 0:
+            self._restore_agents(existing_agents)
+        else:
+            self._create_agents(agent_count, available_models)
 
         # 대화 모드는 마스터 AI가 자율적으로 결정하도록 열어둠
         # (첫 번째 응답에서 자연스럽게 톤이 정해짐)
@@ -126,6 +131,19 @@ class MasterAI:
             self.state.is_running = True
 
         return result
+
+    def _restore_agents(self, existing_agents: List[Dict[str, Any]]):
+        """기존 에이전트 정보 복원"""
+        for agent_data in existing_agents:
+            agent = Agent(
+                id=agent_data.get("id", f"agent_{len(self.state.agents)}"),
+                name=agent_data.get("name", "Agent"),
+                model=agent_data.get("model", ""),
+                provider=agent_data.get("provider", "openai"),
+                personality=agent_data.get("personality", ""),
+                color=agent_data.get("color", "#888888")
+            )
+            self.state.agents.append(agent)
 
     def _create_agents(
         self,

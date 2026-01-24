@@ -40,21 +40,29 @@ class WebSearchService:
         num_results: int = 5,
         lang: str = "ko"
     ) -> List[SearchResult]:
-        """웹 검색 실행"""
+        """웹 검색 실행 - 실패 시 자동으로 다음 제공자로 폴백"""
 
         # Serper API 우선 사용 (더 저렴하고 빠름)
         if self.serper_api_key:
-            return await self._search_serper(query, num_results, lang)
+            results = await self._search_serper(query, num_results, lang)
+            if results:
+                return results
+            logger.info("[WebSearch] Serper failed, trying fallback...")
 
         # Google Custom Search API 대체
         if self.google_api_key and self.google_cse_id:
-            return await self._search_google_cse(query, num_results, lang)
+            results = await self._search_google_cse(query, num_results, lang)
+            if results:
+                return results
+            logger.info("[WebSearch] Google CSE failed, trying fallback...")
 
         # DuckDuckGo 무료 검색 (API 키 불필요)
         if DDGS_SUPPORT:
-            return await self._search_duckduckgo(query, num_results, lang)
+            results = await self._search_duckduckgo(query, num_results, lang)
+            if results:
+                return results
 
-        logger.warning("[WebSearch] No search provider configured")
+        logger.warning("[WebSearch] All search providers failed or not configured")
         return []
 
     async def _search_duckduckgo(

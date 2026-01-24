@@ -1,8 +1,29 @@
 """Application configuration using Pydantic Settings"""
 
 from typing import Optional
+from pathlib import Path
 from pydantic_settings import BaseSettings
 from functools import lru_cache
+from dotenv import load_dotenv
+import os
+
+# .env 파일 로드 (로컬 개발 환경용)
+# Docker 환경에서는 환경변수가 직접 주입되므로 파일이 없어도 됨
+try:
+    # 로컬 개발: 상위 폴더의 .env 파일들
+    # config.py -> app -> backend -> AI Infinite Chat -> debate AIs -> rpa -> RDXL_RPA
+    _root = Path(__file__).resolve().parent.parent.parent.parent.parent.parent  # 6단계 상위 = RDXL_RPA
+    if (_root / '.env.shared').exists():
+        load_dotenv(_root / '.env.shared')
+    if (_root / '.env.local').exists():
+        load_dotenv(_root / '.env.local', override=True)
+
+    # Docker/프로덕션: backend 폴더의 .env 파일
+    _backend_root = Path(__file__).resolve().parent.parent  # backend/app -> backend
+    if (_backend_root / '.env').exists():
+        load_dotenv(_backend_root / '.env', override=True)
+except Exception:
+    pass  # 환경변수는 Docker에서 직접 주입됨
 
 
 class Settings(BaseSettings):

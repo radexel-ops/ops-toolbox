@@ -18,6 +18,10 @@ class ConnectionManager:
         self._connections: Set[WebSocket] = set()
         self._lock = asyncio.Lock()
 
+    def is_connected(self, websocket: WebSocket) -> bool:
+        """Check if a websocket is still connected"""
+        return websocket in self._connections
+
     async def connect(self, websocket: WebSocket):
         """Accept and store a new WebSocket connection"""
         await websocket.accept()

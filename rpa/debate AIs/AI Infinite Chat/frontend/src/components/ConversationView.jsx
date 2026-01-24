@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import useWebSocket from '../hooks/useWebSocket'
+import { useConversationEvents, EventTypes } from '../hooks/useConversationEvents'
 import AgentMessage from './AgentMessage'
 import ConversationControls from './ConversationControls'
 import UserInterventionBar from './UserInterventionBar'
@@ -14,6 +15,16 @@ import {
   formatTokens,
   SAFETY_LIMITS
 } from '../config'
+// 디버그 로거 (서비스 안정화 후 삭제 예정)
+import {
+  logAction,
+  logWsSend,
+  logWsRecv,
+  logStateChange,
+  logAgent,
+  logError,
+  logSystem
+} from '../utils/debugLogger'
 
 // SVG Icons
 const Icons = {
@@ -102,30 +113,56 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
   const isNewConversation = mode === 'new'
   const isViewMode = mode === 'view'
 
-  const [messages, setMessages] = useState(conversation?.messages || [])
-  const [pendingUserMessages, setPendingUserMessages] = useState([])
-  const [agents, setAgents] = useState(conversation?.agents || [])
-  const [currentAgent, setCurrentAgent] = useState(null)
-  const [streamingContent, setStreamingContent] = useState('')
-  const [isPaused, setIsPaused] = useState(false)
-  // view 모드: 기존 대화의 status 유지 (오버레이 최소화)
-  // new 모드: 새 대화는 active 상태로 시작
-  const [isStopped, setIsStopped] = useState(
-    isViewMode ? (conversation?.status === 'stopped') : false
-  )
+  // 세션 ID
+  const sessionId = useRef(conversation?.id || `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`)
+
+  // =====================================================
+  // Event Sourcing 기반 상태 관리 훅
+  // =====================================================
+  const {
+    processEvent,
+    processEvents,
+    reset: resetEventLog,
+    initializeFromConversation,
+
+    // 파생 상태 (이벤트 로그에서 계산)
+    messages,
+    agents,
+    tokenUsage,
+    turnCount,
+    currentSeq,
+
+    // 스트리밍 상태
+    currentAgent,
+    streamingContent,
+    setStreamingContent,
+
+    // 대화 상태 플래그
+    isPaused,
+    setIsPaused,
+    isStopped,
+    setIsStopped,
+    isAIRunning,
+    setIsAIRunning
+  } = useConversationEvents({
+    sessionId: sessionId.current,
+    initialConversation: conversation,
+    onMissedEvents: ({ expectedSeq, receivedSeq, missedCount }) => {
+      // 이벤트 누락 감지 시 재동기화 요청
+      console.warn(`[ConvView] Missed ${missedCount} events, requesting sync from seq ${expectedSeq}`)
+      sendMessage({
+        type: 'sync_events',
+        session_id: sessionId.current,
+        since_seq: expectedSeq
+      })
+    }
+  })
+
   // view 모드에서 AI가 대기 중인지 (사용자 입력 대기)
   const [isWaitingForUser, setIsWaitingForUser] = useState(isViewMode)
-  // AI가 실제로 실행 중인지 (백엔드와 통신 중)
-  const [isAIRunning, setIsAIRunning] = useState(isNewConversation)
   const [speed, setSpeed] = useState(config?.speed || 'normal')
-  const [turnCount, setTurnCount] = useState(conversation?.messages?.length || 0)
   const [showScrollButton, setShowScrollButton] = useState(false)
   const [showCostDetail, setShowCostDetail] = useState(false)
-  const [tokenUsage, setTokenUsage] = useState(conversation?.tokenUsage || {
-    totalInput: 0,
-    totalOutput: 0,
-    history: []
-  })
 
   // Safety limits state
   const limits = config?.limits || SAFETY_LIMITS
@@ -139,68 +176,31 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
   const messagesAreaRef = useRef(null)
   const conversationStarted = useRef(false)
   const isNearBottom = useRef(true)
-  const sessionId = useRef(conversation?.id || `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`)
-  const processedMessages = useRef(new Set()) // 중복 메시지 ID 추적
   const onUpdateRef = useRef(onUpdate) // onUpdate의 최신 참조 유지
-  const pendingUserMessagesRef = useRef([]) // pending 메시지의 최신 참조
-  const isStoppedRef = useRef(isStopped) // stop 상태의 최신 참조 (WebSocket 메시지 필터링용)
-  const messagesRef = useRef(messages) // 메시지의 최신 참조 (언마운트 시 저장용)
-  const tokenUsageRef = useRef(tokenUsage) // 토큰 사용량의 최신 참조 (언마운트 시 저장용)
-  const agentsRef = useRef(agents) // 에이전트의 최신 참조 (언마운트 시 저장용)
+  const pendingUserMessageRef = useRef(null) // AI 응답 중 대기하는 사용자 메시지
 
   // onUpdate ref 업데이트
   useEffect(() => {
     onUpdateRef.current = onUpdate
   }, [onUpdate])
 
-  // pendingUserMessages ref 동기화
-  useEffect(() => {
-    pendingUserMessagesRef.current = pendingUserMessages
-  }, [pendingUserMessages])
-
-  // isStopped ref 동기화 (WebSocket 메시지 필터링용)
-  useEffect(() => {
-    isStoppedRef.current = isStopped
-  }, [isStopped])
-
-  // messages ref 동기화 (언마운트 시 저장용)
-  useEffect(() => {
-    messagesRef.current = messages
-  }, [messages])
-
-  // tokenUsage ref 동기화 (언마운트 시 저장용)
-  useEffect(() => {
-    tokenUsageRef.current = tokenUsage
-  }, [tokenUsage])
-
-  // agents ref 동기화 (언마운트 시 저장용)
-  useEffect(() => {
-    agentsRef.current = agents
-  }, [agents])
-
-  // 직접 IndexedDB에 저장하는 헬퍼 (race condition 방지를 위해 전체 대화 상태 저장)
-  // 컴포넌트가 언마운트되어도 저장이 완료됨
+  // 직접 IndexedDB에 저장하는 헬퍼
   const saveToStorageRef = useRef(null) // 가장 최근 저장 Promise 추적
   const conversationBaseRef = useRef(conversation) // 초기 대화 데이터 캐시
 
-  const saveToStorage = useCallback(async (updates) => {
+  const saveToStorage = useCallback(async (updates = {}) => {
     const convId = sessionId.current
     if (!convId) return
 
     try {
-      // 가장 최근 messages와 tokenUsage를 ref에서 가져옴 (최신 상태 보장)
-      const currentMessages = updates.messages || messagesRef.current
-      const currentTokenUsage = updates.tokenUsage || tokenUsageRef.current
-      const currentAgents = updates.agents || conversationBaseRef.current?.agents || []
-
-      // 전체 대화 객체를 직접 구성 (read-modify-write 패턴 제거로 race condition 방지)
+      // 전체 대화 객체를 직접 구성
       const fullConversation = {
         ...conversationBaseRef.current,
         id: convId,
-        messages: currentMessages,
-        tokenUsage: currentTokenUsage,
-        agents: currentAgents,
-        status: updates.status || conversationBaseRef.current?.status || 'active',
+        messages: updates.messages || messages,
+        tokenUsage: updates.tokenUsage || tokenUsage,
+        agents: updates.agents || agents,
+        status: updates.status || (isStopped ? 'stopped' : 'active'),
         updatedAt: Date.now()
       }
 
@@ -214,96 +214,37 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
       saveToStorageRef.current = savePromise
 
       await savePromise
-      console.log('[ConvView] Saved to IndexedDB:', convId, 'messages:', currentMessages.length)
+      console.log('[ConvView] Saved to IndexedDB:', convId, 'messages:', fullConversation.messages.length)
 
-      // 부모 컴포넌트에도 알림 (상태 동기화)
+      // 부모 컴포넌트에도 알림
       if (onUpdateRef.current) {
         onUpdateRef.current(updates)
       }
     } catch (err) {
       console.error('[ConvView] Failed to save to IndexedDB:', err)
     }
-  }, [])
+  }, [messages, tokenUsage, agents, isStopped])
 
-  // ★ Race condition 방지: currentAgent가 null이 되었는데 pending 메시지가 남아있으면 flush
-  useEffect(() => {
-    if (!currentAgent && pendingUserMessages.length > 0) {
-      console.log('[ConvView] Flushing stuck pending messages:', pendingUserMessages.length)
-
-      // pending 메시지를 messages로 이동
-      const pendingToMove = pendingUserMessages.map(msg => ({ ...msg, isPending: false }))
-
-      // 상태 업데이트
-      setPendingUserMessages([])
-      pendingUserMessagesRef.current = []
-
-      setMessages(prev => {
-        const updated = [...prev, ...pendingToMove]
-        messagesRef.current = updated
-        saveToStorage({ messages: updated })
-        return updated
-      })
-    }
-  }, [currentAgent, pendingUserMessages, saveToStorage])
-
-  // 컴포넌트 마운트 시 로그 (key prop으로 인해 대화 변경 시 재마운트됨)
+  // 컴포넌트 마운트 시 로그
   useEffect(() => {
     console.log('[ConvView] Component mounted:', {
       conversationId: conversation?.id,
-      mode: mode, // 'new' = 새 대화 시작, 'view' = 기존 대화 보기
+      mode: mode,
       messageCount: conversation?.messages?.length || 0,
       status: conversation?.status
     })
   }, [])
 
-  // ★ 컴포넌트 언마운트 시 최종 상태 저장 ★
-  // 네비게이션 중 데이터 손실 방지
+  // 컴포넌트 언마운트 시 최종 상태 저장
   useEffect(() => {
     return () => {
       const convId = sessionId.current
-      const currentMessages = messagesRef.current
-      const currentTokenUsage = tokenUsageRef.current
-      const currentAgents = agentsRef.current
-      const baseConv = conversationBaseRef.current
-
-      // 메시지가 있는 경우에만 저장
-      if (convId && currentMessages && currentMessages.length > 0) {
-        console.log('[ConvView] Component unmounting, saving final state:', {
-          conversationId: convId,
-          messageCount: currentMessages.length,
-          agentCount: currentAgents?.length || 0
-        })
-
-        // 전체 대화 객체를 직접 구성 (race condition 방지)
-        const fullConversation = {
-          ...baseConv,
-          id: convId,
-          messages: currentMessages,
-          tokenUsage: currentTokenUsage,
-          agents: currentAgents || [],
-          updatedAt: Date.now()
-        }
-
-        // 이전 저장이 있으면 기다린 후 저장 (순차 보장)
-        const pendingSave = saveToStorageRef.current
-        if (pendingSave) {
-          pendingSave.catch(() => {}).finally(() => {
-            saveConversation(fullConversation).then(() => {
-              console.log('[ConvView] Final state saved successfully')
-            }).catch(err => {
-              console.error('[ConvView] Failed to save final state:', err)
-            })
-          })
-        } else {
-          saveConversation(fullConversation).then(() => {
-            console.log('[ConvView] Final state saved successfully')
-          }).catch(err => {
-            console.error('[ConvView] Failed to save final state:', err)
-          })
-        }
+      if (convId && messages.length > 0) {
+        console.log('[ConvView] Component unmounting, saving final state')
+        saveToStorage()
       }
     }
-  }, []) // 빈 의존성: 마운트/언마운트 시에만 실행
+  }, [messages, saveToStorage])
 
   // Calculate real-time cost using actual token data
   const estimatedCost = useMemo(() => {
@@ -363,29 +304,27 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
 
     // VIEW 모드: 기존 대화 보기 - AI 자동 시작 안 함
     if (isViewMode) {
-      console.log('[ConvView] VIEW mode - displaying existing conversation:', {
-        sessionId: sessionId.current,
-        status: conversation?.status,
-        messageCount: conversation?.messages?.length || 0
-      })
-
-      // 에이전트 정보만 설정
-      if (conversation?.agents?.length > 0) {
-        setAgents(conversation.agents)
-      }
-
-      // 기존 대화는 자동 시작하지 않음
-      // 사용자가 메시지를 보내면 handleUserIntervene에서 대화 재개
+      console.log('[ConvView] VIEW mode - displaying existing conversation')
       return
     }
 
     // NEW 모드: 새 대화 시작 - WebSocket으로 start_conversation 전송
     if (isNewConversation) {
-      console.log('[ConvView] NEW mode - starting new conversation:', {
-        sessionId: sessionId.current,
-        topic: config.topic,
-        limits: config.limits
-      })
+      console.log('[ConvView] NEW mode - starting new conversation')
+
+      // 초기 토픽을 사용자 메시지로 추가 (대화창에 표시)
+      if (config.topic) {
+        const initialTopicEvent = {
+          type: EventTypes.USER_MESSAGE,
+          event_id: `topic_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+          content: config.topic,
+          isInitialTopic: true,
+          hasFiles: (config.file_ids?.length || 0) > 0,
+          timestamp: Date.now()
+        }
+        processEvent(initialTopicEvent)
+        console.log('[ConvView] Added initial topic as user message')
+      }
 
       sendMessage({
         type: 'start_conversation',
@@ -393,172 +332,122 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
         topic: config.topic,
         agent_count: config.agentCount || config.agent_count,
         speed: config.speed,
-        auto_start: true, // 새 대화는 항상 자동 시작
+        auto_start: true,
         models: config.models,
         limits: config.limits,
         file_ids: config.file_ids || []
       })
     }
-  }, [isConnected, config, sendMessage, isViewMode, isNewConversation, conversation?.agents, conversation?.status, conversation?.messages?.length])
+  }, [isConnected, config, sendMessage, isViewMode, isNewConversation, processEvent])
 
-  // Handle WebSocket messages
+  // 이미 처리된 메시지 ID 추적 (토큰 중복 방지)
+  const processedMsgIdsRef = useRef(new Set())
+
+  // =====================================================
+  // Event Sourcing 기반 WebSocket 메시지 처리
+  // =====================================================
   useEffect(() => {
     if (!lastMessage) return
 
     const data = lastMessage
 
-    // 메시지 ID 기반 중복 방지 (가장 확실한 방법)
-    if (data._msgId && processedMessages.current.has(data._msgId)) {
-      console.warn('[ConvView] Duplicate message ID detected, skipping:', data._msgId, data.type)
-      return
+    // 메시지 ID로 중복 처리 방지 (특히 토큰)
+    const msgId = data._msgId
+    if (msgId && processedMsgIdsRef.current.has(msgId)) {
+      return // 이미 처리된 메시지
     }
-    if (data._msgId) {
-      processedMessages.current.add(data._msgId)
-      // 메모리 관리: 1000개 이상이면 오래된 것 삭제
-      if (processedMessages.current.size > 1000) {
-        const arr = Array.from(processedMessages.current)
-        arr.slice(0, 500).forEach(id => processedMessages.current.delete(id))
+    if (msgId) {
+      processedMsgIdsRef.current.add(msgId)
+      // 메모리 누수 방지: 오래된 ID 정리 (최근 1000개만 유지)
+      if (processedMsgIdsRef.current.size > 1000) {
+        const ids = Array.from(processedMsgIdsRef.current)
+        processedMsgIdsRef.current = new Set(ids.slice(-500))
       }
     }
 
-    // 정지된 상태에서는 대화 관련 메시지 무시 (stop 후 들어오는 지연된 메시지들)
-    // 단, stopped/conversation_ended/error 등의 상태 메시지는 처리
-    if (isStoppedRef.current && ['agent_start', 'token', 'agent_complete'].includes(data.type)) {
-      console.log('[ConvView] Ignoring message because conversation is stopped:', data.type)
+    // 디버그 로그
+    logWsRecv(data.type, data)
+
+    // DEBUG: 모델별 이벤트 추적
+    if (data.agent) {
+      const isGemini = data.agent.model?.toLowerCase().includes('gemini')
+      console.log(`[ConvView DEBUG] Received ${data.type} from ${data.agent.name} (${data.agent.model})`, {
+        isGemini,
+        seq: data.seq,
+        contentLength: data.content?.length
+      })
+    }
+
+    // 동기화 응답 처리 (여러 이벤트 일괄 처리)
+    if (data.type === 'sync_events' && Array.isArray(data.events)) {
+      console.log('[ConvView] Processing sync_events:', data.events.length)
+      processEvents(data.events)
       return
     }
 
+    // 모든 이벤트를 훅의 processEvent로 전달
+    // 훅이 시퀀스 기반 중복 방지, 상태 업데이트 등을 처리
+    const processed = processEvent(data)
+    console.log(`[ConvView DEBUG] processEvent returned:`, processed)
+
+    // 특수 이벤트 후처리
     switch (data.type) {
       case 'conversation_started':
-        const receivedAgents = data.data?.agents || []
-        setAgents(receivedAgents)
-        agentsRef.current = receivedAgents // ★ Ref 즉시 업데이트 (언마운트 시 저장용)
-        setIsAIRunning(true) // AI 실행 시작
-
-        // ★ 에이전트 정보를 base ref에도 업데이트 (언마운트 시 저장용)
+        // 에이전트 정보를 base ref에 업데이트 (저장용)
         conversationBaseRef.current = {
           ...conversationBaseRef.current,
-          agents: receivedAgents
+          agents: data.data?.agents || []
         }
-
-        // NEW 모드: 새 대화 시작 - 초기 메시지 생성
-        if (isNewConversation) {
-          const initialMessage = {
-            id: Date.now(),
-            isUser: true,
-            content: config?.topic || '',
-            timestamp: new Date(),
-            isInitialTopic: true
-          }
-          const initialMessages = [initialMessage]
-          setMessages(initialMessages)
-          messagesRef.current = initialMessages // ★ Ref 즉시 업데이트
-          processedMessages.current.clear()
-
-          // 에이전트와 초기 메시지 저장
-          saveToStorage({ agents: receivedAgents, messages: initialMessages })
-        } else {
-          // VIEW 모드: 에이전트 정보만 저장 (기존 메시지 유지)
-          saveToStorage({ agents: receivedAgents })
-        }
-        break
-
-      case 'agent_start':
-        setCurrentAgent(data.agent)
-        setStreamingContent('')
-        break
-
-      case 'token':
-        setStreamingContent(prev => prev + data.content)
+        // 저장
+        saveToStorage({ agents: data.data?.agents })
         break
 
       case 'agent_complete':
-        console.log('[ConvView] Processing agent_complete:', data.agent?.name, 'msgId:', data._msgId)
+        // DEBUG: agent_complete 처리 확인
+        console.log('[ConvView DEBUG] agent_complete processed, current messages count:', messages.length)
+        // 메시지 저장
+        saveToStorage()
 
-        // 새 에이전트 메시지 객체 생성
-        const newAgentMessage = {
-          id: data._msgId || `msg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-          agent: data.agent,
-          content: data.content,
-          timestamp: new Date(),
-          usage: data.usage
-        }
+        // 대기 중인 사용자 메시지가 있으면 전송
+        if (pendingUserMessageRef.current) {
+          const pending = pendingUserMessageRef.current
+          console.log('[ConvView] Sending pending user message after agent_complete')
 
-        // 동기적으로 pending 메시지 읽기 (ref 사용)
-        const pendingToAdd = pendingUserMessagesRef.current.map(msg => ({ ...msg, isPending: false }))
-
-        // pending 메시지 즉시 비우기
-        setPendingUserMessages([])
-        pendingUserMessagesRef.current = []
-
-        // 메시지 추가
-        setMessages(prev => {
-          // 중복 체크: 같은 ID의 메시지가 이미 있는지 확인
-          if (prev.some(msg => msg.id === newAgentMessage.id)) {
-            console.warn('[ConvView] Duplicate message detected, skipping:', newAgentMessage.id)
-            return prev
-          }
-          const updated = [...prev, newAgentMessage, ...pendingToAdd]
-          console.log('[ConvView] Updated messages count:', updated.length, 'added pending:', pendingToAdd.length)
-          // ★ Ref 즉시 업데이트 (언마운트 시 최신 상태 보장)
-          messagesRef.current = updated
-          // IndexedDB에 직접 저장 (언마운트되어도 저장 완료됨)
-          saveToStorage({ messages: updated })
-          return updated
-        })
-
-        // Update token usage with real data
-        if (data.usage) {
-          setTokenUsage(prev => {
-            const updated = {
-              totalInput: data.usage.total_input || prev.totalInput + (data.usage.input_tokens || 0),
-              totalOutput: data.usage.total_output || prev.totalOutput + (data.usage.output_tokens || 0),
-              history: [...prev.history, {
-                model: data.agent?.model,
-                inputTokens: data.usage.input_tokens || 0,
-                outputTokens: data.usage.output_tokens || 0
-              }]
-            }
-            // ★ Ref 즉시 업데이트 (언마운트 시 최신 상태 보장)
-            tokenUsageRef.current = updated
-            // IndexedDB에 직접 저장
-            saveToStorage({ tokenUsage: updated })
-            return updated
+          // 이벤트 로그에서 pending 플래그 제거 (새 이벤트로 업데이트)
+          processEvent({
+            type: EventTypes.USER_MESSAGE,
+            event_id: pending.eventId,
+            content: pending.content,
+            hasFiles: pending.fileIds?.length > 0,
+            isPending: false, // 대기 상태 해제
+            timestamp: Date.now()
           })
+
+          // 백엔드에 전송
+          sendMessage({
+            type: 'user_intervene',
+            session_id: sessionId.current,
+            content: pending.content,
+            file_ids: pending.fileIds || []
+          })
+
+          // 대기 메시지 초기화
+          pendingUserMessageRef.current = null
         }
-
-        // 스트리밍 상태 초기화
-        setCurrentAgent(null)
-        setStreamingContent('')
-        setTurnCount(prev => prev + 1)
-        break
-
-      case 'user_intervention_ack':
-        break
-
-      case 'paused':
-        setIsPaused(true)
-        if (onUpdate) onUpdate({ status: 'paused' })
-        break
-
-      case 'resumed':
-        setIsPaused(false)
-        setIsAIRunning(true) // AI 다시 실행
-        if (onUpdate) onUpdate({ status: 'active' })
         break
 
       case 'stopped':
       case 'conversation_ended':
-        setIsStopped(true)
-        setIsAIRunning(false) // AI 실행 중지
-        setCurrentAgent(null) // 스트리밍 중인 에이전트 제거
-        setStreamingContent('') // 스트리밍 내용 제거
+        // 스트리밍 중인 내용이 있으면 저장 (agent_complete 누락 대비)
+        if (currentAgent && streamingContent) {
+          console.log('[ConvView] Saving streaming content on stop/end')
+          // 훅에서 이미 처리됨 - 저장만 수행
+        }
+        saveToStorage({ status: 'stopped' })
         if (onUpdate) onUpdate({ status: 'stopped' })
         break
 
       case 'limit_reached':
-        setIsStopped(true)
-        setIsAIRunning(false) // AI 실행 중지
         setAutoPausedReason('limit_reached')
         setWarning({
           type: data.limit_type,
@@ -568,20 +457,25 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
         if (onUpdate) onUpdate({ status: 'stopped' })
         break
 
+      case 'paused':
+        if (onUpdate) onUpdate({ status: 'paused' })
+        break
+
+      case 'resumed':
+        if (onUpdate) onUpdate({ status: 'active' })
+        break
+
       case 'speed_changed':
         setSpeed(data.speed)
         break
 
       case 'error':
-        setMessages(prev => [...prev, {
-          id: Date.now(),
-          isError: true,
-          content: getUserFriendlyError(data.content || data.error),
-          timestamp: new Date()
-        }])
+        // 에러 로그
+        const errorContent = getUserFriendlyError(data.content || data.error)
+        logError('API_ERROR', errorContent, { recoverable: data.recoverable })
         break
     }
-  }, [lastMessage, onUpdate, config?.topic, isNewConversation, saveToStorage])
+  }, [lastMessage, processEvent, processEvents, onUpdate, saveToStorage, currentAgent, streamingContent])
 
   // Scroll position detection
   const checkIfNearBottom = useCallback(() => {
@@ -722,28 +616,41 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
 
   // Control handlers
   const handlePause = useCallback(() => {
+    logAction('CLICK_PAUSE', {
+      sessionId: sessionId.current,
+      currentAgent: currentAgent?.name,
+      isAIRunning,
+      messageCount: messages.length
+    })
+    logWsSend('pause', { session_id: sessionId.current })
     setIsPaused(true)
     sendMessage({ type: 'pause', session_id: sessionId.current })
-  }, [sendMessage])
+  }, [sendMessage, currentAgent, isAIRunning, messages.length])
 
   const handleResume = useCallback(() => {
+    logAction('CLICK_RESUME', {
+      sessionId: sessionId.current,
+      wasPaused: isPaused,
+      wasWarning: warning?.type,
+      messageCount: messages.length
+    })
+    logWsSend('resume', { session_id: sessionId.current })
     setIsPaused(false)
     setAutoPausedReason(null)
     if (warning?.level === 'warning') {
       setWarning(null) // Clear warning on manual resume
     }
     sendMessage({ type: 'resume', session_id: sessionId.current })
-  }, [sendMessage, warning])
+  }, [sendMessage, warning, isPaused, messages.length])
 
   const handleStop = useCallback(() => {
-    // 즉시 상태 업데이트 (WebSocket 메시지 필터링을 위해 ref도 즉시 업데이트)
+    logAction('CLICK_STOP', { sessionId: sessionId.current })
+    logWsSend('stop', { session_id: sessionId.current })
+    // 상태 업데이트
     setIsStopped(true)
-    isStoppedRef.current = true
     setIsAIRunning(false)
-    setCurrentAgent(null) // 스트리밍 중인 에이전트 제거
-    setStreamingContent('') // 스트리밍 내용 제거
     sendMessage({ type: 'stop', session_id: sessionId.current })
-  }, [sendMessage])
+  }, [sendMessage, setIsStopped, setIsAIRunning])
 
   const handleSpeedChange = useCallback((newSpeed) => {
     setSpeed(newSpeed)
@@ -752,12 +659,15 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
 
   const handleUserIntervene = useCallback((message, fileIds = []) => {
     if (message.trim() || fileIds.length > 0) {
-      const userMessage = {
-        id: `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        isUser: true,
+      logAction('USER_SEND_MESSAGE', { messageLength: message?.length, hasFiles: fileIds.length > 0 })
+
+      // 사용자 메시지 이벤트 생성
+      const userMessageEvent = {
+        type: EventTypes.USER_MESSAGE,
+        event_id: `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         content: message || (fileIds.length > 0 ? '[파일 첨부]' : ''),
-        timestamp: new Date(),
-        hasFiles: fileIds.length > 0
+        hasFiles: fileIds.length > 0,
+        timestamp: Date.now()
       }
 
       // 조건을 먼저 저장 (상태 변경 전에)
@@ -767,7 +677,6 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
       if (shouldResumeConversation) {
         // WebSocket 연결 확인
         if (!isConnected) {
-          console.warn('[ConvView] Cannot resume: WebSocket not connected')
           setWarning({
             type: 'connection',
             message: '서버에 연결되지 않았습니다. 잠시 후 다시 시도해주세요.',
@@ -776,26 +685,20 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
           return
         }
 
-        console.log('[ConvView] Resuming conversation with user message, wasWaiting:', isWaitingForUser, 'wasStopped:', isStopped)
+        console.log('[ConvView] Resuming conversation with user message')
 
         // 상태 업데이트
         setIsStopped(false)
-        isStoppedRef.current = false
         setIsWaitingForUser(false)
         setAutoPausedReason(null)
         setWarning(null)
-        setIsAIRunning(true) // AI 실행 시작
+        setIsAIRunning(true)
 
-        // 메시지 추가
-        setMessages(prev => {
-          const updated = [...prev, userMessage]
-          // IndexedDB에 직접 저장
-          saveToStorage({ messages: updated, status: 'active' })
-          return updated
-        })
+        // 이벤트로 메시지 추가
+        processEvent(userMessageEvent)
+        saveToStorage({ status: 'active' })
 
         // 백엔드에 대화 재개 요청
-        // models와 limits가 없으면 기본값 사용
         const defaultModels = [
           { id: 'gpt-5-mini', provider: 'openai' },
           { id: 'gemini-3-flash-preview', provider: 'google' }
@@ -807,23 +710,27 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
           pauseOnInactive: true
         }
 
-        const sent = sendMessage({
+        const resumePayload = {
           type: 'resume_conversation',
           session_id: sessionId.current,
           topic: config?.topic || '자유 주제',
-          agent_count: config?.agentCount || config?.agent_count || 2,
+          agent_count: agents.length || config?.agentCount || config?.agent_count || 2,
           speed: config?.speed || speed || 'normal',
           models: config?.models || defaultModels,
           limits: config?.limits || defaultLimits,
-          existing_messages: [...messages, userMessage],
+          existing_messages: messages,
+          existing_agents: agents,
           user_message: message,
           file_ids: fileIds
-        })
+        }
+
+        logWsSend('resume_conversation', { session_id: sessionId.current })
+
+        const sent = sendMessage(resumePayload)
 
         if (!sent) {
           // 전송 실패 시 상태 복구
           setIsStopped(true)
-          isStoppedRef.current = true
           setIsAIRunning(false)
           setWarning({
             type: 'connection',
@@ -834,32 +741,39 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
         return
       }
 
-      if (currentAgent) {
-        // 에이전트가 스트리밍 중이면 pending에 추가
-        const pendingMessage = { ...userMessage, isPending: true }
-        setPendingUserMessages(prev => [...prev, pendingMessage])
-        // ref도 동기화
-        pendingUserMessagesRef.current = [...pendingUserMessagesRef.current, pendingMessage]
-        console.log('[ConvView] User message added to pending:', userMessage.id)
-      } else {
-        // 에이전트가 없으면 바로 메시지에 추가
-        setMessages(prev => {
-          const updated = [...prev, userMessage]
-          // IndexedDB에 직접 저장
-          saveToStorage({ messages: updated })
-          return updated
-        })
-        console.log('[ConvView] User message added directly:', userMessage.id)
-      }
+      // AI가 현재 응답 중인지 확인
+      const isAIStreaming = currentAgent !== null
 
-      sendMessage({
-        type: 'user_intervene',
-        session_id: sessionId.current,
-        content: message,
-        file_ids: fileIds
-      })
+      if (isAIStreaming) {
+        // AI가 응답 중이면 메시지를 "대기 중" 상태로 추가
+        console.log('[ConvView] AI is streaming, adding pending message')
+        const pendingEvent = {
+          ...userMessageEvent,
+          isPending: true
+        }
+        processEvent(pendingEvent)
+        saveToStorage()
+
+        // 대기 메시지 저장 (agent_complete 후 전송)
+        pendingUserMessageRef.current = {
+          content: message,
+          fileIds: fileIds,
+          eventId: userMessageEvent.event_id
+        }
+      } else {
+        // AI가 응답 중이 아니면 바로 전송
+        processEvent(userMessageEvent)
+        saveToStorage()
+
+        sendMessage({
+          type: 'user_intervene',
+          session_id: sessionId.current,
+          content: message,
+          file_ids: fileIds
+        })
+      }
     }
-  }, [sendMessage, currentAgent, isStopped, isConnected, config, speed, messages, isWaitingForUser, saveToStorage])
+  }, [sendMessage, isStopped, isConnected, config, speed, messages, agents, isWaitingForUser, processEvent, saveToStorage, setIsStopped, setIsAIRunning, currentAgent])
 
   const getConnectionColor = () => {
     switch (connectionState) {
@@ -1079,17 +993,6 @@ function ConversationView({ conversation, config, mode, onUpdate, onEnd }) {
                   isStreaming: true
                 }}
               />
-            )}
-
-            {pendingUserMessages.length > 0 && (
-              <div className="pending-messages">
-                {pendingUserMessages.map(msg => (
-                  <AgentMessage
-                    key={msg.id}
-                    message={{ ...msg, isPending: true }}
-                  />
-                ))}
-              </div>
             )}
           </>
         )}

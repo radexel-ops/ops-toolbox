@@ -3,9 +3,36 @@
  * 중앙화된 설정 관리
  */
 
-// API URLs
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
-export const WS_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:8000/ws/chat'
+// API URLs - Docker 환경에서는 Nginx가 프록시하므로 상대 경로 사용
+const getApiBaseUrl = () => {
+  // 환경변수가 설정되어 있으면 사용
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL
+  }
+  // 개발 환경 (localhost:5173에서 실행)
+  if (window.location.hostname === 'localhost' && window.location.port === '5173') {
+    return 'http://localhost:8000'
+  }
+  // 프로덕션 환경 (Nginx 프록시) - 빈 문자열 = 현재 호스트
+  return ''
+}
+
+const getWsUrl = () => {
+  // 환경변수가 설정되어 있으면 사용
+  if (import.meta.env.VITE_WS_URL) {
+    return import.meta.env.VITE_WS_URL
+  }
+  // 개발 환경 (localhost:5173에서 실행)
+  if (window.location.hostname === 'localhost' && window.location.port === '5173') {
+    return 'ws://localhost:8000/ws/chat'
+  }
+  // 프로덕션 환경 - 현재 호스트 기반으로 동적 생성
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+  return `${protocol}//${window.location.host}/ws/chat`
+}
+
+export const API_BASE_URL = getApiBaseUrl()
+export const WS_URL = getWsUrl()
 
 // API 제공자 정보
 export const PROVIDERS = {

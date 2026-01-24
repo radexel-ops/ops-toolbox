@@ -161,12 +161,12 @@ def wait_download_started(before_files: set[str], timeout: int = 6) -> str:
         time.sleep(0.05)
     return ""
 
-def wait_all_downloads_complete(expected_count: int, timeout_per_file: int = 45) -> None:
+def wait_all_downloads_complete(expected_count: int, timeout_per_file: int = 5) -> None:
     """
     전체 다운로드 완료까지 기다림: 임시확장자(.crdownload/.tmp/.part)가 모두 사라질 때까지
     expected_count 개의 '완성본'이 생기면 종료
     """
-    deadline = time.time() + max(15, expected_count * timeout_per_file)
+    deadline = time.time() + max(5, expected_count * timeout_per_file)
 
     def is_temp(path: Path) -> bool:
         low = path.name.lower()
@@ -241,20 +241,15 @@ def next_month(driver: webdriver.Chrome):
     # 라벨이 바뀌면 즉시 다음 단계로 진행
     if old_text:
         try:
-            WebDriverWait(driver, 5).until(
+            WebDriverWait(driver, 1).until(
                 lambda d: d.find_element(By.CSS_SELECTOR, CSS_MONTH_LABEL).text.strip() != old_text
             )
             return
         except TimeoutException:
             pass  # 라벨 텍스트 변경 감지 실패 시, 아래 Fallback으로
 
-    # Fallback: 페이지 안정화만 짧게 확인(Timeout이어도 흐름 계속)
-    try:
-        WebDriverWait(driver, 2).until(
-            lambda d: d.execute_script("return document.readyState") == "complete"
-        )
-    except TimeoutException:
-        pass
+    # Fallback: 짧은 대기 후 진행
+    time.sleep(0.3)
 
 def main():
     reset_download_dir(DOWNLOAD_DIR)
@@ -275,9 +270,9 @@ def main():
 
             # ▼ 클릭(시작만 확인)
             try:
-                wait_click(driver, CSS_BTN_EXCEL, timeout=15 if idx == 0 else 2)
+                wait_click(driver, CSS_BTN_EXCEL, timeout=3 if idx == 0 else 1)
                 confirm_download_if_popup(driver)
-                started_name = wait_download_started(before, timeout=8 if idx == 0 else 4)
+                started_name = wait_download_started(before, timeout=2 if idx == 0 else 1)
                 if started_name:
                     started += 1
                     print(f"[시작] {idx+1}/{MONTHS_TO_FETCH}개월차: {started_name}")
@@ -288,7 +283,7 @@ def main():
 
         # ▼ 모두 큐에 넣은 뒤, 한 번만 완료 대기
         if started > 0:
-            wait_all_downloads_complete(started, timeout_per_file=40)
+            wait_all_downloads_complete(started, timeout_per_file=5)
             # 완료된 파일 로그 출력
             finals = [p for p in DOWNLOAD_DIR.glob("*") if not p.name.lower().endswith((".crdownload",".tmp",".part"))]
             for i, p in enumerate(sorted(finals), 1):
@@ -296,9 +291,8 @@ def main():
         else:
             print("[알림] 감지된 시작이 없습니다.")
 
-        print("\n자동화 완료 ✔")
+        print("\n자동화 완료 [OK]")
     finally:
-        time.sleep(0.5)
         try: driver.quit()
         except Exception: pass
 

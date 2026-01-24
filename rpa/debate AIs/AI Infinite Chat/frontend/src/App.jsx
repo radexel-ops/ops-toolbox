@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import './App.css'
 import { STORAGE_KEYS } from './config'
 import {
@@ -150,34 +150,68 @@ function AppContent() {
   }, [])
 
   // Handle conversation update (from ConversationView)
+  // 주의: ConversationView가 이미 IndexedDB에 저장함
+  // 여기서는 React 상태만 동기화하고, 목록만 새로고침
   const handleConversationUpdate = useCallback(async (updates) => {
-    if (!currentConversation) return
+    if (!currentConversationId) return
 
-    const updated = {
-      ...currentConversation,
-      ...updates,
-      updatedAt: Date.now()
+    try {
+      // IndexedDB에서 최신 대화 불러오기 (ConversationView가 저장한 최신 데이터)
+      const latestConversation = await getConversation(currentConversationId)
+      if (latestConversation) {
+        // React 상태를 최신 데이터로 동기화
+        setCurrentConversation(latestConversation)
+        console.log('[App] Synced conversation state from IndexedDB:', currentConversationId, 'messages:', latestConversation.messages?.length)
+      }
+
+      // 목록 새로고침
+      const convs = await getAllConversations()
+      setConversations(convs)
+    } catch (err) {
+      console.error('[App] Failed to sync conversation:', err)
     }
+  }, [currentConversationId])
 
-    await saveConversation(updated)
-    setCurrentConversation(updated)
-
-    // Refresh list
-    const convs = await getAllConversations()
-    setConversations(convs)
-  }, [currentConversation])
+  // 대화 로딩 중 상태 추적 (중복 클릭 방지)
+  const loadingConversationRef = useRef(false)
 
   // Load existing conversation (기존 대화 보기)
   const handleLoadConversation = useCallback(async (id) => {
-    const conversation = await getConversation(id)
-    if (conversation) {
-      setCurrentConversation(conversation)
-      setCurrentConversationId(id)
-      setConversationMode('view') // 기존 대화 보기 모드 - AI 자동 시작 안 함
-      setView('conversation')
-      setSidebarOpen(false)
+    // 이미 로딩 중이면 무시 (빠른 클릭으로 인한 깜빡임 방지)
+    if (loadingConversationRef.current) {
+      console.log('[App] Already loading conversation, ignoring click')
+      return
     }
-  }, [])
+
+    // 이미 같은 대화를 보고 있으면 무시
+    if (currentConversationId === id && view === 'conversation') {
+      console.log('[App] Same conversation already viewing')
+      setSidebarOpen(false)
+      return
+    }
+
+    loadingConversationRef.current = true
+
+    try {
+      const conversation = await getConversation(id)
+      if (conversation) {
+        // 상태를 배치로 업데이트 (React 18에서 자동 배치됨)
+        setCurrentConversation(conversation)
+        setCurrentConversationId(id)
+        setConversationMode('view') // 기존 대화 보기 모드 - AI 자동 시작 안 함
+        setView('conversation')
+        setSidebarOpen(false)
+        console.log('[App] Loaded conversation:', id, 'messages:', conversation.messages?.length)
+      }
+    } catch (error) {
+      console.error('[App] Failed to load conversation:', error)
+    } finally {
+      // 약간의 지연 후 로딩 플래그 해제 (상태 업데이트 완료 대기)
+      setTimeout(() => {
+        loadingConversationRef.current = false
+      }, 100)
+    }
+  }, [currentConversationId, view])
 
   // Delete conversation
   const handleDeleteConversation = useCallback(async (id, e) => {

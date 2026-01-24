@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # 백엔드 서비스 (FastAPI)
+  backend:
+    build: ./backend
+    container_name: ai-chat-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"  # 디버깅용 (운영에서는 제거 가능)
+    environment:
+      # API 키들 (실제 배포 시 .env 파일이나 환경변수로 설정)
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      # 서버 설정
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DEBUG=false
+    volumes:
+      # 업로드 파일 영속화 (선택사항)
+      - ./backend/uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 프론트엔드 서비스 (Nginx + React)
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # 빌드 시 API URL 설정 (Nginx가 프록시하므로 상대 경로 사용)
+        VITE_API_URL: ""
+        VITE_WS_URL: ""
+    container_name: ai-chat-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"  # 웹 브라우저 접속 포트
+    depends_on:
+      - backend
+
+# 네트워크 설정 (자동 생성되지만 명시적으로 정의)
+networks:
+  default:
+    name: ai-chat-network

@@ -4,6 +4,8 @@ let globalMessageId = 0 // 전역 메시지 ID 카운터
 
 function useWebSocket(url) {
   const [isConnected, setIsConnected] = useState(false)
+  // 메시지 큐 기반 접근 - 빠른 메시지 도착 시 손실 방지
+  const [messageQueue, setMessageQueue] = useState([])
   const [lastMessage, setLastMessage] = useState(null)
   const [connectionState, setConnectionState] = useState('disconnected') // 'connecting', 'connected', 'disconnected', 'error'
   const wsRef = useRef(null)
@@ -38,7 +40,9 @@ function useWebSocket(url) {
           data._timestamp = Date.now()
 
           console.log('[WS Recv]', data.type, `(id:${messageId})`, data)
-          setLastMessage(data)
+
+          // 메시지를 큐에 추가 (함수형 업데이트로 손실 방지)
+          setMessageQueue(prev => [...prev, data])
         } catch (e) {
           console.error('[WS] Failed to parse message:', e)
         }
@@ -88,6 +92,17 @@ function useWebSocket(url) {
       }
     }
   }, [connect])
+
+  // 메시지 큐 처리 - 순차적으로 lastMessage에 전달
+  useEffect(() => {
+    if (messageQueue.length > 0) {
+      // 첫 번째 메시지를 가져와서 lastMessage로 설정
+      const nextMessage = messageQueue[0]
+      setLastMessage(nextMessage)
+      // 큐에서 첫 번째 메시지 제거
+      setMessageQueue(prev => prev.slice(1))
+    }
+  }, [messageQueue])
 
   const sendMessage = useCallback((data) => {
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {

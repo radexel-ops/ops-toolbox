@@ -120,8 +120,14 @@ package-lock.json
 **/*.xml
 
 # Large/experimental projects
-# debate AIs/ - 이제 rpa/debate AIs/로 이동하여 GitHub에 포함
 interactive ai/
+
+# debate AIs 관련 제외 파일
+/debate AIs/                                    # 루트의 중복 폴더
+**/debate AIs/**/history/                       # 토론 기록 HTML 파일들
+**/debate AIs/**/uploads/                       # 업로드된 파일들
+**/debate AIs/**/.vite/                         # Vite 캐시
+**/debate AIs/**/frontend/dist/                 # 프론트엔드 빌드 결과물
 
 # Projects with large binary files
 북쉐프 자동캡쳐/

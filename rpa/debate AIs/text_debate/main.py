@@ -36,8 +36,11 @@ from utils import FileProcessor, HtmlLogger
 # 콘솔 초기화 (Windows 호환성)
 console = Console(force_terminal=True, legacy_windows=False)
 
-# 환경변수 로드
-load_dotenv()
+# 환경변수 로드 (루트의 .env.shared, .env.local 사용)
+from pathlib import Path
+_root = Path(__file__).resolve().parent.parent.parent.parent  # rpa/debate AIs/text_debate -> RDXL_RPA
+load_dotenv(_root / '.env.shared')
+load_dotenv(_root / '.env.local', override=True)
 
 
 def get_current_date_str() -> str:
