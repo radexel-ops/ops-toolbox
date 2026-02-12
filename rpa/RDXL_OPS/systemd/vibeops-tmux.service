@@ -1,0 +1,31 @@
+[Unit]
+Description=VibeOps Tmux Session Manager
+Documentation=https://github.com/oliai-bot/ai-infinite-chat
+After=network.target
+
+[Service]
+Type=forking
+User=vibeops
+Group=vibeops
+WorkingDirectory=/home/vibeops/vibeops/rpa/RDXL_OPS
+
+# Create main tmux session with multiple windows for agents
+ExecStart=/usr/bin/tmux new-session -d -s vibeops -n main \; \
+    new-window -t vibeops -n pm \; \
+    new-window -t vibeops -n douzone \; \
+    new-window -t vibeops -n news \; \
+    new-window -t vibeops -n scheduler
+
+# Kill session on stop
+ExecStop=/usr/bin/tmux kill-session -t vibeops
+
+# Environment
+Environment="HOME=/home/vibeops"
+Environment="TERM=xterm-256color"
+
+# Restart policy
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

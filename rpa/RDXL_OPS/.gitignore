@@ -1,0 +1,93 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# ===== IDE =====
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ===== Environment =====
+.env
+.env.local
+.env.*.local
+*.env
+
+# ===== Database =====
+*.db
+*.sqlite
+*.sqlite3
+data/*.db
+
+# ===== Logs =====
+logs/
+*.log
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ===== Project Specific =====
+# Selenium screenshots
+screenshots/
+debug_screenshots/
+
+# Downloads
+downloads/
+
+# Temp files
+tmp/
+temp/
+*.tmp
+
+# Backups
+backups/
+*.bak
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Test cache
+.pytest_cache/
+.tox/
+.nox/
+
+# Node modules (if using frontend build tools)
+node_modules/
+
+# Build artifacts
+*.pyc
+*.pyo
+*.pyd

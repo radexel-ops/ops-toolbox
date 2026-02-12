@@ -1,0 +1,38 @@
+[Unit]
+Description=VibeOps FastAPI Server
+Documentation=https://github.com/oliai-bot/ai-infinite-chat
+After=network.target vibeops-tmux.service
+Wants=vibeops-tmux.service
+
+[Service]
+Type=simple
+User=vibeops
+Group=vibeops
+WorkingDirectory=/home/vibeops/vibeops/rpa/RDXL_OPS/backend
+
+# Environment
+Environment="PATH=/home/vibeops/vibeops/rpa/RDXL_OPS/venv/bin:/usr/local/bin:/usr/bin"
+EnvironmentFile=/home/vibeops/vibeops/rpa/RDXL_OPS/.env
+
+# Run uvicorn
+ExecStart=/home/vibeops/vibeops/rpa/RDXL_OPS/venv/bin/uvicorn app.main:app \
+    --host 127.0.0.1 \
+    --port 8000 \
+    --workers 2 \
+    --log-level info
+
+# Restart policy
+Restart=always
+RestartSec=5
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=vibeops-api
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

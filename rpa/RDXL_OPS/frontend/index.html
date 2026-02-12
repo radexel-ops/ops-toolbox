@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeOps - AI 운영 자동화 플랫폼</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header" role="banner">
+            <div class="header-logo">
+                <h1>VibeOps</h1>
+                <span class="header-subtitle">AI 운영 자동화 플랫폼</span>
+            </div>
+            <div class="header-right">
+                <span id="connection-status" class="status-badge status-disconnected" role="status" aria-live="polite">
+                    연결 안됨
+                </span>
+                <div class="user-menu">
+                    <button class="user-btn" id="user-btn" aria-haspopup="true" aria-expanded="false" aria-label="사용자 메뉴 열기">
+                        <div class="user-avatar" id="user-avatar" aria-hidden="true">?</div>
+                        <div class="user-info">
+                            <div class="user-name" id="user-name">로딩 중...</div>
+                            <div class="user-team" id="user-team"></div>
+                        </div>
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown" role="menu" aria-label="사용자 메뉴">
+                        <a href="#" class="dropdown-item" data-page="settings" role="menuitem" tabindex="-1">
+                            <span aria-hidden="true">⚙️</span> 설정
+                        </a>
+                        <a href="#" class="dropdown-item" id="guidelines-btn" role="menuitem" tabindex="-1">
+                            <span aria-hidden="true">📋</span> 팀 지침 편집
+                        </a>
+                        <div class="dropdown-divider" role="separator"></div>
+                        <a href="#" class="dropdown-item danger" id="logout-btn" role="menuitem" tabindex="-1">
+                            <span aria-hidden="true">🚪</span> 로그아웃
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content" role="main">
+            <!-- Sidebar -->
+            <aside class="sidebar" role="complementary" aria-label="사이드바 네비게이션">
+                <!-- Team Info -->
+                <div class="team-info-card" aria-label="현재 팀 정보">
+                    <h3 id="team-info-heading">현재 팀</h3>
+                    <div class="team-name" id="sidebar-team-name" aria-describedby="team-info-heading">-</div>
+                    <span class="role-badge" id="sidebar-role-badge">-</span>
+                </div>
+
+                <nav class="nav" role="navigation" aria-label="메인 네비게이션">
+                    <a href="#" class="nav-item active" data-page="dashboard" aria-current="page">
+                        <span class="nav-icon" aria-hidden="true">📊</span>
+                        대시보드
+                    </a>
+                    <a href="#" class="nav-item" data-page="chat">
+                        <span class="nav-icon" aria-hidden="true">💬</span>
+                        AI 채팅
+                    </a>
+                    <a href="#" class="nav-item" data-page="agents">
+                        <span class="nav-icon" aria-hidden="true">🤖</span>
+                        에이전트
+                    </a>
+                    <a href="#" class="nav-item" data-page="knowledge">
+                        <span class="nav-icon" aria-hidden="true">📚</span>
+                        지식베이스
+                    </a>
+                    <a href="#" class="nav-item" data-page="settings">
+                        <span class="nav-icon" aria-hidden="true">⚙️</span>
+                        설정
+                    </a>
+                    <a href="/admin.html" class="nav-item admin-link hidden" id="admin-nav-link">
+                        <span class="nav-icon" aria-hidden="true">🛠️</span>
+                        관리자 대시보드
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <div class="content" role="region" aria-label="주요 콘텐츠">
+                <!-- Dashboard Page -->
+                <section id="page-dashboard" class="page active" aria-labelledby="dashboard-heading">
+                    <h2 id="dashboard-heading">대시보드</h2>
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <h3>시스템 상태</h3>
+                            <div id="system-status">
+                                <p>로딩 중...</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3>팀 정보</h3>
+                            <div id="team-info-detail">
+                                <p>로딩 중...</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3>최근 작업</h3>
+                            <div id="recent-tasks">
+                                <p>작업 이력이 없습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Chat Page -->
+                <section id="page-chat" class="page" aria-labelledby="chat-heading">
+                    <h2 id="chat-heading">AI 채팅</h2>
+                    <div class="chat-container" role="application" aria-label="AI 채팅 인터페이스">
+                        <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-label="채팅 메시지">
+                            <div class="chat-welcome">
+                                <p>안녕하세요! 무엇을 도와드릴까요?</p>
+                                <p class="chat-hint">예: "이번 주 야근자 명단 뽑아줘"</p>
+                            </div>
+                        </div>
+                        <form id="chat-form" class="chat-input-form" aria-label="메시지 입력 폼">
+                            <label for="chat-input" class="sr-only">메시지 입력</label>
+                            <input
+                                type="text"
+                                id="chat-input"
+                                placeholder="메시지를 입력하세요..."
+                                autocomplete="off"
+                                aria-label="AI에게 보낼 메시지"
+                            >
+                            <button type="submit" class="btn btn-primary" aria-label="메시지 전송">전송</button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Agents Page -->
+                <section id="page-agents" class="page">
+                    <h2>에이전트 관리</h2>
+                    <div id="agents-list">
+                        <p>에이전트 목록을 불러오는 중...</p>
+                    </div>
+                </section>
+
+                <!-- Knowledge Page -->
+                <section id="page-knowledge" class="page">
+                    <h2>지식베이스</h2>
+                    <div class="card" style="margin-bottom: var(--spacing-lg);">
+                        <h3>Master 지침 (CLAUDE.md)</h3>
+                        <p class="text-muted">프로젝트 전체에 적용되는 마스터 지침입니다.</p>
+                        <div id="master-guideline-preview" style="margin-top: var(--spacing-md);">
+                            <p>로딩 중...</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>팀 지침 (TEAM_CLAUDE.md)</h3>
+                        <p class="text-muted">현재 팀에만 적용되는 팀 지침입니다.</p>
+                        <div id="team-guideline-preview" style="margin-top: var(--spacing-md);">
+                            <p>로딩 중...</p>
+                        </div>
+                        <div class="guidelines-editor" id="team-guidelines-editor">
+                            <textarea class="guidelines-textarea" id="team-guidelines-textarea"></textarea>
+                            <div class="guidelines-actions">
+                                <button class="btn btn-primary" id="save-guidelines-btn">저장</button>
+                                <button class="btn btn-secondary" id="cancel-guidelines-btn">취소</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Page -->
+                <section id="page-settings" class="page">
+                    <h2>설정</h2>
+                    <div class="card">
+                        <h3>계정 정보</h3>
+                        <div id="account-info">
+                            <p>로딩 중...</p>
+                        </div>
+                    </div>
+                    <div class="card" style="margin-top: var(--spacing-lg);">
+                        <h3>비밀번호 변경</h3>
+                        <form id="password-form">
+                            <div class="form-group">
+                                <label for="current-password">현재 비밀번호</label>
+                                <input type="password" id="current-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">새 비밀번호</label>
+                                <input type="password" id="new-password" required minlength="6">
+                            </div>
+                            <button type="submit" class="btn btn-primary">변경</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/icons.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/bridge-client.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

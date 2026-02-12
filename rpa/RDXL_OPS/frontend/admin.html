@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeOps - 관리자 대시보드</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div id="admin-app">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="header-left">
+                <a href="index.html" class="back-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </a>
+                <h1 class="header-title">관리자 대시보드</h1>
+            </div>
+            <div class="header-right">
+                <span id="admin-connection-status" class="status-indicator status-disconnected">
+                    <span class="status-dot"></span>
+                    <span class="status-text">연결 안됨</span>
+                </span>
+                <div class="admin-user-info">
+                    <div class="admin-avatar" id="admin-avatar">A</div>
+                    <span class="admin-name" id="admin-name">관리자</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Tab Navigation -->
+            <nav class="admin-tabs">
+                <button class="tab-btn active" data-tab="pending">
+                    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>승인대기</span>
+                    <span class="tab-badge" id="pending-count">0</span>
+                </button>
+                <button class="tab-btn" data-tab="users">
+                    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                    </svg>
+                    <span>사용자 관리</span>
+                </button>
+                <button class="tab-btn" data-tab="feedback">
+                    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                    </svg>
+                    <span>피드백</span>
+                    <span class="tab-badge" id="feedback-count">0</span>
+                </button>
+                <button class="tab-btn" data-tab="bridge">
+                    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                    <span>클로드 브릿지</span>
+                </button>
+                <button class="tab-btn" data-tab="agents">
+                    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="10" rx="2"/>
+                        <circle cx="12" cy="5" r="2"/>
+                        <path d="M12 7v4M7 22v-3M17 22v-3"/>
+                        <circle cx="8" cy="16" r="1" fill="currentColor"/>
+                        <circle cx="16" cy="16" r="1" fill="currentColor"/>
+                    </svg>
+                    <span>에이전트</span>
+                </button>
+                <button class="tab-btn" data-tab="schedules">
+                    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                        <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+                    </svg>
+                    <span>스케줄</span>
+                </button>
+            </nav>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Pending Users Tab -->
+                <section id="tab-pending" class="tab-pane active">
+                    <div class="tab-header">
+                        <h2>승인 대기 사용자</h2>
+                        <p class="tab-description">가입 승인을 대기 중인 사용자 목록입니다.</p>
+                    </div>
+                    <div class="pending-list" id="pending-list">
+                        <div class="empty-state">
+                            <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <p>승인 대기 중인 사용자가 없습니다.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Users Tab -->
+                <section id="tab-users" class="tab-pane">
+                    <div class="tab-header">
+                        <h2>사용자 관리</h2>
+                        <div class="tab-actions">
+                            <div class="search-box">
+                                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="M21 21l-4.35-4.35"/>
+                                </svg>
+                                <input type="text" id="user-search" placeholder="이름 또는 이메일 검색...">
+                            </div>
+                            <select id="role-filter" class="filter-select">
+                                <option value="">모든 역할</option>
+                                <option value="super_admin">시스템 관리자</option>
+                                <option value="team_admin">팀 관리자</option>
+                                <option value="member">팀원</option>
+                            </select>
+                            <select id="status-filter" class="filter-select">
+                                <option value="">모든 상태</option>
+                                <option value="active">활성</option>
+                                <option value="inactive">비활성</option>
+                            </select>
+                            <select id="team-filter" class="filter-select">
+                                <option value="">모든 팀</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="users-table-container">
+                        <table class="users-table">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="name">
+                                        이름
+                                        <svg class="sort-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M7 15l5 5 5-5M7 9l5-5 5 5"/>
+                                        </svg>
+                                    </th>
+                                    <th>이메일</th>
+                                    <th>팀</th>
+                                    <th>역할</th>
+                                    <th>상태</th>
+                                    <th class="sortable" data-sort="last_login">
+                                        마지막 로그인
+                                        <svg class="sort-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M7 15l5 5 5-5M7 9l5-5 5 5"/>
+                                        </svg>
+                                    </th>
+                                    <th>액션</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table-body">
+                                <tr class="loading-row">
+                                    <td colspan="7">로딩 중...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-pagination" id="users-pagination">
+                        <!-- Pagination will be rendered here -->
+                    </div>
+                </section>
+
+                <!-- Feedback Tab -->
+                <section id="tab-feedback" class="tab-pane">
+                    <div class="tab-header">
+                        <h2>피드백 관리</h2>
+                        <div class="tab-actions">
+                            <select id="feedback-status-filter" class="filter-select">
+                                <option value="">모든 상태</option>
+                                <option value="new">신규</option>
+                                <option value="reviewing">검토중</option>
+                                <option value="resolved">해결됨</option>
+                            </select>
+                            <button class="btn btn-secondary" id="bulk-action-btn" disabled>
+                                대량 작업
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9l6 6 6-6"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="feedback-list" id="feedback-list">
+                        <div class="empty-state">
+                            <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                            </svg>
+                            <p>피드백이 없습니다.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Claude Bridge Tab -->
+                <section id="tab-bridge" class="tab-pane">
+                    <div class="bridge-container">
+                        <div class="bridge-sidebar">
+                            <div class="bridge-info">
+                                <h3>컨텍스트 정보</h3>
+                                <div class="info-item">
+                                    <span class="info-label">팀</span>
+                                    <span class="info-value" id="bridge-team">-</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">역할</span>
+                                    <span class="info-value" id="bridge-role">-</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">세션</span>
+                                    <span class="info-value" id="bridge-session">-</span>
+                                </div>
+                            </div>
+                            <div class="bridge-status">
+                                <h3>연결 상태</h3>
+                                <div class="status-card" id="bridge-status-card">
+                                    <div class="status-indicator status-disconnected">
+                                        <span class="status-dot"></span>
+                                        <span id="bridge-status-text">연결 안됨</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bridge-chat">
+                            <div class="chat-header">
+                                <h3>Claude Code 브릿지</h3>
+                                <button class="btn btn-icon" id="clear-chat-btn" title="채팅 지우기">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="chat-messages" id="bridge-messages">
+                                <div class="chat-welcome">
+                                    <div class="welcome-icon">
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                        </svg>
+                                    </div>
+                                    <h4>Claude Code 브릿지에 오신 것을 환영합니다</h4>
+                                    <p>서버의 Claude Code CLI와 실시간으로 대화할 수 있습니다.</p>
+                                </div>
+                            </div>
+                            <form class="chat-input-form" id="bridge-form">
+                                <input type="text" id="bridge-input" placeholder="Claude에게 명령을 입력하세요..." autocomplete="off">
+                                <button type="submit" class="btn btn-primary" id="bridge-send-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Agents Tab -->
+                <section id="tab-agents" class="tab-pane">
+                    <div class="tab-header">
+                        <h2>에이전트 관리</h2>
+                        <div class="tab-actions">
+                            <button class="btn btn-secondary" id="refresh-agents-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                </svg>
+                                새로고침
+                            </button>
+                        </div>
+                    </div>
+                    <p class="tab-description">자동화 에이전트를 관리하고 실행합니다. 탭을 클릭하면 에이전트 목록이 로딩됩니다.</p>
+                    <div class="agents-grid" id="agents-grid">
+                        <div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                            <p>에이전트 탭을 다시 클릭하면 목록이 로딩됩니다.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Schedules Tab -->
+                <section id="tab-schedules" class="tab-pane">
+                    <div class="tab-header">
+                        <h2>스케줄 관리</h2>
+                        <div class="tab-actions">
+                            <button class="btn btn-secondary" id="refresh-schedules-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                </svg>
+                                새로고침
+                            </button>
+                            <button class="btn btn-primary" id="add-schedule-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                새 스케줄
+                            </button>
+                        </div>
+                    </div>
+                    <div class="schedules-table-container">
+                        <table class="schedules-table">
+                            <thead>
+                                <tr>
+                                    <th>이름</th>
+                                    <th>에이전트</th>
+                                    <th>스케줄</th>
+                                    <th>마지막 실행</th>
+                                    <th>상태</th>
+                                    <th>액션</th>
+                                </tr>
+                            </thead>
+                            <tbody id="schedules-table-body">
+                                <tr class="loading-row">
+                                    <td colspan="6">스케줄 탭을 다시 클릭하면 목록이 로딩됩니다.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- User Edit Modal -->
+    <div class="modal-overlay" id="user-edit-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>사용자 편집</h3>
+                <button class="modal-close" id="close-user-modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="user-edit-form">
+                    <input type="hidden" id="edit-user-id">
+                    <div class="form-group">
+                        <label for="edit-user-name">이름</label>
+                        <input type="text" id="edit-user-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-user-email">이메일</label>
+                        <input type="email" id="edit-user-email" required disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-user-team">팀</label>
+                        <select id="edit-user-team">
+                            <option value="">팀 없음</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-user-role">역할</label>
+                        <select id="edit-user-role">
+                            <option value="member">팀원</option>
+                            <option value="team_admin">팀 관리자</option>
+                            <option value="super_admin">시스템 관리자</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="edit-user-active">
+                            <span>활성화</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-user-edit">취소</button>
+                <button class="btn btn-primary" id="save-user-edit">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Detail Modal -->
+    <div class="modal-overlay" id="feedback-detail-modal">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h3>피드백 상세</h3>
+                <button class="modal-close" id="close-feedback-modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="feedback-detail-body">
+                <!-- Content will be rendered here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="close-feedback-detail">닫기</button>
+                <button class="btn btn-primary" id="send-to-bridge">브릿지로 전송</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/bridge-client.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
